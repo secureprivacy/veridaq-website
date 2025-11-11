@@ -1,0 +1,27 @@
+{
+  "defaultTitle": "Veridaq | Edistyneet KYC & AML Ratkaisut EU AMLR 2027 Compliance-vaatimuksiin",
+  "defaultDescription": "EU:n johtava KYC & AML compliance-alusta rahoituspalveluille. Valmistaudu EU AMLR 2027:ään automatisoidulla varmistuksella, riskiarvioinnilla ja sääntelyraportoinnilla. GDPR-yhteensopiva.",
+  "defaultKeywords": "KYC compliance, AML seulonta, EU AMLR 2027, GDPR compliance, taloudellinen compliance, henkilöllisyyden varmistus, riskiarviointi, transaktioiden seuranta, sääntelyraportointi, Euroopan Unioni, rahoituspalvelujen compliance",
+  "pages": {
+    "home": {
+      "title": "Veridaq | EU AMLR 2027 Valmis KYC & AML Compliance-alusta",
+      "description": "Edistyneet KYC & AML ratkaisut EU-yrityksille. Automaattinen compliance, reaaliaikainen seuranta, riskiarviointi. Valmistaudu EU AMLR 2027:ään. Varaa demo tänään.",
+      "keywords": "EU AMLR 2027, KYC varmistus, AML compliance, taloudellinen compliance-alusta, GDPR valmis, eurooppalaiset compliance-ratkaisut"
+    },
+    "features": {
+      "title": "KYC & AML Ominaisuudet | Kattava Compliance-alusta | Veridaq",
+      "description": "Tutustu täydelliseen KYC & AML ominaisuuksien joukkoomme: asiakastunteminen, transaktioiden seuranta, pakoteseulonta, riskiarviointi ja sääntelyraportointi.",
+      "keywords": "KYC ominaisuudet, AML seulonta, transaktioiden seuranta, riskiarviointi, compliance kojelauta, sääntelyraportointi"
+    },
+    "industries": {
+      "title": "Toimialaratkaisut | KYC & AML Rahoituspalveluille | Veridaq",
+      "description": "Räätälöidyt KYC & AML ratkaisut rahoituspalveluille, FinTech:lle, kryptovaluutoille, kiinteistöille, peleille ja verkkokaupalle. EU compliance-asiantuntijat.",
+      "keywords": "rahoituspalvelujen compliance, FinTech KYC, crypto AML, pankkien compliance, toimialakohtaiset ratkaisut"
+    },
+    "contact": {
+      "title": "Yhteystiedot | Få EU AMLR 2027 Compliance Demo | Veridaq",
+      "description": "Ota yhteyttä EU compliance-asiantuntijoihimme henkilökohtaista demoa varten. Katso kuinka Veridaq voi tehostaa KYC & AML prosessejasi. Ilmainen konsultaatio saatavilla.",
+      "keywords": "compliance-konsultaatio, KYC demo, AML asiantuntijakonsultaatio, EU compliance-asiantuntijat, varaa demo"
+    }
+  }
+}

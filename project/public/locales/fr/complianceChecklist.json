@@ -1,0 +1,54 @@
+{
+  "badge": "Ressource gratuite",
+  "title": "Liste de vérification conformité EU AMLR 2027",
+  "subtitle": "Obtenez notre liste de vérification complète de 50 points pour vous assurer que votre organisation est prête pour le nouveau règlement anti-blanchiment de l'UE en 2027.",
+  "form": {
+    "title": "Téléchargez votre liste de vérification gratuite",
+    "email": "E-mail professionnel",
+    "emailPlaceholder": "vous@entreprise.fr",
+    "download": "Obtenir la liste gratuite",
+    "privacy": "Nous respectons votre vie privée. Pas de spam, désinscription à tout moment."
+  },
+  "success": {
+    "title": "Liste de vérification envoyée !",
+    "message": "Vérifiez votre e-mail pour la liste de vérification conformité EU AMLR 2027. Besoin d'aide pour implémenter ces exigences ?",
+    "cta": "Parler à un expert en conformité"
+  },
+  "preview": {
+    "title": "Ce qui est inclus",
+    "note": "Cette liste de vérification couvre toutes les exigences majeures attendues dans le règlement EU AMLR 2027.",
+    "moreItems": "plus d'éléments dans la liste complète"
+  },
+  "categories": {
+    "customerIdentification": "Identification et vérification client",
+    "riskAssessment": "Évaluation et classification des risques",
+    "ongoingMonitoring": "Surveillance et contrôle continus",
+    "recordKeeping": "Tenue de registres et rapports"
+  },
+  "items": {
+    "customerIdentification": [
+      "Implémenter des procédures de diligence raisonnable renforcée (EDD)",
+      "Établir des protocoles d'identification des bénéficiaires effectifs",
+      "Mettre en place le filtrage des personnes politiquement exposées (PPE)",
+      "Créer des cadres de profilage des risques clients"
+    ],
+    "riskAssessment": [
+      "Effectuer des évaluations complètes des risques commerciaux",
+      "Implémenter des évaluations des risques pays/géographiques",
+      "Établir des méthodologies de notation des risques clients",
+      "Créer des procédures de surveillance basées sur le risque"
+    ],
+    "ongoingMonitoring": [
+      "Mettre en place des systèmes de surveillance continue des transactions",
+      "Implémenter des protocoles de filtrage des sanctions",
+      "Établir des règles de détection d'activités suspectes",
+      "Créer des flux de travail d'enquête d'alertes"
+    ],
+    "recordKeeping": [
+      "Maintenir des pistes d'audit complètes",
+      "Implémenter des systèmes de stockage de documents sécurisés",
+      "Établir des procédures de rapports réglementaires",
+      "Créer des politiques de rétention et suppression de données"
+    ]
+  }
+}

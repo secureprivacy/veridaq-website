@@ -1,0 +1,60 @@
+{
+  "badge": "Tulevaisuusvalmis",
+  "title": "Valmistaudu <1>EU AMLR 2027</1>:ään tänään",
+  "subtitle": "Tuleva EU:n rahanpesun vastainen asetus tuo merkittäviä muutoksia compliance-vaatimuksiin. Ratkaisumme on suunniteltu nämä tulevat säädökset mielessä pitäen.",
+  "timeline": {
+    "title": "EU AMLR 2027 Compliance-aikajana",
+    "items": {
+      "2023": {
+        "title": "Asetusesitys",
+        "description": "Kattavan EU:n rahanpesun vastaisen asetusesityksen esittely."
+      },
+      "2024": {
+        "title": "Siirtymäkausi alkaa",
+        "description": "Yritysten tulisi alkaa valmistella järjestelmiä ja prosesseja compliance-vaatimustenmukaisuutta varten."
+      },
+      "2025": {
+        "title": "Toteutuskehys",
+        "description": "Tekniset standardit ja toteutusohjeet julkaistaan."
+      },
+      "2026": {
+        "title": "Testausvaihe",
+        "description": "Lopulliset valmistelut ja järjestelmätestaus ennen täyttä täytäntöönpanoa."
+      },
+      "2027": {
+        "title": "Täysi täytäntöönpano",
+        "description": "Täydellinen compliance-vaatimustenmukaisuus vaaditaan kaikilta sovellettavilta yrityksiltä."
+      }
+    }
+  },
+  "features": {
+    "enhancedDueDiligence": {
+      "title": "Tehostettu due diligence:",
+      "description": "Alustamme sisältää jo tiukemmat varmistusstandardit, joita odotetaan AMLR 2027:ssä."
+    },
+    "beneficialOwnershipTracking": {
+      "title": "Tosiasiallisen omistajuuden seuranta:",
+      "description": "Kattavat työkalut tosiasiallisten omistajien seurantaan ja varmistukseen."
+    },
+    "advancedRiskAssessment": {
+      "title": "Edistynyt riskiarviointi:",
+      "description": "Kehittyneet algoritmit, jotka mukautuvat kehittyviin sääntelyriskiparametreihin."
+    },
+    "seamlessRegulatoryReporting": {
+      "title": "Saumaton sääntelyraportointi:",
+      "description": "Automatisoidut raportointityökalut, jotka mukautuvat uusiin vaatimuksiin."
+    }
+  },
+  "didYouKnow": {
+    "title": "Tiesitkö?",
+    "description": "Yritykset, jotka aloittavat tehostettujen AML-järjestelmien käyttöönoton nyt, säästävät keskimäärin 40% compliance-kustannuksissa verrattuna niihin, jotka odottavat säädösten täytäntöönpanoa."
+  },
+  "cta": {
+    "primary": "Ota yhteyttä asiantuntijoihimme",
+    "secondary": "Ota yhteyttä myyntiin"
+  },
+  "ctaSection": {
+    "title": "Valmista yrityksesi EU AMLR 2027:ään",
+    "subtitle": "Pysy sääntelymuutosten edellä tulevaisuudenvarmalla KYC- ja AML-ratkaisullamme. Ota yhteyttä asiantuntijoihimme nähdäksesi, kuinka voimme auttaa yritystäsi."
+  }
+}

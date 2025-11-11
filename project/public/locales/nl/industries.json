@@ -1,0 +1,224 @@
+{
+  "badge": "Sectoroplossingen",
+  "title": "Sectoren die wij <1>bedienen</1>",
+  "subtitle": "Onze KYC- en AML-oplossingen zijn op maat gemaakt om de unieke compliance-uitdagingen in verschillende sectoren aan te pakken, waarbij regulatoire naleving wordt gewaarborgd terwijl operationele efficiëntie wordt geoptimaliseerd.",
+  "backToIndustries": "Terug naar sectoren",
+  "items": {
+    "financialServices": {
+      "title": "Financiële diensten",
+      "description": "Banken, kredietverenigingen en traditionele financiële instellingen",
+      "challenges": [
+        "Complexe regulatoire vereisten over meerdere jurisdicties",
+        "Legacy systeem integratie-uitdagingen",
+        "Hoog-volume transactiemonitoring",
+        "Geavanceerde risicobeoordeling behoeften"
+      ],
+      "solutions": [
+        "Uitgebreide KYC/AML platform integratie",
+        "Real-time transactiemonitoring",
+        "Geavanceerde risicoscore algoritmen",
+        "Regulatoire rapportage automatisering"
+      ],
+      "benefits": [
+        "Verminderde compliance-kosten tot 40%",
+        "Snellere klant onboarding",
+        "Verbeterde fraudedetectie",
+        "Gestroomlijnde auditprocessen"
+      ]
+    },
+    "fintech": {
+      "title": "FinTech & Digital Banking",
+      "description": "Digital-first financiële diensten en neobanken",
+      "challenges": [
+        "Snelle schaling terwijl compliance wordt gehandhaafd",
+        "Digitale identiteitsverificatie",
+        "Real-time risicobeoordeling",
+        "Regulatoire onzekerheid in nieuwe markten"
+      ],
+      "solutions": [
+        "API-first compliance infrastructuur",
+        "Digitale identiteitsverificatie",
+        "Geautomatiseerde onboarding workflows",
+        "Schaalbare monitoring systemen"
+      ],
+      "benefits": [
+        "Snellere time-to-market",
+        "Verbeterde conversieratio's",
+        "Verminderde operationele overhead",
+        "Verbeterde klantervaring"
+      ]
+    },
+    "crypto": {
+      "title": "Cryptocurrency & digitale assets",
+      "description": "Crypto-exchanges, wallets en DeFi-platforms",
+      "challenges": [
+        "Evoluerend regulatoir landschap",
+        "Complexe transactie tracking",
+        "Grensoverschrijdende compliance",
+        "Hoog-risico klantsegmenten"
+      ],
+      "solutions": [
+        "Blockchain transactie analyse",
+        "Verbeterde due diligence tools",
+        "Travel rule compliance",
+        "Sanctiescreening voor crypto-adressen"
+      ],
+      "benefits": [
+        "Regulatoire compliance vertrouwen",
+        "Verminderd regulatoir risico",
+        "Verbeterde transactietransparantie",
+        "Verbeterd institutioneel vertrouwen"
+      ]
+    },
+    "realEstate": {
+      "title": "Vastgoed",
+      "description": "Vastgoedtransacties en vastgoedinvesteringen",
+      "challenges": [
+        "Grote transactiewaarden die verbeterde due diligence vereisen",
+        "Complexe eigendomsstructuren",
+        "Verificatie van herkomst van fondsen",
+        "Internationale investering compliance"
+      ],
+      "solutions": [
+        "Verbeterde due diligence workflows",
+        "Uiteindelijk begunstigde eigendom tracking",
+        "Verificatie van herkomst van vermogen",
+        "PEP en sanctiescreening"
+      ],
+      "benefits": [
+        "Verminderde transactievertragingen",
+        "Verbeterd due diligence vertrouwen",
+        "Verbeterde regulatoire compliance",
+        "Gestroomlijnde afsluitingsprocessen"
+      ]
+    },
+    "gaming": {
+      "title": "Gaming & entertainment",
+      "description": "Online gaming platforms en entertainment services",
+      "challenges": [
+        "Leeftijdsverificatie vereisten",
+        "Betaalmethode verificatie",
+        "Verantwoord gokken compliance",
+        "Grensoverschrijdende speler verificatie"
+      ],
+      "solutions": [
+        "Leeftijd en identiteitsverificatie",
+        "Betaalbron verificatie",
+        "Gedragsmonitoring tools",
+        "Geolocatie compliance"
+      ],
+      "benefits": [
+        "Verbeterd spelervertrouwen",
+        "Verminderde fraudeverliezen",
+        "Verbeterde regulatoire compliance",
+        "Betere spelerbescherming"
+      ]
+    },
+    "ecommerce": {
+      "title": "E-commerce & marktplaatsen",
+      "description": "Online retail en peer-to-peer marktplaatsen",
+      "challenges": [
+        "Handelaar verificatie en onboarding",
+        "Betaalfraudepreventie",
+        "Marktplaats verkoper compliance",
+        "Grensoverschrijdende transactiemonitoring"
+      ],
+      "solutions": [
+        "Handelaar KYC-verificatie",
+        "Transactiemonitoring systemen",
+        "Verkoper achtergrondcontroles",
+        "Betaalfraudedetectie"
+      ],
+      "benefits": [
+        "Verminderde chargebacks",
+        "Verbeterd marktplaatsvertrouwen",
+        "Verbeterde verkoperkwaliteit",
+        "Betere fraudepreventie"
+      ]
+    },
+    "legalServices": {
+      "title": "Juridische diensten & advocatenkantoren",
+      "description": "Advocatenkantoren, juridische adviseurs en notarissen die cliëntfondsen en transacties beheren",
+      "challenges": [
+        "Cliënt trustrekening monitoring en compliance",
+        "Verificatie van herkomst van fondsen voor grote schikkingen",
+        "Politiek blootgestelde personen (PEP) screening voor hooggeprofileerde cliënten",
+        "Grensoverschrijdende juridische transacties compliance"
+      ],
+      "solutions": [
+        "Cliënt onboarding met verbeterde due diligence",
+        "Trustrekening transactiemonitoring",
+        "PEP en sanctiescreening voor alle cliënten",
+        "Geautomatiseerde compliance rapportage aan juridische autoriteiten"
+      ],
+      "benefits": [
+        "Verminderd regulatoir risico voor cliëntfondsen beheer",
+        "Gestroomlijnde cliënt onboarding proces",
+        "Verbeterde professionele reputatie en vertrouwen",
+        "Geautomatiseerde compliance documentatie voor audits"
+      ]
+    },
+    "accounting": {
+      "title": "Boekhouding & belastingadvies",
+      "description": "Boekhoudkantoren, belastingadviseurs en financiële consultants",
+      "challenges": [
+        "Cliëntverificatie voor belastingplanning en financieel advies",
+        "Verificatie van vermogensbronnen voor welvarende cliënten",
+        "Compliance met anti-witwasregelgeving",
+        "Beheer van cliëntgegevensprivacy onder GDPR"
+      ],
+      "solutions": [
+        "Gestroomlijnde cliëntverificatie en onboarding",
+        "Geautomatiseerde risicobeoordeling voor nieuwe cliënten",
+        "Doorlopende monitoring voor verdachte financiële patronen",
+        "GDPR-conforme cliëntgegevensbeheer"
+      ],
+      "benefits": [
+        "Verminderde compliance last en administratieve overhead",
+        "Verbeterd cliëntvertrouwen door professionele verificatie",
+        "Bescherming tegen regulatoire boetes en straffen",
+        "Verbeterde efficiëntie in cliënt onboarding"
+      ]
+    },
+    "investmentAdvisors": {
+      "title": "Investeringsadviseurs & vermogensbeheer",
+      "description": "Onafhankelijke financiële adviseurs, vermogensbeheerders en investeringsconsultants",
+      "challenges": [
+        "Verbeterde due diligence voor welvarende cliënten",
+        "Verificatie van vermogen en fondsbronnen",
+        "Doorlopende monitoring van cliënt investeringspatronen",
+        "Compliance met MiFID II en andere EU investeringsregelgeving"
+      ],
+      "solutions": [
+        "Uitgebreide cliënt risicoprofilering en verificatie",
+        "Geautomatiseerde workflows voor vermogensbronverificatie",
+        "Doorlopende monitoring van investeringstransacties",
+        "Automatisering van regulatoire rapportage aan investeringsautoriteiten"
+      ],
+      "benefits": [
+        "Verminderd regulatoir risico en compliance kosten",
+        "Verbeterd cliëntvertrouwen en professionele geloofwaardigheid",
+        "Gestroomlijnde onboarding voor hoogwaarde cliënten",
+        "Geautomatiseerde compliance documentatie en rapportage"
+      ]
+    }
+  }
+  },
+  "industryChallenges": "Sector uitdagingen",
+  "ourSolutions": "Onze oplossingen",
+  "keyBenefits": "Belangrijkste voordelen",
+  "readyToTransform": "Klaar om uw compliance-programma te transformeren?",
+  "readyToTransformDescription": "Onze compliance-experts begrijpen de unieke uitdagingen in {{industry}}. Laat ons u tonen hoe onze op maat gemaakte oplossingen uw bedrijf kunnen helpen compliant te blijven terwijl groei wordt gestimuleerd.",
+  "getDemo": "Bekijk Oplossingen",
+  "slugs": {
+    "financialServices": "traditioneel-bankwezen",
+    "fintech": "fintech-digitaal-bankwezen",
+    "crypto": "cryptocurrency-digitale-activa",
+    "realEstate": "vastgoed",
+    "gaming": "gaming-entertainment",
+    "ecommerce": "e-commerce-marktplaatsen",
+    "legalServices": "juridische-diensten-advocatenkantoren",
+    "accounting": "boekhouding-belastingadvies",
+    "investmentAdvisors": "beleggingsadviseurs-vermogensbeheer"
+  }
+}

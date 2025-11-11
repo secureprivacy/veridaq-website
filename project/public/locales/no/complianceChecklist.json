@@ -1,0 +1,54 @@
+{
+  "badge": "Gratis ressurs",
+  "title": "EU AMLR 2027 Compliance-sjekkliste",
+  "subtitle": "Få vår omfattende 50-punkts sjekkliste for å sikre at organisasjonen din er klar for den nye EU-forordningen mot hvitvasking i 2027.",
+  "form": {
+    "title": "Last ned din gratis sjekkliste",
+    "email": "Arbeids-e-post",
+    "emailPlaceholder": "deg@bedrift.no",
+    "download": "Få gratis sjekkliste",
+    "privacy": "Vi respekterer ditt personvern. Ingen spam, avslutt abonnement når som helst."
+  },
+  "success": {
+    "title": "Sjekkliste sendt!",
+    "message": "Sjekk e-posten din for EU AMLR 2027 compliance-sjekklisten. Trenger hjelp med å implementere disse kravene?",
+    "cta": "Snakk med compliance-ekspert"
+  },
+  "preview": {
+    "title": "Hva som er inkludert",
+    "note": "Denne sjekklisten dekker alle større krav som forventes i EU AMLR 2027-forordningen.",
+    "moreItems": "flere elementer i fullstendig sjekkliste"
+  },
+  "categories": {
+    "customerIdentification": "Kundeidentifikasjon og verifisering",
+    "riskAssessment": "Risikovurdering og klassifisering",
+    "ongoingMonitoring": "Løpende overvåking og screening",
+    "recordKeeping": "Journalføring og rapportering"
+  },
+  "items": {
+    "customerIdentification": [
+      "Implementer forbedret kundekjennskap (EDD) prosedyrer",
+      "Etabler protokoller for identifikasjon av reelle eiere",
+      "Sett opp screening av politisk eksponerte personer (PEP)",
+      "Opprett rammeverk for kunderisikoprofiler"
+    ],
+    "riskAssessment": [
+      "Gjennomfør omfattende forretningsrisikovurderinger",
+      "Implementer land/geografiske risikoevalueringer",
+      "Etabler metoder for kunderisikoscoring",
+      "Opprett risikobaserte overvåkingsprosedyrer"
+    ],
+    "ongoingMonitoring": [
+      "Sett opp kontinuerlige transaksjonsovervåkingssystemer",
+      "Implementer sanksjonsscreening-protokoller",
+      "Etabler regler for oppdagelse av mistenkelig aktivitet",
+      "Opprett arbeidsflyter for varsellundersøkelser"
+    ],
+    "recordKeeping": [
+      "Oppretthold omfattende revisjonsspor",
+      "Implementer sikre dokumentlagringssystemer",
+      "Etabler regulatoriske rapporteringsprosedyrer",
+      "Opprett retningslinjer for datalagring og sletting"
+    ]
+  }
+}

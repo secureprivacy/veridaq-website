@@ -1,0 +1,60 @@
+{
+  "badge": "Futuro Pronto",
+  "title": "Prepare-se para <1>EU AMLR 2027</1> hoje",
+  "subtitle": "O próximo Regulamento Anti-Lavagem de Dinheiro da UE trará mudanças significativas aos requisitos de conformidade. Nossa solução é projetada com essas futuras regulamentações em mente.",
+  "timeline": {
+    "title": "Cronograma de conformidade EU AMLR 2027",
+    "items": {
+      "2023": {
+        "title": "Proposta de regulamento",
+        "description": "Introdução da proposta abrangente de Regulamento Anti-Lavagem de Dinheiro da UE."
+      },
+      "2024": {
+        "title": "Período de transição começa",
+        "description": "Empresas devem começar a preparar sistemas e processos para conformidade."
+      },
+      "2025": {
+        "title": "Framework de implementação",
+        "description": "Padrões técnicos e diretrizes de implementação publicados."
+      },
+      "2026": {
+        "title": "Fase de testes",
+        "description": "Preparações finais e testes de sistema antes da aplicação completa."
+      },
+      "2027": {
+        "title": "Aplicação completa",
+        "description": "Conformidade completa exigida para todas as empresas aplicáveis."
+      }
+    }
+  },
+  "features": {
+    "enhancedDueDiligence": {
+      "title": "Due diligence aprimorada:",
+      "description": "Nossa plataforma já incorpora os padrões de verificação mais rigorosos esperados no AMLR 2027."
+    },
+    "beneficialOwnershipTracking": {
+      "title": "Rastreamento de propriedade beneficiária:",
+      "description": "Ferramentas abrangentes para rastrear e verificar proprietários beneficiários finais."
+    },
+    "advancedRiskAssessment": {
+      "title": "Avaliação de risco avançada:",
+      "description": "Algoritmos sofisticados que se adaptam aos parâmetros de risco regulatório em evolução."
+    },
+    "seamlessRegulatoryReporting": {
+      "title": "Relatórios regulatórios perfeitos:",
+      "description": "Ferramentas de relatório automatizadas que se adaptarão aos novos requisitos."
+    }
+  },
+  "didYouKnow": {
+    "title": "Você sabia?",
+    "description": "Empresas que começam a implementar sistemas AML aprimorados agora economizam em média 40% nos custos de conformidade comparado àquelas que esperam até que as regulamentações sejam aplicadas."
+  },
+  "cta": {
+    "primary": "Entre em contato com nossos especialistas",
+    "secondary": "Entrar em contato com vendas"
+  },
+  "ctaSection": {
+    "title": "Prepare seu negócio para EU AMLR 2027",
+    "subtitle": "Fique à frente das mudanças regulatórias com nossa solução KYC e AML à prova de futuro. Entre em contato com nossos especialistas para ver como podemos ajudar seu negócio."
+  }
+}

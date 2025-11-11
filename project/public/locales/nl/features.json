@@ -1,0 +1,61 @@
+{
+  "badge": "Volledig KYC/AML-platform",
+  "title": "Het Volledige Compliance-Arsenaal",
+  "subtitle": "Alles van directe klantverificatie tot AI-gedreven transactiemonitoring tot regelgevende rapportage met één klik. Het enige platform dat alle EU AMLR-vereisten dekt zonder compromissen.",
+  "platformFeatures": {
+    "kycVerification": {
+      "title": "Directe Klantverificatie",
+      "description": "Verifieer elke klant in minder dan 60 seconden met intelligente eID-routing via MitID, BankID en Freja. Geautomatiseerde risicobeoordeling gebeurt in realtime, zodat u precies weet met wie u te maken hebt vóór goedkeuring.",
+      "features": [
+        "Slimme eID-orkestratie over alle EU-identiteitssystemen",
+        "AI-gedreven documentauthenticiteitsverificatie",
+        "Live-registeropzoekingen bij 15+ EU-bedrijfsautoriteiten",
+        "Directe mapping van uiteindelijk belanghebbenden",
+        "Volledige onboarding in 60 seconden of minder"
+      ]
+    },
+    "transactionMonitoring": {
+      "title": "24/7 Transactie-intelligentie",
+      "description": "AI die nooit slaapt, monitort elke transactie op verdachte patronen, structureringspogin gen en snelheidsafwijkingen. Vang bedreigingen voordat ze compliance-nachtmerries worden.",
+      "features": [
+        "Realtime monitoring van 100% van de transacties",
+        "Gedragsanalyse die patroonafwijkingen detecteert",
+        "Machine learning getraind op 10M+ EU-transacties",
+        "Dynamische risicoscoring die zich aanpast aan klantgedrag",
+        "Directe waarschuwingen aan uw team wanneer drempels worden overschreden"
+      ]
+    },
+    "complianceReporting": {
+      "title": "Nul-Contact-rapportage",
+      "description": "Genereer auditklare regelgevende rapporten voor elke EU-jurisdictie met één klik. Volledige audittrails worden automatisch onderhouden, onderzoekers zijn dol op onze documentatie.",
+      "features": [
+        "Geautomatiseerde SAR/STR-generatie met jurisdictiesjablonen",
+        "Eén-klik-rapportage aan alle EU-financiële autoriteiten",
+        "Volledige audittrails opgeslagen voor 5+ jaar",
+        "Casebeheer met onderzoeksworkflows",
+        "Realtime regelgevende intelligentie en regelupdates"
+      ]
+    },
+    "riskIntelligence": {
+      "title": "AI Die Echt Leert",
+      "description": "Stop met verdrinken in valse positieven. Onze AI heeft miljoenen EU-transacties geanalyseerd en weet hoe echt risico eruitziet. 92% reductie in valse waarschuwingen betekent dat uw team zich richt op echte bedreigingen.",
+      "features": [
+        "ML-modellen getraind op 10M+ geverifieerde EU-transacties",
+        "Regiospecifieke risicomodellen voor alle EU-markten",
+        "92% reductie in vals-positieve waarschuwingen",
+        "Continu leren van uw goedkeuringsbeslissingen",
+        "Voorspellende risicoscoring voordat transacties worden voltooid"
+      ]
+    }
+  },
+  "coreCapabilities": {
+    "euEidIntegration": {
+      "title": "EU eID Native Integratie",
+      "description": "Naadloze integratie met MitID, BankID, Freja, Finnish Trust Network en alle grote EU eID-systemen. Automatische routing op basis van klantlocatie en beschikbaarheid."
+    },
+    "sanctionsScreening": {
+      "title": "Wereldwijde Sancties- & PEP-screening",
+      "description": "Realtime screening tegen 200+ wereldwijde sanctielijsten, PEP-databases en negatieve mediabronnen. Intelligente fuzzy matching vermindert valse positieven met 85%."
+    }
+  }
+}

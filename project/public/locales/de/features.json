@@ -1,0 +1,61 @@
+{
+  "badge": "Vollständige KYC/AML-Plattform",
+  "title": "Das Komplette Compliance-Arsenal",
+  "subtitle": "Alles von sofortiger Kundenverifizierung über KI-gesteuerte Transaktionsüberwachung bis hin zur Einklick-Regulierungsberichterstattung. Die einzige Plattform, die alle EU AMLR-Anforderungen ohne Kompromisse abdeckt.",
+  "platformFeatures": {
+    "kycVerification": {
+      "title": "Sofortige Kundenverifizierung",
+      "description": "Verifizieren Sie jeden Kunden in unter 60 Sekunden mit intelligentem eID-Routing über MitID, BankID und Freja. Automatisierte Risikobewertung erfolgt in Echtzeit, sodass Sie genau wissen, mit wem Sie es vor der Genehmigung zu tun haben.",
+      "features": [
+        "Intelligente eID-Orchestrierung über alle EU-Identitätssysteme",
+        "KI-gesteuerte Dokumentenauthentizitätsverifizierung",
+        "Live-Registerabfragen bei 15+ EU-Gewerbebehörden",
+        "Sofortige Zuordnung der wirtschaftlichen Eigentümer",
+        "Vollständiges Onboarding in 60 Sekunden oder weniger"
+      ]
+    },
+    "transactionMonitoring": {
+      "title": "24/7 Transaktionsintelligenz",
+      "description": "KI, die nie schläft, überwacht jede Transaktion auf verdächtige Muster, Strukturierungsversuche und Geschwindigkeitsanomalien. Erfassen Sie Bedrohungen, bevor sie zu Compliance-Alpträumen werden.",
+      "features": [
+        "Echtzeitüberwachung von 100% der Transaktionen",
+        "Verhaltensanalyse, die Musterabweichungen erkennt",
+        "Maschinelles Lernen trainiert mit 10M+ EU-Transaktionen",
+        "Dynamische Risikobewertung, die sich an Kundenverhalten anpasst",
+        "Sofortige Warnungen an Ihr Team bei Schwellenwertüberschreitungen"
+      ]
+    },
+    "complianceReporting": {
+      "title": "Null-Touch-Berichterstattung",
+      "description": "Erstellen Sie prüfungsfähige Regulierungsberichte für jede EU-Jurisdiktion mit einem Klick. Vollständige Prüfpfade werden automatisch gepflegt, Ermittler lieben unsere Dokumentation.",
+      "features": [
+        "Automatisierte SAR/STR-Generierung mit Jurisdiktionsvorlagen",
+        "Ein-Klick-Berichterstattung an alle EU-Finanzbehörden",
+        "Vollständige Prüfpfade gespeichert für 5+ Jahre",
+        "Fallmanagement mit Ermittlungsworkflows",
+        "Echtzeit-Regulierungsintelligenz und Regelaktualisierungen"
+      ]
+    },
+    "riskIntelligence": {
+      "title": "KI Die Tatsächlich Lernt",
+      "description": "Hören Sie auf, in False Positives zu ertrinken. Unsere KI hat Millionen von EU-Transaktionen analysiert und weiß, wie echtes Risiko aussieht. 92% Reduzierung falscher Warnungen bedeutet, dass Ihr Team sich auf echte Bedrohungen konzentriert.",
+      "features": [
+        "ML-Modelle trainiert mit 10M+ verifizierten EU-Transaktionen",
+        "Regionsspezifische Risikomuster für alle EU-Märkte",
+        "92% Reduzierung falsch positiver Warnungen",
+        "Kontinuierliches Lernen aus Ihren Genehmigungsentscheidungen",
+        "Prädiktive Risikobewertung vor Transaktionsabschluss"
+      ]
+    }
+  },
+  "coreCapabilities": {
+    "euEidIntegration": {
+      "title": "EU eID Native Integration",
+      "description": "Nahtlose Integration mit MitID, BankID, Freja, Finnish Trust Network und allen großen EU eID-Systemen. Automatisches Routing basierend auf Kundenstandort und Verfügbarkeit."
+    },
+    "sanctionsScreening": {
+      "title": "Globales Sanktions- & PEP-Screening",
+      "description": "Echtzeit-Screening gegen 200+ globale Sanktionslisten, PEP-Datenbanken und negative Medienquellen. Intelligentes Fuzzy Matching reduziert False Positives um 85%."
+    }
+  }
+}

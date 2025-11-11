@@ -1,0 +1,51 @@
+{
+  "badge": "Het Veridaq-Voordeel",
+  "title": "Waarom Leiders Kiezen Voor Veridaq",
+  "subtitle": "Stop met jongleren met vijf verschillende leveranciers. Stop met verdrinken in valse positieven. Stop met het uitleggen van compliance-fouten aan toezichthouders. Eén platform dat echt werkt.",
+  "benefits": {
+    "onePlatform": {
+      "title": "Eén Platform, Geen Hiaten",
+      "description": "Stop met het aan elkaar plakken van vijf verschillende leveranciers. Klantverificatie, transactiemonitoring, sanctiescreening, tracking van uiteindelijk belanghebbenden en regelgevende rapportage—alles in één naadloos systeem."
+    },
+    "fewerFalsePositives": {
+      "title": "92% Minder Valse Positieven",
+      "description": "Uw compliance-team onderzoekt echte bedreigingen, geen spookrisico's. Onze AI heeft miljoenen EU-transacties geanalyseerd en weet hoe echt risico eruitziet. Geen alarmvermoeidheid meer."
+    },
+    "fasterOnboarding": {
+      "title": "10x Snellere Klantonboarding",
+      "description": "Verifieer klanten in 60 seconden in plaats van 3 dagen. Slimme eID-integratie, directe risicoscoring, realtime registeropzoekingen. Snelheid die toezichthouders goedkeuren."
+    },
+    "futureProof": {
+      "title": "Toekomstbestendige Compliance",
+      "description": "EU AMLR 2027-compliant vandaag. MiCA-gereed. TFR-voorbereid. Wanneer regelgeving verandert, blijft u automatisch compliant. Geen noodupdates, geen dure migraties."
+    }
+  },
+  "platformAdvantages": {
+    "title": "Platformvoordelen",
+    "deploy": {
+      "number": "01",
+      "title": "Implementatie in Dagen, Niet Kwartalen",
+      "description": "Moderne REST API's, webhooks voor realtime events, SDK's in alle belangrijke talen. Uitgebreide documentatie die ontwikkelaars echt graag lezen. Ga deze maand live."
+    },
+    "builtYourWay": {
+      "number": "02",
+      "title": "Gebouwd Op Uw Manier",
+      "description": "Configureer risicoregels, goedkeuringsworkflows, escalatiepaden die aansluiten bij hoe uw bedrijf echt werkt. Geen rigide processen opgelegd door consultants."
+    },
+    "coverage": {
+      "number": "03",
+      "title": "360° Compliance-Dekking",
+      "description": "KYC-verificatie, doorlopende CDD, tracking van uiteindelijk belanghebbenden, transactiemonitoring, sanctiescreening, PEP-controles, regelgevende rapportage. Niets valt tussen wal en schip."
+    },
+    "euNative": {
+      "number": "04",
+      "title": "EU-Native, GDPR-First",
+      "description": "Uw gegevens verlaten nooit de EU. Gehost in tier-3+ datacenters met 99,9% uptime SLA. Volledige GDPR-naleving is geen functie—het is ons fundament."
+    }
+  },
+  "cta": {
+    "title": "Stop Met Vechten Tegen Compliance. Begin Met Leiden Van Uw Markt.",
+    "subtitle": "Sluit u aan bij 500+ Europese financiële instellingen die compliance hebben getransformeerd van een kostenpost naar een concurrentievoordeel.",
+    "button": "Neem Contact Op Met Onze Experts"
+  }
+}

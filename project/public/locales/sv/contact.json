@@ -1,0 +1,71 @@
+{
+  "badge": "Kom Igång",
+  "title": "Kom igång med <1>Veridaq</1>",
+  "subtitle": "Redo att transformera ditt compliance-program? Kontakta våra experter för en personlig konsultation eller boka en demo för att se vår plattform i aktion.",
+  "whyChoose": "Varför välja Veridaq?",
+  "features": {
+    "euAmlr2027Ready": {
+      "title": "EU AMLR 2027 redo",
+      "description": "Framtidssäkra din compliance med vår regleringsredo plattform"
+    },
+    "expertSupport": {
+      "title": "Expertstöd",
+      "description": "Dedikerade compliance-experter för att vägleda din implementering"
+    },
+    "fastImplementation": {
+      "title": "Snabb implementering",
+      "description": "Kom igång på dagar, inte månader"
+    }
+  },
+  "contactInfo": {
+    "phone": "Telefon",
+    "email": "E-post",
+    "location": "Plats",
+    "address": "Fruebjergvej 3\n2100 Köpenhamn\nDanmark"
+  },
+  "form": {
+    "title": "Kontakta våra experter",
+    "step1": {
+      "title": "Låt oss komma igång",
+      "subtitle": "Berätta om dig själv och ditt företag",
+      "continue": "Fortsätt till detaljer"
+    },
+    "step2": {
+      "title": "Hjälp oss att hjälpa dig",
+      "subtitle": "Dela dina specifika behov och intressen",
+      "back": "Tillbaka",
+      "submit": "Skicka meddelande"
+    },
+    "firstName": "Förnamn",
+    "lastName": "Efternamn",
+    "email": "Företags-e-post",
+    "company": "Företag",
+    "phone": "Telefonnummer",
+    "companySize": "Företagsstorlek",
+    "companySizeOptions": {
+      "placeholder": "Välj företagsstorlek",
+      "1-10": "1-10 anställda",
+      "11-50": "11-50 anställda",
+      "51-200": "51-200 anställda",
+      "201-1000": "201-1000 anställda",
+      "1000+": "1000+ anställda"
+    },
+    "interests": {
+      "title": "Vad är du intresserad av? (Välj alla som gäller)",
+      "scheduleDemo": "Boka en demo",
+      "complianceConsultation": "Compliance-konsultation",
+      "pricingInformation": "Prisinformation",
+      "integrationSupport": "Integrationsstöd"
+    },
+    "message": "Berätta om dina compliance-behov",
+    "messagePlaceholder": "Vilka specifika compliance-utmaningar står du inför? Vilka lösningar letar du efter?",
+    "subscribe": "Jag skulle vilja få uppdateringar om Veridaq-produkter, tjänster och compliance-insikter.",
+    "submit": "Skicka meddelande",
+    "submitting": "Skickar meddelande...",
+    "privacyNotice": "Genom att skicka detta formulär godkänner du vår integritetspolicy och användarvillkor."
+  },
+  "success": {
+    "title": "Tack!",
+    "message": "Ditt meddelande har mottagits. Våra compliance-experter kommer att kontakta dig inom 24 timmar."
+  }
+}

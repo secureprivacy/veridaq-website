@@ -1,0 +1,45 @@
+{
+  "title": "Piattaforma KYC & AML per Aziende Italiane<br/><1>Verifica in 30 Secondi. Non 3 Giorni.</1>",
+  "subtitle": "Automatizza l'identificazione clienti e il monitoraggio antiriciclaggio per le aziende italiane. Piattaforma intelligente che comprende le esigenze aziendali italiane ed elimina i processi manuali.",
+  "cta": {
+    "primary": "Vedi Piattaforma",
+    "secondary": "Calcola ROI",
+    "watchDemo": "Guarda Demo",
+    "getChecklist": "Scarica Guida Conformità"
+  },
+  "trustProof": {
+    "euNative": "Supporto Italiano",
+    "smartEidFlow": "Verifica in 30 Secondi",
+    "registerAccess": "Conformità Automatizzata"
+  },
+  "imageAlt": "Dashboard Veridaq KYC & AML",
+  "badge": "Soluzioni KYC & AML per Servizi Finanziari Europei",
+  "platformTitle": "Piattaforma Enterprise di Conformità",
+  "platformDescription": "Verifica KYC completa, monitoraggio AML e reporting normativo in un'unica potente piattaforma",
+  "screenshots": {
+    "transactionMonitoring": {
+      "title": "Monitoraggio Intelligente delle Transazioni",
+      "description": "Regole di rilevamento avanzate che monitorano soglie, pattern di velocità e comportamento di strutturazione. Rileva attività sospette prima che diventino un problema di conformità con analisi alimentata dall'IA."
+    },
+    "riskAssessment": {
+      "title": "Valutazione & Classificazione Intelligente del Rischio",
+      "description": "Profilazione del rischio automatizzata con punteggio dinamico su più dimensioni. Classifica i clienti istantaneamente e regola l'intensità del monitoraggio in base agli indicatori di rischio in tempo reale."
+    },
+    "beneficialOwnership": {
+      "title": "Intelligence sui Beneficiari Effettivi",
+      "description": "Tracciamento UBO completo per individui e strutture aziendali. Visualizza catene di proprietà complesse e identifica automaticamente le persone di controllo attraverso entità multi-livello."
+    },
+    "customerDueDiligence": {
+      "title": "Due Diligence del Cliente con Profilazione Intelligente",
+      "description": "Processi CDD semplificati con profilazione del rischio intelligente. Raccogli le informazioni giuste al momento giusto mantenendo un'esperienza cliente eccezionale e conformità normativa."
+    },
+    "sanctionsScreening": {
+      "title": "Screening Sanzioni & PEP",
+      "description": "Screening in tempo reale contro oltre 200 liste di sanzioni globali, database PEP e fonti mediatiche avverse. Ricevi avvisi istantanei su corrispondenze con matching fuzzy intelligente per ridurre i falsi positivi."
+    },
+    "recordKeeping": {
+      "title": "Tenuta Registri & Verifica Alimentata dall'IA",
+      "description": "Gestione intelligente dei documenti con verifica automatizzata e rilevamento delle manomissioni. L'IA intelligente convalida l'autenticità, estrae i dati e mantiene tracce di audit complete per tutti i record di conformità."
+    }
+  }
+}

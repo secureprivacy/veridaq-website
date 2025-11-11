@@ -1,0 +1,224 @@
+{
+  "badge": "Soluciones Industriales",
+  "title": "Industrias que <1>servimos</1>",
+  "subtitle": "Nuestras soluciones KYC y AML están adaptadas para enfrentar los desafíos únicos de cumplimiento en diversas industrias, asegurando adherencia regulatoria mientras optimizan la eficiencia operacional.",
+  "backToIndustries": "Volver a industrias",
+  "items": {
+    "financialServices": {
+      "title": "Servicios financieros",
+      "description": "Bancos, cooperativas de crédito e instituciones financieras tradicionales",
+      "challenges": [
+        "Requisitos regulatorios complejos a través de múltiples jurisdicciones",
+        "Desafíos de integración de sistemas heredados",
+        "Monitoreo de transacciones de alto volumen",
+        "Necesidades sofisticadas de evaluación de riesgos"
+      ],
+      "solutions": [
+        "Integración integral de plataforma KYC/AML",
+        "Monitoreo de transacciones en tiempo real",
+        "Algoritmos avanzados de puntuación de riesgo",
+        "Automatización de reportes regulatorios"
+      ],
+      "benefits": [
+        "Costos de cumplimiento reducidos hasta 40%",
+        "Incorporación de clientes más rápida",
+        "Detección de fraude mejorada",
+        "Procesos de auditoría optimizados"
+      ]
+    },
+    "fintech": {
+      "title": "FinTech y Banca Digital",
+      "description": "Servicios financieros digitales primero y neobancos",
+      "challenges": [
+        "Escalado rápido mientras se mantiene el cumplimiento",
+        "Verificación de identidad digital",
+        "Evaluación de riesgos en tiempo real",
+        "Incertidumbre regulatoria en nuevos mercados"
+      ],
+      "solutions": [
+        "Infraestructura de cumplimiento API-first",
+        "Verificación de identidad digital",
+        "Flujos de trabajo de incorporación automatizados",
+        "Sistemas de monitoreo escalables"
+      ],
+      "benefits": [
+        "Tiempo de comercialización más rápido",
+        "Tasas de conversión mejoradas",
+        "Gastos operativos reducidos",
+        "Experiencia del cliente mejorada"
+      ]
+    },
+    "crypto": {
+      "title": "Criptomoneda y activos digitales",
+      "description": "Intercambios de cripto, billeteras y plataformas DeFi",
+      "challenges": [
+        "Paisaje regulatorio en evolución",
+        "Rastreo de transacciones complejo",
+        "Cumplimiento transfronterizo",
+        "Segmentos de clientes de alto riesgo"
+      ],
+      "solutions": [
+        "Análisis de transacciones blockchain",
+        "Herramientas de debida diligencia mejoradas",
+        "Cumplimiento de regla de viaje",
+        "Filtrado de sanciones para direcciones cripto"
+      ],
+      "benefits": [
+        "Confianza en cumplimiento regulatorio",
+        "Riesgo regulatorio reducido",
+        "Transparencia de transacciones mejorada",
+        "Confianza institucional mejorada"
+      ]
+    },
+    "realEstate": {
+      "title": "Bienes raíces",
+      "description": "Transacciones inmobiliarias e inversiones inmobiliarias",
+      "challenges": [
+        "Valores de transacción grandes que requieren debida diligencia mejorada",
+        "Estructuras de propiedad complejas",
+        "Verificación del origen de fondos",
+        "Cumplimiento de inversión internacional"
+      ],
+      "solutions": [
+        "Flujos de trabajo de debida diligencia mejorados",
+        "Rastreo de propiedad beneficiaria",
+        "Verificación del origen de riqueza",
+        "Filtrado PEP y de sanciones"
+      ],
+      "benefits": [
+        "Retrasos de transacción reducidos",
+        "Confianza en debida diligencia mejorada",
+        "Cumplimiento regulatorio mejorado",
+        "Procesos de cierre optimizados"
+      ]
+    },
+    "gaming": {
+      "title": "Juegos y entretenimiento",
+      "description": "Plataformas de juegos en línea y servicios de entretenimiento",
+      "challenges": [
+        "Requisitos de verificación de edad",
+        "Verificación de métodos de pago",
+        "Cumplimiento de juego responsable",
+        "Verificación transfronteriza de jugadores"
+      ],
+      "solutions": [
+        "Verificación de edad e identidad",
+        "Verificación de fuente de pago",
+        "Herramientas de monitoreo de comportamiento",
+        "Cumplimiento de geolocalización"
+      ],
+      "benefits": [
+        "Confianza del jugador mejorada",
+        "Pérdidas por fraude reducidas",
+        "Cumplimiento regulatorio mejorado",
+        "Mejor protección del jugador"
+      ]
+    },
+    "ecommerce": {
+      "title": "E-commerce y mercados",
+      "description": "Comercio minorista en línea y mercados peer-to-peer",
+      "challenges": [
+        "Verificación e incorporación de comerciantes",
+        "Prevención de fraude de pagos",
+        "Cumplimiento de vendedores de mercado",
+        "Monitoreo de transacciones transfronterizas"
+      ],
+      "solutions": [
+        "Verificación KYC de comerciantes",
+        "Sistemas de monitoreo de transacciones",
+        "Verificaciones de antecedentes de vendedores",
+        "Detección de fraude de pagos"
+      ],
+      "benefits": [
+        "Contracargos reducidos",
+        "Confianza del mercado mejorada",
+        "Calidad de vendedores mejorada",
+        "Mejor prevención de fraude"
+      ]
+    },
+    "legalServices": {
+      "title": "Servicios legales & bufetes de abogados",
+      "description": "Bufetes de abogados, asesores legales y notarios que manejan fondos de clientes y transacciones",
+      "challenges": [
+        "Monitoreo de cuentas fiduciarias de clientes y cumplimiento",
+        "Verificación del origen de fondos para grandes acuerdos",
+        "Filtrado de personas políticamente expuestas (PEP) para clientes de alto perfil",
+        "Cumplimiento de transacciones legales transfronterizas"
+      ],
+      "solutions": [
+        "Incorporación de clientes con diligencia debida mejorada",
+        "Monitoreo de transacciones de cuentas fiduciarias",
+        "Filtrado PEP y de sanciones para todos los clientes",
+        "Reportes de cumplimiento automatizados a autoridades legales"
+      ],
+      "benefits": [
+        "Riesgo regulatorio reducido para manejo de fondos de clientes",
+        "Proceso de incorporación de clientes optimizado",
+        "Reputación profesional y confianza mejoradas",
+        "Documentación de cumplimiento automatizada para auditorías"
+      ]
+    },
+    "accounting": {
+      "title": "Contabilidad & asesoría fiscal",
+      "description": "Firmas contables, asesores fiscales y consultores financieros",
+      "challenges": [
+        "Verificación de clientes para planificación fiscal y asesoría financiera",
+        "Verificación de fuentes de riqueza para clientes adinerados",
+        "Cumplimiento con regulaciones anti-lavado de dinero",
+        "Gestión de privacidad de datos de clientes bajo GDPR"
+      ],
+      "solutions": [
+        "Verificación e incorporación de clientes optimizada",
+        "Evaluación de riesgos automatizada para nuevos clientes",
+        "Monitoreo continuo de patrones financieros sospechosos",
+        "Gestión de datos de clientes conforme a GDPR"
+      ],
+      "benefits": [
+        "Carga de cumplimiento reducida y gastos administrativos",
+        "Confianza del cliente mejorada a través de verificación profesional",
+        "Protección contra multas y penalidades regulatorias",
+        "Eficiencia mejorada en incorporación de clientes"
+      ]
+    },
+    "investmentAdvisors": {
+      "title": "Asesores de inversión & gestión de patrimonio",
+      "description": "Asesores financieros independientes, gestores de patrimonio y consultores de inversión",
+      "challenges": [
+        "Diligencia debida mejorada para clientes adinerados",
+        "Verificación de fuentes de patrimonio y fondos",
+        "Monitoreo continuo de patrones de inversión de clientes",
+        "Cumplimiento con MiFID II y otras regulaciones de inversión de la UE"
+      ],
+      "solutions": [
+        "Perfilado y verificación integral de riesgos de clientes",
+        "Flujos de trabajo automatizados para verificación de fuentes de patrimonio",
+        "Monitoreo continuo de transacciones de inversión",
+        "Automatización de reportes regulatorios a autoridades de inversión"
+      ],
+      "benefits": [
+        "Riesgo regulatorio y costos de cumplimiento reducidos",
+        "Confianza del cliente y credibilidad profesional mejoradas",
+        "Incorporación optimizada para clientes de alto valor",
+        "Documentación y reportes de cumplimiento automatizados"
+      ]
+    }
+  }
+  },
+  "industryChallenges": "Desafíos de la industria",
+  "ourSolutions": "Nuestras soluciones",
+  "keyBenefits": "Beneficios clave",
+  "readyToTransform": "¿Listo para transformar su programa de cumplimiento?",
+  "readyToTransformDescription": "Nuestros expertos en cumplimiento entienden los desafíos únicos en {{industry}}. Permítanos mostrarle cómo nuestras soluciones personalizadas pueden ayudar a su negocio a mantenerse conforme mientras impulsa el crecimiento.",
+  "getDemo": "Ver Soluciones",
+  "slugs": {
+    "financialServices": "banca-tradicional",
+    "fintech": "fintech-banca-digital",
+    "crypto": "criptomoneda-activos-digitales",
+    "realEstate": "bienes-raices",
+    "gaming": "juegos-entretenimiento",
+    "ecommerce": "comercio-electronico-mercados",
+    "legalServices": "servicios-legales-bufetes",
+    "accounting": "contabilidad-asesoria-fiscal",
+    "investmentAdvisors": "asesores-inversion-gestion-patrimonial"
+  }
+}

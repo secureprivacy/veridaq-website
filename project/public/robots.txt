@@ -1,0 +1,57 @@
+User-agent: *
+Allow: /
+
+# Important pages
+Allow: /en
+Allow: /da
+Allow: /sv
+Allow: /no
+Allow: /fi
+Allow: /de
+Allow: /fr
+Allow: /es
+Allow: /it
+Allow: /pt
+Allow: /nl
+
+# Sitemap locations
+# Main sitemap index (references all child sitemaps)
+Sitemap: https://veridaq.com/sitemap.xml
+
+# Core site pages sitemap
+Sitemap: https://veridaq.com/sitemap-core.xml
+
+# Industry pages by language
+Sitemap: https://veridaq.com/sitemap-industries-en.xml
+Sitemap: https://veridaq.com/sitemap-industries-da.xml
+Sitemap: https://veridaq.com/sitemap-industries-sv.xml
+Sitemap: https://veridaq.com/sitemap-industries-no.xml
+Sitemap: https://veridaq.com/sitemap-industries-fi.xml
+Sitemap: https://veridaq.com/sitemap-industries-de.xml
+Sitemap: https://veridaq.com/sitemap-industries-fr.xml
+Sitemap: https://veridaq.com/sitemap-industries-es.xml
+Sitemap: https://veridaq.com/sitemap-industries-it.xml
+Sitemap: https://veridaq.com/sitemap-industries-pt.xml
+Sitemap: https://veridaq.com/sitemap-industries-nl.xml
+
+# Blog posts by language
+Sitemap: https://veridaq.com/sitemap-blog-en.xml
+Sitemap: https://veridaq.com/sitemap-blog-da.xml
+Sitemap: https://veridaq.com/sitemap-blog-sv.xml
+Sitemap: https://veridaq.com/sitemap-blog-no.xml
+Sitemap: https://veridaq.com/sitemap-blog-fi.xml
+Sitemap: https://veridaq.com/sitemap-blog-de.xml
+Sitemap: https://veridaq.com/sitemap-blog-fr.xml
+Sitemap: https://veridaq.com/sitemap-blog-es.xml
+Sitemap: https://veridaq.com/sitemap-blog-it.xml
+Sitemap: https://veridaq.com/sitemap-blog-pt.xml
+Sitemap: https://veridaq.com/sitemap-blog-nl.xml
+
+# Crawl delay for respectful crawling
+Crawl-delay: 1
+
+# Block common bot paths
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /node_modules/
+Disallow: /src/

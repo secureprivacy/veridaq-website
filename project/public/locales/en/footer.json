@@ -1,0 +1,48 @@
+{
+  "description": "Veridaq delivers AI-powered compliance solutions that are 10x faster with 90% fewer false positives. Complete AML Suite for enterprises, KYC Lite for growth companies.",
+  "contactInfo": {
+    "email": "sales@veridaq.com",
+    "phone": "+45 31272726",
+    "address": "Fruebjergvej 3\n2100 Copenhagen\nDenmark"
+  },
+  "sections": {
+    "solutions": {
+      "title": "AI-Powered Solutions",
+      "kycVerification": "KYC Lite",
+      "amlScreening": "Complete AML Suite",
+      "euAmlr2027": "EU AMLR 2027 Native",
+      "documentVerification": "Instant Document Verification",
+      "transactionMonitoring": "Behavioral AI Monitoring",
+      "riskAssessment": "Predictive Risk Engine"
+    },
+    "industries": {
+      "title": "Industries",
+      "financialServices": "Traditional Banking",
+      "fintech": "FinTech & Neobanks",
+      "cryptocurrency": "Crypto & Digital Assets",
+      "realEstate": "High-Value Real Estate",
+      "gaming": "Gaming & iGaming",
+      "ecommerce": "Marketplaces & E-commerce",
+      "legalServices": "Legal & Law Firms",
+      "accounting": "Accounting & Tax Advisory",
+      "investmentAdvisors": "Investment Advisors"
+    },
+    "company": {
+      "title": "Company",
+      "blog": "Compliance Insights",
+      "whyChooseUs": "Why Veridaq",
+      "contactSales": "Book Demo",
+      "supportCenter": "Help Center",
+      "privacyPolicy": "Privacy Policy",
+      "termsOfService": "Terms of Service",
+      "gdprCompliance": "Privacy by Design"
+    }
+  },
+  "bottomLinks": {
+    "security": "Bank-Grade Security",
+    "compliance": "AMLR 2027 Ready",
+    "status": "Status",
+    "contactExperts": "Book Your Demo"
+  },
+  "copyright": "© {{year}} Veridaq. All rights reserved. | AI-Powered Compliance Platform"
+}

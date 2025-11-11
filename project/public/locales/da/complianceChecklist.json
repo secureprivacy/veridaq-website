@@ -1,0 +1,54 @@
+{
+  "badge": "Gratis Ressource",
+  "title": "EU AMLR 2027 Compliance Tjekliste",
+  "subtitle": "Få vores omfattende 50-punkt tjekliste for at sikre din organisation er klar til den nye EU Anti-Hvidvaskning Forordning der kommer i 2027.",
+  "form": {
+    "title": "Download Din Gratis Tjekliste",
+    "email": "Arbejds-email",
+    "emailPlaceholder": "dig@virksomhed.dk",
+    "download": "Få Gratis Tjekliste",
+    "privacy": "Vi respekterer dit privatliv. Ingen spam, afmeld når som helst."
+  },
+  "success": {
+    "title": "Tjekliste Sendt!",
+    "message": "Tjek din email for EU AMLR 2027 compliance-tjeklisten. Har du brug for hjælp til at implementere disse krav?",
+    "cta": "Tal med Compliance Ekspert"
+  },
+  "preview": {
+    "title": "Hvad er Inkluderet",
+    "note": "Denne tjekliste dækker alle større krav forventet i EU AMLR 2027 forordningen.",
+    "moreItems": "flere elementer i fuld tjekliste"
+  },
+  "categories": {
+    "customerIdentification": "Kundeidentifikation og Verifikation",
+    "riskAssessment": "Risikovurdering og Klassifikation",
+    "ongoingMonitoring": "Løbende Overvågning og Screening",
+    "recordKeeping": "Journalføring og Rapportering"
+  },
+  "items": {
+    "customerIdentification": [
+      "Implementer forbedrede kunde due diligence (EDD) procedurer",
+      "Etabler protokoller for identifikation af reelt ejerskab",
+      "Opsæt screening af politisk eksponerede personer (PEP)",
+      "Opret kunde risikoprofileringsrammer"
+    ],
+    "riskAssessment": [
+      "Gennemfør omfattende forretningsrisikovurderinger",
+      "Implementer lande/geografiske risikoevalueringer",
+      "Etabler kunde risikoskoring metoder",
+      "Opret risikobaserede overvågningsprocedurer"
+    ],
+    "ongoingMonitoring": [
+      "Opsæt kontinuerlige transaktionsovervågningssystemer",
+      "Implementer sanktionsscreening protokoller",
+      "Etabler regler for detektion af mistænkelig aktivitet",
+      "Opret alert-undersøgelsesarbejdsgange"
+    ],
+    "recordKeeping": [
+      "Vedligehold omfattende revisionsspor",
+      "Implementer sikre dokumentopbevaringssystemer",
+      "Etabler procedurer for regulatorisk rapportering",
+      "Opret politikker for dataopbevaring og sletning"
+    ]
+  }
+}

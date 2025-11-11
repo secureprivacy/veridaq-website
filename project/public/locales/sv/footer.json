@@ -1,0 +1,48 @@
+{
+  "description": "Veridaq levererar AI-drivna efterlevnadslösningar som är 10x snabbare med 90% färre falska positiva. Komplett AML Suite för företag, KYC Lite för tillväxtföretag.",
+  "contactInfo": {
+    "email": "sales@veridaq.com",
+    "phone": "+45 31272726",
+    "address": "Fruebjergvej 3\\n2100 Köpenhamn\\nDanmark"
+  },
+  "sections": {
+    "solutions": {
+      "title": "AI-drivna Lösningar",
+      "kycVerification": "KYC Lite",
+      "amlScreening": "Komplett AML Suite",
+      "euAmlr2027": "EU AMLR 2027 Native",
+      "documentVerification": "Omedelbar Dokumentverifiering",
+      "transactionMonitoring": "Beteende-AI Övervakning",
+      "riskAssessment": "Prediktiv Riskmotor"
+    },
+    "industries": {
+      "title": "Branscher",
+      "financialServices": "Traditionell Bankverksamhet",
+      "fintech": "FinTech & Neobanker",
+      "cryptocurrency": "Krypto & Digitala Tillgångar",
+      "realEstate": "Högvärdiga Fastigheter",
+      "gaming": "Gaming & iGaming",
+      "ecommerce": "Marknadsplatser & E-handel",
+      "legalServices": "Juridiska & Advokatbyråer",
+      "accounting": "Redovisning & Skatterådgivning",
+      "investmentAdvisors": "Investeringsrådgivare"
+    },
+    "company": {
+      "title": "Företag",
+      "blog": "Efterlevnadsinsikter",
+      "whyChooseUs": "Varför Veridaq",
+      "contactSales": "Boka Demo",
+      "supportCenter": "Hjälpcenter",
+      "privacyPolicy": "Integritetspolicy",
+      "termsOfService": "Användarvillkor",
+      "gdprCompliance": "Privacy by Design"
+    }
+  },
+  "bottomLinks": {
+    "security": "Banknivå-säkerhet",
+    "compliance": "AMLR 2027 Redo",
+    "status": "Status",
+    "contactExperts": "Boka Din Demo"
+  },
+  "copyright": "© {{year}} Veridaq. Alla rättigheter förbehållna. | AI-driven Efterlevnadsplattform"
+}

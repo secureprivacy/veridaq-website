@@ -1,0 +1,45 @@
+{
+  "title": "KYC & AML-Plattform für Deutsche Unternehmen<br/><1>Kunden in 30 Sekunden Verifizieren. Nicht 3 Tage.</1>",
+  "subtitle": "Automatisieren Sie Kundenidentifizierung und Geldwäscheüberwachung für deutsche Unternehmen. Intelligente Plattform die deutsche Geschäftsanforderungen versteht und manuelle Prozesse eliminiert.",
+  "cta": {
+    "primary": "Plattform Ansehen",
+    "secondary": "ROI Berechnen",
+    "watchDemo": "Demo Ansehen",
+    "getChecklist": "Compliance-Leitfaden Herunterladen"
+  },
+  "trustProof": {
+    "euNative": "Deutscher Support",
+    "smartEidFlow": "30 Sekunden Verifizierung",
+    "registerAccess": "Automatisierte Compliance"
+  },
+  "imageAlt": "Veridaq KYC & AML-Plattform Dashboard",
+  "badge": "KYC & AML Lösungen für Europäische Finanzdienstleistungen",
+  "platformTitle": "Enterprise Compliance-Plattform",
+  "platformDescription": "Umfassende KYC-Verifizierung, AML-Überwachung und regulatorische Berichterstattung in einer leistungsstarken Plattform",
+  "screenshots": {
+    "transactionMonitoring": {
+      "title": "Intelligente Transaktionsüberwachung",
+      "description": "Erweiterte Erkennungsregeln überwachen Schwellenwerte, Geschwindigkeitsmuster und Strukturierungsverhalten. Erfassen Sie verdächtige Aktivitäten, bevor sie zu einem Compliance-Problem werden, mit KI-gestützter Analyse."
+    },
+    "riskAssessment": {
+      "title": "Intelligente Risikobewertung & Klassifizierung",
+      "description": "Automatisierte Risikoprofilierung mit dynamischer Bewertung über mehrere Dimensionen. Klassifizieren Sie Kunden sofort und passen Sie die Überwachungsintensität basierend auf Echtzeit-Risikoindikatoren an."
+    },
+    "beneficialOwnership": {
+      "title": "Wirtschaftliche Eigentümer Intelligence",
+      "description": "Umfassendes UBO-Tracking für Einzelpersonen und Unternehmensstrukturen. Visualisieren Sie komplexe Eigentumsketten und identifizieren Sie automatisch Kontrollpersonen über mehrschichtige Einheiten hinweg."
+    },
+    "customerDueDiligence": {
+      "title": "Customer Due Diligence mit Intelligenter Profilierung",
+      "description": "Optimierte CDD-Prozesse mit intelligenter Risikoprofilierung. Sammeln Sie die richtigen Informationen zur richtigen Zeit und bewahren Sie dabei außergewöhnliche Kundenerfahrung und regulatorische Compliance."
+    },
+    "sanctionsScreening": {
+      "title": "Sanktions- & PEP-Screening",
+      "description": "Echtzeit-Screening gegen über 200 globale Sanktionslisten, PEP-Datenbanken und negative Medienquellen. Erhalten Sie sofortige Warnungen bei Übereinstimmungen mit intelligentem Fuzzy Matching zur Reduzierung falsch-positiver Ergebnisse."
+    },
+    "recordKeeping": {
+      "title": "KI-gestützte Aufzeichnung & Verifizierung",
+      "description": "Intelligente Dokumentenverwaltung mit automatisierter Verifizierung und Manipulationserkennung. Intelligente KI validiert Authentizität, extrahiert Daten und führt umfassende Audit-Trails für alle Compliance-Aufzeichnungen."
+    }
+  }
+}

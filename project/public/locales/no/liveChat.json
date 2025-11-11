@@ -1,0 +1,15 @@
+{
+  "prompt": "👋 Trenger hjelp med EU AML-compliance? Våre eksperter er online nå!",
+  "startChat": "Start chat",
+  "title": "Compliance-ekspert",
+  "subtitle": "Online nå • Svarer på ~2 minutter",
+  "initialMessage": "Hei! Jeg er her for å hjelpe med dine AML/KYC-compliance-spørsmål. Hva vil du vite om EU AMLR 2027 eller vår plattform?",
+  "autoResponse": "Takk for meldingen din! En compliance-ekspert vil svare snart. I mellomtiden kan du bestille en demo eller laste ned vår compliance-sjekkliste.",
+  "inputPlaceholder": "Spør om EU AML-compliance...",
+  "quickActionsTitle": "Raske handlinger:",
+  "quickActions": {
+    "demo": "📅 Bestill en demo",
+    "pricing": "💰 Få priser",
+    "compliance": "📋 EU AMLR 2027 guide"
+  }
+}

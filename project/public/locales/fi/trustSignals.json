@@ -1,0 +1,60 @@
+{
+  "title": "Rakennettu EU Compliance -erinomaisuudelle",
+  "certifications": {
+    "mitid": {
+      "title": "MitID Integraatio",
+      "desc": "Sisäänrakennettu tanskalainen digitaalinen henkilöllisyyden varmistus",
+      "status": "Täysin Integroitu"
+    },
+    "bankid": {
+      "title": "BankID Integraatio",
+      "desc": "Ruotsalainen ja norjalainen digitaalinen henkilöllisyystuki",
+      "status": "Monimainen"
+    },
+    "freja": {
+      "title": "Freja eID Tuki",
+      "desc": "Pan-pohjoismainen digitaalinen henkilöllisyysratkaisu",
+      "status": "Rajat Ylittävä"
+    },
+    "registerAccess": {
+      "title": "Kansallinen Rekisteriyhteys",
+      "desc": "Suora integraatio Patentti- ja rekisterihallituksen kanssa",
+      "status": "Automatisoitu"
+    },
+    "finnishTrust": {
+      "title": "Finnish Trust Network",
+      "desc": "Sisäänrakennettu suomalainen digitaalinen henkilöllisyyden varmistus",
+      "status": "Integroitu"
+    }
+  },
+  "technology": {
+    "title": "Edistynyt Teknologia Stack"
+  },
+  "capabilities": {
+    "realTime": {
+      "title": "Reaaliaikainen Käsittely",
+      "desc": "Välitön varmistus & seuranta"
+    },
+    "security": {
+      "title": "Pankkitason Turvallisuus",
+      "desc": "Päästä päähän salaus"
+    },
+    "coverage": {
+      "title": "Maailmanlaajuinen Kattavuus",
+      "desc": "200+ maata tuettu"
+    },
+    "integration": {
+      "title": "API-ensin Suunnittelu",
+      "desc": "Saumaton järjestelmäintegraatio"
+    }
+  },
+  "regulatory": {
+    "title": "Sääntelyllinen Erinomaisuus by Design",
+    "description": "Alustamme on rakennettu alusta alkaen EU:n sääntelyvaatimukset mielessä pitäen, varmistaen että yrityksesi pysyy vaatimusten mukaisena säädösten kehittyessä.",
+    "stats": {
+      "ready": "EU AMLR Valmis",
+      "countries": "Maata Tuettu",
+      "monitoring": "Reaaliaikainen Seuranta"
+    }
+  }
+}

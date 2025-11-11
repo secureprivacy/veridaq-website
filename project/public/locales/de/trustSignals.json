@@ -1,0 +1,55 @@
+{
+  "title": "Gebaut für EU Compliance Excellence",
+  "certifications": {
+    "gdpr": {
+      "title": "DSGVO by Design",
+      "desc": "EU-Datenschutz in unsere Architektur eingebaut",
+      "status": "Datenschutz-konform"
+    },
+    "euAmlr": {
+      "title": "EU AMLR 2027 Bereit",
+      "desc": "Zukunftssicheres Compliance-Plattform-Design",
+      "status": "Regulierung Bereit"
+    },
+    "euData": {
+      "title": "EU-Rechenzentren",
+      "desc": "Alle Daten innerhalb der Europäischen Union gehostet",
+      "status": "EU Gehostet"
+    },
+    "openSecurity": {
+      "title": "Offene Sicherheit",
+      "desc": "Transparente Sicherheitspraktiken und Dokumentation",
+      "status": "Sicherheitsfokussiert"
+    }
+  },
+  "technology": {
+    "title": "Fortschrittlicher Technologie-Stack"
+  },
+  "capabilities": {
+    "realTime": {
+      "title": "Echtzeitverarbeitung",
+      "desc": "Sofortige Verifizierung & Überwachung"
+    },
+    "security": {
+      "title": "Bank-Level Sicherheit",
+      "desc": "Ende-zu-Ende Verschlüsselung"
+    },
+    "coverage": {
+      "title": "Globale Abdeckung",
+      "desc": "200+ Länder unterstützt"
+    },
+    "integration": {
+      "title": "API-first Design",
+      "desc": "Nahtlose Systemintegration"
+    }
+  },
+  "regulatory": {
+    "title": "Regulatorische Excellence by Design",
+    "description": "Unsere Plattform ist von Grund auf mit EU-regulatorischen Anforderungen im Hinterkopf entwickelt und stellt sicher, dass Ihr Unternehmen konform bleibt, wenn sich Vorschriften entwickeln.",
+    "stats": {
+      "ready": "EU AMLR Bereit",
+      "countries": "Länder Unterstützt",
+      "monitoring": "Echtzeitüberwachung"
+    }
+  }
+}
