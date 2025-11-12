@@ -1,0 +1,51 @@
+{
+  "badge": "Der Veridaq-Vorteil",
+  "title": "Warum Führungskräfte Veridaq Wählen",
+  "subtitle": "Hören Sie auf, mit fünf verschiedenen Anbietern zu jonglieren. Hören Sie auf, in False Positives zu ertrinken. Hören Sie auf, Compliance-Fehler gegenüber Aufsichtsbehörden zu erklären. Eine Plattform, die tatsächlich funktioniert.",
+  "benefits": {
+    "onePlatform": {
+      "title": "Eine Plattform, Keine Lücken",
+      "description": "Hören Sie auf, fünf verschiedene Anbieter zusammenzukleben. Kundenverifizierung, Transaktionsüberwachung, Sanktionsscreening, Verfolgung wirtschaftlicher Eigentümer und Regulierungsberichterstattung—alles in einem nahtlosen System."
+    },
+    "fewerFalsePositives": {
+      "title": "92% Weniger False Positives",
+      "description": "Ihr Compliance-Team untersucht echte Bedrohungen, keine Phantomrisiken. Unsere KI hat Millionen von EU-Transaktionen analysiert und weiß, wie echtes Risiko aussieht. Keine Alarmmüdigkeit mehr."
+    },
+    "fasterOnboarding": {
+      "title": "10x Schnelleres Kunden-Onboarding",
+      "description": "Verifizieren Sie Kunden in 60 Sekunden statt in 3 Tagen. Smart eID-Integration, sofortige Risikobewertung, Echtzeit-Registerabfragen. Geschwindigkeit, die Aufsichtsbehörden genehmigen."
+    },
+    "futureProof": {
+      "title": "Zukunftssichere Compliance",
+      "description": "EU AMLR 2027-konform heute. MiCA-bereit. TFR-vorbereitet. Wenn sich Vorschriften ändern, bleiben Sie automatisch konform. Keine Not-Updates, keine teuren Migrationen."
+    }
+  },
+  "platformAdvantages": {
+    "title": "Plattformvorteile",
+    "deploy": {
+      "number": "01",
+      "title": "Deployment in Tagen, Nicht Quartalen",
+      "description": "Moderne REST-APIs, Webhooks für Echtzeitereignisse, SDKs in allen gängigen Sprachen. Umfassende Dokumentation, die Entwickler gerne lesen. Gehen Sie diesen Monat live."
+    },
+    "builtYourWay": {
+      "number": "02",
+      "title": "Nach Ihren Wünschen Gebaut",
+      "description": "Konfigurieren Sie Risikoregeln, Genehmigungsworkflows, Eskalationspfade, die zu Ihrem tatsächlichen Geschäftsbetrieb passen. Keine starren Prozesse, die von Beratern aufgezwungen werden."
+    },
+    "coverage": {
+      "number": "03",
+      "title": "360° Compliance-Abdeckung",
+      "description": "KYC-Verifizierung, laufende CDD, Verfolgung wirtschaftlicher Eigentümer, Transaktionsüberwachung, Sanktionsscreening, PEP-Checks, Regulierungsberichterstattung. Nichts fällt durchs Raster."
+    },
+    "euNative": {
+      "number": "04",
+      "title": "EU-Native, GDPR-First",
+      "description": "Ihre Daten verlassen niemals die EU. Gehostet in Tier-3+ Rechenzentren mit 99,9% Uptime-SLA. Vollständige GDPR-Konformität ist kein Feature—es ist unser Fundament."
+    }
+  },
+  "cta": {
+    "title": "Hören Sie Auf, Gegen Compliance Zu Kämpfen. Beginnen Sie, Ihren Markt Zu Führen.",
+    "subtitle": "Schließen Sie sich 500+ europäischen Finanzinstituten an, die Compliance von einem Kostenfaktor in einen Wettbewerbsvorteil verwandelt haben.",
+    "button": "Kontaktieren Sie Unsere Experten"
+  }
+}

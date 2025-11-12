@@ -1,0 +1,28 @@
+{
+  "badge": "Calculadora ROI",
+  "title": "Calcule Suas Economias KYC & AML",
+  "subtitle": "Veja exatamente quanto o KYC Lite e AML Suite da Veridaq podem economizar para sua empresa. A maioria das empresas reduz os custos de conformidade em 60% ou mais.",
+  "form": {
+    "title": "Seus Custos KYC & AML Atuais",
+    "monthlyTransactions": "Transações mensais que exigem revisão KYC/AML",
+    "manualHours": "Horas gastas em verificação KYC manual e monitoramento AML",
+    "hourlyRate": "Custo por hora médio para equipe de conformidade",
+    "complianceIncidents": "Rejeições KYC e falsos positivos AML por mês",
+    "averageFine": "Custo médio por incidente de conformidade ou investigação",
+    "calculate": "Calcular Minhas Economias"
+  },
+  "results": {
+    "title": "Suas Economias Potenciais com Veridaq",
+    "roi": "ROI Anual",
+    "payback": "Período de Retorno",
+    "months": "meses",
+    "annualSavings": "Economias Anuais Totais",
+    "automationSavings": "Da Automação KYC & AML",
+    "disclaimer": "Estimativas conservadoras baseadas em dados reais de clientes. A maioria das empresas alcança economias ainda maiores.",
+    "getPersonalized": "Obter Análise ROI Detalhada"
+  },
+  "placeholder": {
+    "title": "Pronto para Ver Suas Economias?",
+    "description": "Insira seus custos atuais de KYC e AML para descobrir por que as empresas escolhem Veridaq para economias massivas em conformidade."
+  }
+}

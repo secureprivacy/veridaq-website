@@ -1,0 +1,45 @@
+{
+  "title": "KYC & AML Platform til Danske Virksomheder<br/><1>Verificer Kunder på 30 Sekunder. Ikke 3 Dage.</1>",
+  "subtitle": "Automatiser kundeidentifikation og hvidvaskovervågning for danske virksomheder. Intelligent platform der forstår danske forretningsbehov og eliminerer manuelle processer.",
+  "badge": "KYC & AML Løsninger til Europæiske Finansielle Tjenester",
+  "platformTitle": "Enterprise Compliance Platform",
+  "platformDescription": "Omfattende KYC-verifikation, AML-overvågning og regulatorisk rapportering i én kraftfuld platform",
+  "cta": {
+    "primary": "Se Platformen",
+    "secondary": "Beregn Dine Besparelser",
+    "watchDemo": "Se Demo",
+    "getChecklist": "Download Compliance Guide"
+  },
+  "trustProof": {
+    "euNative": "Dansk Kundeservice",
+    "smartEidFlow": "30 Sekunders Verifikation",
+    "registerAccess": "Automatiseret Compliance"
+  },
+  "screenshots": {
+    "transactionMonitoring": {
+      "title": "Intelligent Transaktionsovervågning",
+      "description": "Avancerede detektionsregler overvåger tærskler, hastighedsmønstre og struktureringsadfærd. Fang mistænkelig aktivitet før det bliver et compliance-problem med AI-drevet analyse."
+    },
+    "riskAssessment": {
+      "title": "Smart Risikovurdering & Klassificering",
+      "description": "Automatiseret risikoprofilering med dynamisk scoring på tværs af flere dimensioner. Klassificer kunder øjeblikkeligt og juster overvågningsintensitet baseret på risikoindikatorer i realtid."
+    },
+    "beneficialOwnership": {
+      "title": "Reelle Ejere Intelligence",
+      "description": "Omfattende UBO-sporing for enkeltpersoner og virksomhedsstrukturer. Visualiser komplekse ejerskabskæder og identificer automatisk kontrolpersoner på tværs af flerlags-enheder."
+    },
+    "customerDueDiligence": {
+      "title": "Kunde Due Diligence med Smart Profilering",
+      "description": "Strømlinet CDD-processer med intelligent risikoprofilering. Indsaml den rette information på det rette tidspunkt, mens du opretholder enestående kundeoplevelse og overholdelse af lovgivning."
+    },
+    "sanctionsScreening": {
+      "title": "Sanktions- & PEP-screening",
+      "description": "Realtidsscreening mod 200+ globale sanktionslister, PEP-databaser og negative mediekilder. Få øjeblikkelige advarsler om matches med intelligent fuzzy matching for at reducere falske positiver."
+    },
+    "recordKeeping": {
+      "title": "AI-Drevet Journalføring & Verifikation",
+      "description": "Intelligent dokumenthåndtering med automatiseret verifikation og manipulationsdetektering. Smart AI validerer autenticitet, ekstraherer data og opretholder omfattende revisionsspor for alle compliance-optegnelser."
+    }
+  },
+  "imageAlt": "Veridaq KYC & AML Platform Dashboard"
+}

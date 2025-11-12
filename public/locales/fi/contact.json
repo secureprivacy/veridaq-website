@@ -1,0 +1,71 @@
+{
+  "badge": "Aloita",
+  "title": "Aloita <1>Veridaq</1>:n kanssa",
+  "subtitle": "Valmis muuttamaan compliance-ohjelmaasi? Ota yhteyttä asiantuntijoihimme henkilökohtaista konsultaatiota varten tai varaa demo nähdäksesi alustamme toiminnassa.",
+  "whyChoose": "Miksi valita Veridaq?",
+  "features": {
+    "euAmlr2027Ready": {
+      "title": "EU AMLR 2027 valmis",
+      "description": "Tulevaisuudenvarma compliance-vaatimustenmukaisuutesi sääntelyvalmiin alustamme kanssa"
+    },
+    "expertSupport": {
+      "title": "Asiantuntijatuki",
+      "description": "Omistautuneet compliance-asiantuntijat ohjaamaan toteutustasi"
+    },
+    "fastImplementation": {
+      "title": "Nopea toteutus",
+      "description": "Aloita päivissä, ei kuukausissa"
+    }
+  },
+  "contactInfo": {
+    "phone": "Puhelin",
+    "email": "Sähköposti",
+    "location": "Sijainti",
+    "address": "Fruebjergvej 3\n2100 Kööpenhamina\nTanska"
+  },
+  "form": {
+    "title": "Ota yhteyttä asiantuntijoihimme",
+    "step1": {
+      "title": "Aloitetaan",
+      "subtitle": "Kerro meille itsestäsi ja yrityksestäsi",
+      "continue": "Jatka yksityiskohtiin"
+    },
+    "step2": {
+      "title": "Auta meitä auttamaan sinua",
+      "subtitle": "Jaa erityistarpeesi ja kiinnostuksesi",
+      "back": "Takaisin",
+      "submit": "Lähetä viesti"
+    },
+    "firstName": "Etunimi",
+    "lastName": "Sukunimi",
+    "email": "Yrityssähköposti",
+    "company": "Yritys",
+    "phone": "Puhelinnumero",
+    "companySize": "Yrityksen koko",
+    "companySizeOptions": {
+      "placeholder": "Valitse yrityksen koko",
+      "1-10": "1-10 työntekijää",
+      "11-50": "11-50 työntekijää",
+      "51-200": "51-200 työntekijää",
+      "201-1000": "201-1000 työntekijää",
+      "1000+": "1000+ työntekijää"
+    },
+    "interests": {
+      "title": "Mistä olet kiinnostunut? (Valitse kaikki sopivat)",
+      "scheduleDemo": "Varaa demo",
+      "complianceConsultation": "Compliance-konsultaatio",
+      "pricingInformation": "Hintatiedot",
+      "integrationSupport": "Integrointituki"
+    },
+    "message": "Kerro meille compliance-tarpeistasi",
+    "messagePlaceholder": "Mitä erityisiä compliance-haasteita kohtaat? Mitä ratkaisuja etsit?",
+    "subscribe": "Haluaisin vastaanottaa päivityksiä Veridaq -tuotteista, palveluista ja compliance-oivalluksista.",
+    "submit": "Lähetä viesti",
+    "submitting": "Lähetetään viestiä...",
+    "privacyNotice": "Lähettämällä tämän lomakkeen hyväksyt tietosuojakäytäntömme ja käyttöehtomme."
+  },
+  "success": {
+    "title": "Kiitos!",
+    "message": "Viestisi on vastaanotettu. Compliance-asiantuntijamme ottavat sinuun yhteyttä 24 tunnin sisällä."
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "badge": "Gratis resurs",
+  "title": "EU AMLR 2027 Efterlevnadschecklista",
+  "subtitle": "Få vår omfattande 50-punkts checklista för att säkerställa att din organisation är redo för den nya EU-förordningen mot penningtvätt 2027.",
+  "form": {
+    "title": "Ladda ner din gratis checklista",
+    "email": "Arbets-e-post",
+    "emailPlaceholder": "du@företag.se",
+    "download": "Få gratis checklista",
+    "privacy": "Vi respekterar din integritet. Ingen spam, avsluta prenumeration när som helst."
+  },
+  "success": {
+    "title": "Checklista skickad!",
+    "message": "Kolla din e-post för EU AMLR 2027-efterlevnadschecklistan. Behöver hjälp med att implementera dessa krav?",
+    "cta": "Prata med efterlevnadsexpert"
+  },
+  "preview": {
+    "title": "Vad som ingår",
+    "note": "Denna checklista täcker alla större krav som förväntas i EU AMLR 2027-förordningen.",
+    "moreItems": "fler poster i fullständig checklista"
+  },
+  "categories": {
+    "customerIdentification": "Kundidentifiering och verifiering",
+    "riskAssessment": "Riskbedömning och klassificering",
+    "ongoingMonitoring": "Kontinuerlig övervakning och screening",
+    "recordKeeping": "Registerföring och rapportering"
+  },
+  "items": {
+    "customerIdentification": [
+      "Implementera förstärkt kundkontroll (EDD) procedurer",
+      "Etablera protokoll för identifiering av verkliga ägare",
+      "Sätt upp screening av politiskt exponerade personer (PEP)",
+      "Skapa ramverk för kundriskprofiler"
+    ],
+    "riskAssessment": [
+      "Genomför omfattande affärsriskbedömningar",
+      "Implementera land/geografiska riskevalueringar",
+      "Etablera metoder för kundriskvärdering",
+      "Skapa riskbaserade övervakningsprocedurer"
+    ],
+    "ongoingMonitoring": [
+      "Sätt upp kontinuerliga transaktionsövervakningssystem",
+      "Implementera sanktionsscreening-protokoll",
+      "Etablera regler för upptäckt av misstänkt aktivitet",
+      "Skapa arbetsflöden för larmundersökningar"
+    ],
+    "recordKeeping": [
+      "Upprätthåll omfattande revisionsspår",
+      "Implementera säkra dokumentlagringssystem",
+      "Etablera regulatoriska rapporteringsprocedurer",
+      "Skapa policyer för datalagring och radering"
+    ]
+  }
+}

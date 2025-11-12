@@ -1,0 +1,54 @@
+{
+  "badge": "Ilmainen resurssi",
+  "title": "EU AMLR 2027 Compliance-tarkistuslista",
+  "subtitle": "Hanki kattava 50-kohtainen tarkistuslistamme varmistaaksesi, että organisaatiosi on valmis uuteen EU:n rahanpesun vastaiseen asetukseen vuonna 2027.",
+  "form": {
+    "title": "Lataa ilmainen tarkistuslistasi",
+    "email": "Työsähköposti",
+    "emailPlaceholder": "sina@yritys.fi",
+    "download": "Hanki ilmainen tarkistuslista",
+    "privacy": "Kunnioitamme yksityisyyttäsi. Ei roskapostia, lopeta tilaus milloin tahansa."
+  },
+  "success": {
+    "title": "Tarkistuslista lähetetty!",
+    "message": "Tarkista sähköpostisi EU AMLR 2027 compliance-tarkistuslistaa varten. Tarvitsetko apua näiden vaatimusten toteuttamisessa?",
+    "cta": "Keskustele compliance-asiantuntijan kanssa"
+  },
+  "preview": {
+    "title": "Mitä sisältyy",
+    "note": "Tämä tarkistuslista kattaa kaikki tärkeimmät vaatimukset, joita odotetaan EU AMLR 2027 -asetuksessa.",
+    "moreItems": "lisää kohtaa täydessä tarkistuslistassa"
+  },
+  "categories": {
+    "customerIdentification": "Asiakkaiden tunnistaminen ja varmistaminen",
+    "riskAssessment": "Riskiarviointi ja luokittelu",
+    "ongoingMonitoring": "Jatkuva seuranta ja seulonta",
+    "recordKeeping": "Kirjanpito ja raportointi"
+  },
+  "items": {
+    "customerIdentification": [
+      "Toteuta tehostettu asiakastuntemusprosessit (EDD)",
+      "Luo tosiasiallisten omistajien tunnistusprotokollat",
+      "Aseta poliittisesti alttiiden henkilöiden (PEP) seulonta",
+      "Luo asiakkaiden riskiprofiilikehykset"
+    ],
+    "riskAssessment": [
+      "Suorita kattavia liiketoimintariskiarviointeja",
+      "Toteuta maa/maantieteelliset riskiarvioinnit",
+      "Luo asiakasriskin pisteytysmenetelmät",
+      "Luo riskiperusteisia seurantamenettelyjä"
+    ],
+    "ongoingMonitoring": [
+      "Aseta jatkuvia transaktioseurantajärjestelmiä",
+      "Toteuta pakoteseulontaprotokollat",
+      "Luo epäilyttävän toiminnan havaitsemissääntöjä",
+      "Luo hälytystutkimustyönkulkuja"
+    ],
+    "recordKeeping": [
+      "Ylläpidä kattavia tarkastuspolkuja",
+      "Toteuta turvallisia asiakirjatallennusjärjestelmiä",
+      "Luo sääntelyraporttimenettelyjä",
+      "Luo tietojen säilytys- ja poistokäytäntöjä"
+    ]
+  }
+}

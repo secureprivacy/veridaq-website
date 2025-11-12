@@ -1,0 +1,28 @@
+{
+  "badge": "ROI-kalkylator",
+  "title": "Beräkna Dina KYC & AML-besparingar",
+  "subtitle": "Se exakt hur mycket Veridaqs KYC Lite och AML Suite kan spara ditt företag. De flesta företag minskar efterlevnadskostnaderna med 60% eller mer.",
+  "form": {
+    "title": "Dina Nuvarande KYC & AML-kostnader",
+    "monthlyTransactions": "Månatliga transaktioner som kräver KYC/AML-granskning",
+    "manualHours": "Timmar som läggs på manuell KYC-verifiering och AML-övervakning",
+    "hourlyRate": "Genomsnittlig timkostnad för efterlevnadspersonal",
+    "complianceIncidents": "KYC-avslag och AML falska positiva per månad",
+    "averageFine": "Genomsnittlig kostnad per efterlevnadsincident eller undersökning",
+    "calculate": "Beräkna Mina Besparingar"
+  },
+  "results": {
+    "title": "Dina Potentiella Besparingar med Veridaq",
+    "roi": "Årlig ROI",
+    "payback": "Återbetalningsperiod",
+    "months": "månader",
+    "annualSavings": "Totala Årliga Besparingar",
+    "automationSavings": "Från KYC & AML-automatisering",
+    "disclaimer": "Konservativa uppskattningar baserade på verklig kunddata. De flesta företag uppnår ännu större besparingar.",
+    "getPersonalized": "Få Detaljerad ROI-analys"
+  },
+  "placeholder": {
+    "title": "Redo att Se Dina Besparingar?",
+    "description": "Ange dina nuvarande KYC- och AML-kostnader för att upptäcka varför företag väljer Veridaq för massiva efterlevnadsbesparingar."
+  }
+}

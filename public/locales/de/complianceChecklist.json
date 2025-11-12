@@ -1,0 +1,54 @@
+{
+  "badge": "Kostenlose Ressource",
+  "title": "EU AMLR 2027 Compliance-Checkliste",
+  "subtitle": "Erhalten Sie unsere umfassende 50-Punkte-Checkliste, um sicherzustellen, dass Ihr Unternehmen bereit für die neue EU-Anti-Geldwäsche-Verordnung 2027 ist.",
+  "form": {
+    "title": "Laden Sie Ihre kostenlose Checkliste herunter",
+    "email": "Geschäfts-E-Mail",
+    "emailPlaceholder": "sie@unternehmen.de",
+    "download": "Kostenlose Checkliste erhalten",
+    "privacy": "Wir respektieren Ihre Privatsphäre. Kein Spam, jederzeit abmelden."
+  },
+  "success": {
+    "title": "Checkliste gesendet!",
+    "message": "Überprüfen Sie Ihre E-Mail für die EU AMLR 2027 Compliance-Checkliste. Benötigen Sie Hilfe bei der Implementierung dieser Anforderungen?",
+    "cta": "Mit Compliance-Experten sprechen"
+  },
+  "preview": {
+    "title": "Was ist enthalten",
+    "note": "Diese Checkliste deckt alle wichtigen Anforderungen ab, die in der EU AMLR 2027 Verordnung erwartet werden.",
+    "moreItems": "weitere Punkte in vollständiger Checkliste"
+  },
+  "categories": {
+    "customerIdentification": "Kundenidentifikation & Verifizierung",
+    "riskAssessment": "Risikobewertung & Klassifizierung",
+    "ongoingMonitoring": "Laufende Überwachung & Screening",
+    "recordKeeping": "Aufzeichnungsführung & Berichterstattung"
+  },
+  "items": {
+    "customerIdentification": [
+      "Erweiterte Sorgfaltspflichtverfahren (EDD) implementieren",
+      "Protokolle zur Identifikation wirtschaftlicher Eigentümer etablieren",
+      "Screening politisch exponierter Personen (PEP) einrichten",
+      "Rahmen für Kundenrisikoprofile erstellen"
+    ],
+    "riskAssessment": [
+      "Umfassende Geschäftsrisikobewertungen durchführen",
+      "Länder-/geografische Risikobewertungen implementieren",
+      "Kundenrisiko-Bewertungsmethoden etablieren",
+      "Risikobasierte Überwachungsverfahren erstellen"
+    ],
+    "ongoingMonitoring": [
+      "Kontinuierliche Transaktionsüberwachungssysteme einrichten",
+      "Sanktions-Screening-Protokolle implementieren",
+      "Regeln zur Erkennung verdächtiger Aktivitäten etablieren",
+      "Workflows für Alert-Untersuchungen erstellen"
+    ],
+    "recordKeeping": [
+      "Umfassende Prüfpfade pflegen",
+      "Sichere Dokumentenspeichersysteme implementieren",
+      "Verfahren für regulatorische Berichterstattung etablieren",
+      "Richtlinien für Datenaufbewahrung und -löschung erstellen"
+    ]
+  }
+}

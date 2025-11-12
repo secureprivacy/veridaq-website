@@ -1,0 +1,27 @@
+{
+  "defaultTitle": "Veridaq | Enterprise KYC/AML Platform: Complete Compliance Solution",
+  "defaultDescription": "Complete KYC/AML platform combining customer verification, transaction monitoring, and regulatory reporting. AI-powered platform delivering 10x faster processing with 90% fewer false positives. EU AMLR 2027 ready.",
+  "defaultKeywords": "KYC platform, AML platform, AI compliance, customer verification, transaction monitoring, anti-money laundering, EU AMLR 2027, compliance automation, financial technology, regulatory technology",
+  "pages": {
+    "home": {
+      "title": "Veridaq | Complete KYC/AML Platform: 10x Faster with 90% Fewer False Positives",
+      "description": "Enterprise KYC/AML platform with customer verification, transaction monitoring, and compliance reporting. AI-powered, EU AMLR 2027 ready from day one.",
+      "keywords": "KYC verification platform, AML monitoring, AI compliance, customer onboarding, transaction monitoring, compliance reporting, EU AMLR 2027 ready"
+    },
+    "features": {
+      "title": "KYC/AML Platform Features | Complete Compliance Solution | Veridaq",
+      "description": "Comprehensive KYC/AML platform features: customer verification, transaction monitoring, risk assessment, sanctions screening, and regulatory reporting.",
+      "keywords": "KYC features, AML monitoring, customer verification, transaction monitoring, compliance automation, AI risk assessment, sanctions screening"
+    },
+    "industries": {
+      "title": "Industry KYC/AML Solutions | Banking, FinTech, Crypto | Veridaq",
+      "description": "Tailored KYC/AML solutions for every industry. Complete compliance platform for banking, FinTech, crypto, real estate, gaming, and e-commerce.",
+      "keywords": "industry KYC solutions, banking AML, FinTech compliance, crypto KYC, real estate AML, gaming verification, enterprise compliance"
+    },
+    "contact": {
+      "title": "Book Demo | See KYC/AML Platform in Action | Veridaq",
+      "description": "Book your personalized Veridaq demo. See our complete KYC/AML platform in action. Discover how AI-powered compliance can transform your business.",
+      "keywords": "KYC demo, AML platform demo, compliance consultation, customer verification demo, transaction monitoring demo, enterprise compliance"
+    }
+  }
+}

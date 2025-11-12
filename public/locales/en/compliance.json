@@ -1,0 +1,60 @@
+{
+  "badge": "Future-Ready Platform",
+  "title": "EU AMLR 2027 Compliant <1>Right Now</1>",
+  "subtitle": "While competitors panic about 2027 deadlines, you'll already be compliant. Our platform was built from day one to exceed tomorrow's requirements. MiCA ready. AMLD6 ready. Whatever comes next, you're ready.",
+  "timeline": {
+    "title": "EU AMLR 2027 Compliance Timeline",
+    "items": {
+      "2023": {
+        "title": "Regulation Announced",
+        "description": "EU unveils comprehensive Anti-Money Laundering Regulation affecting both KYC and AML processes."
+      },
+      "2024": {
+        "title": "Smart Companies Prepare",
+        "description": "Forward-thinking businesses upgrade their KYC verification and AML monitoring systems."
+      },
+      "2025": {
+        "title": "Standards Finalized",
+        "description": "Final technical requirements published. Last opportunity for cost-effective implementation."
+      },
+      "2026": {
+        "title": "Compliance Testing Begins",
+        "description": "Regulators begin testing KYC and AML systems. Non-compliant companies face penalties."
+      },
+      "2027": {
+        "title": "Full Enforcement",
+        "description": "Complete compliance required. Companies without proper KYC/AML systems face severe consequences."
+      }
+    }
+  },
+  "features": {
+    "enhancedDueDiligence": {
+      "title": "Instant eID Verification:",
+      "description": "Seamless integration with MitID, BankID, Freja, and 15+ EU eID systems. Verify any European customer in 30 seconds with 99.8% accuracy. No manual checks needed."
+    },
+    "euRiskScoring": {
+      "title": "EU-Native Risk Intelligence:",
+      "description": "AI trained on 10M+ real EU transactions. Understands cross-border patterns, jurisdiction-specific risks, and regional behaviors that generic systems completely miss."
+    },
+    "regulatoryIntelligence": {
+      "title": "Auto-Updating Compliance:",
+      "description": "Rules engine that updates automatically when regulations change. New requirements? Your workflows adapt instantly. Zero downtime, zero manual updates."
+    },
+    "multiRegulatorReporting": {
+      "title": "One-Click Regulatory Reports:",
+      "description": "Generate audit-ready reports for any EU authority instantly. Finanstilsynet, BaFin, ACPR, DNB—every format, every requirement, automatically formatted."
+    }
+  },
+  "didYouKnow": {
+    "title": "The Early Mover Advantage",
+    "description": "Companies that achieved AMLR compliance in 2024-2025 saved an average of 63% compared to those rushing in 2026. Plus they captured market share while competitors were stuck in implementation."
+  },
+  "cta": {
+    "primary": "Become Compliant Today",
+    "secondary": "Get Compliance Roadmap"
+  },
+  "ctaSection": {
+    "title": "Stop Delaying. Start Leading.",
+    "subtitle": "Every month you wait makes compliance more expensive and risky. Get AMLR 2027 compliant today and turn regulatory pressure into competitive advantage."
+  }
+}
