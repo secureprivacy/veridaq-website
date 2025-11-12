@@ -1,0 +1,60 @@
+{
+  "title": "Bygget til EU Compliance Excellence",
+  "certifications": {
+    "mitid": {
+      "title": "MitID Integration",
+      "desc": "Indbygget dansk digital identitetsverifikation",
+      "status": "Fuldt Integreret"
+    },
+    "bankid": {
+      "title": "BankID Integration",
+      "desc": "Svensk og norsk digital identitetsunderstøttelse",
+      "status": "Multi-Land"
+    },
+    "freja": {
+      "title": "Freja eID Support",
+      "desc": "Pan-nordisk digital identitetsløsning",
+      "status": "Grænseoverskridende"
+    },
+    "registerAccess": {
+      "title": "National Registeradgang",
+      "desc": "Direkte integration med Erhvervsstyrelsen og andre registre",
+      "status": "Automatiseret"
+    },
+    "finnishTrust": {
+      "title": "Finnish Trust Network",
+      "desc": "Indbygget finsk digital identitetsverifikation",
+      "status": "Integreret"
+    }
+  },
+  "technology": {
+    "title": "Avanceret Teknologi Stack"
+  },
+  "capabilities": {
+    "realTime": {
+      "title": "Realtidsbehandling",
+      "desc": "Øjeblikkelig verifikation & overvågning"
+    },
+    "security": {
+      "title": "Bankniveau Sikkerhed",
+      "desc": "End-to-end kryptering"
+    },
+    "coverage": {
+      "title": "Global Dækning",
+      "desc": "200+ lande understøttet"
+    },
+    "integration": {
+      "title": "API-først Design",
+      "desc": "Sømløs systemintegration"
+    }
+  },
+  "regulatory": {
+    "title": "Regulatorisk Excellence by Design",
+    "description": "Vores platform er bygget fra bunden med EU regulatoriske krav i tankerne, hvilket sikrer din virksomhed forbliver compliant når reguleringer udvikler sig.",
+    "stats": {
+      "ready": "EU AMLR Klar",
+      "countries": "Lande Understøttet",
+      "monitoring": "Realtidsovervågning"
+    }
+  }
+}

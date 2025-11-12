@@ -1,0 +1,55 @@
+{
+  "title": "Gebouwd voor EU Compliance Excellentie",
+  "certifications": {
+    "gdpr": {
+      "title": "GDPR by Design",
+      "desc": "EU-gegevensbescherming ingebouwd in onze architectuur",
+      "status": "Privacy Conform"
+    },
+    "euAmlr": {
+      "title": "EU AMLR 2027 Klaar",
+      "desc": "Toekomstbestendig compliance-platform ontwerp",
+      "status": "Regelgeving Klaar"
+    },
+    "euData": {
+      "title": "EU-datacenters",
+      "desc": "Alle data gehost binnen Europese Unie",
+      "status": "EU Gehost"
+    },
+    "openSecurity": {
+      "title": "Open Beveiliging",
+      "desc": "Transparante beveiligingspraktijken en documentatie",
+      "status": "Beveiligingsgericht"
+    }
+  },
+  "technology": {
+    "title": "Geavanceerde Technologie Stack"
+  },
+  "capabilities": {
+    "realTime": {
+      "title": "Real-time Verwerking",
+      "desc": "Directe verificatie & monitoring"
+    },
+    "security": {
+      "title": "Bankniveau Beveiliging",
+      "desc": "End-to-end encryptie"
+    },
+    "coverage": {
+      "title": "Wereldwijde Dekking",
+      "desc": "200+ landen ondersteund"
+    },
+    "integration": {
+      "title": "API-first Ontwerp",
+      "desc": "Naadloze systeemintegratie"
+    }
+  },
+  "regulatory": {
+    "title": "Regulatoire Excellentie by Design",
+    "description": "Ons platform is van de grond af gebouwd met EU-regulatoire vereisten in gedachten, zodat uw bedrijf conform blijft terwijl regelgeving evolueert.",
+    "stats": {
+      "ready": "EU AMLR Klaar",
+      "countries": "Landen Ondersteund",
+      "monitoring": "Real-time Monitoring"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "logo": "Veridaq",
+  "navigation": {
+    "solutions": "Ratkaisut",
+    "industries": "Toimialat",
+    "blog": "Blogi",
+    "whyUs": "Miksi me",
+    "contact": "Yhteystiedot"
+  },
+  "solutions": {
+    "title": "Ydinplatformi",
+    "kycVerification": "KYC-varmistus",
+    "amlScreening": "AML-seulonta",
+    "transactionMonitoring": "Transaktioiden seuranta",
+    "riskAssessment": "Riskiarviointi",
+    "sanctionsScreening": "Pakoteseulonta",
+    "regulatoryReporting": "Sääntelyraportointi",
+    "documentVerification": "Asiakirjojen varmistus",
+    "compliance": {
+      "title": "Compliance",
+      "euAmlr2027": "EU AMLR 2027 valmis"
+    }
+  },
+  "cta": {
+    "contact": "Yhteystiedot",
+    "demo": "Ota yhteyttä asiantuntijoihimme"
+  }
+}

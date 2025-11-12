@@ -1,0 +1,45 @@
+{
+  "title": "KYC & AML-alusta Suomalaisille Yrityksille<br/><1>Vahvista Asiakkaat 30 Sekunnissa. Ei 3 Päivässä.</1>",
+  "subtitle": "Automatisoi asiakastunnistus ja rahanpesun valvonta suomalaisille yrityksille. Älykäs alusta joka ymmärtää suomalaisia liiketoimintatarpeita ja poistaa manuaaliset prosessit.",
+  "cta": {
+    "primary": "Näytä Alusta",
+    "secondary": "Laske Säästösi",
+    "watchDemo": "Katso Demo",
+    "getChecklist": "Lataa Vaatimustenmukaisuusopas"
+  },
+  "trustProof": {
+    "euNative": "Suomenkielinen Tuki",
+    "smartEidFlow": "30 Sekunnin Vahvistus",
+    "registerAccess": "Automaattinen Vaatimustenmukaisuus"
+  },
+  "imageAlt": "Veridaq KYC & AML-alusta Dashboard",
+  "badge": "KYC & AML Ratkaisut Eurooppalaisille Rahoituspalveluille",
+  "platformTitle": "Enterprise Compliance-alusta",
+  "platformDescription": "Kattava KYC-vahvistus, AML-seuranta ja sääntelyyn liittyvä raportointi yhdessä tehokkaassa alustassa",
+  "screenshots": {
+    "transactionMonitoring": {
+      "title": "Älykäs Transaktioiden Seuranta",
+      "description": "Edistyneet tunnistussäännöt seuraavat kynnysarvoja, nopeusmalleja ja rakenteellista käyttäytymistä. Tunnista epäilyttävä toiminta ennen kuin siitä tulee compliance-ongelma AI-pohjaisella analyysillä."
+    },
+    "riskAssessment": {
+      "title": "Älykäs Riskiarviointi & Luokittelu",
+      "description": "Automatisoitu riskiprofilointi dynaamisella pisteyttämisellä useissa ulottuvuuksissa. Luokittele asiakkaat välittömästi ja säädä seurannan intensiteettiä reaaliaikaisten riskinäytteiden perusteella."
+    },
+    "beneficialOwnership": {
+      "title": "Tosiasiallisten Omistajien Älykkyys",
+      "description": "Kattava UBO-seuranta yksityishenkilöille ja yritysrakenteille. Visualisoi monimutkaiset omistusketjut ja tunnista automaattisesti määräysvaltahenkilöt monitasoisten yksiköiden välillä."
+    },
+    "customerDueDiligence": {
+      "title": "Customer Due Diligence Älykäällä Profiloinnilla",
+      "description": "Virtaviivaistetut CDD-prosessit älykkäällä riskiprofiloinnilla. Kerää oikeat tiedot oikeaan aikaan säilyttäen samalla poikkeuksellisen asiakaskokemuksen ja säännösten noudattamisen."
+    },
+    "sanctionsScreening": {
+      "title": "Pakotteet & PEP-seulonta",
+      "description": "Reaaliaikainen seulonta yli 200 maailmanlaajuista pakotelistaa, PEP-tietokantoja ja negatiivisia medialähteitä vastaan. Saa välittömiä hälytyksiä osumista älykkäällä fuzzy matchingilla vähentääksesi vääriä positiivisia."
+    },
+    "recordKeeping": {
+      "title": "AI-pohjainen Kirjanpito & Vahvistus",
+      "description": "Älykäs asiakirjahallinta automatisoituna vahvistuksena ja manipuloinnin havaitsemisena. Älykäs AI validoi aitouden, poimii tiedot ja ylläpitää kattavia tarkastusjälkiä kaikista compliance-tietueista."
+    }
+  }
+}

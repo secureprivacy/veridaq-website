@@ -1,0 +1,55 @@
+{
+  "title": "Costruito per l'Eccellenza di Conformità UE",
+  "certifications": {
+    "gdpr": {
+      "title": "GDPR by Design",
+      "desc": "Protezione dati UE integrata nella nostra architettura",
+      "status": "Conforme Privacy"
+    },
+    "euAmlr": {
+      "title": "EU AMLR 2027 Pronto",
+      "desc": "Design piattaforma conformità a prova di futuro",
+      "status": "Regolamentazione Pronta"
+    },
+    "euData": {
+      "title": "Data Center UE",
+      "desc": "Tutti i dati ospitati dentro Unione Europea",
+      "status": "Ospitato UE"
+    },
+    "openSecurity": {
+      "title": "Sicurezza Aperta",
+      "desc": "Pratiche sicurezza trasparenti e documentazione",
+      "status": "Focalizzato Sicurezza"
+    }
+  },
+  "technology": {
+    "title": "Stack Tecnologico Avanzato"
+  },
+  "capabilities": {
+    "realTime": {
+      "title": "Elaborazione Tempo Reale",
+      "desc": "Verifica & monitoraggio istantaneo"
+    },
+    "security": {
+      "title": "Sicurezza Livello Bancario",
+      "desc": "Crittografia end-to-end"
+    },
+    "coverage": {
+      "title": "Copertura Globale",
+      "desc": "200+ paesi supportati"
+    },
+    "integration": {
+      "title": "Design API-first",
+      "desc": "Integrazione sistema perfetta"
+    }
+  },
+  "regulatory": {
+    "title": "Eccellenza Regolamentare by Design",
+    "description": "La nostra piattaforma è costruita da zero con i requisiti regolamentari UE in mente, assicurando che la vostra azienda rimanga conforme mentre le regolamentazioni evolvono.",
+    "stats": {
+      "ready": "EU AMLR Pronto",
+      "countries": "Paesi Supportati",
+      "monitoring": "Monitoraggio Tempo Reale"
+    }
+  }
+}

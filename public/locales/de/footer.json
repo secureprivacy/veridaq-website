@@ -1,0 +1,48 @@
+{
+  "description": "Veridaq liefert KI-gestützte Compliance-Lösungen, die 10x schneller sind mit 90% weniger Fehlalarmen. Vollständige AML Suite für Unternehmen, KYC Lite für Wachstumsunternehmen.",
+  "contactInfo": {
+    "email": "sales@veridaq.com",
+    "phone": "+45 31272726",
+    "address": "Fruebjergvej 3\\n2100 Kopenhagen\\nDänemark"
+  },
+  "sections": {
+    "solutions": {
+      "title": "KI-gestützte Lösungen",
+      "kycVerification": "KYC Lite",
+      "amlScreening": "Vollständige AML Suite",
+      "euAmlr2027": "EU AMLR 2027 Native",
+      "documentVerification": "Sofortige Dokumentenverifizierung",
+      "transactionMonitoring": "Verhaltens-KI Überwachung",
+      "riskAssessment": "Prädiktive Risikomaschine"
+    },
+    "industries": {
+      "title": "Branchen",
+      "financialServices": "Traditionelles Bankwesen",
+      "fintech": "FinTech & Neobanken",
+      "cryptocurrency": "Krypto & Digitale Vermögenswerte",
+      "realEstate": "Hochwertige Immobilien",
+      "gaming": "Gaming & iGaming",
+      "ecommerce": "Marktplätze & E-Commerce",
+      "legalServices": "Rechts- & Anwaltskanzleien",
+      "accounting": "Buchhaltung & Steuerberatung",
+      "investmentAdvisors": "Anlageberater"
+    },
+    "company": {
+      "title": "Unternehmen",
+      "blog": "Compliance-Einblicke",
+      "whyChooseUs": "Warum Veridaq",
+      "contactSales": "Demo Buchen",
+      "supportCenter": "Hilfecenter",
+      "privacyPolicy": "Datenschutzrichtlinie",
+      "termsOfService": "Nutzungsbedingungen",
+      "gdprCompliance": "Privacy by Design"
+    }
+  },
+  "bottomLinks": {
+    "security": "Banksicherheit",
+    "compliance": "AMLR 2027 Bereit",
+    "status": "Status",
+    "contactExperts": "Buchen Sie Ihre Demo"
+  },
+  "copyright": "© {{year}} Veridaq. Alle Rechte vorbehalten. | KI-gestützte Compliance-Plattform"
+}

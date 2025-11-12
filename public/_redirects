@@ -1,0 +1,352 @@
+# Netlify redirects for unified React blog architecture
+#
+# BLOG ROUTING ARCHITECTURE (Progressive Enhancement with User-Agent Detection):
+# ================================================================================
+# This architecture serves static HTML to crawlers for perfect SEO,
+# while providing a unified React SPA experience to all real browsers.
+#
+# ARCHITECTURE PRINCIPLES:
+# 1. Explicit user-agent-based routing (no force redirects)
+# 2. Crawlers receive static HTML files with full content
+# 3. Browsers receive React SPA for interactive experience
+# 4. No fallback pattern - all routing is intentional
+#
+# ROUTING FLOW:
+# 1. Crawler (Googlebot, etc.) visits /blog/post-slug
+#    → Netlify matches crawler user-agent
+#    → Serves static HTML at /blog/post-slug/index.html
+#    → Result: Full content indexed for SEO
+#
+# 2. Browser (Chrome, Safari, etc.) visits /blog/post-slug
+#    → Netlify matches browser user-agent (default)
+#    → Serves React app at /index.html
+#    → React Router handles client-side routing
+#    → Result: Full SPA experience with no page refreshes
+#
+# USER-AGENT DETECTION:
+# Crawlers are detected by matching common patterns in their user-agent strings:
+# - *bot* (Googlebot, Bingbot, DuckDuckBot, etc.)
+# - *crawler*
+# - *spider*
+# - *Google-* (various Google services)
+# - GPTBot, Claude-Web, facebookexternalhit, etc.
+#
+# BENEFITS:
+# - Perfect SEO: Crawlers see complete static HTML
+# - Unified UX: Browsers get React SPA with client-side routing
+# - Explicit routing: No ambiguity or fallback behavior
+# - Maintainable: Clear separation of concerns
+# - Fast: CDN-cached static HTML for crawlers, SPA for users
+#
+# TESTING:
+# Test crawler access:
+#   curl -A "Googlebot" https://veridaq.com/blog/post-slug
+# Test browser access:
+#   curl -A "Mozilla/5.0" https://veridaq.com/blog/post-slug
+#
+# ================================================================================
+
+# ================================================================================
+# SITEMAP & CRAWLER FILES (Multi-method discovery)
+# ================================================================================
+# Primary sitemap endpoints - serve actual XML files
+/robots.txt                     /robots.txt                     200
+/sitemap.xml                    /sitemap.xml                    200
+/sitemap-*.xml                  /sitemap-:splat.xml             200
+
+# AI plugin discovery (OpenAI, Perplexity, etc.)
+/.well-known/ai-plugin.json     /.well-known/ai-plugin.json     200
+/ai-plugin.json                 /.well-known/ai-plugin.json     200
+
+# Sitemap aliases - normalize common alternative URLs to main sitemap
+# These handle crawlers that probe standard sitemap locations
+/sitemap_index.xml              /sitemap.xml                    301
+/sitemap.xml.gz                 /sitemap.xml                    200
+/sitemapindex.xml               /sitemap.xml                    301
+/blog/sitemap.xml               /sitemap.xml                    301
+/blog/sitemap-*.xml             /sitemap-:splat.xml             301
+/blog/sitemap_index.xml         /sitemap.xml                    301
+
+# Return 404 for nonsense sitemap paths instead of SPA fallback
+/_sitemap/*                     /404.html                       404
+/wp-sitemap.xml                 /404.html                       404
+/sitemap-misc.xml               /404.html                       404
+
+# CMS routes (always handled by React)
+/cms/*                          /index.html                     200
+
+# Legacy URL redirects for old translation URL patterns
+# Redirect old suffixed URLs to language-specific paths
+/blog/*-danish                  /da/blog/:splat                 301
+/blog/*-norwegian               /no/blog/:splat                 301
+/blog/*-swedish                 /sv/blog/:splat                 301
+/blog/*-german                  /de/blog/:splat                 301
+/blog/*-french                  /fr/blog/:splat                 301
+/blog/*-finnish                 /fi/blog/:splat                 301
+/blog/*-italian                 /it/blog/:splat                 301
+/blog/*-spanish                 /es/blog/:splat                 301
+/blog/*-portuguese              /pt/blog/:splat                 301
+/blog/*-dutch                   /nl/blog/:splat                 301
+
+# ================================================================================
+# CRAWLER ROUTES - Serve Static HTML to Search Engines and AI Crawlers
+# ================================================================================
+# These rules match common crawler user-agents and serve pre-generated static HTML
+# for optimal SEO and indexing. Order matters: more specific patterns first.
+
+# English blog routes for crawlers
+/blog/*                         /blog/:splat/index.html         200   User-Agent=*bot*
+/blog/*                         /blog/:splat/index.html         200   User-Agent=*crawler*
+/blog/*                         /blog/:splat/index.html         200   User-Agent=*spider*
+/blog/*                         /blog/:splat/index.html         200   User-Agent=*Google-*
+/blog/*                         /blog/:splat/index.html         200   User-Agent=GPTBot*
+/blog/*                         /blog/:splat/index.html         200   User-Agent=Claude-Web*
+/blog/*                         /blog/:splat/index.html         200   User-Agent=facebookexternalhit*
+/blog/*                         /blog/:splat/index.html         200   User-Agent=Twitterbot*
+/blog/*                         /blog/:splat/index.html         200   User-Agent=LinkedInBot*
+
+/blog                           /blog/index.html                200   User-Agent=*bot*
+/blog                           /blog/index.html                200   User-Agent=*crawler*
+/blog                           /blog/index.html                200   User-Agent=*spider*
+/blog                           /blog/index.html                200   User-Agent=*Google-*
+/blog                           /blog/index.html                200   User-Agent=GPTBot*
+/blog                           /blog/index.html                200   User-Agent=Claude-Web*
+/blog                           /blog/index.html                200   User-Agent=facebookexternalhit*
+/blog                           /blog/index.html                200   User-Agent=Twitterbot*
+/blog                           /blog/index.html                200   User-Agent=LinkedInBot*
+
+# Danish blog routes for crawlers
+/da/blog/*                      /da/blog/:splat/index.html      200   User-Agent=*bot*
+/da/blog/*                      /da/blog/:splat/index.html      200   User-Agent=*crawler*
+/da/blog/*                      /da/blog/:splat/index.html      200   User-Agent=*spider*
+/da/blog/*                      /da/blog/:splat/index.html      200   User-Agent=*Google-*
+/da/blog/*                      /da/blog/:splat/index.html      200   User-Agent=GPTBot*
+/da/blog/*                      /da/blog/:splat/index.html      200   User-Agent=Claude-Web*
+
+/da/blog                        /da/blog/index.html             200   User-Agent=*bot*
+/da/blog                        /da/blog/index.html             200   User-Agent=*crawler*
+/da/blog                        /da/blog/index.html             200   User-Agent=*spider*
+/da/blog                        /da/blog/index.html             200   User-Agent=*Google-*
+/da/blog                        /da/blog/index.html             200   User-Agent=GPTBot*
+/da/blog                        /da/blog/index.html             200   User-Agent=Claude-Web*
+
+# Swedish blog routes for crawlers
+/sv/blog/*                      /sv/blog/:splat/index.html      200   User-Agent=*bot*
+/sv/blog/*                      /sv/blog/:splat/index.html      200   User-Agent=*crawler*
+/sv/blog/*                      /sv/blog/:splat/index.html      200   User-Agent=*spider*
+/sv/blog/*                      /sv/blog/:splat/index.html      200   User-Agent=*Google-*
+/sv/blog/*                      /sv/blog/:splat/index.html      200   User-Agent=GPTBot*
+/sv/blog/*                      /sv/blog/:splat/index.html      200   User-Agent=Claude-Web*
+
+/sv/blog                        /sv/blog/index.html             200   User-Agent=*bot*
+/sv/blog                        /sv/blog/index.html             200   User-Agent=*crawler*
+/sv/blog                        /sv/blog/index.html             200   User-Agent=*spider*
+/sv/blog                        /sv/blog/index.html             200   User-Agent=*Google-*
+/sv/blog                        /sv/blog/index.html             200   User-Agent=GPTBot*
+/sv/blog                        /sv/blog/index.html             200   User-Agent=Claude-Web*
+
+# Norwegian blog routes for crawlers
+/no/blog/*                      /no/blog/:splat/index.html      200   User-Agent=*bot*
+/no/blog/*                      /no/blog/:splat/index.html      200   User-Agent=*crawler*
+/no/blog/*                      /no/blog/:splat/index.html      200   User-Agent=*spider*
+/no/blog/*                      /no/blog/:splat/index.html      200   User-Agent=*Google-*
+/no/blog/*                      /no/blog/:splat/index.html      200   User-Agent=GPTBot*
+/no/blog/*                      /no/blog/:splat/index.html      200   User-Agent=Claude-Web*
+
+/no/blog                        /no/blog/index.html             200   User-Agent=*bot*
+/no/blog                        /no/blog/index.html             200   User-Agent=*crawler*
+/no/blog                        /no/blog/index.html             200   User-Agent=*spider*
+/no/blog                        /no/blog/index.html             200   User-Agent=*Google-*
+/no/blog                        /no/blog/index.html             200   User-Agent=GPTBot*
+/no/blog                        /no/blog/index.html             200   User-Agent=Claude-Web*
+
+# Finnish blog routes for crawlers
+/fi/blog/*                      /fi/blog/:splat/index.html      200   User-Agent=*bot*
+/fi/blog/*                      /fi/blog/:splat/index.html      200   User-Agent=*crawler*
+/fi/blog/*                      /fi/blog/:splat/index.html      200   User-Agent=*spider*
+/fi/blog/*                      /fi/blog/:splat/index.html      200   User-Agent=*Google-*
+/fi/blog/*                      /fi/blog/:splat/index.html      200   User-Agent=GPTBot*
+/fi/blog/*                      /fi/blog/:splat/index.html      200   User-Agent=Claude-Web*
+
+/fi/blog                        /fi/blog/index.html             200   User-Agent=*bot*
+/fi/blog                        /fi/blog/index.html             200   User-Agent=*crawler*
+/fi/blog                        /fi/blog/index.html             200   User-Agent=*spider*
+/fi/blog                        /fi/blog/index.html             200   User-Agent=*Google-*
+/fi/blog                        /fi/blog/index.html             200   User-Agent=GPTBot*
+/fi/blog                        /fi/blog/index.html             200   User-Agent=Claude-Web*
+
+# German blog routes for crawlers
+/de/blog/*                      /de/blog/:splat/index.html      200   User-Agent=*bot*
+/de/blog/*                      /de/blog/:splat/index.html      200   User-Agent=*crawler*
+/de/blog/*                      /de/blog/:splat/index.html      200   User-Agent=*spider*
+/de/blog/*                      /de/blog/:splat/index.html      200   User-Agent=*Google-*
+/de/blog/*                      /de/blog/:splat/index.html      200   User-Agent=GPTBot*
+/de/blog/*                      /de/blog/:splat/index.html      200   User-Agent=Claude-Web*
+
+/de/blog                        /de/blog/index.html             200   User-Agent=*bot*
+/de/blog                        /de/blog/index.html             200   User-Agent=*crawler*
+/de/blog                        /de/blog/index.html             200   User-Agent=*spider*
+/de/blog                        /de/blog/index.html             200   User-Agent=*Google-*
+/de/blog                        /de/blog/index.html             200   User-Agent=GPTBot*
+/de/blog                        /de/blog/index.html             200   User-Agent=Claude-Web*
+
+# French blog routes for crawlers
+/fr/blog/*                      /fr/blog/:splat/index.html      200   User-Agent=*bot*
+/fr/blog/*                      /fr/blog/:splat/index.html      200   User-Agent=*crawler*
+/fr/blog/*                      /fr/blog/:splat/index.html      200   User-Agent=*spider*
+/fr/blog/*                      /fr/blog/:splat/index.html      200   User-Agent=*Google-*
+/fr/blog/*                      /fr/blog/:splat/index.html      200   User-Agent=GPTBot*
+/fr/blog/*                      /fr/blog/:splat/index.html      200   User-Agent=Claude-Web*
+
+/fr/blog                        /fr/blog/index.html             200   User-Agent=*bot*
+/fr/blog                        /fr/blog/index.html             200   User-Agent=*crawler*
+/fr/blog                        /fr/blog/index.html             200   User-Agent=*spider*
+/fr/blog                        /fr/blog/index.html             200   User-Agent=*Google-*
+/fr/blog                        /fr/blog/index.html             200   User-Agent=GPTBot*
+/fr/blog                        /fr/blog/index.html             200   User-Agent=Claude-Web*
+
+# Spanish blog routes for crawlers
+/es/blog/*                      /es/blog/:splat/index.html      200   User-Agent=*bot*
+/es/blog/*                      /es/blog/:splat/index.html      200   User-Agent=*crawler*
+/es/blog/*                      /es/blog/:splat/index.html      200   User-Agent=*spider*
+/es/blog/*                      /es/blog/:splat/index.html      200   User-Agent=*Google-*
+/es/blog/*                      /es/blog/:splat/index.html      200   User-Agent=GPTBot*
+/es/blog/*                      /es/blog/:splat/index.html      200   User-Agent=Claude-Web*
+
+/es/blog                        /es/blog/index.html             200   User-Agent=*bot*
+/es/blog                        /es/blog/index.html             200   User-Agent=*crawler*
+/es/blog                        /es/blog/index.html             200   User-Agent=*spider*
+/es/blog                        /es/blog/index.html             200   User-Agent=*Google-*
+/es/blog                        /es/blog/index.html             200   User-Agent=GPTBot*
+/es/blog                        /es/blog/index.html             200   User-Agent=Claude-Web*
+
+# Italian blog routes for crawlers
+/it/blog/*                      /it/blog/:splat/index.html      200   User-Agent=*bot*
+/it/blog/*                      /it/blog/:splat/index.html      200   User-Agent=*crawler*
+/it/blog/*                      /it/blog/:splat/index.html      200   User-Agent=*spider*
+/it/blog/*                      /it/blog/:splat/index.html      200   User-Agent=*Google-*
+/it/blog/*                      /it/blog/:splat/index.html      200   User-Agent=GPTBot*
+/it/blog/*                      /it/blog/:splat/index.html      200   User-Agent=Claude-Web*
+
+/it/blog                        /it/blog/index.html             200   User-Agent=*bot*
+/it/blog                        /it/blog/index.html             200   User-Agent=*crawler*
+/it/blog                        /it/blog/index.html             200   User-Agent=*spider*
+/it/blog                        /it/blog/index.html             200   User-Agent=*Google-*
+/it/blog                        /it/blog/index.html             200   User-Agent=GPTBot*
+/it/blog                        /it/blog/index.html             200   User-Agent=Claude-Web*
+
+# Portuguese blog routes for crawlers
+/pt/blog/*                      /pt/blog/:splat/index.html      200   User-Agent=*bot*
+/pt/blog/*                      /pt/blog/:splat/index.html      200   User-Agent=*crawler*
+/pt/blog/*                      /pt/blog/:splat/index.html      200   User-Agent=*spider*
+/pt/blog/*                      /pt/blog/:splat/index.html      200   User-Agent=*Google-*
+/pt/blog/*                      /pt/blog/:splat/index.html      200   User-Agent=GPTBot*
+/pt/blog/*                      /pt/blog/:splat/index.html      200   User-Agent=Claude-Web*
+
+/pt/blog                        /pt/blog/index.html             200   User-Agent=*bot*
+/pt/blog                        /pt/blog/index.html             200   User-Agent=*crawler*
+/pt/blog                        /pt/blog/index.html             200   User-Agent=*spider*
+/pt/blog                        /pt/blog/index.html             200   User-Agent=*Google-*
+/pt/blog                        /pt/blog/index.html             200   User-Agent=GPTBot*
+/pt/blog                        /pt/blog/index.html             200   User-Agent=Claude-Web*
+
+# Dutch blog routes for crawlers
+/nl/blog/*                      /nl/blog/:splat/index.html      200   User-Agent=*bot*
+/nl/blog/*                      /nl/blog/:splat/index.html      200   User-Agent=*crawler*
+/nl/blog/*                      /nl/blog/:splat/index.html      200   User-Agent=*spider*
+/nl/blog/*                      /nl/blog/:splat/index.html      200   User-Agent=*Google-*
+/nl/blog/*                      /nl/blog/:splat/index.html      200   User-Agent=GPTBot*
+/nl/blog/*                      /nl/blog/:splat/index.html      200   User-Agent=Claude-Web*
+
+/nl/blog                        /nl/blog/index.html             200   User-Agent=*bot*
+/nl/blog                        /nl/blog/index.html             200   User-Agent=*crawler*
+/nl/blog                        /nl/blog/index.html             200   User-Agent=*spider*
+/nl/blog                        /nl/blog/index.html             200   User-Agent=*Google-*
+/nl/blog                        /nl/blog/index.html             200   User-Agent=GPTBot*
+/nl/blog                        /nl/blog/index.html             200   User-Agent=Claude-Web*
+
+# ================================================================================
+# BROWSER ROUTES - Serve React SPA to Real Users
+# ================================================================================
+# These rules catch all non-crawler traffic and serve the React application.
+# React Router will handle client-side routing for the SPA experience.
+
+# Blog routes for browsers (default behavior when no user-agent match above)
+# Handle both with and without trailing slashes
+/blog/*                         /index.html                     200
+/blog/*/                        /index.html                     200
+/blog                           /index.html                     200
+/blog/                          /index.html                     200
+
+/da/blog/*                      /index.html                     200
+/da/blog/*/                     /index.html                     200
+/da/blog                        /index.html                     200
+/da/blog/                       /index.html                     200
+
+/sv/blog/*                      /index.html                     200
+/sv/blog/*/                     /index.html                     200
+/sv/blog                        /index.html                     200
+/sv/blog/                       /index.html                     200
+
+/no/blog/*                      /index.html                     200
+/no/blog/*/                     /index.html                     200
+/no/blog                        /index.html                     200
+/no/blog/                       /index.html                     200
+
+/fi/blog/*                      /index.html                     200
+/fi/blog/*/                     /index.html                     200
+/fi/blog                        /index.html                     200
+/fi/blog/                       /index.html                     200
+
+/de/blog/*                      /index.html                     200
+/de/blog/*/                     /index.html                     200
+/de/blog                        /index.html                     200
+/de/blog/                       /index.html                     200
+
+/fr/blog/*                      /index.html                     200
+/fr/blog/*/                     /index.html                     200
+/fr/blog                        /index.html                     200
+/fr/blog/                       /index.html                     200
+
+/es/blog/*                      /index.html                     200
+/es/blog/*/                     /index.html                     200
+/es/blog                        /index.html                     200
+/es/blog/                       /index.html                     200
+
+/it/blog/*                      /index.html                     200
+/it/blog/*/                     /index.html                     200
+/it/blog                        /index.html                     200
+/it/blog/                       /index.html                     200
+
+/pt/blog/*                      /index.html                     200
+/pt/blog/*/                     /index.html                     200
+/pt/blog                        /index.html                     200
+/pt/blog/                       /index.html                     200
+
+/nl/blog/*                      /index.html                     200
+/nl/blog/*/                     /index.html                     200
+/nl/blog                        /index.html                     200
+/nl/blog/                       /index.html                     200
+
+# ================================================================================
+# LANGUAGE-SPECIFIC ROUTES (Non-blog pages)
+# ================================================================================
+# Homepage and other pages in different languages
+
+/da/*                           /index.html                     200
+/sv/*                           /index.html                     200
+/no/*                           /index.html                     200
+/fi/*                           /index.html                     200
+/de/*                           /index.html                     200
+/fr/*                           /index.html                     200
+/es/*                           /index.html                     200
+/it/*                           /index.html                     200
+/pt/*                           /index.html                     200
+/nl/*                           /index.html                     200
+
+# ================================================================================
+# FALLBACK - Main site catch-all
+# ================================================================================
+# Catch any unmatched routes and serve React SPA
+
+/*                              /index.html                     200
