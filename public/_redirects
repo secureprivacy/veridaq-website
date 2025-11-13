@@ -266,67 +266,10 @@
 /nl/blog                        /nl/blog/index.html             200   User-Agent=Claude-Web*
 
 # ================================================================================
-# BROWSER ROUTES - Serve React SPA to Real Users
-# ================================================================================
-# These rules catch all non-crawler traffic and serve the React application.
-# React Router will handle client-side routing for the SPA experience.
-
-# Blog routes for browsers (default behavior when no user-agent match above)
-# Handle both with and without trailing slashes
-/blog/*                         /index.html                     200
-/blog/*/                        /index.html                     200
-/blog                           /index.html                     200
-/blog/                          /index.html                     200
-
-/da/blog/*                      /index.html                     200
-/da/blog/*/                     /index.html                     200
-/da/blog                        /index.html                     200
-/da/blog/                       /index.html                     200
-
-/sv/blog/*                      /index.html                     200
-/sv/blog/*/                     /index.html                     200
-/sv/blog                        /index.html                     200
-/sv/blog/                       /index.html                     200
-
-/no/blog/*                      /index.html                     200
-/no/blog/*/                     /index.html                     200
-/no/blog                        /index.html                     200
-/no/blog/                       /index.html                     200
-
-/fi/blog/*                      /index.html                     200
-/fi/blog/*/                     /index.html                     200
-/fi/blog                        /index.html                     200
-/fi/blog/                       /index.html                     200
-
-/de/blog/*                      /index.html                     200
-/de/blog/*/                     /index.html                     200
-/de/blog                        /index.html                     200
-/de/blog/                       /index.html                     200
-
-/fr/blog/*                      /index.html                     200
-/fr/blog/*/                     /index.html                     200
-/fr/blog                        /index.html                     200
-/fr/blog/                       /index.html                     200
-
-/es/blog/*                      /index.html                     200
-/es/blog/*/                     /index.html                     200
-/es/blog                        /index.html                     200
-/es/blog/                       /index.html                     200
-
-/it/blog/*                      /index.html                     200
-/it/blog/*/                     /index.html                     200
-/it/blog                        /index.html                     200
-/it/blog/                       /index.html                     200
-
-/pt/blog/*                      /index.html                     200
-/pt/blog/*/                     /index.html                     200
-/pt/blog                        /index.html                     200
-/pt/blog/                       /index.html                     200
-
-/nl/blog/*                      /index.html                     200
-/nl/blog/*/                     /index.html                     200
-/nl/blog                        /index.html                     200
-/nl/blog/                       /index.html                     200
+# NOTE: Browser routes for blog paths are handled by the catch-all rule below.
+# Static HTML files in /blog and /[lang]/blog are served naturally to crawlers.
+# React SPA is served to browsers via the catch-all rule at the end.
+# ===============================================================================
 
 # ================================================================================
 # LANGUAGE-SPECIFIC ROUTES (Non-blog pages)
