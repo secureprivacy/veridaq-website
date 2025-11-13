@@ -50,8 +50,13 @@ Sitemap: https://veridaq.com/sitemap-blog-nl.xml
 # Crawl delay for respectful crawling
 Crawl-delay: 1
 
-# Block common bot paths
+# Block common bot paths (but NOT favicon.ico or manifest files - they must be accessible)
 Disallow: /api/
-Disallow: /*.json$
 Disallow: /node_modules/
 Disallow: /src/
+
+# Allow access to critical SEO assets
+Allow: /favicon.ico
+Allow: /site.webmanifest
+Allow: /manifest.json
+Allow: *.json

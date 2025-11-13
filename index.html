@@ -4,9 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="apple-touch-icon" href="/vite.svg" />
-    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Favicon & PWA Icons (Google-compliant) -->
+    <link rel="icon" href="/images/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/svg+xml" href="/images/veridaq-logo.svg">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest" />
     <title>Veridaq | KYC & AML Solutions for EU AMLR 2027</title>
     
     <!-- Preconnect to external domains for performance -->
@@ -49,6 +54,53 @@
 
     <!-- Sitemap for Crawlers -->
     <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+
+    <!-- Structured Data for Google Rich Results -->
+    <!-- WebSite Schema (site name in search results) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "https://veridaq.com/",
+      "name": "Veridaq",
+      "alternateName": "Veridaq AML KYC",
+      "description": "EU's leading KYC & AML compliance platform. Get ready for EU AMLR 2027 with automated verification, risk assessment, and regulatory reporting.",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://veridaq.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Organization Schema (logo in knowledge panels) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Veridaq",
+      "url": "https://veridaq.com/",
+      "logo": "https://veridaq.com/images/android-chrome-512x512.png",
+      "image": "https://veridaq.com/images/android-chrome-512x512.png",
+      "description": "Advanced KYC & AML compliance solutions for EU financial institutions",
+      "sameAs": [
+        "https://www.linkedin.com/company/veridaq",
+        "https://twitter.com/Veridaq"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "@context": "https://schema.org",
+        "telephone": "+45 (for contact)",
+        "contactType": "Customer Support"
+      },
+      "foundingDate": "2024",
+      "areaServed": "EU",
+      "knowsAbout": ["KYC Verification", "AML Screening", "Compliance Management"]
+    }
+    </script>
 
     <!-- Preload critical hero images -->
     <link rel="preload" href="/images/TransactionMonitoring.png" as="image" type="image/png" fetchpriority="high">
