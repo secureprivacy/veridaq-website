@@ -1,7 +1,0 @@
-@@ .. @@
-   "title": "Experto en cumplimiento",
-   "subtitle": "En línea ahora • Responde en ~2 minutos",
-   "initialMessage": "¡Hola! Estoy aquí para ayudar con sus preguntas de cumplimiento AML/KYC. ¿Qué le gustaría saber sobre EU AMLR 2027 o nuestra plataforma?",
--  "autoResponse": "¡Gracias por su mensaje! Un experto en cumplimiento responderá pronto. Mientras tanto, puede reservar una demo o descargar nuestra lista de verificación de cumplimiento.",
-+  "autoResponse": "¡Gracias por su mensaje! Un experto en cumplimiento responderá pronto. Mientras tanto, puede reservar una demo o descargar nuestra lista de verificación de cumplimiento de Veridaq.",
-   "inputPlaceholder": "Pregunte sobre cumplimiento AML de la UE...",
