@@ -162,7 +162,6 @@ function createBlogListingHTML(posts, language) {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title}</title>
   <meta name="description" content="Expert insights on EU compliance, KYC verification, AML screening, and GDPR requirements. Stay informed about regulatory changes and best practices.">
-  <meta name="keywords" content="compliance blog, EU regulations, KYC insights, AML updates, GDPR compliance, regulatory news">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://veridaq.com${langPrefix}/blog">
@@ -427,7 +426,6 @@ function createBlogPostHTML(post, language, allPosts = [], availableTranslations
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeHtml(post.meta_title || post.title)} | Veridaq</title>
   <meta name="description" content="${escapeHtml(post.meta_description || post.excerpt || '')}">
-  ${post.meta_keywords ? `<meta name="keywords" content="${escapeHtml(post.meta_keywords)}">` : ''}
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://veridaq.com${langPrefix}/blog/${post.slug}">
