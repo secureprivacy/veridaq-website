@@ -82,53 +82,73 @@ const Header: React.FC = () => {
             </Link>
             
             <nav className="hidden lg:flex items-center space-x-8">
-              {navigation.map((item) => (
-                <div key={item.name} className="relative group">
-                  <Link
-                    href={item.href}
-                    onClick={handleNavClick(item.onClick)}
-                    className="font-sans text-neutral-700 hover:text-primary-600 font-medium transition-colors duration-200 flex items-center gap-1"
-                  >
+              {navigation.map((item) => {
+                const isBlogLink = item.href.includes('/blog');
+                const linkClassName = 'font-sans text-neutral-700 hover:text-primary-600 font-medium transition-colors duration-200 flex items-center gap-1';
+                const linkContent = (
+                  <>
                     {item.name}
                     {item.hasDropdown && (
                       <ChevronDown className={`w-4 h-4 transition-transform ${isSolutionsOpen ? 'rotate-180' : ''}`} />
                     )}
-                  </Link>
-                  
-                  {item.hasDropdown && isSolutionsOpen && (
-                    <div className="absolute top-full left-0 mt-2 w-96 glass-card shadow-premium-lg rounded-3xl border border-white/30 p-8 z-50">
-                      <div className="space-y-8">
-                        <div>
-                          <h3 className="font-display font-semibold text-lg text-accent-900 mb-6">
-                            Complete KYC/AML Platform
-                          </h3>
-                          <div className="grid grid-cols-1 gap-4">
-                            <div className="p-4 bg-white/60 rounded-xl border border-white/40 hover:bg-white/80 hover:shadow-md transition-all duration-300">
-                              <span className="font-display font-medium text-accent-900 block mb-1">Customer Verification</span>
-                              <p className="body-sm text-neutral-600">Smart eID integration and instant onboarding</p>
-                            </div>
-                            <div className="p-4 bg-white/60 rounded-xl border border-white/40 hover:bg-white/80 hover:shadow-md transition-all duration-300">
-                              <span className="font-display font-medium text-accent-900 block mb-1">Transaction Monitoring</span>
-                              <p className="body-sm text-neutral-600">AI-powered real-time risk detection</p>
-                            </div>
-                            <div className="p-4 bg-white/60 rounded-xl border border-white/40 hover:bg-white/80 hover:shadow-md transition-all duration-300">
-                              <span className="font-display font-medium text-accent-900 block mb-1">Compliance Reporting</span>
-                              <p className="body-sm text-neutral-600">Automated multi-jurisdiction reporting</p>
+                  </>
+                );
+
+                return (
+                  <div key={item.name} className="relative group">
+                    {isBlogLink ? (
+                      <a
+                        href={item.href}
+                        onClick={handleNavClick(item.onClick)}
+                        className={linkClassName}
+                      >
+                        {linkContent}
+                      </a>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        onClick={handleNavClick(item.onClick)}
+                        className={linkClassName}
+                      >
+                        {linkContent}
+                      </Link>
+                    )}
+
+                    {item.hasDropdown && isSolutionsOpen && (
+                      <div className="absolute top-full left-0 mt-2 w-96 glass-card shadow-premium-lg rounded-3xl border border-white/30 p-8 z-50">
+                        <div className="space-y-8">
+                          <div>
+                            <h3 className="font-display font-semibold text-lg text-accent-900 mb-6">
+                              Complete KYC/AML Platform
+                            </h3>
+                            <div className="grid grid-cols-1 gap-4">
+                              <div className="p-4 bg-white/60 rounded-xl border border-white/40 hover:bg-white/80 hover:shadow-md transition-all duration-300">
+                                <span className="font-display font-medium text-accent-900 block mb-1">Customer Verification</span>
+                                <p className="body-sm text-neutral-600">Smart eID integration and instant onboarding</p>
+                              </div>
+                              <div className="p-4 bg-white/60 rounded-xl border border-white/40 hover:bg-white/80 hover:shadow-md transition-all duration-300">
+                                <span className="font-display font-medium text-accent-900 block mb-1">Transaction Monitoring</span>
+                                <p className="body-sm text-neutral-600">AI-powered real-time risk detection</p>
+                              </div>
+                              <div className="p-4 bg-white/60 rounded-xl border border-white/40 hover:bg-white/80 hover:shadow-md transition-all duration-300">
+                                <span className="font-display font-medium text-accent-900 block mb-1">Compliance Reporting</span>
+                                <p className="body-sm text-neutral-600">Automated multi-jurisdiction reporting</p>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div className="pt-4 border-t border-neutral-200">
-                          <div className="p-4 bg-gradient-to-r from-primary-50 to-primary-100 rounded-xl border border-primary-200/60 shadow-sm">
-                            <div className="font-display font-medium text-primary-800 text-sm">EU AMLR 2027 Ready</div>
-                            <div className="font-sans text-primary-700 text-xs">Enterprise compliance from day one</div>
+                          <div className="pt-4 border-t border-neutral-200">
+                            <div className="p-4 bg-gradient-to-r from-primary-50 to-primary-100 rounded-xl border border-primary-200/60 shadow-sm">
+                              <div className="font-display font-medium text-primary-800 text-sm">EU AMLR 2027 Ready</div>
+                              <div className="font-sans text-primary-700 text-xs">Enterprise compliance from day one</div>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  )}
-                </div>
-              ))}
+                    )}
+                  </div>
+                );
+              })}
             </nav>
           </div>
           
@@ -164,16 +184,30 @@ const Header: React.FC = () => {
         {isMenuOpen && (
           <div className="lg:hidden py-6 border-t border-neutral-200">
             <nav className="space-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="block text-neutral-700 hover:text-primary-600 font-medium transition-colors"
-                  onClick={handleNavClick(item.onClick)}
-                >
-                  {item.name}
-                </Link>
-              ))}
+              {navigation.map((item) => {
+                const isBlogLink = item.href.includes('/blog');
+                const commonProps = {
+                  key: item.name,
+                  className: 'block text-neutral-700 hover:text-primary-600 font-medium transition-colors',
+                  onClick: handleNavClick(item.onClick)
+                } as const;
+
+                return isBlogLink ? (
+                  <a
+                    {...commonProps}
+                    href={item.href}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <Link
+                    {...commonProps}
+                    href={item.href}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
 
               {user && isEditor() && (
                 <Link

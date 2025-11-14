@@ -124,11 +124,19 @@ interface FooterLinkProps {
 }
 
 const FooterLink: React.FC<FooterLinkProps> = ({ href, text }) => {
+  const isBlogLink = href.includes('/blog');
+
   return (
     <li>
-      <Link href={href} className="text-neutral-300 hover:text-white transition-colors">
-        {text}
-      </Link>
+      {isBlogLink ? (
+        <a href={href} className="text-neutral-300 hover:text-white transition-colors">
+          {text}
+        </a>
+      ) : (
+        <Link href={href} className="text-neutral-300 hover:text-white transition-colors">
+          {text}
+        </Link>
+      )}
     </li>
   );
 };
