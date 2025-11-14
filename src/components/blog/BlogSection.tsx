@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import BlogList from './BlogList';
-import BlogPost from './BlogPost';
-import { Link } from '../ui/Link';
-import { ArrowLeft, Globe, Languages } from 'lucide-react';
-import LanguageSwitcher from '../LanguageSwitcher';
+import { Languages } from 'lucide-react';
 import SEO from '../SEO';
 import Header from '../Header';
 import Footer from '../Footer';
@@ -18,6 +15,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ language }) => {
   const { t } = useTranslation(['blog', 'seo', 'common']);
   const [currentRoute, setCurrentRoute] = useState('blog');
   const [postSlug, setPostSlug] = useState<string | null>(null);
+  const hasRedirectedRef = useRef(false);
 
   useEffect(() => {
     const parseCurrentRoute = () => {
@@ -81,11 +79,36 @@ const BlogSection: React.FC<BlogSectionProps> = ({ language }) => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [currentRoute, postSlug]);
-  
+
+  useEffect(() => {
+    if (currentRoute !== 'post' || !postSlug) {
+      return;
+    }
+
+    if (hasRedirectedRef.current) {
+      return;
+    }
+
+    const pathSegments = window.location.pathname.split('/').filter(Boolean);
+    const nonEnglishLanguages = SUPPORTED_LANGUAGES.filter(lang => lang !== 'en');
+    const pathLanguage = pathSegments.length > 0 && nonEnglishLanguages.includes(pathSegments[0]) ? pathSegments[0] : 'en';
+    const blogBasePath = pathLanguage === 'en' ? '/blog' : `/${pathLanguage}/blog`;
+    const staticUrl = `${blogBasePath}/${postSlug}/`;
+
+    const currentPathWithTrailingSlash = window.location.pathname.endsWith('/')
+      ? window.location.pathname
+      : `${window.location.pathname}/`;
+
+    if (currentPathWithTrailingSlash !== staticUrl) {
+      hasRedirectedRef.current = true;
+      window.location.replace(staticUrl);
+    }
+  }, [currentRoute, postSlug]);
+
   const renderContent = () => {
-    // Individual post route
-    if (currentRoute === 'post' && postSlug) {
-      return <BlogPost slug={postSlug} language={language} />;
+    // Individual post route - handled via redirect to static HTML
+    if (currentRoute === 'post') {
+      return null;
     }
 
     // Blog list route (default)
