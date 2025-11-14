@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from '../ui/Link';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { useBlogPosts } from '../../hooks/useBlogPosts';
 import { useTranslation } from 'react-i18next';
@@ -201,13 +200,13 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, language }) => {
           </p>
         )}
 
-        <Link
+        <a
           href={language === 'en' ? `/blog/${post.slug}` : `/${language}/blog/${post.slug}`}
           className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl hover:from-primary-700 hover:to-primary-800 hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-md"
         >
           {t('blog:readMore')}
           <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </Link>
+        </a>
       </div>
     </article>
   );
