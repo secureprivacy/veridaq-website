@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://veridaq.com/pt/blog</loc>
-    <lastmod>2025-11-10</lastmod>
+    <lastmod>2025-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://veridaq.com/blog" />
@@ -55,8 +55,32 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://veridaq.com/pt/blog/qual-e-o-1-passo-na-monitorizacao-aml-para-bancos</loc>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://veridaq.com/pt/blog/diligencia-devida-do-cliente-cdd-para-bancos</loc>
     <lastmod>2025-11-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://veridaq.com/pt/blog/amla-readiness-guide-for-eu-banks-2025-2027-portuguese</loc>
+    <lastmod>2025-11-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://veridaq.com/pt/blog/reduzir-fadiga-de-alertas-aml-otimizacao-para-bancos-ue</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://veridaq.com/pt/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-portuguese</loc>
+    <lastmod>2025-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
   </url>

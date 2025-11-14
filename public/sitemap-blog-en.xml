@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://veridaq.com/blog</loc>
-    <lastmod>2025-11-10</lastmod>
+    <lastmod>2025-11-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://veridaq.com/blog" />
@@ -17,6 +17,78 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://veridaq.com/pt/blog" />
     <xhtml:link rel="alternate" hreflang="nl" href="https://veridaq.com/nl/blog" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://veridaq.com/blog" />
+  </url>
+  <url>
+    <loc>https://veridaq.com/blog/customer-risk-scoring-model-guide-for-eu-banks-2025</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veridaq.com/blog/customer-risk-scoring-model-guide-for-eu-banks-2025" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://veridaq.com/da/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-danish" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://veridaq.com/sv/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-swedish" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://veridaq.com/no/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-norwegian" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://veridaq.com/fi/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-finnish" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://veridaq.com/de/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-german" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://veridaq.com/fr/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-french" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://veridaq.com/es/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-spanish" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://veridaq.com/it/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-italian" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://veridaq.com/pt/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-portuguese" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://veridaq.com/nl/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-dutch" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veridaq.com/blog/customer-risk-scoring-model-guide-for-eu-banks-2025" />
+  </url>
+  <url>
+    <loc>https://veridaq.com/blog/amla-readiness-guide-for-eu-banks-2025-2027</loc>
+    <lastmod>2025-11-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veridaq.com/blog/amla-readiness-guide-for-eu-banks-2025-2027" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://veridaq.com/da/blog/amla-readiness-guide-for-eu-banks-2025-2027-danish" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://veridaq.com/sv/blog/amla-readiness-guide-for-eu-banks-2025-2027-swedish" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://veridaq.com/no/blog/amla-readiness-guide-for-eu-banks-2025-2027-norwegian" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://veridaq.com/fi/blog/amla-readiness-guide-for-eu-banks-2025-2027-finnish" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://veridaq.com/de/blog/amla-readiness-guide-for-eu-banks-2025-2027-german" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://veridaq.com/fr/blog/amla-readiness-guide-for-eu-banks-2025-2027-french" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://veridaq.com/es/blog/amla-readiness-guide-for-eu-banks-2025-2027-spanish" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://veridaq.com/it/blog/amla-readiness-guide-for-eu-banks-2025-2027-italian" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://veridaq.com/pt/blog/amla-readiness-guide-for-eu-banks-2025-2027-portuguese" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://veridaq.com/nl/blog/amla-readiness-guide-for-eu-banks-2025-2027-dutch" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veridaq.com/blog/amla-readiness-guide-for-eu-banks-2025-2027" />
+  </url>
+  <url>
+    <loc>https://veridaq.com/blog/reduce-aml-alert-fatigue-eu-bank-workflow-optimization</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veridaq.com/blog/reduce-aml-alert-fatigue-eu-bank-workflow-optimization" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://veridaq.com/da/blog/reducer-aml-alert-trthed-eu-bankarbejdsgangsoptimering" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://veridaq.com/sv/blog/minska-aml-larmtrotthet-eu-bankers-arbetsflodesoptimering" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://veridaq.com/no/blog/reduser-aml-varseltretthet-eu-bankarbeidsflytoptimalisering" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://veridaq.com/fi/blog/vahenna-aml-halytysvasymysta-eu-pankin-tyonkulun-optimointi" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://veridaq.com/de/blog/aml-alarmmudigkeit-reduzieren-eu-workflow-optimierung" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://veridaq.com/fr/blog/reduire-la-fatigue-des-alertes-lbcft-banques-ue" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://veridaq.com/es/blog/reducir-fatiga-de-alertas-aml-optimizacion-bancos-ue" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://veridaq.com/it/blog/ridurre-laffaticamento-da-allerta-aml-banche-ue" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://veridaq.com/pt/blog/reduzir-fadiga-de-alertas-aml-otimizacao-para-bancos-ue" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://veridaq.com/nl/blog/verminder-aml-alert-fatigue-eu-bank-workflow-optimalisatie" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veridaq.com/blog/reduce-aml-alert-fatigue-eu-bank-workflow-optimization" />
+  </url>
+  <url>
+    <loc>https://veridaq.com/blog/what-is-the-first-step-in-aml-monitoring</loc>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veridaq.com/blog/what-is-the-first-step-in-aml-monitoring" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://veridaq.com/da/blog/hvad-er-frste-skridt-i-aml-overvagning-for-banker" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://veridaq.com/sv/blog/vad-ar-forsta-steget-i-aml-overvakning-for-banker" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://veridaq.com/no/blog/hva-er-frste-steg-i-aml-overvaking-for-banker" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://veridaq.com/fi/blog/mika-on-ensimmainen-askel-aml-seurannassa-pankeille" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://veridaq.com/de/blog/was-ist-der-erste-schritt-der-aml-uberwachung-fur-banken" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://veridaq.com/fr/blog/quelle-est-la-1ere-etape-de-la-surveillance-aml-pour-banques" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://veridaq.com/es/blog/quelle-est-la-1ere-etape-de-la-surveillance-aml-pour-banques" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://veridaq.com/it/blog/qual-e-il-primo-passo-nel-monitoraggio-aml-per-banche" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://veridaq.com/pt/blog/qual-e-o-1-passo-na-monitorizacao-aml-para-bancos" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://veridaq.com/nl/blog/was-ist-der-erste-schritt-der-aml-uberwachung-fur-banken" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veridaq.com/blog/what-is-the-first-step-in-aml-monitoring" />
   </url>
   <url>
     <loc>https://veridaq.com/blog/best-vasp-due-diligence-software-for-2025</loc>
