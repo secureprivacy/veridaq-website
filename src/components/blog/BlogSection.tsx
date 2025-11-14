@@ -80,33 +80,26 @@ const BlogSection: React.FC<BlogSectionProps> = ({ language }) => {
     window.scrollTo({ top: 0, behavior: 'auto' });
   }, [currentRoute, postSlug]);
 
-  useEffect(() => {
-    if (currentRoute !== 'post' || !postSlug) {
-      return;
-    }
-
-    if (hasRedirectedRef.current) {
-      return;
-    }
-
-    const pathSegments = window.location.pathname.split('/').filter(Boolean);
-    const nonEnglishLanguages = SUPPORTED_LANGUAGES.filter(lang => lang !== 'en');
-    const pathLanguage = pathSegments.length > 0 && nonEnglishLanguages.includes(pathSegments[0]) ? pathSegments[0] : 'en';
-    const blogBasePath = pathLanguage === 'en' ? '/blog' : `/${pathLanguage}/blog`;
-
-    const normalizePath = (path: string) => (path.endsWith('/') ? path : `${path}/`);
-    const targetPath = normalizePath(`${blogBasePath}/${postSlug}`);
-    const currentPath = normalizePath(window.location.pathname);
-
-    if (currentPath !== targetPath) {
-      hasRedirectedRef.current = true;
-      window.location.replace(targetPath);
-    }
-  }, [currentRoute, postSlug]);
-
   const renderContent = () => {
     // Individual post route - handled via redirect to static HTML
-    if (currentRoute === 'post') {
+    if (currentRoute === 'post' && postSlug) {
+      if (!hasRedirectedRef.current) {
+        const pathSegments = window.location.pathname.split('/').filter(Boolean);
+        const nonEnglishLanguages = SUPPORTED_LANGUAGES.filter(lang => lang !== 'en');
+        const pathLanguage =
+          pathSegments.length > 0 && nonEnglishLanguages.includes(pathSegments[0]) ? pathSegments[0] : 'en';
+        const blogBasePath = pathLanguage === 'en' ? '/blog' : `/${pathLanguage}/blog`;
+
+        const normalizePath = (path: string) => (path.endsWith('/') ? path : `${path}/`);
+        const targetPath = normalizePath(`${blogBasePath}/${postSlug}`);
+        const currentPath = normalizePath(window.location.pathname);
+
+        if (currentPath !== targetPath) {
+          hasRedirectedRef.current = true;
+          window.location.replace(targetPath);
+        }
+      }
+
       return null;
     }
 
