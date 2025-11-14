@@ -26,6 +26,20 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 // Supported languages
 const LANGUAGES = ['en', 'da', 'sv', 'no', 'fi', 'de', 'fr', 'es', 'it', 'pt', 'nl'];
 
+const LANGUAGE_LABELS = {
+  en: 'English',
+  da: 'Danish',
+  sv: 'Swedish',
+  no: 'Norwegian',
+  fi: 'Finnish',
+  de: 'German',
+  fr: 'French',
+  es: 'Spanish',
+  it: 'Italian',
+  pt: 'Portuguese',
+  nl: 'Dutch'
+};
+
 // Escape HTML special characters
 function escapeHtml(text) {
   if (!text) return '';
@@ -46,6 +60,47 @@ function escapeJson(text) {
     .replace(/\n/g, '\\n')
     .replace(/\r/g, '\\r')
     .replace(/\t/g, '\\t');
+}
+
+function resolveLanguageLabel(language) {
+  const key = (language || 'en').split('-')[0];
+  return LANGUAGE_LABELS[key] || language?.toUpperCase() || 'English';
+}
+
+function formatDateForLanguage(dateString, language) {
+  if (!dateString) return '';
+  try {
+    const locale = language === 'en' ? 'en-US' : language;
+    return new Date(dateString).toLocaleDateString(locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  } catch (error) {
+    return new Date(dateString).toISOString().split('T')[0];
+  }
+}
+
+function getWordCount(content) {
+  if (!content) return 0;
+  return content
+    .replace(/<[^>]*>/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean)
+    .length;
+}
+
+function calculateReadingTime(content) {
+  const words = getWordCount(content);
+  return Math.max(1, Math.ceil(words / 200));
+}
+
+function getPublishedDate(post, language) {
+  if (!post) return null;
+  if (language === 'en') {
+    return post.published_at || post.posts?.published_at || post.created_at;
+  }
+  return post.posts?.published_at || post.published_at || post.created_at;
 }
 
 // Get related posts based on shared keywords
@@ -94,9 +149,11 @@ function getRelatedPosts(currentPost, allPosts, language, limit = 3) {
 // HTML template for blog listing page with progressive enhancement
 function createBlogListingHTML(posts, language) {
   const langPrefix = language === 'en' ? '' : `/${language}`;
+  const homeHref = language === 'en' ? '/' : `/${language}/`;
   const title = language === 'en'
     ? 'Blog | EU Compliance Insights | Veridaq'
     : `Blog | Veridaq`;
+  const languageLabel = resolveLanguageLabel(language);
 
   // Generate JSON-LD ItemList schema
   const itemListSchema = {
@@ -111,7 +168,7 @@ function createBlogListingHTML(posts, language) {
         "url": `https://veridaq.com${langPrefix}/blog/${post.slug}`,
         ...(post.featured_image_url && { "image": post.featured_image_url }),
         ...(post.excerpt && { "description": post.excerpt }),
-        "datePublished": post.published_at || post.posts?.published_at,
+        "datePublished": getPublishedDate(post, language),
         "author": {
           "@type": "Organization",
           "name": "Veridaq"
@@ -133,27 +190,34 @@ function createBlogListingHTML(posts, language) {
     ]
   };
 
-  const postsHTML = posts.map(post => `
-    <article class="blog-post-card">
-      ${post.featured_image_url ? `
-        <a href="${langPrefix}/blog/${post.slug}/" class="post-image-link">
-          <img src="${post.featured_image_url}" alt="${escapeHtml(post.title)}" loading="lazy" width="800" height="450">
-        </a>
-      ` : ''}
-      <div class="post-content">
-        <h2>
-          <a href="${langPrefix}/blog/${post.slug}/">${escapeHtml(post.title)}</a>
-        </h2>
-        ${post.excerpt ? `<p class="excerpt">${escapeHtml(post.excerpt)}</p>` : ''}
-        <div class="post-meta">
-          <time datetime="${post.published_at || post.posts?.published_at}">
-            ${new Date(post.published_at || post.posts?.published_at).toLocaleDateString(language)}
-          </time>
+  const postsHTML = posts.map(post => {
+    const publishedDate = getPublishedDate(post, language);
+    const formattedDate = formatDateForLanguage(publishedDate, language);
+    const readingTime = calculateReadingTime(post.content);
+    const excerpt = post.excerpt
+      ? escapeHtml(post.excerpt)
+      : escapeHtml(post.content?.replace(/<[^>]*>/g, ' ').slice(0, 160) || '');
+
+    return `
+      <article class="blog-card">
+        ${post.featured_image_url ? `
+          <a class="blog-card__media" href="${langPrefix}/blog/${post.slug}/">
+            <img src="${post.featured_image_url}" alt="${escapeHtml(post.title)}" loading="lazy" width="800" height="450">
+            <span class="blog-card__category">EU Compliance</span>
+          </a>
+        ` : ''}
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="meta-chip"><span class="meta-icon" aria-hidden="true">📅</span><time datetime="${publishedDate || ''}">${formattedDate}</time></span>
+            <span class="meta-chip"><span class="meta-icon" aria-hidden="true">⏱</span>${readingTime} min read</span>
+          </div>
+          <h2 class="blog-card__title"><a href="${langPrefix}/blog/${post.slug}/">${escapeHtml(post.title)}</a></h2>
+          ${excerpt ? `<p class="blog-card__excerpt">${excerpt}</p>` : ''}
+          <a class="blog-card__cta" href="${langPrefix}/blog/${post.slug}/">Read more <span aria-hidden="true">→</span></a>
         </div>
-        <a href="${langPrefix}/blog/${post.slug}/" class="read-more">Read more →</a>
-      </div>
-    </article>
-  `).join('\n');
+      </article>
+    `;
+  }).join('\n');
 
   return `<!DOCTYPE html>
 <html lang="${language}">
@@ -165,6 +229,7 @@ function createBlogListingHTML(posts, language) {
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://veridaq.com${langPrefix}/blog">
+  <link rel="stylesheet" href="/blog-static.css">
 
   <!-- Sitemap discovery for crawlers -->
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://veridaq.com/sitemap.xml">
@@ -183,138 +248,36 @@ ${JSON.stringify(itemListSchema, null, 2)}
   <script type="application/ld+json">
 ${JSON.stringify(organizationSchema, null, 2)}
   </script>
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.6;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      color: #1f2937;
-      background: #ffffff;
-    }
-    header {
-      border-bottom: 2px solid #e5e7eb;
-      padding-bottom: 20px;
-      margin-bottom: 40px;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-      color: #111827;
-    }
-    nav {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-top: 15px;
-    }
-    nav a {
-      color: #0284c7;
-      text-decoration: none;
-      padding: 5px 10px;
-      border-radius: 4px;
-      transition: background 0.2s;
-    }
-    nav a:hover {
-      background: #e0f2fe;
-    }
-    .blog-post-card {
-      margin-bottom: 40px;
-      border: 1px solid #e5e7eb;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #ffffff;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      transition: box-shadow 0.3s, transform 0.3s;
-    }
-    .blog-post-card:hover {
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      transform: translateY(-2px);
-    }
-    .post-image-link {
-      display: block;
-      overflow: hidden;
-    }
-    .blog-post-card img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.3s;
-    }
-    .blog-post-card:hover img {
-      transform: scale(1.05);
-    }
-    .post-content {
-      padding: 30px;
-    }
-    .post-content h2 {
-      margin: 0 0 15px 0;
-      font-size: 1.75rem;
-      line-height: 1.3;
-    }
-    .post-content h2 a {
-      color: #111827;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .post-content h2 a:hover {
-      color: #0284c7;
-    }
-    .post-content .excerpt {
-      color: #4b5563;
-      margin-bottom: 15px;
-      line-height: 1.7;
-    }
-    .post-meta {
-      color: #6b7280;
-      font-size: 0.875rem;
-      margin-bottom: 15px;
-    }
-    .read-more {
-      display: inline-block;
-      margin-top: 10px;
-      font-weight: 600;
-      color: #0284c7;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .read-more:hover {
-      color: #0369a1;
-    }
-    @media (max-width: 768px) {
-      body { padding: 15px; }
-      header h1 { font-size: 2rem; }
-      .post-content { padding: 20px; }
-      .post-content h2 { font-size: 1.5rem; }
-    }
-  </style>
 </head>
-<body>
-  <header>
-    <h1>Blog - EU Compliance Insights</h1>
-    <p style="color: #6b7280; margin-top: 10px;">Expert insights on KYC, AML, and regulatory compliance</p>
-    <nav>
-      <a href="/">Home</a>
-      ${LANGUAGES.map(lang =>
-        `<a href="/${lang === 'en' ? '' : lang + '/'}blog"${lang === language ? ' style="font-weight: bold; background: #e0f2fe;"' : ''}>${lang.toUpperCase()}</a>`
-      ).join('')}
-    </nav>
+<body class="blog-page">
+  <header class="blog-hero">
+    <div class="blog-container hero-content">
+      <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+        <a href="${homeHref}">Home</a>
+        <span class="current">Blog</span>
+      </nav>
+      <div class="hero-pill">📝 <span>Expert compliance insights</span></div>
+      <h1 class="hero-title">EU Compliance Insights</h1>
+      <p class="hero-subtitle">Expert analysis on KYC, AML, and regulatory change so your team can stay ahead of EU mandates.</p>
+      <div class="metadata-chips" style="margin-top: 2rem;">
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">🌐</span>Reading in ${languageLabel}</span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">📚</span>${posts.length} curated articles</span>
+      </div>
+    </div>
   </header>
-  <main>
-    ${postsHTML || '<p>No blog posts available yet.</p>'}
+  <main class="blog-main">
+    <section class="blog-list">
+      <div class="blog-container">
+        <div class="blog-grid">
+          ${postsHTML || '<p>No blog posts available yet.</p>'}
+        </div>
+      </div>
+    </section>
   </main>
-  <footer style="margin-top: 60px; padding-top: 30px; border-top: 1px solid #e5e7eb; color: #6b7280; text-align: center;">
+  <footer class="blog-footer">
     <p>&copy; ${new Date().getFullYear()} Veridaq. All rights reserved.</p>
+    <p><a href="${langPrefix || '/'}">Back to site</a></p>
   </footer>
-
-  <!-- Root element for React app hydration -->
-  <div id="root"></div>
-
-  <!-- NO JavaScript redirect needed - Netlify force redirects handle routing -->
-  <!-- Crawlers see this static HTML, browsers get React via _redirects force rules -->
 </body>
 </html>`;
 }
@@ -324,6 +287,11 @@ function createBlogPostHTML(post, language, allPosts = [], availableTranslations
   const langPrefix = language === 'en' ? '' : `/${language}`;
   const publishedDate = post.published_at || post.posts?.published_at;
   const updatedDate = post.updated_at || post.posts?.updated_at || publishedDate;
+  const formattedPublishedDate = formatDateForLanguage(publishedDate, language);
+  const readingTime = calculateReadingTime(post.content);
+  const postUrl = `https://veridaq.com${langPrefix}/blog/${post.slug}`;
+  const homeHref = language === 'en' ? '/' : `/${language}/`;
+  const blogHref = `${langPrefix}/blog/`;
 
   // Generate Breadcrumb schema
   const breadcrumbSchema = {
@@ -419,6 +387,41 @@ function createBlogPostHTML(post, language, allPosts = [], availableTranslations
   // Get related posts based on shared keywords
   const relatedPosts = getRelatedPosts(post, allPosts, language, 3);
 
+  const shareLinks = [
+    {
+      label: 'LinkedIn',
+      icon: 'in',
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`,
+      external: true
+    },
+    {
+      label: 'Twitter',
+      icon: 'X',
+      href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(post.title)}`,
+      external: true
+    },
+    {
+      label: 'Email',
+      icon: '@',
+      href: `mailto:?subject=${encodeURIComponent(post.title)}&body=${encodeURIComponent('I thought you might find this EU compliance article interesting: ' + postUrl)}`,
+      external: false
+    }
+  ];
+
+  const relatedHTML = relatedPosts.map(relatedPost => {
+    const relatedHref = `${langPrefix}/blog/${relatedPost.slug}/`;
+    const relatedExcerpt = relatedPost.excerpt
+      ? escapeHtml(relatedPost.excerpt)
+      : escapeHtml(relatedPost.content?.replace(/<[^>]*>/g, ' ').slice(0, 160) || '');
+
+    return `
+      <a class="related-card" href="${relatedHref}">
+        <span>${escapeHtml(relatedPost.title)}</span>
+        ${relatedExcerpt ? `<p>${relatedExcerpt}</p>` : ''}
+      </a>
+    `;
+  }).join('\n');
+
   return `<!DOCTYPE html>
 <html lang="${language}">
 <head>
@@ -429,6 +432,7 @@ function createBlogPostHTML(post, language, allPosts = [], availableTranslations
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://veridaq.com${langPrefix}/blog/${post.slug}">
+  <link rel="stylesheet" href="/blog-static.css">
 
   <!-- Sitemap discovery for crawlers -->
   <link rel="sitemap" type="application/xml" title="Sitemap" href="https://veridaq.com/sitemap.xml">
@@ -504,188 +508,67 @@ ${JSON.stringify(organizationSchema, null, 2)}
   "includedDataCatalog": "https://veridaq.com/sitemap.xml"
 }
   </script>
-
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      line-height: 1.8;
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      color: #1f2937;
-      background: #ffffff;
-    }
-    nav {
-      margin-bottom: 30px;
-    }
-    nav a {
-      color: #0284c7;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    nav a:hover {
-      color: #0369a1;
-    }
-    article {
-      margin: 40px 0;
-    }
-    article img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      margin-bottom: 30px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-    article h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
-      line-height: 1.2;
-      color: #111827;
-    }
-    article .meta {
-      color: #6b7280;
-      margin-bottom: 30px;
-      font-size: 0.95rem;
-    }
-    article .excerpt {
-      font-size: 1.25rem;
-      font-style: italic;
-      color: #4b5563;
-      border-left: 4px solid #0284c7;
-      padding-left: 20px;
-      margin-bottom: 30px;
-    }
-    article .content {
-      font-size: 1.125rem;
-      line-height: 1.8;
-    }
-    article .content h2 {
-      margin-top: 40px;
-      margin-bottom: 20px;
-      font-size: 1.875rem;
-      color: #111827;
-    }
-    article .content h3 {
-      margin-top: 30px;
-      margin-bottom: 15px;
-      font-size: 1.5rem;
-      color: #111827;
-    }
-    article .content p {
-      margin-bottom: 20px;
-      line-height: 1.8;
-    }
-    article .content ul,
-    article .content ol {
-      margin: 20px 0;
-      padding-left: 30px;
-    }
-    article .content li {
-      margin-bottom: 10px;
-    }
-    article .content a {
-      color: #0284c7;
-      text-decoration: underline;
-    }
-    article .content a:hover {
-      color: #0369a1;
-    }
-    article .content code {
-      background: #f3f4f6;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-size: 0.9em;
-      font-family: 'Courier New', monospace;
-    }
-    article .content pre {
-      background: #1f2937;
-      color: #f3f4f6;
-      padding: 20px;
-      border-radius: 8px;
-      overflow-x: auto;
-      margin: 20px 0;
-    }
-    article .content blockquote {
-      border-left: 4px solid #e5e7eb;
-      padding-left: 20px;
-      margin: 20px 0;
-      font-style: italic;
-      color: #4b5563;
-    }
-    footer {
-      margin-top: 60px;
-      padding-top: 30px;
-      border-top: 1px solid #e5e7eb;
-      color: #6b7280;
-      text-align: center;
-    }
-    @media (max-width: 768px) {
-      body { padding: 15px; }
-      article h1 { font-size: 2rem; }
-      article .content { font-size: 1rem; }
-      article .content h2 { font-size: 1.5rem; }
-    }
-  </style>
 </head>
-<body>
-  <!-- Breadcrumb Navigation -->
-  <nav aria-label="Breadcrumb" style="margin-bottom: 20px; font-size: 0.875rem; color: #6b7280;" itemscope itemtype="https://schema.org/BreadcrumbList">
-    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a href="${langPrefix}/" itemprop="item" style="color: #0284c7; text-decoration: none;">
-        <span itemprop="name">Home</span>
-      </a>
-      <meta itemprop="position" content="1" />
-    </span>
-    <span style="margin: 0 8px;">›</span>
-    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <a href="${langPrefix}/blog" itemprop="item" style="color: #0284c7; text-decoration: none;">
-        <span itemprop="name">Blog</span>
-      </a>
-      <meta itemprop="position" content="2" />
-    </span>
-    <span style="margin: 0 8px;">›</span>
-    <span itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-      <span itemprop="name" style="color: #111827;">${escapeHtml(post.title.length > 50 ? post.title.substring(0, 50) + '...' : post.title)}</span>
-      <meta itemprop="position" content="3" />
-    </span>
-  </nav>
-  <nav style="margin-bottom: 20px;">
-    <a href="${langPrefix}/blog" style="color: #0284c7; text-decoration: none;">← Back to Blog</a>
-  </nav>
-  <article>
-    ${post.featured_image_url ? `<img src="${post.featured_image_url}" alt="${escapeHtml(post.title)}" width="1200" height="675" loading="eager">` : ''}
-    <h1>${escapeHtml(post.title)}</h1>
-    <div class="meta">
-      <time datetime="${publishedDate}">${new Date(publishedDate).toLocaleDateString(language, { year: 'numeric', month: 'long', day: 'numeric' })}</time>
-      ${language === 'en' ? ' · Veridaq Team' : ''}
+<body class="blog-page">
+  <header class="blog-hero">
+    <div class="blog-container post-hero-content">
+      <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+        <a href="${homeHref}">Home</a>
+        <a href="${blogHref}">Blog</a>
+        <span class="current">${escapeHtml(post.title)}</span>
+      </nav>
+      <a class="back-pill" href="${blogHref}">← Back to all articles</a>
+      <div class="category-badge">EU Compliance</div>
+      <h1 class="post-title">${escapeHtml(post.title)}</h1>
+      <div class="metadata-chips">
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">👤</span>Veridaq Team</span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">📅</span><time datetime="${publishedDate || ''}">${formattedPublishedDate}</time></span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">⏱</span>${readingTime} min read</span>
+      </div>
+      ${post.excerpt ? `<div class="post-excerpt">${escapeHtml(post.excerpt)}</div>` : ''}
     </div>
-    ${post.excerpt ? `<p class="excerpt">${escapeHtml(post.excerpt)}</p>` : ''}
-    <div class="content">
-      ${post.content}
-    </div>
-  </article>
-  ${relatedPosts.length > 0 ? `
-  <section style="margin-top: 60px; padding: 30px; background: linear-gradient(to bottom right, #f0f9ff, #ffffff, #fef3c7); border: 1px solid #dbeafe; border-radius: 16px;">
-    <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 20px; color: #111827;">Related Articles</h2>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-      ${relatedPosts.map(related => `
-        <a href="${langPrefix}/blog/${related.slug}" style="display: block; padding: 20px; background: white; border: 1px solid #e5e7eb; border-radius: 12px; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='#0284c7'; this.style.boxShadow='0 4px 6px rgba(0,0,0,0.1)';" onmouseout="this.style.borderColor='#e5e7eb'; this.style.boxShadow='none';">
-          <h3 style="font-size: 1rem; font-weight: 600; color: #111827; margin-bottom: 8px; line-height: 1.4;">${escapeHtml(related.title)}</h3>
-          ${related.excerpt ? `<p style="font-size: 0.875rem; color: #6b7280; line-height: 1.5;">${escapeHtml(related.excerpt.substring(0, 100))}...</p>` : ''}
-        </a>
-      `).join('')}
-    </div>
-  </section>
-  ` : ''}
-  <footer>
-    <p>&copy; ${new Date().getFullYear()} Veridaq. All rights reserved.</p>
-    <p style="margin-top: 10px;"><a href="${langPrefix}/blog" style="color: #0284c7;">← Back to all articles</a></p>
-  </footer>
+  </header>
 
-  <!-- NO JavaScript redirect needed - Netlify force redirects handle routing -->
-  <!-- Crawlers see this static HTML, browsers get React via _redirects force rules -->
+  ${post.featured_image_url ? `
+    <div class="featured-image">
+      <img src="${post.featured_image_url}" alt="${escapeHtml(post.title)}" width="1200" height="675" loading="eager">
+    </div>
+  ` : ''}
+
+  <main class="blog-article">
+    <div class="blog-container">
+      <article class="blog-prose">
+${post.content}
+      </article>
+
+      <section class="share-strip" aria-label="Share this article">
+        <div>
+          <h3>Share this article</h3>
+          <p>Help compliance leaders discover these insights.</p>
+        </div>
+        <div class="share-links">
+          ${shareLinks.map(link => `<a class="share-pill" href="${link.href}" ${link.external ? 'target="_blank" rel="noopener"' : ''} aria-label="Share on ${link.label}">${link.icon}</a>`).join('\n          ')}
+        </div>
+      </section>
+
+      <section class="related-section">
+        <h3>Related Articles</h3>
+        ${relatedPosts.length > 0 ? `<div class="related-grid">${relatedHTML}</div>` : '<p style="color: var(--color-muted);">No related articles available yet.</p>'}
+      </section>
+
+      <section class="cta-block">
+        <div class="cta-icon" aria-hidden="true">⚡</div>
+        <h3>Implement compliant onboarding strategies</h3>
+        <p>Partner with Veridaq experts to operationalise KYC, AML, and ongoing monitoring programs aligned to EU directives.</p>
+        <a class="cta-button" href="#contact">Book a consultation →</a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="blog-footer">
+    <p>&copy; ${new Date().getFullYear()} Veridaq. All rights reserved.</p>
+    <p><a href="${blogHref}">← Back to all articles</a></p>
+  </footer>
 </body>
 </html>`;
 }
