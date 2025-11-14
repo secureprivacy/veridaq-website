@@ -32,4 +32,4 @@
 ## Tips
 - Use project docs (e.g., `BLOG_ARCHITECTURE.md`, `SUPABASE_SETUP_INSTRUCTIONS.md`) for deeper context.
 - Run `npm run generate-blog-html` and `npm run generate-sitemap` after changing blog content.
-- Keep progressive enhancement in mind: static assets for bots, SPA experience for users.
+- Remember the blog is static-first: every visitor (bot or user) receives the generated HTML, while the SPA handles non-blog routes.

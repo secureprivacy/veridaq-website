@@ -33,7 +33,7 @@ This document explains the complete architecture of the Veridaq project, how it 
 - **i18n**: react-i18next with JSON-based translations
 - **Deployment**: Netlify with custom redirect rules
 - **CMS**: Custom admin dashboard for blog management
-- **SEO**: Progressive enhancement with static HTML for crawlers
+- **SEO**: Static-first delivery with pre-rendered HTML for every request
 
 ### Project Purpose
 
@@ -180,12 +180,11 @@ project/
 
 ### Routing Architecture
 
-The project uses a **progressive enhancement routing strategy** with Netlify:
+Netlify now follows a static-first routing strategy:
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│         User/Crawler Requests URL                    │
-│    (e.g., /fr/blog/post-slug)                       │
+│      Request for /{lang}/blog/... arrives at CDN    │
 └────────────────────┬────────────────────────────────┘
                      │
                      ▼
@@ -197,33 +196,13 @@ The project uses a **progressive enhancement routing strategy** with Netlify:
         ┌────────────┴────────────┐
         │                         │
         ▼                         ▼
-   CRAWLER                    BROWSER
-   (User-Agent:              (User-Agent:
-   *bot*, GPTBot,            Chrome, Safari,
-   Claude-Web, etc.)         Firefox, etc.)
-        │                         │
-        ▼                         ▼
-   Serve Static HTML         Serve React SPA
-   /fr/blog/post-slug/       /index.html
-   index.html                     │
-        │                         ▼
-        │                  React Router parses URL
-        │                         │
-        │                         ▼
-        │                  BlogSection component
-        │                  renders BlogPost
-        │                         │
-        └─────────────────────────┘
-                     │
-                     ▼
-            Content Displayed
+   Match explicit blog rule   Serve /{lang}/blog/.../index.html
 ```
 
 **Key Points:**
-1. **Crawlers** (Googlebot, GPTBot, Claude-Web) → Static HTML files (perfect SEO)
-2. **Browsers** (real users) → React SPA (interactive experience)
-3. **No JavaScript required** for crawlers to see content
-4. **Unified experience** for users across all blog pages
+1. Blog listings and posts are enumerated with unconditional `200` rewrites.
+2. No user-agent detection or JavaScript redirects are involved.
+3. A final catch-all rule (`/* /index.html 200`) keeps the React SPA online for non-blog routes.
 
 ---
 
@@ -1618,14 +1597,14 @@ As an AI assistant working on this project:
 4. **Supabase is pre-configured** - Database connection is ready to use
 5. **Multilingual support is critical** - Always consider translation impact
 6. **SEO is paramount** - Static HTML generation and sitemaps are crucial
-7. **Progressive enhancement** - Crawlers get HTML, users get React SPA
+7. **Static-first blog delivery** - Same HTML for crawlers and users
 
 ### What Makes This Project Special
 
-1. **Dual-layer Blog Architecture**
-   - Static HTML for SEO (crawlers)
-   - React SPA for UX (users)
-   - User-agent detection in Netlify redirects
+1. **Static Blog Architecture**
+   - Static HTML is the single source of truth
+   - `_redirects` lists unconditional rewrites per locale
+   - React SPA only powers non-blog routes
 
 2. **11-Language Support**
    - All UI text in JSON translation files
@@ -1639,9 +1618,9 @@ As an AI assistant working on this project:
    - JSON-LD structured data
 
 4. **Sophisticated Routing**
-   - Netlify user-agent based routing
-   - React client-side routing
-   - Fallback strategies
+   - Explicit blog rewrites for every language
+   - React client-side routing for application views
+   - SPA fallback kept as the final rule
 
 ### Your Capabilities
 
