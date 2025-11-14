@@ -93,15 +93,14 @@ const BlogSection: React.FC<BlogSectionProps> = ({ language }) => {
     const nonEnglishLanguages = SUPPORTED_LANGUAGES.filter(lang => lang !== 'en');
     const pathLanguage = pathSegments.length > 0 && nonEnglishLanguages.includes(pathSegments[0]) ? pathSegments[0] : 'en';
     const blogBasePath = pathLanguage === 'en' ? '/blog' : `/${pathLanguage}/blog`;
-    const staticUrl = `${blogBasePath}/${postSlug}/`;
 
-    const currentPathWithTrailingSlash = window.location.pathname.endsWith('/')
-      ? window.location.pathname
-      : `${window.location.pathname}/`;
+    const normalizePath = (path: string) => (path.endsWith('/') ? path : `${path}/`);
+    const targetPath = normalizePath(`${blogBasePath}/${postSlug}`);
+    const currentPath = normalizePath(window.location.pathname);
 
-    if (currentPathWithTrailingSlash !== staticUrl) {
+    if (currentPath !== targetPath) {
       hasRedirectedRef.current = true;
-      window.location.replace(staticUrl);
+      window.location.replace(targetPath);
     }
   }, [currentRoute, postSlug]);
 
