@@ -141,6 +141,10 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, language }) => {
 
   const publishedDate = language === 'en' ? post.published_at : post.posts?.published_at || post.published_at;
   const wordCount = getWordCount(post.content);
+  const postUrl = React.useMemo(
+    () => (language === 'en' ? `/blog/${post.slug}` : `/${language}/blog/${post.slug}`),
+    [language, post.slug]
+  );
 
   return (
     <article className="group relative bg-white rounded-3xl overflow-hidden border border-neutral-200 hover:border-primary-200 shadow-modern hover:shadow-premium-lg transition-all duration-500 hover:-translate-y-2">
@@ -201,7 +205,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, language }) => {
         )}
 
         <a
-          href={language === 'en' ? `/blog/${post.slug}` : `/${language}/blog/${post.slug}`}
+          href={postUrl}
           className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white font-semibold rounded-xl hover:from-primary-700 hover:to-primary-800 hover:shadow-lg hover:scale-105 transition-all duration-300 shadow-md"
         >
           {t('blog:readMore')}

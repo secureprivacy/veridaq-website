@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from '../ui/Link';
 import { ChevronRight, Home } from 'lucide-react';
 
 interface BreadcrumbItem {
@@ -37,14 +36,14 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, className = '' })
             >
               {!isLast && item.href ? (
                 <>
-                  <Link
+                  <a
                     href={item.href}
                     className="text-neutral-600 hover:text-primary-600 transition-colors flex items-center gap-1"
                     itemProp="item"
                   >
                     {index === 0 && <Home className="w-4 h-4" />}
                     <span itemProp="name">{item.label}</span>
-                  </Link>
+                  </a>
                   <meta itemProp="position" content={position.toString()} />
                 </>
               ) : (
