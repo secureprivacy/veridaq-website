@@ -26,53 +26,12 @@
 # ================================================================================
 
 # ================================================================================
-# SITEMAP & CRAWLER FILES (Multi-method discovery)
-# ================================================================================
-# Primary sitemap endpoints - serve actual XML files
-/robots.txt                     /robots.txt                     200
-/sitemap.xml                    /sitemap.xml                    200
-/sitemap-*.xml                  /sitemap-:splat.xml             200
-
-# AI plugin discovery (OpenAI, Perplexity, etc.)
-/.well-known/ai-plugin.json     /.well-known/ai-plugin.json     200
-/ai-plugin.json                 /.well-known/ai-plugin.json     200
-
-# Sitemap aliases - normalize common alternative URLs to main sitemap
-# These handle crawlers that probe standard sitemap locations
-/sitemap_index.xml              /sitemap.xml                    301
-/sitemap.xml.gz                 /sitemap.xml                    200
-/sitemapindex.xml               /sitemap.xml                    301
-/blog/sitemap.xml               /sitemap.xml                    301
-/blog/sitemap-*.xml             /sitemap-:splat.xml             301
-/blog/sitemap_index.xml         /sitemap.xml                    301
-
-# Return 404 for nonsense sitemap paths instead of SPA fallback
-/_sitemap/*                     /404.html                       404
-/wp-sitemap.xml                 /404.html                       404
-/sitemap-misc.xml               /404.html                       404
-
-# CMS routes (always handled by React)
-/cms/*                          /index.html                     200
-
-# Legacy URL redirects for old translation URL patterns
-# Redirect old suffixed URLs to language-specific paths
-/blog/*-danish                  /da/blog/:splat                 301
-/blog/*-norwegian               /no/blog/:splat                 301
-/blog/*-swedish                 /sv/blog/:splat                 301
-/blog/*-german                  /de/blog/:splat                 301
-/blog/*-french                  /fr/blog/:splat                 301
-/blog/*-finnish                 /fi/blog/:splat                 301
-/blog/*-italian                 /it/blog/:splat                 301
-/blog/*-spanish                 /es/blog/:splat                 301
-/blog/*-portuguese              /pt/blog/:splat                 301
-/blog/*-dutch                   /nl/blog/:splat                 301
-
-# ================================================================================
 # BLOG ROUTES - Serve static HTML for every request
 # ================================================================================
 # These unconditional rewrites ensure both crawlers and browsers receive the
 # generated HTML instead of falling back to the SPA. Order matters—keep these
-# before the language catch-alls and the global SPA fallback.
+# before the crawler-specific sitemap handling, language catch-alls, and the
+# global SPA fallback.
 
 # English blog routes
 /blog                           /blog/index.html                200
@@ -122,6 +81,48 @@
 # NOTE: With the universal blog rewrites above, the SPA catch-all applies only
 # to non-blog routes. Static HTML remains the source of truth for blog content.
 # ===============================================================================
+
+# ================================================================================
+# SITEMAP & CRAWLER FILES (Multi-method discovery)
+# ================================================================================
+# Primary sitemap endpoints - serve actual XML files
+/robots.txt                     /robots.txt                     200
+/sitemap.xml                    /sitemap.xml                    200
+/sitemap-*.xml                  /sitemap-:splat.xml             200
+
+# AI plugin discovery (OpenAI, Perplexity, etc.)
+/.well-known/ai-plugin.json     /.well-known/ai-plugin.json     200
+/ai-plugin.json                 /.well-known/ai-plugin.json     200
+
+# Sitemap aliases - normalize common alternative URLs to main sitemap
+# These handle crawlers that probe standard sitemap locations
+/sitemap_index.xml              /sitemap.xml                    301
+/sitemap.xml.gz                 /sitemap.xml                    200
+/sitemapindex.xml               /sitemap.xml                    301
+/blog/sitemap.xml               /sitemap.xml                    301
+/blog/sitemap-*.xml             /sitemap-:splat.xml             301
+/blog/sitemap_index.xml         /sitemap.xml                    301
+
+# Return 404 for nonsense sitemap paths instead of SPA fallback
+/_sitemap/*                     /404.html                       404
+/wp-sitemap.xml                 /404.html                       404
+/sitemap-misc.xml               /404.html                       404
+
+# CMS routes (always handled by React)
+/cms/*                          /index.html                     200
+
+# Legacy URL redirects for old translation URL patterns
+# Redirect old suffixed URLs to language-specific paths
+/blog/*-danish                  /da/blog/:splat                 301
+/blog/*-norwegian               /no/blog/:splat                 301
+/blog/*-swedish                 /sv/blog/:splat                 301
+/blog/*-german                  /de/blog/:splat                 301
+/blog/*-french                  /fr/blog/:splat                 301
+/blog/*-finnish                 /fi/blog/:splat                 301
+/blog/*-italian                 /it/blog/:splat                 301
+/blog/*-spanish                 /es/blog/:splat                 301
+/blog/*-portuguese              /pt/blog/:splat                 301
+/blog/*-dutch                   /nl/blog/:splat                 301
 
 # ================================================================================
 # LANGUAGE-SPECIFIC ROUTES (Non-blog pages)
