@@ -180,7 +180,14 @@ const LanguageSwitcher: React.FC = () => {
     i18n.changeLanguage(languageCode);
     document.documentElement.lang = languageCode;
 
-    window.location.href = newPath;
+    const shouldHardNavigate = isBlogPost || isBlogListing;
+
+    if (shouldHardNavigate) {
+      window.location.assign(newPath);
+    } else {
+      window.history.pushState({}, '', newPath);
+      window.dispatchEvent(new PopStateEvent('popstate'));
+    }
   };
 
   // Component for rendering flag with fallback
