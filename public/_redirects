@@ -10,7 +10,7 @@
 # 1. Blog routes are always resolved to their generated index.html files
 # 2. No user-agent checks are required—browsers and crawlers see the same HTML
 # 3. The SPA catch-all only applies after every static blog permutation is handled
-# 4. Maintain progressive enhancement: static first, SPA for everything else
+# 4. Keep the SPA only for non-blog paths; blog pages remain static
 #
 # RESULTING FLOW:
 # - Any request to /blog/... or /<lang>/blog/... → static HTML at the matching

@@ -146,7 +146,7 @@ function getRelatedPosts(currentPost, allPosts, language, limit = 3) {
   return scoredPosts;
 }
 
-// HTML template for blog listing page with progressive enhancement
+// HTML template for blog listing page in static-first mode
 function createBlogListingHTML(posts, language) {
   const langPrefix = language === 'en' ? '' : `/${language}`;
   const homeHref = language === 'en' ? '/' : `/${language}/`;
@@ -596,7 +596,7 @@ async function fetchTranslationsForPost(postId) {
 
 // Main generation function
 async function generateBlogHTML() {
-  console.log('🚀 Starting blog HTML generation with progressive enhancement...');
+  console.log('🚀 Starting blog HTML generation (static-first delivery)...');
   console.log('📁 Generating: Static HTML for posts AND listing pages');
   console.log('📁 Static listings include hydration data for React');
 
