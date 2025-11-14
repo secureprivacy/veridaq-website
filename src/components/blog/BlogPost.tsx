@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from '../ui/Link';
 import { Calendar, ArrowLeft, Clock, Share2, ArrowRight } from 'lucide-react';
 import { useBlogPost } from '../../hooks/useBlogPosts';
 import { useTranslation } from 'react-i18next';
@@ -48,10 +47,10 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, language }) => {
           <p className="text-neutral-600 mb-8">
             {error || t('blog:postNotFoundDesc')}
           </p>
-          <Link href="#blog" className="btn-primary">
+          <a href="#blog" className="btn-primary">
             <ArrowLeft className="w-4 h-4 mr-2" />
             {t('blog:backToBlog')}
-          </Link>
+          </a>
         </div>
       </div>
     );
@@ -111,13 +110,13 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, language }) => {
 
             {/* Back Navigation */}
             <div className="mb-8">
-              <Link
+              <a
                 href={language === 'en' ? '/blog' : `/${language}/blog`}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm border border-white/30 rounded-xl shadow-md text-neutral-700 hover:text-primary-600 hover:border-primary-200 transition-all duration-300 font-medium"
               >
                 <ArrowLeft className="w-4 h-4" />
                 {t('blog:backToBlog')}
-              </Link>
+              </a>
             </div>
 
             {/* Category Badge */}
@@ -241,7 +240,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, language }) => {
           ) : relatedPosts.length > 0 ? (
             <div className="grid md:grid-cols-3 gap-4">
               {relatedPosts.map(relatedPost => (
-                <Link
+                <a
                   key={relatedPost.id}
                   href={`${language === 'en' ? '' : `/${language}`}/blog/${relatedPost.slug}`}
                   className="group p-6 bg-white rounded-2xl border border-neutral-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300"
@@ -252,7 +251,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, language }) => {
                   {relatedPost.excerpt && (
                     <p className="text-sm text-neutral-600 mt-2 line-clamp-2">{relatedPost.excerpt}</p>
                   )}
-                </Link>
+                </a>
               ))}
             </div>
           ) : (
@@ -273,13 +272,13 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, language }) => {
           <p className="text-neutral-200 mb-8 max-w-2xl mx-auto text-lg">
             {t('blog:implementDescription')}
           </p>
-          <Link
+          <a
             href="#contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-white text-primary-700 font-bold font-display rounded-xl hover:bg-neutral-50 hover:shadow-xl hover:scale-105 transition-all duration-300 shadow-lg"
           >
             {t('blog:getConsultation')}
             <ArrowRight className="w-5 h-5" />
-          </Link>
+          </a>
         </div>
       </article>
     </>

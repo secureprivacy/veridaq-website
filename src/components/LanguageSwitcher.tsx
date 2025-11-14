@@ -180,10 +180,7 @@ const LanguageSwitcher: React.FC = () => {
     i18n.changeLanguage(languageCode);
     document.documentElement.lang = languageCode;
 
-    window.history.pushState({}, '', newPath);
-    window.dispatchEvent(new PopStateEvent('popstate', { state: {} }));
-
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.location.href = newPath;
   };
 
   // Component for rendering flag with fallback
