@@ -577,9 +577,15 @@ a:focus {
 
 .blog-hero {
   position: relative;
-  padding: 7rem 0 5rem;
-  background: var(--gradient-hero);
+  padding: 8rem 0 5rem;
+  background: radial-gradient(circle at 15% 20%, rgba(255, 107, 90, 0.08), transparent 25%),
+    radial-gradient(circle at 85% 10%, rgba(1, 25, 73, 0.08), transparent 25%),
+    var(--gradient-hero);
   overflow: hidden;
+}
+
+.blog-hero--landing {
+  padding-top: 9rem;
 }
 
 .blog-hero::before,
@@ -640,6 +646,81 @@ a:focus {
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hero-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--shadow-premium);
+  font-weight: 700;
+  color: var(--color-accent-900);
+  letter-spacing: -0.01em;
+}
+
+.hero-badge--accent {
+  background: linear-gradient(135deg, rgba(255, 107, 90, 0.08), rgba(255, 107, 90, 0));
+  color: var(--color-primary-800);
+  border-color: rgba(255, 107, 90, 0.3);
+}
+
+.hero-cta-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: 0.9rem;
+  font-weight: 700;
+  font-family: var(--font-display);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.hero-button--primary {
+  background: var(--gradient-button);
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(255, 107, 90, 0.25);
+}
+
+.hero-button--primary:hover {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 16px 40px rgba(255, 107, 90, 0.3);
+}
+
+.hero-button--ghost {
+  background: rgba(1, 25, 73, 0.05);
+  color: var(--color-accent-900);
+  border: 1px solid rgba(1, 25, 73, 0.08);
+}
+
+.hero-button--ghost:hover {
+  transform: translateY(-1px);
+  border-color: rgba(1, 25, 73, 0.15);
+  background: rgba(1, 25, 73, 0.08);
+}
+
+.hero-meta {
+  margin-top: 1.75rem;
 }
 
 .hero-pill:hover {

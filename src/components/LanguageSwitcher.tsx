@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Globe, ChevronDown } from 'lucide-react';
 import { SUPPORTED_LANGUAGES, normalizeLanguageCode } from '../utils/languageUtils';
@@ -23,6 +23,7 @@ const languages = [
 const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   // Detect current language from URL path instead of i18n.language
   const getCurrentLanguageFromPath = () => {
@@ -59,6 +60,28 @@ const LanguageSwitcher: React.FC = () => {
       window.removeEventListener('hashchange', handleLocationChange);
     };
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isOpen && containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keyup', handleEscape);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keyup', handleEscape);
+    };
+  }, [isOpen]);
 
   const findTranslatedPostSlug = async (currentSlug: string, currentLang: string, targetLang: string): Promise<string | null> => {
     try {
@@ -209,11 +232,14 @@ const LanguageSwitcher: React.FC = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="relative" ref={containerRef}>
       <button
-        onClick={() => setIsOpen(!isOpen)}
+        type="button"
+        onClick={() => setIsOpen((prev) => !prev)}
         className="flex items-center gap-2 px-3 py-2 rounded-md text-neutral-700 hover:text-primary-600 transition-colors"
         aria-label="Select language"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
       >
         <Globe size={18} />
         <span className="hidden sm:inline flex items-center gap-2">
@@ -224,7 +250,6 @@ const LanguageSwitcher: React.FC = () => {
           <FlagIcon language={currentLanguage} />
         </span>
         <ChevronDown size={16} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-        <span className={`text-sm transition-transform ${isOpen ? 'rotate-180' : ''}`}>▼</span>
       </button>
 
       {isOpen && (
@@ -237,6 +262,7 @@ const LanguageSwitcher: React.FC = () => {
             {languages.map((language) => (
               <button
                 key={language.code}
+                type="button"
                 onClick={() => handleLanguageChange(language.code)}
                 className={`w-full text-left px-4 py-2 hover:bg-[#F4F7FA] transition-colors flex items-center gap-3 ${
                   i18n.language === language.code ? 'bg-[#24B04B]/10 text-[#24B04B]' : 'text-[#2E3542]'
