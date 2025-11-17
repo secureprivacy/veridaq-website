@@ -40,6 +40,9 @@ const LANGUAGE_LABELS = {
   nl: 'Dutch'
 };
 
+const LOCALES_DIR = path.join(__dirname, '..', 'public', 'locales');
+const translationCache = {};
+
 // Escape HTML special characters
 function escapeHtml(text) {
   if (!text) return '';
@@ -62,9 +65,53 @@ function escapeJson(text) {
     .replace(/\t/g, '\\t');
 }
 
-function resolveLanguageLabel(language) {
+function loadBlogTranslations(language) {
+  const lang = (language || 'en').split('-')[0];
+
+  if (translationCache[lang]) {
+    return translationCache[lang];
+  }
+
+  const fallbackPath = path.join(LOCALES_DIR, 'en', 'blog.json');
+  const fallback = fs.existsSync(fallbackPath)
+    ? JSON.parse(fs.readFileSync(fallbackPath, 'utf-8'))
+    : {};
+
+  let locale = {};
+  if (lang !== 'en') {
+    const localePath = path.join(LOCALES_DIR, lang, 'blog.json');
+    if (fs.existsSync(localePath)) {
+      locale = JSON.parse(fs.readFileSync(localePath, 'utf-8'));
+    } else {
+      console.warn(`⚠️  Missing translations for ${lang}, falling back to English`);
+    }
+  }
+
+  const merged = {
+    ...fallback,
+    ...locale,
+    languages: {
+      ...(fallback.languages || {}),
+      ...(locale.languages || {})
+    },
+    breadcrumbs: {
+      ...(fallback.breadcrumbs || {}),
+      ...(locale.breadcrumbs || {})
+    }
+  };
+
+  translationCache[lang] = merged;
+  return merged;
+}
+
+function resolveLanguageLabel(language, translations = {}) {
   const key = (language || 'en').split('-')[0];
-  return LANGUAGE_LABELS[key] || language?.toUpperCase() || 'English';
+  return translations.languages?.[key] || LANGUAGE_LABELS[key] || language?.toUpperCase() || 'English';
+}
+
+function formatTranslation(template, values = {}) {
+  if (!template) return '';
+  return template.replace(/{{(\w+)}}/g, (_, key) => values[key] ?? '');
 }
 
 function formatDateForLanguage(dateString, language) {
@@ -147,13 +194,12 @@ function getRelatedPosts(currentPost, allPosts, language, limit = 3) {
 }
 
 // HTML template for blog listing page in static-first mode
-function createBlogListingHTML(posts, language) {
+function createBlogListingHTML(posts, language, translations) {
   const langPrefix = language === 'en' ? '' : `/${language}`;
   const homeHref = language === 'en' ? '/' : `/${language}/`;
-  const title = language === 'en'
-    ? 'Blog | EU Compliance Insights | Veridaq'
-    : `Blog | Veridaq`;
-  const languageLabel = resolveLanguageLabel(language);
+  const languageLabel = resolveLanguageLabel(language, translations);
+  const title = `${escapeHtml(translations.title || 'Blog')} | Veridaq`;
+  const metaDescription = translations.subtitle || 'Expert insights on EU compliance, KYC verification, AML screening, and GDPR requirements. Stay informed about regulatory changes and best practices.';
 
   // Generate JSON-LD ItemList schema
   const itemListSchema = {
@@ -194,6 +240,9 @@ function createBlogListingHTML(posts, language) {
     const publishedDate = getPublishedDate(post, language);
     const formattedDate = formatDateForLanguage(publishedDate, language);
     const readingTime = calculateReadingTime(post.content);
+    const categoryLabel = translations.categoryLabel || 'EU Compliance';
+    const readMoreLabel = translations.readMore || 'Read more';
+    const minReadLabel = translations.minRead || 'min read';
     const excerpt = post.excerpt
       ? escapeHtml(post.excerpt)
       : escapeHtml(post.content?.replace(/<[^>]*>/g, ' ').slice(0, 160) || '');
@@ -203,21 +252,30 @@ function createBlogListingHTML(posts, language) {
         ${post.featured_image_url ? `
           <a class="blog-card__media" href="${langPrefix}/blog/${post.slug}/">
             <img src="${post.featured_image_url}" alt="${escapeHtml(post.title)}" loading="lazy" width="800" height="450">
-            <span class="blog-card__category">EU Compliance</span>
+            <span class="blog-card__category">${escapeHtml(categoryLabel)}</span>
           </a>
         ` : ''}
         <div class="blog-card__body">
           <div class="blog-card__meta">
             <span class="meta-chip"><span class="meta-icon" aria-hidden="true">📅</span><time datetime="${publishedDate || ''}">${formattedDate}</time></span>
-            <span class="meta-chip"><span class="meta-icon" aria-hidden="true">⏱</span>${readingTime} min read</span>
+            <span class="meta-chip"><span class="meta-icon" aria-hidden="true">⏱</span>${readingTime} ${escapeHtml(minReadLabel)}</span>
           </div>
           <h2 class="blog-card__title"><a href="${langPrefix}/blog/${post.slug}/">${escapeHtml(post.title)}</a></h2>
           ${excerpt ? `<p class="blog-card__excerpt">${excerpt}</p>` : ''}
-          <a class="blog-card__cta" href="${langPrefix}/blog/${post.slug}/">Read more <span aria-hidden="true">→</span></a>
+          <a class="blog-card__cta" href="${langPrefix}/blog/${post.slug}/">${escapeHtml(readMoreLabel)} <span aria-hidden="true">→</span></a>
         </div>
       </article>
     `;
   }).join('\n');
+
+  const articleCountText = formatTranslation(translations.articleCount || `${posts.length} curated articles`, { count: posts.length });
+  const heroPill = translations.expertInsights || 'Expert compliance insights';
+  const heroTitle = translations.title || 'EU Compliance Insights';
+  const heroSubtitle = translations.subtitle || 'Expert analysis on KYC, AML, and regulatory change so your team can stay ahead of EU mandates.';
+  const breadcrumbHome = translations.breadcrumbs?.home || 'Home';
+  const breadcrumbBlog = translations.breadcrumbs?.blog || 'Blog';
+  const backToSite = translations.backToSite || 'Back to site';
+  const noPosts = translations.noPostsYet || 'No blog posts available yet.';
 
   return `<!DOCTYPE html>
 <html lang="${language}">
@@ -225,7 +283,7 @@ function createBlogListingHTML(posts, language) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title}</title>
-  <meta name="description" content="Expert insights on EU compliance, KYC verification, AML screening, and GDPR requirements. Stay informed about regulatory changes and best practices.">
+  <meta name="description" content="${escapeHtml(metaDescription)}">
   <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://veridaq.com${langPrefix}/blog">
@@ -253,15 +311,15 @@ ${JSON.stringify(organizationSchema, null, 2)}
   <header class="blog-hero">
     <div class="blog-container hero-content">
       <nav class="breadcrumb-trail" aria-label="Breadcrumb">
-        <a href="${homeHref}">Home</a>
-        <span class="current">Blog</span>
+        <a href="${homeHref}">${escapeHtml(breadcrumbHome)}</a>
+        <span class="current">${escapeHtml(breadcrumbBlog)}</span>
       </nav>
-      <div class="hero-pill">📝 <span>Expert compliance insights</span></div>
-      <h1 class="hero-title">EU Compliance Insights</h1>
-      <p class="hero-subtitle">Expert analysis on KYC, AML, and regulatory change so your team can stay ahead of EU mandates.</p>
+      <div class="hero-pill">📝 <span>${escapeHtml(heroPill)}</span></div>
+      <h1 class="hero-title">${escapeHtml(heroTitle)}</h1>
+      <p class="hero-subtitle">${escapeHtml(heroSubtitle)}</p>
       <div class="metadata-chips" style="margin-top: 2rem;">
-        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">🌐</span>Reading in ${languageLabel}</span>
-        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">📚</span>${posts.length} curated articles</span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">🌐</span>${escapeHtml(translations.readingIn || 'Reading in')} ${escapeHtml(languageLabel)}</span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">📚</span>${escapeHtml(articleCountText)}</span>
       </div>
     </div>
   </header>
@@ -269,21 +327,21 @@ ${JSON.stringify(organizationSchema, null, 2)}
     <section class="blog-list">
       <div class="blog-container">
         <div class="blog-grid">
-          ${postsHTML || '<p>No blog posts available yet.</p>'}
+          ${postsHTML || `<p>${escapeHtml(noPosts)}</p>`}
         </div>
       </div>
     </section>
   </main>
   <footer class="blog-footer">
     <p>&copy; ${new Date().getFullYear()} Veridaq. All rights reserved.</p>
-    <p><a href="${langPrefix || '/'}">Back to site</a></p>
+    <p><a href="${langPrefix || '/'}">${escapeHtml(backToSite)}</a></p>
   </footer>
 </body>
 </html>`;
 }
 
 // HTML template for individual blog post
-function createBlogPostHTML(post, language, allPosts = [], availableTranslations = {}) {
+function createBlogPostHTML(post, language, allPosts = [], availableTranslations = {}, translations) {
   const langPrefix = language === 'en' ? '' : `/${language}`;
   const publishedDate = post.published_at || post.posts?.published_at;
   const updatedDate = post.updated_at || post.posts?.updated_at || publishedDate;
@@ -292,6 +350,17 @@ function createBlogPostHTML(post, language, allPosts = [], availableTranslations
   const postUrl = `https://veridaq.com${langPrefix}/blog/${post.slug}`;
   const homeHref = language === 'en' ? '/' : `/${language}/`;
   const blogHref = `${langPrefix}/blog/`;
+  const breadcrumbHome = translations.breadcrumbs?.home || 'Home';
+  const breadcrumbBlog = translations.breadcrumbs?.blog || 'Blog';
+  const categoryLabel = translations.categoryLabel || 'EU Compliance';
+  const backToBlog = translations.backToAllArticles || translations.backToBlog || 'Back to all articles';
+  const authorLabel = translations.authorLabel || 'Veridaq Team';
+  const minReadLabel = translations.minRead || 'min read';
+  const shareOn = translations.shareOn || 'Share on {{platform}}';
+  const shareArticle = translations.shareArticle || 'Share this article';
+  const shareHelp = translations.shareHelp || 'Help compliance leaders discover these insights.';
+  const relatedArticles = translations.relatedArticles || 'Related Articles';
+  const noRelatedArticles = translations.noRelatedArticles || 'No related articles available yet.';
 
   // Generate Breadcrumb schema
   const breadcrumbSchema = {
@@ -301,13 +370,13 @@ function createBlogPostHTML(post, language, allPosts = [], availableTranslations
       {
         "@type": "ListItem",
         "position": 1,
-        "name": "Home",
+        "name": breadcrumbHome,
         "item": `https://veridaq.com${langPrefix}/`
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Blog",
+        "name": breadcrumbBlog,
         "item": `https://veridaq.com${langPrefix}/blog`
       },
       {
@@ -513,17 +582,17 @@ ${JSON.stringify(organizationSchema, null, 2)}
   <header class="blog-hero">
     <div class="blog-container post-hero-content">
       <nav class="breadcrumb-trail" aria-label="Breadcrumb">
-        <a href="${homeHref}">Home</a>
-        <a href="${blogHref}">Blog</a>
+        <a href="${homeHref}">${escapeHtml(breadcrumbHome)}</a>
+        <a href="${blogHref}">${escapeHtml(breadcrumbBlog)}</a>
         <span class="current">${escapeHtml(post.title)}</span>
       </nav>
-      <a class="back-pill" href="${blogHref}">← Back to all articles</a>
-      <div class="category-badge">EU Compliance</div>
+      <a class="back-pill" href="${blogHref}">← ${escapeHtml(backToBlog)}</a>
+      <div class="category-badge">${escapeHtml(categoryLabel)}</div>
       <h1 class="post-title">${escapeHtml(post.title)}</h1>
       <div class="metadata-chips">
-        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">👤</span>Veridaq Team</span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">👤</span>${escapeHtml(authorLabel)}</span>
         <span class="meta-chip"><span class="meta-icon" aria-hidden="true">📅</span><time datetime="${publishedDate || ''}">${formattedPublishedDate}</time></span>
-        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">⏱</span>${readingTime} min read</span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">⏱</span>${readingTime} ${escapeHtml(minReadLabel)}</span>
       </div>
       ${post.excerpt ? `<div class="post-excerpt">${escapeHtml(post.excerpt)}</div>` : ''}
     </div>
@@ -541,33 +610,33 @@ ${JSON.stringify(organizationSchema, null, 2)}
 ${post.content}
       </article>
 
-      <section class="share-strip" aria-label="Share this article">
+      <section class="share-strip" aria-label="${escapeHtml(shareArticle)}">
         <div>
-          <h3>Share this article</h3>
-          <p>Help compliance leaders discover these insights.</p>
+          <h3>${escapeHtml(shareArticle)}</h3>
+          <p>${escapeHtml(shareHelp)}</p>
         </div>
         <div class="share-links">
-          ${shareLinks.map(link => `<a class="share-pill" href="${link.href}" ${link.external ? 'target="_blank" rel="noopener"' : ''} aria-label="Share on ${link.label}">${link.icon}</a>`).join('\n          ')}
+          ${shareLinks.map(link => `<a class="share-pill" href="${link.href}" ${link.external ? 'target="_blank" rel="noopener"' : ''} aria-label="${escapeHtml(formatTranslation(shareOn, { platform: link.label }))}">${link.icon}</a>`).join('\n          ')}
         </div>
       </section>
 
       <section class="related-section">
-        <h3>Related Articles</h3>
-        ${relatedPosts.length > 0 ? `<div class="related-grid">${relatedHTML}</div>` : '<p style="color: var(--color-muted);">No related articles available yet.</p>'}
+        <h3>${escapeHtml(relatedArticles)}</h3>
+        ${relatedPosts.length > 0 ? `<div class="related-grid">${relatedHTML}</div>` : `<p style="color: var(--color-muted);">${escapeHtml(noRelatedArticles)}</p>`}
       </section>
 
       <section class="cta-block">
         <div class="cta-icon" aria-hidden="true">⚡</div>
-        <h3>Implement compliant onboarding strategies</h3>
-        <p>Partner with Veridaq experts to operationalise KYC, AML, and ongoing monitoring programs aligned to EU directives.</p>
-        <a class="cta-button" href="#contact">Book a consultation →</a>
+        <h3>${escapeHtml(translations.implementStrategies || 'Implement compliant onboarding strategies')}</h3>
+        <p>${escapeHtml(translations.implementDescription || 'Partner with Veridaq experts to operationalise KYC, AML, and ongoing monitoring programs aligned to EU directives.')}</p>
+        <a class="cta-button" href="#contact">${escapeHtml(translations.getConsultation || 'Book a consultation')} →</a>
       </section>
     </div>
   </main>
 
   <footer class="blog-footer">
     <p>&copy; ${new Date().getFullYear()} Veridaq. All rights reserved.</p>
-    <p><a href="${blogHref}">← Back to all articles</a></p>
+    <p><a href="${blogHref}">← ${escapeHtml(backToBlog)}</a></p>
   </footer>
 </body>
 </html>`;
@@ -638,8 +707,10 @@ async function generateBlogHTML() {
           continue;
         }
 
+        const languageTranslations = loadBlogTranslations('en');
+
         // Generate static blog listing page with hydration data
-        const listingHTML = createBlogListingHTML(posts, 'en');
+        const listingHTML = createBlogListingHTML(posts, 'en', languageTranslations);
         const listingPath = path.join(blogDir, 'index.html');
         fs.writeFileSync(listingPath, listingHTML);
         console.log(`   ✅ Generated: /blog/index.html (with ${posts.length} posts)`);
@@ -651,7 +722,7 @@ async function generateBlogHTML() {
           const translations = await fetchTranslationsForPost(post.id);
           translations.en = post.slug; // Add English slug
 
-          const postHTML = createBlogPostHTML(post, 'en', posts, translations);
+          const postHTML = createBlogPostHTML(post, 'en', posts, translations, languageTranslations);
           const postDir = path.join(blogDir, post.slug);
           if (!fs.existsSync(postDir)) {
             fs.mkdirSync(postDir, { recursive: true });
@@ -688,13 +759,15 @@ async function generateBlogHTML() {
           continue;
         }
 
+        const languageTranslations = loadBlogTranslations(language);
+
         // Generate static blog listing page for this language with hydration data
         const langDir = path.join(publicDir, language, 'blog');
         if (!fs.existsSync(langDir)) {
           fs.mkdirSync(langDir, { recursive: true });
         }
 
-        const listingHTML = createBlogListingHTML(translations, language);
+        const listingHTML = createBlogListingHTML(translations, language, languageTranslations);
         const listingPath = path.join(langDir, 'index.html');
         fs.writeFileSync(listingPath, listingHTML);
         console.log(`   ✅ Generated: /${language}/blog/index.html (with ${translations.length} posts)`);
@@ -719,7 +792,7 @@ async function generateBlogHTML() {
             availableTranslations.en = englishPost.slug;
           }
 
-          const postHTML = createBlogPostHTML(translation, language, translations, availableTranslations);
+          const postHTML = createBlogPostHTML(translation, language, translations, availableTranslations, languageTranslations);
           const postDir = path.join(langDir, translation.slug);
           if (!fs.existsSync(postDir)) {
             fs.mkdirSync(postDir, { recursive: true });

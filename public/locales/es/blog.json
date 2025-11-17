@@ -3,6 +3,10 @@
   "subtitle": "Manténgase informado sobre las regulaciones de cumplimiento de la UE, mejores prácticas y cambios regulatorios en Europa",
   "expertInsights": "Perspectivas de Expertos",
   "readingIn": "Leyendo en",
+  "breadcrumbs": {
+    "home": "Inicio",
+    "blog": "Blog"
+  },
   "languages": {
     "en": "inglés",
     "da": "danés", 
@@ -16,7 +20,13 @@
     "pt": "portugués",
     "nl": "holandés"
   },
+  "articleCount": "{{count}} artículos seleccionados",
+  "categoryLabel": "Cumplimiento de la UE",
+  "authorLabel": "Equipo de Veridaq",
   "backToBlog": "Volver al Blog",
+  "backToSite": "Volver al sitio",
+  "backToAllArticles": "Volver a todos los artículos",
+  "shareOn": "Compartir en {{platform}}",
   "minRead": "min de lectura",
   "shareArticle": "Compartir este artículo",
   "shareHelp": "Ayuda a otros a cumplir con las regulaciones de la UE",
@@ -27,6 +37,8 @@
   "postNotFoundDesc": "La publicación del blog que buscas no se pudo encontrar.",
   "latestInsights": "Últimas Perspectivas de Cumplimiento",
   "latestInsightsDesc": "Manténgase informado sobre las regulaciones de cumplimiento de la UE y mejores prácticas",
+  "relatedArticles": "Artículos relacionados",
+  "noRelatedArticles": "Aún no hay artículos relacionados disponibles.",
   "readMore": "Leer Más",
   "noPostsYet": "Aún no hay publicaciones de blog",
   "noPostsDesc": "Estamos trabajando en crear contenido valioso de cumplimiento para ti. ¡Vuelve pronto!",

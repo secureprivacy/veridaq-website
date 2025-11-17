@@ -3,6 +3,10 @@
   "subtitle": "Rimanete informati sui regolamenti di conformità UE, migliori pratiche e cambiamenti normativi in Europa",
   "expertInsights": "Approfondimenti degli Esperti",
   "readingIn": "Lettura in",
+  "breadcrumbs": {
+    "home": "Home",
+    "blog": "Blog"
+  },
   "languages": {
     "en": "inglese",
     "da": "danese", 
@@ -16,7 +20,13 @@
     "pt": "portoghese",
     "nl": "olandese"
   },
+  "articleCount": "{{count}} articoli curati",
+  "categoryLabel": "Conformità UE",
+  "authorLabel": "Team Veridaq",
   "backToBlog": "Torna al Blog",
+  "backToSite": "Torna al sito",
+  "backToAllArticles": "Torna a tutti gli articoli",
+  "shareOn": "Condividi su {{platform}}",
   "minRead": "min di lettura",
   "shareArticle": "Condividi questo articolo",
   "shareHelp": "Aiuta altri a rimanere conformi ai regolamenti UE",
@@ -27,6 +37,8 @@
   "postNotFoundDesc": "Il post del blog che stai cercando non è stato trovato.",
   "latestInsights": "Ultime Intuizioni di Conformità",
   "latestInsightsDesc": "Rimanete informati sui regolamenti di conformità UE e migliori pratiche",
+  "relatedArticles": "Articoli correlati",
+  "noRelatedArticles": "Nessun articolo correlato disponibile.",
   "readMore": "Leggi di Più",
   "noPostsYet": "Ancora nessun post del blog",
   "noPostsDesc": "Stiamo lavorando per creare contenuti di conformità preziosi per voi. Tornate presto!",
