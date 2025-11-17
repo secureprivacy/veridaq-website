@@ -10,6 +10,7 @@
 2. Preserve i18n coverage when editing UI strings or content.
 3. Protect SEO-critical workflows (static HTML generation, sitemaps, structured data).
 4. Uphold security practices, including Supabase RLS rules.
+5. Avoid introducing or committing binary files—stick to text-based assets only.
 
 ## Allowed vs Restricted Actions
 #### ✅ What You CAN Do
