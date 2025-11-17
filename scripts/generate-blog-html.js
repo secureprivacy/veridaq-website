@@ -775,6 +775,8 @@ function createLanguageSwitcherScript(language, translations, pageMeta = {}) {
 function createBlogListingHTML(posts, language, translations, headerTranslations, footerTranslations) {
   const langPrefix = language === 'en' ? '' : `/${language}`;
   const homeHref = language === 'en' ? '/' : `/${language}/`;
+  const contactHref = language === 'en' ? '/#contact' : `/${language}/#contact`;
+  const roiHref = language === 'en' ? '/#roi-calculator' : `/${language}/#roi-calculator`;
   const languageLabel = resolveLanguageLabel(language, translations);
   const title = `${escapeHtml(translations.title || 'Blog')} | Veridaq`;
   const metaDescription = translations.subtitle || 'Expert insights on EU compliance, KYC verification, AML screening, and GDPR requirements. Stay informed about regulatory changes and best practices.';
@@ -850,8 +852,8 @@ function createBlogListingHTML(posts, language, translations, headerTranslations
   const heroPill = translations.expertInsights || 'Expert compliance insights';
   const heroTitle = translations.title || 'EU Compliance Insights';
   const heroSubtitle = translations.subtitle || 'Expert analysis on KYC, AML, and regulatory change so your team can stay ahead of EU mandates.';
-  const breadcrumbHome = translations.breadcrumbs?.home || 'Home';
-  const breadcrumbBlog = translations.breadcrumbs?.blog || 'Blog';
+  const heroPrimaryCta = translations.seeItInAction || 'See It In Action';
+  const heroSecondaryCta = translations.calculateRoi || 'Calculate Your ROI';
   const noPosts = translations.noPostsYet || 'No blog posts available yet.';
   const headerHTML = createSiteHeaderHTML(language, headerTranslations);
   const footerHTML = createSiteFooterHTML(language, footerTranslations);
@@ -892,16 +894,19 @@ ${JSON.stringify(organizationSchema, null, 2)}
 <body class="blog-page">
   ${headerHTML}
   <div class="blog-header-spacer"></div>
-  <header class="blog-hero">
+  <header class="blog-hero blog-hero--landing">
     <div class="blog-container hero-content">
-      <nav class="breadcrumb-trail" aria-label="Breadcrumb">
-        <a href="${homeHref}">${escapeHtml(breadcrumbHome)}</a>
-        <span class="current">${escapeHtml(breadcrumbBlog)}</span>
-      </nav>
-      <div class="hero-pill">📝 <span>${escapeHtml(heroPill)}</span></div>
+      <div class="hero-badge-row">
+        <span class="hero-badge">KYC &amp; AML Solutions for European Financial Services</span>
+        <span class="hero-badge hero-badge--accent">${escapeHtml(heroPill)}</span>
+      </div>
       <h1 class="hero-title">${escapeHtml(heroTitle)}</h1>
       <p class="hero-subtitle">${escapeHtml(heroSubtitle)}</p>
-      <div class="metadata-chips" style="margin-top: 2rem;">
+      <div class="hero-cta-row">
+        <a class="hero-button hero-button--primary" href="${contactHref}">${escapeHtml(heroPrimaryCta)}</a>
+        <a class="hero-button hero-button--ghost" href="${roiHref}">${escapeHtml(heroSecondaryCta)}</a>
+      </div>
+      <div class="metadata-chips hero-meta">
         <span class="meta-chip"><span class="meta-icon" aria-hidden="true">🌐</span>${escapeHtml(translations.readingIn || 'Reading in')} ${escapeHtml(languageLabel)}</span>
         <span class="meta-chip"><span class="meta-icon" aria-hidden="true">📚</span>${escapeHtml(articleCountText)}</span>
       </div>
