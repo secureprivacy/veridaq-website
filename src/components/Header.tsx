@@ -4,13 +4,14 @@ import { Link } from './ui/Link';
 import { useAuth } from '../hooks/useAuth';
 import Logo from './Logo';
 import LanguageSwitcher from './LanguageSwitcher';
-import { Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X, Shield, Users, Building2 } from 'lucide-react';
 import { SUPPORTED_LANGUAGES } from '../utils/languageUtils';
 
 const Header: React.FC = () => {
   const { t } = useTranslation();
   const { user, isEditor } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -22,6 +23,11 @@ const Header: React.FC = () => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  const handleSolutionsClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsSolutionsOpen(!isSolutionsOpen);
+  };
 
   const getCurrentLanguageFromPath = () => {
     const pathSegments = window.location.pathname.split('/').filter(Boolean);
@@ -40,6 +46,8 @@ const Header: React.FC = () => {
     {
       name: t('header:navigation.solutions'),
       href: '#features',
+      hasDropdown: true,
+      onClick: handleSolutionsClick,
       scrollToSection: true
     },
     { name: t('header:navigation.industries'), href: '#industries', scrollToSection: true },
@@ -58,6 +66,9 @@ const Header: React.FC = () => {
         onClick(e);
         return;
       }
+
+      // Close solutions dropdown for non-solutions links
+      setIsSolutionsOpen(false);
     };
   };
 
@@ -72,6 +83,14 @@ const Header: React.FC = () => {
               {navigation.map((item) => {
                 const isBlogLink = item.href.includes('/blog');
                 const linkClassName = 'font-sans text-neutral-700 hover:text-primary-600 font-medium transition-colors duration-200 flex items-center gap-1';
+                const linkContent = (
+                  <>
+                    {item.name}
+                    {item.hasDropdown && (
+                      <ChevronDown className={`w-4 h-4 transition-transform ${isSolutionsOpen ? 'rotate-180' : ''}`} />
+                    )}
+                  </>
+                );
 
                 return (
                   <div key={item.name} className="relative group">
@@ -81,7 +100,7 @@ const Header: React.FC = () => {
                         onClick={handleNavClick(item.onClick)}
                         className={linkClassName}
                       >
-                        {item.name}
+                        {linkContent}
                       </a>
                     ) : (
                       <Link
@@ -89,8 +108,41 @@ const Header: React.FC = () => {
                         onClick={handleNavClick(item.onClick)}
                         className={linkClassName}
                       >
-                        {item.name}
+                        {linkContent}
                       </Link>
+                    )}
+
+                    {item.hasDropdown && isSolutionsOpen && (
+                      <div className="absolute top-full left-0 mt-2 w-96 glass-card shadow-premium-lg rounded-3xl border border-white/30 p-8 z-50">
+                        <div className="space-y-8">
+                          <div>
+                            <h3 className="font-display font-semibold text-lg text-accent-900 mb-6">
+                              Complete KYC/AML Platform
+                            </h3>
+                            <div className="grid grid-cols-1 gap-4">
+                              <div className="p-4 bg-white/60 rounded-xl border border-white/40 hover:bg-white/80 hover:shadow-md transition-all duration-300">
+                                <span className="font-display font-medium text-accent-900 block mb-1">Customer Verification</span>
+                                <p className="body-sm text-neutral-600">Smart eID integration and instant onboarding</p>
+                              </div>
+                              <div className="p-4 bg-white/60 rounded-xl border border-white/40 hover:bg-white/80 hover:shadow-md transition-all duration-300">
+                                <span className="font-display font-medium text-accent-900 block mb-1">Transaction Monitoring</span>
+                                <p className="body-sm text-neutral-600">AI-powered real-time risk detection</p>
+                              </div>
+                              <div className="p-4 bg-white/60 rounded-xl border border-white/40 hover:bg-white/80 hover:shadow-md transition-all duration-300">
+                                <span className="font-display font-medium text-accent-900 block mb-1">Compliance Reporting</span>
+                                <p className="body-sm text-neutral-600">Automated multi-jurisdiction reporting</p>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="pt-4 border-t border-neutral-200">
+                            <div className="p-4 bg-gradient-to-r from-primary-50 to-primary-100 rounded-xl border border-primary-200/60 shadow-sm">
+                              <div className="font-display font-medium text-primary-800 text-sm">EU AMLR 2027 Ready</div>
+                              <div className="font-sans text-primary-700 text-xs">Enterprise compliance from day one</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     )}
                   </div>
                 );
