@@ -42,6 +42,84 @@ body.blog-page {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  box-shadow: 0 12px 40px rgba(15, 23, 42, 0.06);
+}
+
+.site-header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 88px;
+  gap: 1.5rem;
+}
+
+.site-logo img {
+  display: block;
+  height: 32px;
+  width: auto;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.site-nav__link {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  color: #0f172a;
+  padding: 0.5rem 0.35rem;
+  border-radius: 0.75rem;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.site-nav__link:hover,
+.site-nav__link:focus {
+  color: var(--color-primary-700);
+  background: rgba(255, 125, 106, 0.08);
+  transform: translateY(-1px);
+}
+
+.site-header__cta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-header__demo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.9rem;
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 10px 30px rgba(255, 125, 106, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.site-header__demo:hover,
+.site-header__demo:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 36px rgba(255, 125, 106, 0.3);
+  filter: brightness(1.02);
+}
+
+.blog-header-spacer {
+  height: 88px;
+}
+
 a {
   color: var(--color-primary-600);
   text-decoration: none;
@@ -578,6 +656,97 @@ a:focus {
   transform: translateX(4px);
 }
 
+.site-footer {
+  background: #011949;
+  color: #f8fafc;
+  padding: 4rem 0 3rem;
+  margin-top: 4rem;
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2.5rem;
+}
+
+.site-footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.site-footer__description {
+  color: rgba(248, 250, 252, 0.85);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.site-footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  color: rgba(248, 250, 252, 0.75);
+  font-size: 0.95rem;
+}
+
+.site-footer__heading {
+  font-family: var(--font-display);
+  color: #fff;
+  margin: 0 0 1rem 0;
+  font-size: 1.1rem;
+}
+
+.site-footer__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.65rem;
+}
+
+.site-footer__list a {
+  color: rgba(248, 250, 252, 0.85);
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.site-footer__list a:hover,
+.site-footer__list a:focus {
+  color: #fff;
+  transform: translateX(2px);
+}
+
+.site-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1.75rem;
+  margin-top: 2.5rem;
+  border-top: 1px solid rgba(226, 232, 240, 0.25);
+}
+
+.site-footer__bottom-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+}
+
+.site-footer__bottom-links a {
+  color: rgba(248, 250, 252, 0.75);
+  font-weight: 600;
+}
+
+.site-footer__bottom-links a.emphasis {
+  color: #e0f2fe;
+}
+
+.site-footer__bottom-links a:hover,
+.site-footer__bottom-links a:focus {
+  color: #fff;
+}
+
 footer.blog-footer {
   margin: 4rem auto 0;
   padding: 3rem 1.5rem 4rem;
@@ -588,6 +757,31 @@ footer.blog-footer {
 
 footer.blog-footer p {
   margin: 0.5rem 0;
+}
+
+@media (max-width: 900px) {
+  .site-header__content {
+    height: auto;
+    padding: 1rem 0;
+    flex-wrap: wrap;
+    row-gap: 0.75rem;
+  }
+
+  .site-nav {
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+  }
+
+  .site-header__cta {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .blog-header-spacer {
+    height: 104px;
+  }
 }
 
 @media (min-width: 640px) {

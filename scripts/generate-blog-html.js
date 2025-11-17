@@ -42,6 +42,7 @@ const LANGUAGE_LABELS = {
 
 const LOCALES_DIR = path.join(__dirname, '..', 'public', 'locales');
 const translationCache = {};
+const translationFileCache = {};
 
 // Escape HTML special characters
 function escapeHtml(text) {
@@ -63,6 +64,48 @@ function escapeJson(text) {
     .replace(/\n/g, '\\n')
     .replace(/\r/g, '\\r')
     .replace(/\t/g, '\\t');
+}
+
+function deepMergeTranslations(base = {}, override = {}) {
+  const result = { ...base };
+
+  for (const [key, value] of Object.entries(override)) {
+    if (value && typeof value === 'object' && !Array.isArray(value)) {
+      result[key] = deepMergeTranslations(base[key] || {}, value);
+    } else {
+      result[key] = value;
+    }
+  }
+
+  return result;
+}
+
+function loadScopedTranslations(language, fileName) {
+  const lang = (language || 'en').split('-')[0];
+  const cacheKey = `${lang}:${fileName}`;
+
+  if (translationFileCache[cacheKey]) {
+    return translationFileCache[cacheKey];
+  }
+
+  const fallbackPath = path.join(LOCALES_DIR, 'en', fileName);
+  const fallback = fs.existsSync(fallbackPath)
+    ? JSON.parse(fs.readFileSync(fallbackPath, 'utf-8'))
+    : {};
+
+  let locale = {};
+  if (lang !== 'en') {
+    const localePath = path.join(LOCALES_DIR, lang, fileName);
+    if (fs.existsSync(localePath)) {
+      locale = JSON.parse(fs.readFileSync(localePath, 'utf-8'));
+    } else {
+      console.warn(`⚠️  Missing translations for ${lang}/${fileName}, falling back to English`);
+    }
+  }
+
+  const merged = deepMergeTranslations(fallback, locale);
+  translationFileCache[cacheKey] = merged;
+  return merged;
 }
 
 function loadBlogTranslations(language) {
@@ -102,6 +145,14 @@ function loadBlogTranslations(language) {
 
   translationCache[lang] = merged;
   return merged;
+}
+
+function loadHeaderTranslations(language) {
+  return loadScopedTranslations(language, 'header.json');
+}
+
+function loadFooterTranslations(language) {
+  return loadScopedTranslations(language, 'footer.json');
 }
 
 function resolveLanguageLabel(language, translations = {}) {
@@ -193,8 +244,118 @@ function getRelatedPosts(currentPost, allPosts, language, limit = 3) {
   return scoredPosts;
 }
 
+function createSiteHeaderHTML(language, headerTranslations) {
+  const langPrefix = language === 'en' ? '' : `/${language}`;
+  const homeHref = language === 'en' ? '/' : `/${language}/`;
+  const nav = headerTranslations.navigation || {};
+  const ctaLabel = headerTranslations.cta?.demo || 'Contact Our Experts';
+  const logoLabel = headerTranslations.logo || 'Veridaq';
+
+  const navLinks = [
+    { key: 'solutions', href: `${homeHref}#features` },
+    { key: 'industries', href: `${homeHref}#industries` },
+    { key: 'blog', href: `${langPrefix}/blog/` },
+    { key: 'whyUs', href: `${homeHref}#benefits` },
+    { key: 'contact', href: `${homeHref}#contact` }
+  ];
+
+  return `
+    <header class="site-header">
+      <div class="blog-container site-header__content">
+        <a class="site-logo" href="${homeHref}" aria-label="${escapeHtml(logoLabel)}">
+          <img src="/images/veridaq-logo-transparent.png" alt="${escapeHtml(logoLabel)}" width="128" height="32">
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          ${navLinks.map(link => `
+            <a class="site-nav__link" href="${link.href}">${escapeHtml(nav[link.key] || link.key)}</a>
+          `).join('')}
+        </nav>
+        <div class="site-header__cta">
+          <a class="site-header__demo" href="${homeHref}#contact">${escapeHtml(ctaLabel)}</a>
+        </div>
+      </div>
+    </header>
+  `;
+}
+
+function createSiteFooterHTML(language, footerTranslations) {
+  const langPrefix = language === 'en' ? '' : `/${language}`;
+  const homeHref = language === 'en' ? '/' : `/${language}/`;
+  const sections = footerTranslations.sections || {};
+
+  const solutionLinks = sections.solutions || {};
+  const industryLinks = sections.industries || {};
+  const companyLinks = sections.company || {};
+
+  const contactInfo = footerTranslations.contactInfo || {};
+  const bottomLinks = footerTranslations.bottomLinks || {};
+  const copyright = footerTranslations.copyright || `© ${new Date().getFullYear()} Veridaq. All rights reserved.`;
+
+  return `
+    <footer class="site-footer">
+      <div class="blog-container">
+        <div class="site-footer__grid">
+          <div class="site-footer__brand">
+            <a class="site-logo" href="${homeHref}" aria-label="${escapeHtml(companyLinks.title || 'Veridaq')}">
+              <img src="/images/veridaq-logo-transparent.png" alt="${escapeHtml(companyLinks.title || 'Veridaq')}" width="128" height="32">
+            </a>
+            <p class="site-footer__description">${escapeHtml(footerTranslations.description || '')}</p>
+            <div class="site-footer__contact">
+              ${contactInfo.email ? `<div class="site-footer__contact-item">${escapeHtml(contactInfo.email)}</div>` : ''}
+              ${contactInfo.phone ? `<div class="site-footer__contact-item">${escapeHtml(contactInfo.phone)}</div>` : ''}
+              ${contactInfo.address ? `<div class="site-footer__contact-item">${escapeHtml(contactInfo.address).replace(/\n/g, '<br>')}</div>` : ''}
+            </div>
+          </div>
+          <div>
+            <h3 class="site-footer__heading">${escapeHtml(sections.solutions?.title || 'AI-Powered Solutions')}</h3>
+            <ul class="site-footer__list">
+              ${solutionLinks.kycVerification ? `<li><a href="${homeHref}#features">${escapeHtml(solutionLinks.kycVerification)}</a></li>` : ''}
+              ${solutionLinks.amlScreening ? `<li><a href="${homeHref}#features">${escapeHtml(solutionLinks.amlScreening)}</a></li>` : ''}
+              ${solutionLinks.euAmlr2027 ? `<li><a href="${homeHref}#eu-compliance">${escapeHtml(solutionLinks.euAmlr2027)}</a></li>` : ''}
+              ${solutionLinks.documentVerification ? `<li><a href="${homeHref}#features">${escapeHtml(solutionLinks.documentVerification)}</a></li>` : ''}
+              ${solutionLinks.transactionMonitoring ? `<li><a href="${homeHref}#features">${escapeHtml(solutionLinks.transactionMonitoring)}</a></li>` : ''}
+              ${solutionLinks.riskAssessment ? `<li><a href="${homeHref}#features">${escapeHtml(solutionLinks.riskAssessment)}</a></li>` : ''}
+            </ul>
+          </div>
+          <div>
+            <h3 class="site-footer__heading">${escapeHtml(sections.industries?.title || 'Industries')}</h3>
+            <ul class="site-footer__list">
+              ${industryLinks.financialServices ? `<li><a href="${homeHref}#industries">${escapeHtml(industryLinks.financialServices)}</a></li>` : ''}
+              ${industryLinks.fintech ? `<li><a href="${homeHref}#industries">${escapeHtml(industryLinks.fintech)}</a></li>` : ''}
+              ${industryLinks.cryptocurrency ? `<li><a href="${homeHref}#industries">${escapeHtml(industryLinks.cryptocurrency)}</a></li>` : ''}
+              ${industryLinks.realEstate ? `<li><a href="${homeHref}#industries">${escapeHtml(industryLinks.realEstate)}</a></li>` : ''}
+              ${industryLinks.gaming ? `<li><a href="${homeHref}#industries">${escapeHtml(industryLinks.gaming)}</a></li>` : ''}
+              ${industryLinks.ecommerce ? `<li><a href="${homeHref}#industries">${escapeHtml(industryLinks.ecommerce)}</a></li>` : ''}
+            </ul>
+          </div>
+          <div>
+            <h3 class="site-footer__heading">${escapeHtml(sections.company?.title || 'Company')}</h3>
+            <ul class="site-footer__list">
+              ${companyLinks.blog ? `<li><a href="${langPrefix}/blog/">${escapeHtml(companyLinks.blog)}</a></li>` : ''}
+              ${companyLinks.whyChooseUs ? `<li><a href="${homeHref}#benefits">${escapeHtml(companyLinks.whyChooseUs)}</a></li>` : ''}
+              ${companyLinks.contactSales ? `<li><a href="${homeHref}#contact">${escapeHtml(companyLinks.contactSales)}</a></li>` : ''}
+              ${companyLinks.privacyPolicy ? `<li><a href="/privacy-policy">${escapeHtml(companyLinks.privacyPolicy)}</a></li>` : ''}
+              ${companyLinks.termsOfService ? `<li><a href="/terms-of-service">${escapeHtml(companyLinks.termsOfService)}</a></li>` : ''}
+              ${companyLinks.gdprCompliance ? `<li><a href="/privacy-by-design">${escapeHtml(companyLinks.gdprCompliance)}</a></li>` : ''}
+            </ul>
+          </div>
+        </div>
+        <div class="site-footer__bottom">
+          <div class="site-footer__copyright">${formatTranslation(copyright, { year: new Date().getFullYear() })}</div>
+          <div class="site-footer__bottom-links">
+            ${bottomLinks.security ? `<a href="#">${escapeHtml(bottomLinks.security)}</a>` : ''}
+            ${bottomLinks.compliance ? `<a href="#">${escapeHtml(bottomLinks.compliance)}</a>` : ''}
+            ${bottomLinks.status ? `<a href="#">${escapeHtml(bottomLinks.status)}</a>` : ''}
+            ${bottomLinks.contactExperts ? `<a class="emphasis" href="${homeHref}#contact">${escapeHtml(bottomLinks.contactExperts)}</a>` : ''}
+          </div>
+        </div>
+      </div>
+    </footer>
+  `;
+}
+
 // HTML template for blog listing page in static-first mode
-function createBlogListingHTML(posts, language, translations) {
+function createBlogListingHTML(posts, language, translations, headerTranslations, footerTranslations) {
   const langPrefix = language === 'en' ? '' : `/${language}`;
   const homeHref = language === 'en' ? '/' : `/${language}/`;
   const languageLabel = resolveLanguageLabel(language, translations);
@@ -274,8 +435,9 @@ function createBlogListingHTML(posts, language, translations) {
   const heroSubtitle = translations.subtitle || 'Expert analysis on KYC, AML, and regulatory change so your team can stay ahead of EU mandates.';
   const breadcrumbHome = translations.breadcrumbs?.home || 'Home';
   const breadcrumbBlog = translations.breadcrumbs?.blog || 'Blog';
-  const backToSite = translations.backToSite || 'Back to site';
   const noPosts = translations.noPostsYet || 'No blog posts available yet.';
+  const headerHTML = createSiteHeaderHTML(language, headerTranslations);
+  const footerHTML = createSiteFooterHTML(language, footerTranslations);
 
   return `<!DOCTYPE html>
 <html lang="${language}">
@@ -308,6 +470,8 @@ ${JSON.stringify(organizationSchema, null, 2)}
   </script>
 </head>
 <body class="blog-page">
+  ${headerHTML}
+  <div class="blog-header-spacer"></div>
   <header class="blog-hero">
     <div class="blog-container hero-content">
       <nav class="breadcrumb-trail" aria-label="Breadcrumb">
@@ -332,16 +496,13 @@ ${JSON.stringify(organizationSchema, null, 2)}
       </div>
     </section>
   </main>
-  <footer class="blog-footer">
-    <p>&copy; ${new Date().getFullYear()} Veridaq. All rights reserved.</p>
-    <p><a href="${langPrefix || '/'}">${escapeHtml(backToSite)}</a></p>
-  </footer>
+  ${footerHTML}
 </body>
 </html>`;
 }
 
 // HTML template for individual blog post
-function createBlogPostHTML(post, language, allPosts = [], availableTranslations = {}, translations) {
+function createBlogPostHTML(post, language, allPosts = [], availableTranslations = {}, translations, headerTranslations, footerTranslations) {
   const langPrefix = language === 'en' ? '' : `/${language}`;
   const publishedDate = post.published_at || post.posts?.published_at;
   const updatedDate = post.updated_at || post.posts?.updated_at || publishedDate;
@@ -361,6 +522,8 @@ function createBlogPostHTML(post, language, allPosts = [], availableTranslations
   const shareHelp = translations.shareHelp || 'Help compliance leaders discover these insights.';
   const relatedArticles = translations.relatedArticles || 'Related Articles';
   const noRelatedArticles = translations.noRelatedArticles || 'No related articles available yet.';
+  const headerHTML = createSiteHeaderHTML(language, headerTranslations);
+  const footerHTML = createSiteFooterHTML(language, footerTranslations);
 
   // Generate Breadcrumb schema
   const breadcrumbSchema = {
@@ -579,6 +742,8 @@ ${JSON.stringify(organizationSchema, null, 2)}
   </script>
 </head>
 <body class="blog-page">
+  ${headerHTML}
+  <div class="blog-header-spacer"></div>
   <header class="blog-hero">
     <div class="blog-container post-hero-content">
       <nav class="breadcrumb-trail" aria-label="Breadcrumb">
@@ -634,10 +799,7 @@ ${post.content}
     </div>
   </main>
 
-  <footer class="blog-footer">
-    <p>&copy; ${new Date().getFullYear()} Veridaq. All rights reserved.</p>
-    <p><a href="${blogHref}">← ${escapeHtml(backToBlog)}</a></p>
-  </footer>
+  ${footerHTML}
 </body>
 </html>`;
 }
@@ -708,9 +870,11 @@ async function generateBlogHTML() {
         }
 
         const languageTranslations = loadBlogTranslations('en');
+        const headerTranslations = loadHeaderTranslations('en');
+        const footerTranslations = loadFooterTranslations('en');
 
         // Generate static blog listing page with hydration data
-        const listingHTML = createBlogListingHTML(posts, 'en', languageTranslations);
+        const listingHTML = createBlogListingHTML(posts, 'en', languageTranslations, headerTranslations, footerTranslations);
         const listingPath = path.join(blogDir, 'index.html');
         fs.writeFileSync(listingPath, listingHTML);
         console.log(`   ✅ Generated: /blog/index.html (with ${posts.length} posts)`);
@@ -722,7 +886,7 @@ async function generateBlogHTML() {
           const translations = await fetchTranslationsForPost(post.id);
           translations.en = post.slug; // Add English slug
 
-          const postHTML = createBlogPostHTML(post, 'en', posts, translations, languageTranslations);
+          const postHTML = createBlogPostHTML(post, 'en', posts, translations, languageTranslations, headerTranslations, footerTranslations);
           const postDir = path.join(blogDir, post.slug);
           if (!fs.existsSync(postDir)) {
             fs.mkdirSync(postDir, { recursive: true });
@@ -760,6 +924,8 @@ async function generateBlogHTML() {
         }
 
         const languageTranslations = loadBlogTranslations(language);
+        const headerTranslations = loadHeaderTranslations(language);
+        const footerTranslations = loadFooterTranslations(language);
 
         // Generate static blog listing page for this language with hydration data
         const langDir = path.join(publicDir, language, 'blog');
@@ -767,7 +933,7 @@ async function generateBlogHTML() {
           fs.mkdirSync(langDir, { recursive: true });
         }
 
-        const listingHTML = createBlogListingHTML(translations, language, languageTranslations);
+        const listingHTML = createBlogListingHTML(translations, language, languageTranslations, headerTranslations, footerTranslations);
         const listingPath = path.join(langDir, 'index.html');
         fs.writeFileSync(listingPath, listingHTML);
         console.log(`   ✅ Generated: /${language}/blog/index.html (with ${translations.length} posts)`);
@@ -792,7 +958,7 @@ async function generateBlogHTML() {
             availableTranslations.en = englishPost.slug;
           }
 
-          const postHTML = createBlogPostHTML(translation, language, translations, availableTranslations, languageTranslations);
+          const postHTML = createBlogPostHTML(translation, language, translations, availableTranslations, languageTranslations, headerTranslations, footerTranslations);
           const postDir = path.join(langDir, translation.slug);
           if (!fs.existsSync(postDir)) {
             fs.mkdirSync(postDir, { recursive: true });
