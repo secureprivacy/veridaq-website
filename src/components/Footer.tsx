@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
   };
 
   const currentLanguage = getCurrentLanguageFromPath();
-  const blogHref = currentLanguage === 'en' ? '/blog' : `/${currentLanguage}/blog`;
+  const blogHref = currentLanguage === 'en' ? '/blog/' : `/${currentLanguage}/blog/`;
   
   return (
     <footer className="bg-accent-900 text-white pt-16 pb-8">
