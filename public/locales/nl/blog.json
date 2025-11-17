@@ -3,6 +3,10 @@
   "subtitle": "Blijf op de hoogte van EU compliance-regelgeving, best practices en regulatoire veranderingen in Europa",
   "expertInsights": "Expert Inzichten",
   "readingIn": "Lezen in",
+  "breadcrumbs": {
+    "home": "Home",
+    "blog": "Blog"
+  },
   "languages": {
     "en": "Engels",
     "da": "Deens", 
@@ -16,7 +20,13 @@
     "pt": "Portugees",
     "nl": "Nederlands"
   },
+  "articleCount": "{{count}} geselecteerde artikelen",
+  "categoryLabel": "EU-naleving",
+  "authorLabel": "Veridaq-team",
   "backToBlog": "Terug naar Blog",
+  "backToSite": "Terug naar de site",
+  "backToAllArticles": "Terug naar alle artikelen",
+  "shareOn": "Delen op {{platform}}",
   "minRead": "min leestijd",
   "shareArticle": "Deel dit artikel",
   "shareHelp": "Help anderen om conform te blijven met EU-regelgeving",
@@ -27,6 +37,8 @@
   "postNotFoundDesc": "De blogpost die u zoekt kon niet gevonden worden.",
   "latestInsights": "Laatste Compliance Inzichten",
   "latestInsightsDesc": "Blijf op de hoogte van EU compliance-regelgeving en best practices",
+  "relatedArticles": "Gerelateerde artikelen",
+  "noRelatedArticles": "Nog geen gerelateerde artikelen beschikbaar.",
   "readMore": "Lees Meer",
   "noPostsYet": "Nog geen blogposts",
   "noPostsDesc": "We werken aan het creëren van waardevolle compliance-content voor u. Kom snel terug!",

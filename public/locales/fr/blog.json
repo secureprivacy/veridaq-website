@@ -3,6 +3,10 @@
   "subtitle": "Restez informé des réglementations de conformité UE, meilleures pratiques et changements réglementaires en Europe",
   "expertInsights": "Perspectives d'Experts",
   "readingIn": "Lecture en",
+  "breadcrumbs": {
+    "home": "Accueil",
+    "blog": "Blog"
+  },
   "languages": {
     "en": "anglais",
     "da": "danois", 
@@ -16,7 +20,13 @@
     "pt": "portugais",
     "nl": "néerlandais"
   },
+  "articleCount": "{{count}} articles sélectionnés",
+  "categoryLabel": "Conformité UE",
+  "authorLabel": "Équipe Veridaq",
   "backToBlog": "Retour au Blog",
+  "backToSite": "Retour au site",
+  "backToAllArticles": "Retour à tous les articles",
+  "shareOn": "Partager sur {{platform}}",
   "minRead": "min de lecture",
   "shareArticle": "Partager cet article",
   "shareHelp": "Aidez les autres à rester conformes aux réglementations UE",
@@ -27,6 +37,8 @@
   "postNotFoundDesc": "L'article de blog que vous recherchez n'a pas pu être trouvé.",
   "latestInsights": "Dernières Perspectives de Conformité",
   "latestInsightsDesc": "Restez informé des réglementations de conformité UE et des meilleures pratiques",
+  "relatedArticles": "Articles associés",
+  "noRelatedArticles": "Aucun article associé pour le moment.",
   "readMore": "Lire Plus",
   "noPostsYet": "Pas encore d'articles de blog",
   "noPostsDesc": "Nous travaillons à créer du contenu de conformité précieux pour vous. Revenez bientôt !",

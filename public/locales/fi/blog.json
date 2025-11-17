@@ -3,6 +3,10 @@
   "subtitle": "Pysy ajan tasalla EU:n compliance-säädöksistä, parhaista käytännöistä ja sääntelymuutoksista Euroopassa",
   "expertInsights": "Asiantuntija-oivallukset",
   "readingIn": "Lukee kielellä",
+  "breadcrumbs": {
+    "home": "Etusivu",
+    "blog": "Blogi"
+  },
   "languages": {
     "en": "englanti",
     "da": "tanska", 
@@ -16,7 +20,13 @@
     "pt": "portugali",
     "nl": "hollanti"
   },
+  "articleCount": "{{count}} kuratoitua artikkelia",
+  "categoryLabel": "EU-vaatimustenmukaisuus",
+  "authorLabel": "Veridaq-tiimi",
   "backToBlog": "Takaisin blogiin",
+  "backToSite": "Takaisin sivustolle",
+  "backToAllArticles": "Takaisin kaikkiin artikkeleihin",
+  "shareOn": "Jaa palvelussa {{platform}}",
   "minRead": "min lukuaika",
   "shareArticle": "Jaa tämä artikkeli",
   "shareHelp": "Auta muita pysymään EU-säädösten mukaisina",
@@ -27,6 +37,8 @@
   "postNotFoundDesc": "Etsimääsi blogikirjoitusta ei löytynyt.",
   "latestInsights": "Uusimmat compliance-oivallukset",
   "latestInsightsDesc": "Pysy ajan tasalla EU:n compliance-säädöksistä ja parhaista käytännöistä",
+  "relatedArticles": "Aiheeseen liittyvät artikkelit",
+  "noRelatedArticles": "Ei vielä aiheeseen liittyviä artikkeleita.",
   "readMore": "Lue lisää",
   "noPostsYet": "Ei blogikirjoituksia vielä",
   "noPostsDesc": "Luomme arvokasta compliance-sisältöä sinulle. Tule takaisin pian!",

@@ -3,6 +3,10 @@
   "subtitle": "Stay informed about EU compliance regulations, industry best practices, and regulatory changes across Europe",
   "expertInsights": "Expert Insights",
   "readingIn": "Reading in",
+  "breadcrumbs": {
+    "home": "Home",
+    "blog": "Blog"
+  },
   "languages": {
     "en": "English",
     "da": "Danish", 
@@ -16,7 +20,13 @@
     "pt": "Portuguese",
     "nl": "Dutch"
   },
+  "articleCount": "{{count}} curated articles",
+  "categoryLabel": "EU Compliance",
+  "authorLabel": "Veridaq Team",
   "backToBlog": "Back to Blog",
+  "backToSite": "Back to site",
+  "backToAllArticles": "Back to all articles",
+  "shareOn": "Share on {{platform}}",
   "minRead": "min read",
   "shareArticle": "Share this article",
   "shareHelp": "Help others stay compliant with EU regulations",
@@ -27,6 +37,8 @@
   "postNotFoundDesc": "The blog post you are looking for could not be found.",
   "latestInsights": "Latest Compliance Insights",
   "latestInsightsDesc": "Stay informed about EU compliance regulations and industry best practices",
+  "relatedArticles": "Related Articles",
+  "noRelatedArticles": "No related articles available yet.",
   "readMore": "Read More",
   "noPostsYet": "No blog posts yet",
   "noPostsDesc": "We're working on creating valuable compliance content for you. Check back soon!",
