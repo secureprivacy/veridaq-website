@@ -1,6 +1,6 @@
 # Blog Architecture – Static-First Delivery
 
-The Veridaq blog now delivers a **single static experience** for every visitor and crawler. Each listing page and individual post is pre-rendered as HTML during the build, stored inside `public/`, and served directly by Netlify without any user-agent detection or client-side redirects. The React SPA remains available for application routes, but the blog itself operates entirely from static files.
+The Veridaq blog now delivers a **single static experience** for every visitor and crawler. Each listing page and individual post is pre-rendered as HTML during the build, stored inside `public/`, and served directly by Netlify without any user-agent detection or client-side redirects. The React SPA remains available for application routes, but the blog itself operates entirely from static files and the SPA is explicitly bypassed for `/blog` URLs.
 
 ---
 
@@ -25,7 +25,7 @@ Visitor requests /de/blog/some-slug → CDN serves /de/blog/some-slug/index.html
 
 * Every request — human or crawler — resolves to the same static HTML.
 * Listings link directly to static posts using relative URLs, so navigation remains static.
-* The only dynamic routing that occurs is the global SPA catch-all for non-blog pages.
+* The only dynamic routing that occurs is the global SPA catch-all for non-blog pages, and the SPA ignores `/blog` paths entirely.
 
 ---
 
@@ -69,6 +69,7 @@ Key points:
 1. No user-agent conditions are required; crawlers and browsers see identical HTML.
 2. The SPA fallback lives at the bottom of the file and only applies to non-blog URLs.
 3. Each language pair follows the same pattern, guaranteeing predictable behavior.
+4. The SPA router is further protected inside `src/App.tsx`, which refuses to render blog content unless the user explicitly lands on a hash-based route such as `/#blog`.
 
 Because listings and posts are pure HTML, there is nothing to “hydrate.” Navigation relies on `<a>` links between static pages, so users stay inside the static experience until they leave the blog section.
 
@@ -114,6 +115,7 @@ Because the HTML already contains the article body, crawlers and accessibility t
 | Refresh sitemaps | `npm run generate-sitemap` | Keeps sitemap index aligned with regenerated files. |
 | Verify output locally | Open files under `public/{lang}/blog/` | Ensure metadata, links, and translations look correct. |
 | Commit artifacts | Commit generated HTML & CSS if changes are meaningful | Static HTML is source of truth for blog delivery. |
+| Verify SPA bypass | Load `/blog/` and `/{lang}/blog/` directly | Pages should render from static HTML without mounting React unless you intentionally visit `/#blog`. |
 
 ---
 

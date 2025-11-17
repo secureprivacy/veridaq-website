@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import BlogList from './BlogList';
 import { Languages } from 'lucide-react';
 import SEO from '../SEO';
 import Header from '../Header';
 import Footer from '../Footer';
-import { SUPPORTED_LANGUAGES } from '../../utils/languageUtils';
 
 interface BlogSectionProps {
   language: string;
@@ -13,105 +12,48 @@ interface BlogSectionProps {
 
 const BlogSection: React.FC<BlogSectionProps> = ({ language }) => {
   const { t } = useTranslation(['blog', 'seo', 'common']);
-  const [currentRoute, setCurrentRoute] = useState('blog');
-  const [postSlug, setPostSlug] = useState<string | null>(null);
-  const hasRedirectedRef = useRef(false);
+  const [shouldRenderListing, setShouldRenderListing] = useState(() => {
+    const hash = window.location.hash.replace('#', '');
+    return hash === 'blog' || hash === 'blog/';
+  });
 
   useEffect(() => {
-    const parseCurrentRoute = () => {
-      const pathname = window.location.pathname;
-      const pathSegments = pathname.split('/').filter(Boolean);
-
-      console.log('BlogSection: Parsing pathname:', pathname);
-      console.log('BlogSection: Path segments:', pathSegments);
-
-      const supportedLanguages = SUPPORTED_LANGUAGES.filter(lang => lang !== 'en');
-
-      // Default to blog listing
-      let route = 'blog';
-      let slug: string | null = null;
-
-      if (pathSegments.length === 1) {
-        if (pathSegments[0] === 'blog') {
-          // /blog - English blog listing
-          route = 'blog';
-        }
-      } else if (pathSegments.length === 2) {
-        const [first, second] = pathSegments;
-
-        if (first === 'blog') {
-          // /blog/post-slug - English blog post
-          route = 'post';
-          slug = second;
-        } else if (supportedLanguages.includes(first) && second === 'blog') {
-          // /da/blog - Language blog listing
-          route = 'blog';
-        }
-      } else if (pathSegments.length === 3) {
-        const [first, second, third] = pathSegments;
-
-        if (supportedLanguages.includes(first) && second === 'blog') {
-          // /da/blog/post-slug - Translated blog post
-          route = 'post';
-          slug = third;
-        }
-      }
-
-      console.log('BlogSection: Calculated route:', route, 'slug:', slug);
-      setCurrentRoute(route);
-      setPostSlug(slug);
+    const handleRouteChange = () => {
+      const hash = window.location.hash.replace('#', '');
+      setShouldRenderListing(hash === 'blog' || hash === 'blog/');
     };
 
-    parseCurrentRoute();
-
-    const handlePopState = () => {
-      parseCurrentRoute();
-    };
-
-    window.addEventListener('popstate', handlePopState);
+    window.addEventListener('popstate', handleRouteChange);
+    window.addEventListener('hashchange', handleRouteChange);
 
     return () => {
-      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('popstate', handleRouteChange);
+      window.removeEventListener('hashchange', handleRouteChange);
     };
   }, []);
 
-  // Scroll to top when route changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'auto' });
-  }, [currentRoute, postSlug]);
-
-  const renderContent = () => {
-    // Individual post route - handled via redirect to static HTML
-    if (currentRoute === 'post' && postSlug) {
-      if (!hasRedirectedRef.current) {
-        const pathSegments = window.location.pathname.split('/').filter(Boolean);
-        const nonEnglishLanguages = SUPPORTED_LANGUAGES.filter(lang => lang !== 'en');
-        const pathLanguage =
-          pathSegments.length > 0 && nonEnglishLanguages.includes(pathSegments[0]) ? pathSegments[0] : 'en';
-        const blogBasePath = pathLanguage === 'en' ? '/blog' : `/${pathLanguage}/blog`;
-
-        const normalizePath = (path: string) => (path.endsWith('/') ? path : `${path}/`);
-        const targetPath = normalizePath(`${blogBasePath}/${postSlug}`);
-        const currentPath = normalizePath(window.location.pathname);
-
-        if (currentPath !== targetPath) {
-          hasRedirectedRef.current = true;
-          window.location.replace(targetPath);
-        }
-      }
-
-      return null;
+    if (shouldRenderListing) {
+      window.scrollTo({ top: 0, behavior: 'auto' });
     }
+  }, [shouldRenderListing]);
 
-    // Blog list route (default)
-    return (
-      <>
-        {/* SEO for blog listing page */}
+  if (!shouldRenderListing) {
+    return null;
+  }
+
+  return (
+    <div className="min-h-screen bg-white">
+      <Header />
+
+      {/* Main Content */}
+      <main>
+        {/* SEO for blog listing page (SPA-only entry via #blog) */}
         <SEO
           title={`Blog | EU Compliance Insights | Veridaq`}
           description={`Expert insights on EU compliance, KYC verification, AML screening, and GDPR requirements. Stay informed about regulatory changes and best practices.`}
           keywords={`compliance blog, EU regulations, KYC insights, AML updates, GDPR compliance, regulatory news`}
-          canonical={`https://veridaq.com/${language === 'en' ? '' : language + '/'}blog`}
+          canonical={`https://veridaq.com/${language === 'en' ? '' : language + '/'}blog/`}
         />
 
         {/* Branded Hero Section */}
@@ -151,19 +93,8 @@ const BlogSection: React.FC<BlogSectionProps> = ({ language }) => {
             <BlogList showTitle={false} language={language} />
           </div>
         </section>
-      </>
-    );
-  };
-
-  return (
-    <div className="min-h-screen bg-white">
-      <Header />
-
-      {/* Main Content */}
-      <main>
-        {renderContent()}
       </main>
-      
+
       <Footer />
     </div>
   );
