@@ -203,6 +203,7 @@ Netlify now follows a static-first routing strategy:
 1. Blog listings and posts are enumerated with unconditional `200` rewrites.
 2. No user-agent detection or JavaScript redirects are involved.
 3. A final catch-all rule (`/* /index.html 200`) keeps the React SPA online for non-blog routes.
+4. The SPA router (`src/App.tsx`) deliberately ignores `/blog` paths; the only in-app entry to the blog is an explicit hash-based visit such as `/#blog`, keeping normal blog traffic on static HTML.
 
 ---
 
@@ -344,8 +345,8 @@ function MyComponent() {
 ### 2. Blog System (Multilingual CMS)
 
 **Architecture**: Dual-layer system
-- **Static HTML** (for SEO) - Generated at build time
-- **React SPA** (for users) - Dynamic rendering from Supabase
+- **Static HTML** (for SEO and primary delivery) - Generated at build time and served directly for every `/blog` path.
+- **React SPA** (for admin and explicit hash visits) - Only renders the listing when users intentionally visit `/#blog`; normal blog traffic never hydrates the SPA.
 
 #### Database Tables
 
@@ -425,22 +426,19 @@ npm run generate-blog-html
 #### React Blog Components
 
 **BlogSection** (`src/components/blog/BlogSection.tsx`)
-- Detects route: listing (`/blog`) vs individual post (`/blog/slug`)
-- Extracts language from URL
-- Renders `BlogList` or `BlogPost` component
+- Renders only when the URL hash is `#blog` or `#blog/`, preventing the SPA from mounting on `/blog` path requests that Netlify already serves statically.
+- Extracts language from the surrounding path for hash-based visits and scrolls to top on entry.
+- Shows the listing view exclusively; post-level rendering is deferred to static HTML.
 
 **BlogList** (`src/components/blog/BlogList.tsx`)
-- Fetches all published posts for current language
-- Displays posts in responsive grid
-- Handles search/filter
-- Uses `useBlogPosts` hook
+- Fetches all published posts for current language.
+- Displays posts in responsive grid.
+- Ensures card links point directly to trailing-slash static pages (e.g., `/fr/blog/slug/`) so navigation never detours through the SPA.
+- Uses `useBlogPosts` hook.
 
 **BlogPost** (`src/components/blog/BlogPost.tsx`)
-- Fetches single post by slug
-- Displays full content with rich formatting
-- Shows related posts
-- Handles translation fallback to English
-- Uses `useBlogPost` hook
+- Retained for admin and preview scenarios but not rendered during normal navigation because the SPA does not handle `/blog` routes.
+- Uses `useBlogPost` hook if invoked.
 
 **Key Hooks**:
 - `useBlogPosts(language, limit)` - Fetch multiple posts
