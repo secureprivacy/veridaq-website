@@ -210,8 +210,18 @@ function calculateReadingTime(content) {
 function getPostDescription(post, maxLength = 160) {
   if (!post) return '';
 
-  const description = post.meta_description || post.excerpt;
-  if (description) return description;
+  const description = [
+    post.meta_description,
+    post.posts?.meta_description,
+    post.excerpt,
+    post.posts?.excerpt,
+    post.summary,
+    post.posts?.summary
+  ].find(value => typeof value === 'string' && value.trim().length > 0);
+
+  if (description) {
+    return description.trim();
+  }
 
   if (post.content) {
     return post.content
@@ -658,52 +668,52 @@ function createLanguageSwitcherScript(language, translations, pageMeta = {}) {
         });
       };
 
-      const handleNavigation = async (targetLanguage) => {
-        const baseLanguage = normalizeLanguage(targetLanguage);
-        const pathSegments = window.location.pathname.split('/').filter(Boolean);
-        const supportedLanguageCodes = SUPPORTED_LANGUAGES.filter(lang => lang !== 'en');
+        const handleNavigation = async (targetLanguage) => {
+          const baseLanguage = normalizeLanguage(targetLanguage);
+          const pathSegments = window.location.pathname.split('/').filter(Boolean);
+          const supportedLanguageCodes = SUPPORTED_LANGUAGES.filter(lang => lang !== 'en');
 
-        let currentLang = 'en';
-        let pathAfterLang = [...pathSegments];
+          let currentLang = 'en';
+          let pathAfterLang = [...pathSegments];
 
-        if (pathSegments.length > 0 && supportedLanguageCodes.includes(pathSegments[0])) {
-          currentLang = pathSegments[0];
-          pathAfterLang = pathSegments.slice(1);
-        }
+          if (pathSegments.length > 0 && supportedLanguageCodes.includes(pathSegments[0])) {
+            currentLang = pathSegments[0];
+            pathAfterLang = pathSegments.slice(1);
+          }
 
-        const isBlogPost = pathAfterLang.length >= 2 && pathAfterLang[0] === 'blog' && pathAfterLang[1];
-        const isBlogListing = pathAfterLang.length === 1 && pathAfterLang[0] === 'blog';
+          const isBlogPost = pathAfterLang.length >= 2 && pathAfterLang[0] === 'blog' && pathAfterLang[1];
+          const isBlogListing = pathAfterLang.length === 1 && pathAfterLang[0] === 'blog';
 
-        if (isBlogPost) {
-          const currentSlug = pathAfterLang[1];
-          const translatedSlug = await findTranslatedPostSlug(currentSlug, currentLang, baseLanguage);
+          if (isBlogPost) {
+            const currentSlug = pathAfterLang[1];
+            const translatedSlug = await findTranslatedPostSlug(currentSlug, currentLang, baseLanguage);
 
-          if (translatedSlug) {
-            const newPath = baseLanguage === 'en'
-              ? `/blog/${translatedSlug}/`
-              : `/${baseLanguage}/blog/${translatedSlug}/`;
-            window.location.assign(newPath);
+            if (translatedSlug) {
+              const newPath = baseLanguage === 'en'
+                ? '/blog/' + translatedSlug + '/'
+                : '/' + baseLanguage + '/blog/' + translatedSlug + '/';
+              window.location.assign(newPath);
+              return;
+            }
+
+            const fallbackPath = baseLanguage === 'en'
+              ? '/blog/'
+              : '/' + baseLanguage + '/blog/';
+            window.location.assign(fallbackPath);
             return;
           }
 
-          const fallbackPath = baseLanguage === 'en'
-            ? '/blog/'
-            : `/${baseLanguage}/blog/`;
-          window.location.assign(fallbackPath);
-          return;
-        }
+          if (isBlogListing) {
+            const listingPath = baseLanguage === 'en'
+              ? '/blog/'
+              : '/' + baseLanguage + '/blog/';
+            window.location.assign(listingPath);
+            return;
+          }
 
-        if (isBlogListing) {
-          const listingPath = baseLanguage === 'en'
-            ? '/blog/'
-            : `/${baseLanguage}/blog/`;
-          window.location.assign(listingPath);
-          return;
-        }
-
-        const defaultPath = baseLanguage === 'en' ? '/' : `/${baseLanguage}/`;
-        window.location.assign(defaultPath);
-      };
+          const defaultPath = baseLanguage === 'en' ? '/' : '/' + baseLanguage + '/';
+          window.location.assign(defaultPath);
+        };
 
       const buildMenus = (availableTranslations = {}) => {
         document.querySelectorAll('.language-switcher').forEach((switcher) => {
