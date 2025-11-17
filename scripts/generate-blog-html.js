@@ -663,15 +663,15 @@ function createLanguageSwitcherScript(language, translations, pageMeta = {}) {
 
           if (translatedSlug) {
             const newPath = baseLanguage === 'en'
-              ? `/blog/${translatedSlug}/`
-              : `/${baseLanguage}/blog/${translatedSlug}/`;
+              ? '/blog/' + translatedSlug + '/'
+              : '/' + baseLanguage + '/blog/' + translatedSlug + '/';
             window.location.assign(newPath);
             return;
           }
 
           const fallbackPath = baseLanguage === 'en'
             ? '/blog/'
-            : `/${baseLanguage}/blog/`;
+            : '/' + baseLanguage + '/blog/';
           window.location.assign(fallbackPath);
           return;
         }
@@ -679,12 +679,12 @@ function createLanguageSwitcherScript(language, translations, pageMeta = {}) {
         if (isBlogListing) {
           const listingPath = baseLanguage === 'en'
             ? '/blog/'
-            : `/${baseLanguage}/blog/`;
+            : '/' + baseLanguage + '/blog/';
           window.location.assign(listingPath);
           return;
         }
 
-        const defaultPath = baseLanguage === 'en' ? '/' : `/${baseLanguage}/`;
+        const defaultPath = baseLanguage === 'en' ? '/' : '/' + baseLanguage + '/';
         window.location.assign(defaultPath);
       };
 
