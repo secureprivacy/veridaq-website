@@ -297,6 +297,10 @@ function App() {
         // Root path - English homepage
         detectedLang = 'en';
         detectedRoute = 'homepage';
+      } else if (pathSegments[0] === 'blog') {
+        // Blog root or blog post in English
+        detectedLang = 'en';
+        detectedRoute = 'blog';
       } else if (pathSegments[0] === 'privacy-policy') {
         // Privacy Policy page
         detectedLang = 'en';
@@ -333,6 +337,10 @@ function App() {
         // English industry page (/industries/:slug)
         detectedLang = 'en';
         detectedRoute = `industry/${pathSegments[1]}`;
+      } else if (supportedLanguages.includes(pathSegments[0]) && pathSegments[1] === 'blog') {
+        // Language-specific blog root or blog post
+        detectedLang = pathSegments[0];
+        detectedRoute = 'blog';
       } else if (supportedLanguages.includes(pathSegments[0])) {
         // Language-specific paths
         detectedLang = pathSegments[0];
