@@ -176,6 +176,7 @@ function App() {
     const parseCurrentRoute = () => {
       const pathname = window.location.pathname;
       const hash = window.location.hash.slice(1);
+      const isBlogHash = hash === 'blog' || hash === 'blog/';
       
       console.log('🔍 App: Parsing route - pathname:', pathname, 'hash:', hash);
       
@@ -275,6 +276,15 @@ function App() {
           setCurrentRoute(hash);
           return;
         }
+
+        if (isBlogHash) {
+          console.log('📝 Blog hash detected, routing SPA to blog listing explicitly');
+          const hashLanguage = supportedLanguages.includes(pathSegments[0]) ? pathSegments[0] : 'en';
+          setDetectedLanguage(hashLanguage);
+          setCurrentRoute('blog');
+          return;
+        }
+
         // IMPORTANT: Don't return here for other hashes - they might be section anchors
         console.log('⚠️ Non-CMS hash detected:', hash, '- continuing with normal routing');
       }
@@ -287,10 +297,6 @@ function App() {
         // Root path - English homepage
         detectedLang = 'en';
         detectedRoute = 'homepage';
-      } else if (pathSegments[0] === 'blog') {
-        // English blog (/blog or /blog/slug)
-        detectedLang = 'en';
-        detectedRoute = 'blog';
       } else if (pathSegments[0] === 'privacy-policy') {
         // Privacy Policy page
         detectedLang = 'en';
@@ -334,9 +340,6 @@ function App() {
         if (pathSegments.length === 1) {
           // /da - Language homepage
           detectedRoute = 'homepage';
-        } else if (pathSegments[1] === 'blog') {
-          // /da/blog or /da/blog/slug - Language blog
-          detectedRoute = 'blog';
         } else if (pathSegments[1] === 'features') {
           // /da/features - Language features section
           detectedRoute = 'section/features';

@@ -160,17 +160,17 @@ const LanguageSwitcher: React.FC = () => {
 
       if (translatedSlug) {
         newPath = baseLanguage === 'en'
-          ? `/blog/${translatedSlug}`
-          : `/${baseLanguage}/blog/${translatedSlug}`;
+          ? `/blog/${translatedSlug}/`
+          : `/${baseLanguage}/blog/${translatedSlug}/`;
       } else {
         newPath = baseLanguage === 'en'
-          ? '/blog'
-          : `/${baseLanguage}/blog`;
+          ? '/blog/'
+          : `/${baseLanguage}/blog/`;
       }
     } else if (isBlogListing) {
       newPath = baseLanguage === 'en'
-        ? '/blog'
-        : `/${baseLanguage}/blog`;
+        ? '/blog/'
+        : `/${baseLanguage}/blog/`;
     } else {
       newPath = baseLanguage === 'en'
         ? '/'

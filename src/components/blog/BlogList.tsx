@@ -142,7 +142,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ post, language }) => {
   const publishedDate = language === 'en' ? post.published_at : post.posts?.published_at || post.published_at;
   const wordCount = getWordCount(post.content);
   const postUrl = React.useMemo(
-    () => (language === 'en' ? `/blog/${post.slug}` : `/${language}/blog/${post.slug}`),
+    () => (language === 'en' ? `/blog/${post.slug}/` : `/${language}/blog/${post.slug}/`),
     [language, post.slug]
   );
 

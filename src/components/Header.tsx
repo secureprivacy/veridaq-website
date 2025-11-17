@@ -40,7 +40,7 @@ const Header: React.FC = () => {
   };
 
   const currentLanguage = getCurrentLanguageFromPath();
-  const blogHref = currentLanguage === 'en' ? '/blog' : `/${currentLanguage}/blog`;
+  const blogHref = currentLanguage === 'en' ? '/blog/' : `/${currentLanguage}/blog/`;
 
   const navigation = [
     {

@@ -70,7 +70,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, language }) => {
 
   const breadcrumbItems = [
     { label: 'Home', href: language === 'en' ? '/' : `/${language}` },
-    { label: 'Blog', href: language === 'en' ? '/blog' : `/${language}/blog` },
+    { label: 'Blog', href: language === 'en' ? '/blog/' : `/${language}/blog/` },
     { label: post.title }
   ];
 
@@ -84,7 +84,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, language }) => {
         description={post.meta_description || post.excerpt}
         keywords={post.meta_keywords}
         image={post.featured_image_url}
-        canonical={`https://veridaq.com${language === 'en' ? '' : `/${language}`}/blog/${post.slug}`}
+        canonical={`https://veridaq.com${language === 'en' ? '' : `/${language}`}/blog/${post.slug}/`}
         type="article"
         article={{
           publishedTime: publishedDate,
@@ -111,7 +111,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, language }) => {
             {/* Back Navigation */}
             <div className="mb-8">
               <a
-                href={language === 'en' ? '/blog' : `/${language}/blog`}
+                href={language === 'en' ? '/blog/' : `/${language}/blog/`}
                 className="inline-flex items-center gap-2 px-4 py-2 bg-white/95 backdrop-blur-sm border border-white/30 rounded-xl shadow-md text-neutral-700 hover:text-primary-600 hover:border-primary-200 transition-all duration-300 font-medium"
               >
                 <ArrowLeft className="w-4 h-4" />
@@ -242,7 +242,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ slug, language }) => {
               {relatedPosts.map(relatedPost => (
                 <a
                   key={relatedPost.id}
-                  href={`${language === 'en' ? '' : `/${language}`}/blog/${relatedPost.slug}`}
+                  href={`${language === 'en' ? '' : `/${language}`}/blog/${relatedPost.slug}/`}
                   className="group p-6 bg-white rounded-2xl border border-neutral-200 hover:border-primary-300 hover:shadow-lg transition-all duration-300"
                 >
                   <span className="text-base font-semibold text-neutral-900 group-hover:text-primary-600 transition-colors line-clamp-2">
