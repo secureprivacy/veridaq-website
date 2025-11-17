@@ -3,6 +3,10 @@
   "subtitle": "Bleiben Sie über EU-Compliance-Vorschriften, bewährte Praktiken und regulatorische Änderungen in Europa informiert",
   "expertInsights": "Experten-Einblicke",
   "readingIn": "Lesen auf",
+  "breadcrumbs": {
+    "home": "Startseite",
+    "blog": "Blog"
+  },
   "languages": {
     "en": "Englisch",
     "da": "Dänisch", 
@@ -16,7 +20,13 @@
     "pt": "Portugiesisch",
     "nl": "Niederländisch"
   },
+  "articleCount": "{{count}} kuratierte Artikel",
+  "categoryLabel": "EU-Compliance",
+  "authorLabel": "Veridaq-Team",
   "backToBlog": "Zurück zum Blog",
+  "backToSite": "Zurück zur Website",
+  "backToAllArticles": "Zurück zu allen Artikeln",
+  "shareOn": "Teilen auf {{platform}}",
   "minRead": "Min Lesezeit",
   "shareArticle": "Diesen Artikel teilen",
   "shareHelp": "Helfen Sie anderen bei der EU-Compliance",
@@ -27,6 +37,8 @@
   "postNotFoundDesc": "Der gesuchte Blog-Beitrag konnte nicht gefunden werden.",
   "latestInsights": "Neueste Compliance-Einblicke",
   "latestInsightsDesc": "Bleiben Sie über EU-Compliance-Vorschriften und bewährte Praktiken informiert",
+  "relatedArticles": "Verwandte Artikel",
+  "noRelatedArticles": "Noch keine verwandten Artikel verfügbar.",
   "readMore": "Weiterlesen",
   "noPostsYet": "Noch keine Blog-Beiträge",
   "noPostsDesc": "Wir arbeiten daran, wertvollen Compliance-Inhalt für Sie zu erstellen. Schauen Sie bald wieder vorbei!",

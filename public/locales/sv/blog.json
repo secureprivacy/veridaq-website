@@ -3,6 +3,10 @@
   "subtitle": "Håll dig informerad om EU compliance-regleringar, bästa praxis och regulatoriska förändringar i Europa",
   "expertInsights": "Expert Insikter",
   "readingIn": "Läser på",
+  "breadcrumbs": {
+    "home": "Hem",
+    "blog": "Blogg"
+  },
   "languages": {
     "en": "engelska",
     "da": "danska", 
@@ -16,7 +20,13 @@
     "pt": "portugisiska",
     "nl": "nederländska"
   },
+  "articleCount": "{{count}} kuraterade artiklar",
+  "categoryLabel": "EU-efterlevnad",
+  "authorLabel": "Veridaq-teamet",
   "backToBlog": "Tillbaka till Blogg",
+  "backToSite": "Tillbaka till sidan",
+  "backToAllArticles": "Tillbaka till alla artiklar",
+  "shareOn": "Dela på {{platform}}",
   "minRead": "min läsning",
   "shareArticle": "Dela den här artikeln",
   "shareHelp": "Hjälp andra att följa EU-regleringar",
@@ -27,6 +37,8 @@
   "postNotFoundDesc": "Blogginlägget du letar efter kunde inte hittas.",
   "latestInsights": "Senaste Compliance-insikter",
   "latestInsightsDesc": "Håll dig informerad om EU compliance-regleringar och bästa praxis",
+  "relatedArticles": "Relaterade artiklar",
+  "noRelatedArticles": "Inga relaterade artiklar tillgängliga ännu.",
   "readMore": "Läs Mer",
   "noPostsYet": "Inga blogginlägg än",
   "noPostsDesc": "Vi arbetar med att skapa värdefullt compliance-innehåll för dig. Kom tillbaka snart!",
