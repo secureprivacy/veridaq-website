@@ -210,18 +210,8 @@ function calculateReadingTime(content) {
 function getPostDescription(post, maxLength = 160) {
   if (!post) return '';
 
-  const description = [
-    post.meta_description,
-    post.posts?.meta_description,
-    post.excerpt,
-    post.posts?.excerpt,
-    post.summary,
-    post.posts?.summary
-  ].find(value => typeof value === 'string' && value.trim().length > 0);
-
-  if (description) {
-    return description.trim();
-  }
+  const description = post.meta_description || post.excerpt;
+  if (description) return description;
 
   if (post.content) {
     return post.content
