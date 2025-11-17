@@ -77,9 +77,7 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center gap-8">
-            <Link href="#" className="flex-shrink-0">
-              <Logo />
-            </Link>
+            <Logo className="flex-shrink-0" />
             
             <nav className="hidden lg:flex items-center space-x-8">
               {navigation.map((item) => {

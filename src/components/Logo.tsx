@@ -2,14 +2,18 @@ import React from 'react';
 import { Link } from './ui/Link';
 import { getCurrentLanguage, buildHomepageUrl } from '../utils/navigation';
 
-const Logo: React.FC = () => {
+interface LogoProps {
+  className?: string;
+}
+
+const Logo: React.FC<LogoProps> = ({ className = '' }) => {
   const currentLanguage = getCurrentLanguage();
   const homepageUrl = buildHomepageUrl(currentLanguage);
 
   return (
     <Link
       href={homepageUrl}
-      className="flex items-center group cursor-pointer"
+      className={`${className} flex items-center group cursor-pointer`.trim()}
       aria-label="Go to homepage"
     >
       <img
