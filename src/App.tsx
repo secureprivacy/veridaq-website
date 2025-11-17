@@ -16,7 +16,6 @@ import ScrollCTA from './components/ScrollCTA';
 import Footer from './components/Footer';
 import AdminDashboard from './components/admin/AdminDashboard';
 import AuthGuard from './components/auth/AuthGuard';
-import BlogSection from './components/blog/BlogSection';
 import PrivacyPolicy from './components/legal/PrivacyPolicy';
 import TermsOfService from './components/legal/TermsOfService';
 import PrivacyByDesign from './components/legal/PrivacyByDesign';
@@ -277,11 +276,12 @@ function App() {
           return;
         }
 
+        // Note: Blog routes (#blog) are handled by static HTML files, not the SPA
+        // If someone tries to access /#blog, redirect them to the static /blog/ page
         if (isBlogHash) {
-          console.log('📝 Blog hash detected, routing SPA to blog listing explicitly');
-          const hashLanguage = supportedLanguages.includes(pathSegments[0]) ? pathSegments[0] : 'en';
-          setDetectedLanguage(hashLanguage);
-          setCurrentRoute('blog');
+          console.log('📝 Blog hash detected, redirecting to static blog page');
+          const blogPath = supportedLanguages.includes(pathSegments[0]) ? `/${pathSegments[0]}/blog/` : '/blog/';
+          window.location.href = blogPath;
           return;
         }
 
@@ -407,15 +407,12 @@ function App() {
     );
   }
 
+  // Note: Blog routes are handled entirely by static HTML files
+  // The SPA should never render blog content - redirect to static pages if needed
   if (currentRoute === 'blog') {
-    console.log('🎯 App: Showing BlogSection');
-    return (
-      <ErrorBoundary>
-        <AuthGuard requireAuth={false}>
-          <BlogSection language={detectedLanguage} />
-        </AuthGuard>
-      </ErrorBoundary>
-    );
+    console.log('🎯 App: Blog route detected, redirecting to static HTML');
+    window.location.href = detectedLanguage === 'en' ? '/blog/' : `/${detectedLanguage}/blog/`;
+    return null;
   }
 
   if (currentRoute === 'privacy-policy') {

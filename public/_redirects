@@ -1,85 +1,105 @@
-# Netlify redirects for unified React blog architecture
+# Netlify redirects for pure static blog architecture
 #
-# BLOG ROUTING ARCHITECTURE (Static-first with SPA fallback):
+# BLOG ROUTING ARCHITECTURE (Pure Static HTML):
 # ================================================================================
-# This architecture serves the pre-rendered static HTML for every blog request,
-# regardless of user agent, while keeping the React SPA available for the rest of
-# the application.
+# This architecture serves ONLY pre-rendered static HTML for all blog requests.
+# The React SPA never loads for blog routes - visitors get pure HTML/CSS.
 #
 # ARCHITECTURE PRINCIPLES:
-# 1. Blog routes are always resolved to their generated index.html files
-# 2. No user-agent checks are required—browsers and crawlers see the same HTML
-# 3. The SPA catch-all only applies after every static blog permutation is handled
-# 4. Keep the SPA only for non-blog paths; blog pages remain static
+# 1. Blog routes serve static HTML files directly with 200 status
+# 2. No React SPA loading occurs for blog paths
+# 3. Browsers and crawlers receive identical static HTML
+# 4. Blog navigation uses standard <a> tags between static pages
+# 5. The SPA only loads for non-blog application routes
 #
 # RESULTING FLOW:
-# - Any request to /blog/... or /<lang>/blog/... → static HTML at the matching
-#   /blog/.../index.html file
-# - All other routes → React SPA via the catch-all rule below
+# - Request to /blog or /<lang>/blog → static HTML listing page
+# - Request to /blog/:slug or /<lang>/blog/:slug → static HTML article
+# - Request to any other path → React SPA loads via catch-all
 #
 # TESTING:
-# Test crawler access:
-#   curl -A "Googlebot" https://veridaq.com/blog/post-slug
-# Test browser access:
-#   curl -A "Mozilla/5.0" https://veridaq.com/blog/post-slug
+# Test blog access: curl https://veridaq.com/blog/
+# Test article access: curl https://veridaq.com/blog/post-slug/
+# Test SPA access: curl https://veridaq.com/
 #
 # ================================================================================
 
 # ================================================================================
-# BLOG ROUTES - Serve static HTML for every request
+# BLOG ROUTES - Pure Static HTML (No SPA)
 # ================================================================================
-# These unconditional rewrites ensure both crawlers and browsers receive the
-# generated HTML instead of falling back to the SPA. Order matters—keep these
-# before the crawler-specific sitemap handling, language catch-alls, and the
-# global SPA fallback.
+# These rules serve static HTML directly. The 200! status prevents further
+# processing and ensures the SPA catch-all never triggers for blog routes.
+# Note: Netlify processes rules in order, so these MUST come before the catch-all.
 
-# English blog routes
-/blog                           /blog/index.html                200
-/blog/*                         /blog/:splat/index.html         200
+# English blog routes - serve static HTML, stop processing
+/blog                           /blog/index.html                200!
+/blog/                          /blog/index.html                200!
+/blog/*                         /blog/:splat/index.html         200!
+/blog/*/                        /blog/:splat/index.html         200!
 
 # Danish blog routes
-/da/blog                        /da/blog/index.html             200
-/da/blog/*                      /da/blog/:splat/index.html      200
+/da/blog                        /da/blog/index.html             200!
+/da/blog/                       /da/blog/index.html             200!
+/da/blog/*                      /da/blog/:splat/index.html      200!
+/da/blog/*/                     /da/blog/:splat/index.html      200!
 
 # Swedish blog routes
-/sv/blog                        /sv/blog/index.html             200
-/sv/blog/*                      /sv/blog/:splat/index.html      200
+/sv/blog                        /sv/blog/index.html             200!
+/sv/blog/                       /sv/blog/index.html             200!
+/sv/blog/*                      /sv/blog/:splat/index.html      200!
+/sv/blog/*/                     /sv/blog/:splat/index.html      200!
 
 # Norwegian blog routes
-/no/blog                        /no/blog/index.html             200
-/no/blog/*                      /no/blog/:splat/index.html      200
+/no/blog                        /no/blog/index.html             200!
+/no/blog/                       /no/blog/index.html             200!
+/no/blog/*                      /no/blog/:splat/index.html      200!
+/no/blog/*/                     /no/blog/:splat/index.html      200!
 
 # Finnish blog routes
-/fi/blog                        /fi/blog/index.html             200
-/fi/blog/*                      /fi/blog/:splat/index.html      200
+/fi/blog                        /fi/blog/index.html             200!
+/fi/blog/                       /fi/blog/index.html             200!
+/fi/blog/*                      /fi/blog/:splat/index.html      200!
+/fi/blog/*/                     /fi/blog/:splat/index.html      200!
 
 # German blog routes
-/de/blog                        /de/blog/index.html             200
-/de/blog/*                      /de/blog/:splat/index.html      200
+/de/blog                        /de/blog/index.html             200!
+/de/blog/                       /de/blog/index.html             200!
+/de/blog/*                      /de/blog/:splat/index.html      200!
+/de/blog/*/                     /de/blog/:splat/index.html      200!
 
 # French blog routes
-/fr/blog                        /fr/blog/index.html             200
-/fr/blog/*                      /fr/blog/:splat/index.html      200
+/fr/blog                        /fr/blog/index.html             200!
+/fr/blog/                       /fr/blog/index.html             200!
+/fr/blog/*                      /fr/blog/:splat/index.html      200!
+/fr/blog/*/                     /fr/blog/:splat/index.html      200!
 
 # Spanish blog routes
-/es/blog                        /es/blog/index.html             200
-/es/blog/*                      /es/blog/:splat/index.html      200
+/es/blog                        /es/blog/index.html             200!
+/es/blog/                       /es/blog/index.html             200!
+/es/blog/*                      /es/blog/:splat/index.html      200!
+/es/blog/*/                     /es/blog/:splat/index.html      200!
 
 # Italian blog routes
-/it/blog                        /it/blog/index.html             200
-/it/blog/*                      /it/blog/:splat/index.html      200
+/it/blog                        /it/blog/index.html             200!
+/it/blog/                       /it/blog/index.html             200!
+/it/blog/*                      /it/blog/:splat/index.html      200!
+/it/blog/*/                     /it/blog/:splat/index.html      200!
 
 # Portuguese blog routes
-/pt/blog                        /pt/blog/index.html             200
-/pt/blog/*                      /pt/blog/:splat/index.html      200
+/pt/blog                        /pt/blog/index.html             200!
+/pt/blog/                       /pt/blog/index.html             200!
+/pt/blog/*                      /pt/blog/:splat/index.html      200!
+/pt/blog/*/                     /pt/blog/:splat/index.html      200!
 
 # Dutch blog routes
-/nl/blog                        /nl/blog/index.html             200
-/nl/blog/*                      /nl/blog/:splat/index.html      200
+/nl/blog                        /nl/blog/index.html             200!
+/nl/blog/                       /nl/blog/index.html             200!
+/nl/blog/*                      /nl/blog/:splat/index.html      200!
+/nl/blog/*/                     /nl/blog/:splat/index.html      200!
 
 # ================================================================================
-# NOTE: With the universal blog rewrites above, the SPA catch-all applies only
-# to non-blog routes. Static HTML remains the source of truth for blog content.
+# NOTE: The 200! status forces Netlify to stop processing rules. Blog routes
+# will NEVER fall through to the SPA catch-all below. Blog is 100% static HTML.
 # ===============================================================================
 
 # ================================================================================
