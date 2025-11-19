@@ -871,7 +871,6 @@ function createBlogListingHTML(posts, language, translations, headerTranslations
   const breadcrumbHome = translations.breadcrumbs?.home || 'Home';
   const breadcrumbBlog = translations.breadcrumbs?.blog || 'Blog';
   const noPosts = translations.noPostsYet || 'No blog posts available yet.';
-  const headerHTML = createSiteHeaderHTML(language, headerTranslations);
   const footerHTML = createSiteFooterHTML(language, footerTranslations);
   const languageSwitcherScript = createLanguageSwitcherScript(language, translations, {
     pageType: 'listing'
@@ -908,8 +907,6 @@ ${JSON.stringify(organizationSchema, null, 2)}
   </script>
 </head>
 <body class="blog-page">
-  ${headerHTML}
-  <div class="blog-header-spacer"></div>
   <header class="blog-hero">
     <div class="blog-container hero-content">
       <nav class="breadcrumb-trail" aria-label="Breadcrumb">
