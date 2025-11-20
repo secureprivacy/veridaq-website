@@ -13,16 +13,23 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "Content-Type, Authorization",
 };
 
+const ALLOWED_MODELS = [
+  'claude-3-haiku-20240307',
+  'claude-3-5-haiku-20241022',
+  'claude-haiku-4-5-20251001'
+];
+
 interface TranslationRequest {
   postId: string;
   targetLanguages: string[];
   translationProvider: 'claude' | 'openai';
+  model?: string;
   localizationNotes?: string;
 }
 
 Deno.serve(async (req: Request) => {
   console.log('🚀 translate-post function called, method:', req.method);
-  
+
   if (req.method === "OPTIONS") {
     console.log('OPTIONS request received, returning CORS headers');
     return new Response(null, { status: 200, headers: corsHeaders });
@@ -30,23 +37,31 @@ Deno.serve(async (req: Request) => {
 
   try {
     console.log('📥 Processing translation request...');
-    
+
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? ''
     );
-    
+
     console.log('✅ Supabase client created');
 
     const requestBody = await req.json();
     console.log('📋 Request body:', JSON.stringify(requestBody, null, 2));
-    
-    const { postId, targetLanguages, translationProvider, localizationNotes }: TranslationRequest = requestBody;
-    
+
+    const { postId, targetLanguages, translationProvider, model, localizationNotes }: TranslationRequest = requestBody;
+
+    // Validate model if provider is Claude
+    if (translationProvider === 'claude' && model && !ALLOWED_MODELS.includes(model)) {
+      throw new Error(`Invalid model: ${model}. Allowed models: ${ALLOWED_MODELS.join(', ')}`);
+    }
+
+    const selectedModel = model || 'claude-3-haiku-20240307'; // Default to legacy Haiku
+
     console.log('🎯 Translation parameters:', {
       postId,
       targetLanguages,
       translationProvider,
+      model: selectedModel,
       localizationNotes: localizationNotes ? 'provided' : 'not provided'
     });
 
@@ -62,7 +77,7 @@ Deno.serve(async (req: Request) => {
       console.error('❌ Post not found:', postError);
       throw new Error('Post not found');
     }
-    
+
     console.log('✅ Post found:', post.title);
 
     // Get API credentials
@@ -71,11 +86,11 @@ Deno.serve(async (req: Request) => {
       .from('api_settings')
       .select('setting_name, setting_value, is_active')
       .in('setting_name', ['claude_api_key', 'openai_api_key']);
-    
+
     console.log('⚙️ API Settings found:', apiSettings?.map(s => ({ name: s.setting_name, active: s.is_active, hasValue: !!s.setting_value })));
 
-    const apiKey = apiSettings?.find(s => 
-      s.setting_name === (translationProvider === 'claude' ? 'claude_api_key' : 'openai_api_key') 
+    const apiKey = apiSettings?.find(s =>
+      s.setting_name === (translationProvider === 'claude' ? 'claude_api_key' : 'openai_api_key')
       && s.is_active
     )?.setting_value;
 
@@ -83,19 +98,19 @@ Deno.serve(async (req: Request) => {
       console.error('❌ API key not found or inactive for provider:', translationProvider);
       throw new Error(`${translationProvider} API key not configured or inactive`);
     }
-    
+
     console.log('✅ API key found for provider:', translationProvider);
 
     const results = [];
 
     for (const languageCode of targetLanguages) {
       console.log(`\n🌍 Processing language: ${languageCode}`);
-      
+
       try {
         // Ensure languageCode is available in the entire scope
         const currentLanguageCode = languageCode;
         console.log(`🏷️ Current language being processed: ${currentLanguageCode}`);
-        
+
         // Check if translation already exists
         console.log(`🔍 Checking for existing translation - postId: ${postId}, languageCode: ${currentLanguageCode}`);
         const { data: existing, error: checkError } = await supabase
@@ -105,8 +120,8 @@ Deno.serve(async (req: Request) => {
           .eq('language_code', currentLanguageCode)
           .maybeSingle();
 
-        console.log('📊 Existence check result:', { 
-          existing, 
+        console.log('📊 Existence check result:', {
+          existing,
           error: checkError,
           hasExisting: !!existing,
           existingId: existing?.id,
@@ -118,11 +133,11 @@ Deno.serve(async (req: Request) => {
         if (existing) {
           if (existing.translation_status === 'completed') {
             console.log(`⏭️ Completed translation already exists for ${currentLanguageCode}, skipping`);
-            results.push({ 
-              languageCode: currentLanguageCode, 
-              status: 'skipped', 
+            results.push({
+              languageCode: currentLanguageCode,
+              status: 'skipped',
               reason: 'Translation already completed',
-              translationId: existing.id 
+              translationId: existing.id
             });
             continue;
           } else if (existing.translation_status === 'pending') {
@@ -132,7 +147,7 @@ Deno.serve(async (req: Request) => {
               .from('post_translations')
               .delete()
               .eq('id', existing.id);
-            
+
             if (deleteError) {
               console.error('❌ Error deleting pending translation:', deleteError);
               throw new Error(`Failed to clean up pending translation: ${deleteError.message}`);
@@ -145,7 +160,7 @@ Deno.serve(async (req: Request) => {
               .from('post_translations')
               .delete()
               .eq('id', existing.id);
-            
+
             if (deleteError) {
               console.error('❌ Error deleting existing translation:', deleteError);
               throw new Error(`Failed to clean up existing translation: ${deleteError.message}`);
@@ -155,20 +170,20 @@ Deno.serve(async (req: Request) => {
         }
 
         console.log(`🎯 No existing translation found for ${currentLanguageCode}, proceeding with AI translation`);
-        
+
         // Double-check by querying all translations for this post
         const { data: allPostTranslations } = await supabase
           .from('post_translations')
           .select('language_code, translation_status')
           .eq('post_id', postId);
-        
+
         console.log('🗂️ All translations for this post:', allPostTranslations);
-        
+
         // Validate we have necessary data
         if (!post.title || !post.content) {
-          console.error('❌ Post missing required content:', { 
-            hasTitle: !!post.title, 
-            hasContent: !!post.content 
+          console.error('❌ Post missing required content:', {
+            hasTitle: !!post.title,
+            hasContent: !!post.content
           });
           throw new Error('Post missing required title or content');
         }
@@ -186,9 +201,10 @@ Deno.serve(async (req: Request) => {
           currentLanguageCode,
           translationProvider,
           apiKey,
+          selectedModel,
           localizationNotes || post.localization_notes
         );
-        
+
         console.log('✅ AI translation completed for', currentLanguageCode);
         console.log('📝 Translated title:', translatedContent.title?.substring(0, 50) + '...');
         console.log('📊 Translation data received:', {
@@ -202,7 +218,7 @@ Deno.serve(async (req: Request) => {
         console.log('🔍 Validating translation quality...');
         const validationResult = validateTranslationQuality(translatedContent, currentLanguageCode);
         console.log('📊 Validation result:', validationResult);
-        
+
         console.log('💾 Creating database entry for completed translation...');
         // Only create database entry after successful translation
         const { data: translationEntry, error: insertError } = await supabase
@@ -228,12 +244,12 @@ Deno.serve(async (req: Request) => {
           console.error('❌ Error creating translation:', insertError);
           throw new Error(insertError.message);
         }
-        
+
         console.log('✅ Translation created successfully');
 
-        results.push({ 
-          languageCode: currentLanguageCode, 
-          status: 'completed', 
+        results.push({
+          languageCode: currentLanguageCode,
+          status: 'completed',
           translationId: translationEntry.id,
           qualityScore: validationResult.score,
           warnings: validationResult.warnings
@@ -246,16 +262,16 @@ Deno.serve(async (req: Request) => {
           stack: error instanceof Error ? error.stack : undefined
         });
         // Don't create database entry for failed translations
-        results.push({ 
-          languageCode: errorLanguageCode, 
-          status: 'error', 
+        results.push({
+          languageCode: errorLanguageCode,
+          status: 'error',
           error: error instanceof Error ? error.message : 'Unknown error'
         });
       }
     }
 
     console.log('🎉 Translation process completed. Results:', results);
-    
+
     return new Response(
       JSON.stringify({ success: true, results }),
       { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
@@ -267,14 +283,14 @@ Deno.serve(async (req: Request) => {
       stack: error instanceof Error ? error.stack : undefined
     });
     return new Response(
-      JSON.stringify({ 
-        success: false, 
+      JSON.stringify({
+        success: false,
         error: error instanceof Error ? error.message : 'Unknown error',
         details: error instanceof Error ? error.stack : undefined
       }),
-      { 
-        status: 400, 
-        headers: { ...corsHeaders, 'Content-Type': 'application/json' } 
+      {
+        status: 400,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       }
     );
   }
@@ -282,43 +298,44 @@ Deno.serve(async (req: Request) => {
 
 async function translateWithEnhancedAI(
   content: any,
-  targetLanguage: string, 
+  targetLanguage: string,
   provider: 'claude' | 'openai',
   apiKey: string,
+  model: string,
   localizationNotes?: string
 ) {
   console.log(`🤖 Starting AI translation for ${targetLanguage} using ${provider}`);
-  console.log('🔑 API key status:', { 
-    hasApiKey: !!apiKey, 
+  console.log('🔑 API key status:', {
+    hasApiKey: !!apiKey,
     keyLength: apiKey?.length || 0,
-    provider 
+    provider
   });
-  
+
   const baseLanguage = targetLanguage.split('-')[0];
   const country = targetLanguage.split('-')[1];
-  
+
   const langDetails = getLanguageDetails(baseLanguage);
   const culturalGuidelines = getCulturalGuidelines(baseLanguage);
   const contentType = analyzeContentType(content.content);
-  
+
   console.log('📊 Translation context:', { baseLanguage, country, contentType });
-  
+
   const prompt = buildEnhancedPrompt(
-    content, 
-    langDetails, 
-    culturalGuidelines, 
+    content,
+    langDetails,
+    culturalGuidelines,
     contentType,
     localizationNotes
   );
-  
+
   console.log('📝 Prompt built, length:', prompt.length, 'characters');
 
   if (provider === 'claude') {
     console.log('🚀 Calling Claude API...');
     console.log('🔗 Claude API URL: https://api.anthropic.com/v1/messages');
-    
+
     const requestBody = {
-      model: 'claude-3-haiku-20240307',
+      model: model,
       max_tokens: 4096,
       temperature: 0.2,
       messages: [{ role: 'user', content: prompt }]
@@ -329,7 +346,7 @@ async function translateWithEnhancedAI(
       temperature: requestBody.temperature,
       promptLength: prompt.length
     });
-    
+
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -341,18 +358,18 @@ async function translateWithEnhancedAI(
     });
 
     console.log('📡 Claude API response status:', response.status, response.statusText);
-    
+
     if (!response.ok) {
       const errorBody = await response.text();
       console.error('❌ Claude API error:', response.status, errorBody);
       throw new Error(`Claude API error ${response.status}: ${errorBody}`);
     }
-    
+
     console.log('✅ Claude API response received');
 
     const data = await response.json();
     console.log('📤 Claude response structure:', { hasContent: !!data.content, contentLength: data.content?.length });
-    
+
     // Log token usage and cost analysis
     if (data.usage) {
       console.log('📊 TOKEN USAGE:', {
@@ -360,12 +377,12 @@ async function translateWithEnhancedAI(
         outputTokens: data.usage.output_tokens,
         totalTokens: data.usage.input_tokens + data.usage.output_tokens
       });
-      
+
       // Claude pricing: $15/1M input tokens, $75/1M output tokens
       const inputCost = (data.usage.input_tokens / 1000000) * 15;
       const outputCost = (data.usage.output_tokens / 1000000) * 75;
       const totalCost = inputCost + outputCost;
-      
+
       console.log('💰 COST ANALYSIS:', {
         inputCost: `$${inputCost.toFixed(4)}`,
         outputCost: `$${outputCost.toFixed(4)}`,
@@ -375,19 +392,19 @@ async function translateWithEnhancedAI(
         costPerCharacter: `$${(totalCost / (data.content?.[0]?.text?.length || 1)).toFixed(6)}`
       });
     }
-    
+
     if (!data.content || !data.content[0]) {
       console.error('❌ Invalid Claude response structure:', data);
       throw new Error('Invalid Claude API response - no content returned');
     }
-    
+
     const rawResponse = data.content[0].text;
     console.log('📋 Raw Claude response preview:', rawResponse?.substring(0, 500) + '...');
     console.log('🔍 Full Raw Claude response for debugging:', rawResponse);
-    
+
     // Initialize jsonContent at function scope to ensure it's accessible in all blocks
     let jsonContent = '';
-    
+
     console.log('📊 Claude response stats:', {
       totalLength: rawResponse?.length || 0,
       containsTruncationText: rawResponse?.includes('[content continues') || rawResponse?.includes('[resten af') || rawResponse?.includes('[due to length'),
@@ -400,29 +417,29 @@ async function translateWithEnhancedAI(
         closing: (rawResponse?.match(/\}/g) || []).length
       }
     });
-    
+
     // Check for truncation indicators
-    if (rawResponse?.includes('[content continues') || 
-        rawResponse?.includes('[resten af') || 
-        rawResponse?.includes('[due to length') ||
-        rawResponse?.includes('truncated') ||
-        rawResponse?.includes('shortened')) {
+    if (rawResponse?.includes('[content continues') ||
+      rawResponse?.includes('[resten af') ||
+      rawResponse?.includes('[due to length') ||
+      rawResponse?.includes('truncated') ||
+      rawResponse?.includes('shortened')) {
       console.warn('⚠️ Truncation detected in Claude response');
       throw new Error('Translation was truncated by AI model - please try with shorter content or contact support');
     }
-    
+
     try {
       console.log('🔄 Parsing Claude response as JSON...');
-      
+
       // Start with the raw response
       jsonContent = rawResponse.trim();
-      
+
       // Enhanced JSON extraction - try multiple patterns
       console.log('🔍 Attempting to extract JSON from Claude response...');
-      
+
       // Try multiple extraction patterns in order
       let extractionSuccess = false;
-      
+
       // Pattern 1: JSON in code blocks (```json ... ```)
       let jsonMatch = rawResponse.match(/```json\s*(\{[\s\S]*?\})\s*```/s);
       if (jsonMatch) {
@@ -430,7 +447,7 @@ async function translateWithEnhancedAI(
         extractionSuccess = true;
         console.log('🔍 Pattern 1 - JSON code block match successful');
       }
-      
+
       // Pattern 2: JSON in any code blocks (``` ... ```)
       if (!extractionSuccess) {
         jsonMatch = rawResponse.match(/```\s*(\{[\s\S]*?\})\s*```/s);
@@ -440,7 +457,7 @@ async function translateWithEnhancedAI(
           console.log('🔍 Pattern 2 - Generic code block match successful');
         }
       }
-      
+
       // Pattern 3: Look for JSON object with possible prefix text
       if (!extractionSuccess) {
         const jsonObjectMatch = rawResponse.match(/(?:Here (?:is|are)|The translation (?:is|are)?:?\s*)?(\{[\s\S]*?\})(?:\s*$|\s*Here)/s);
@@ -450,20 +467,20 @@ async function translateWithEnhancedAI(
           console.log('🔍 Pattern 3 - Found JSON with prefix text');
         }
       }
-      
+
       // Pattern 4: Find the largest JSON object in the response
       if (!extractionSuccess) {
         const jsonObjects: string[] = [];
         let match;
         const regex = /\{(?:[^{}]|\{[^{}]*\})*\}/g;
-        
+
         while ((match = regex.exec(rawResponse)) !== null) {
           jsonObjects.push(match[0]);
         }
-        
+
         if (jsonObjects.length > 0) {
           // Pick the largest JSON object (most likely to be the complete translation)
-          const largestJson = jsonObjects.reduce((largest, current) => 
+          const largestJson = jsonObjects.reduce((largest, current) =>
             current.length > largest.length ? current : largest
           );
           jsonContent = largestJson;
@@ -471,7 +488,7 @@ async function translateWithEnhancedAI(
           console.log('🔍 Pattern 4 - Found JSON object, length:', largestJson.length);
         }
       }
-      
+
       // Pattern 5: Extract by finding outermost braces
       if (!extractionSuccess) {
         const firstBrace = rawResponse.indexOf('{');
@@ -482,17 +499,17 @@ async function translateWithEnhancedAI(
           console.log('🔍 Pattern 5 - Extracted JSON by brace matching, length:', jsonContent.length);
         }
       }
-      
+
       // If no pattern worked, log the issue
       if (!extractionSuccess) {
         console.error('❌ No JSON extraction pattern worked for language:', targetLanguage);
         console.error('🔍 Raw response that failed all patterns:', rawResponse.substring(0, 1000));
         throw new Error(`No valid JSON found in Claude response for ${targetLanguage}`);
       }
-      
+
       console.log('✅ JSON extraction successful via pattern matching');
       console.log('🧹 Extracted JSON content (first 300 chars):', jsonContent ? jsonContent.substring(0, 300) : 'EMPTY');
-      
+
       // Clean up common JSON issues
       jsonContent = jsonContent
         .trim()
@@ -505,7 +522,7 @@ async function translateWithEnhancedAI(
         .replace(/\\n/g, '\n') // Convert literal \n to actual newlines
         .replace(/\\"/g, '"') // Unescape quotes
         .replace(/\\\\/g, '\\'); // Fix double escaping
-      
+
       console.log('🧹 Cleaned JSON content (first 500 chars):', jsonContent.substring(0, 500));
       console.log('📊 JSON content length after cleaning:', jsonContent.length);
       console.log('📊 Final JSON stats:', {
@@ -517,7 +534,7 @@ async function translateWithEnhancedAI(
         hasContent: jsonContent.includes('"content"'),
         hasExcerpt: jsonContent.includes('"excerpt"')
       });
-      
+
       // Validate JSON structure before parsing
       if (!jsonContent.startsWith('{') || !jsonContent.endsWith('}')) {
         console.error('❌ Invalid JSON structure - does not start/end with braces');
@@ -526,7 +543,7 @@ async function translateWithEnhancedAI(
         console.error('🔍 Raw response that failed:', rawResponse);
         throw new Error('Invalid JSON structure in Claude response');
       }
-      
+
       // Additional validation - check for balanced braces
       const openBraces = (jsonContent.match(/\{/g) || []).length;
       const closeBraces = (jsonContent.match(/\}/g) || []).length;
@@ -535,7 +552,7 @@ async function translateWithEnhancedAI(
         console.error('🔍 Problematic JSON content:', jsonContent);
         throw new Error(`Unbalanced JSON braces - open: ${openBraces}, close: ${closeBraces}`);
       }
-      
+
       // Try to fix common JSON issues before parsing
       try {
         console.log('🔄 Attempting to parse cleaned JSON...');
@@ -554,11 +571,11 @@ async function translateWithEnhancedAI(
         console.warn(`⚠️ JSON parse failed for ${targetLanguage}, trying field extraction...`);
         console.log('🔧 Parse error was:', firstParseError instanceof Error ? firstParseError.message : String(firstParseError));
         console.log('🔍 Problematic JSON:', jsonContent.substring(0, 500));
-        
+
         // Fallback: Extract each field individually using regex
         try {
           console.log(`🔧 Attempting field-by-field extraction for ${targetLanguage}...`);
-          
+
           // More robust field extraction patterns
           const titleMatch = jsonContent.match(/"title"\s*:\s*"((?:[^"\\]|\\.)*)"/s);
           const excerptMatch = jsonContent.match(/"excerpt"\s*:\s*"((?:[^"\\]|\\.)*)"/s);
@@ -566,7 +583,7 @@ async function translateWithEnhancedAI(
           const metaDescMatch = jsonContent.match(/"meta_description"\s*:\s*"((?:[^"\\]|\\.)*)"/s);
           const metaKeywordsMatch = jsonContent.match(/"meta_keywords"\s*:\s*"((?:[^"\\]|\\.)*)"/s);
           const culturalAdaptationsMatch = jsonContent.match(/"cultural_adaptations"\s*:\s*"((?:[^"\\]|\\.)*)"/s);
-          
+
           // For content, we need to be more careful as it can contain nested quotes and HTML
           let contentValue = '';
           const contentMatch = jsonContent.match(/"content"\s*:\s*"((?:[^"\\]|\\.)*)"/s);
@@ -580,28 +597,28 @@ async function translateWithEnhancedAI(
               let endIndex = startIndex;
               let braceCount = 0;
               let inString = true;
-              
+
               for (let i = startIndex; i < jsonContent.length; i++) {
                 const char = jsonContent[i];
                 const prevChar = jsonContent[i - 1];
-                
+
                 if (char === '"' && prevChar !== '\\') {
                   if (inString && braceCount === 0) {
                     endIndex = i;
                     break;
                   }
                 }
-                
+
                 if (char === '{') braceCount++;
                 if (char === '}') braceCount--;
               }
-              
+
               if (endIndex > startIndex) {
                 contentValue = jsonContent.substring(startIndex, endIndex);
               }
             }
           }
-          
+
           console.log('🔍 Field extraction results:', {
             hasTitle: !!titleMatch,
             hasContent: !!contentValue,
@@ -610,7 +627,7 @@ async function translateWithEnhancedAI(
             contentLength: contentValue.length,
             excerptLength: excerptMatch?.[1]?.length || 0
           });
-          
+
           if (titleMatch && contentMatch && excerptMatch) {
             console.log('✅ Field extraction successful, reconstructing object...');
             const reconstructedObject = {
@@ -622,7 +639,7 @@ async function translateWithEnhancedAI(
               meta_keywords: metaKeywordsMatch?.[1]?.replace(/\\"/g, '"').replace(/\\n/g, '\n') || '',
               cultural_adaptations: culturalAdaptationsMatch?.[1]?.replace(/\\"/g, '"').replace(/\\n/g, '\n') || ''
             };
-            
+
             console.log('✅ Successfully reconstructed JSON object for', targetLanguage);
             console.log('📊 Reconstructed content structure:', {
               hasTitle: !!reconstructedObject.title,
@@ -646,13 +663,13 @@ async function translateWithEnhancedAI(
           throw reconstructError;
         }
       }
-      
+
     } catch (parseError) {
       console.error('❌ Failed to parse Claude response:', parseError);
       console.error('🔍 Raw response that caused parsing error:', rawResponse);
       console.error('🔍 Cleaned content that failed to parse:', jsonContent?.substring(0, 1000));
       console.error('🔍 Parse error details:', parseError instanceof Error ? parseError.message : String(parseError));
-      
+
       // Try one last fallback - create a minimal valid response
       console.log('🚨 Attempting emergency fallback translation...');
       const langName = langDetails.name || targetLanguage;
@@ -665,14 +682,14 @@ async function translateWithEnhancedAI(
         meta_keywords: `${langName} translation, EU compliance`,
         cultural_adaptations: `Emergency fallback translation for ${langName} - requires manual review and editing`
       };
-      
-        console.log('🆘 Using emergency fallback translation for', targetLanguage);
-        return enhanceTranslationOutput(fallbackTranslation, langDetails, content);
+
+      console.log('🆘 Using emergency fallback translation for', targetLanguage);
+      return enhanceTranslationOutput(fallbackTranslation, langDetails, content);
     }
   } else {
     console.log('🚀 Calling OpenAI API...');
     console.log('🔗 OpenAI API URL: https://api.openai.com/v1/chat/completions');
-    
+
     const requestBody = {
       model: 'gpt-4o-mini',
       messages: [{ role: 'user', content: prompt }],
@@ -687,7 +704,7 @@ async function translateWithEnhancedAI(
       temperature: requestBody.temperature,
       promptLength: prompt.length
     });
-    
+
     const response = await fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -698,18 +715,18 @@ async function translateWithEnhancedAI(
     });
 
     console.log('📡 OpenAI API response status:', response.status, response.statusText);
-    
+
     if (!response.ok) {
       const errorBody = await response.text();
       console.error('❌ OpenAI API error:', response.status, errorBody);
       throw new Error(`OpenAI API error ${response.status}: ${errorBody}`);
     }
-    
+
     console.log('✅ OpenAI API response received');
 
     const data = await response.json();
     console.log('📤 OpenAI response structure:', { hasChoices: !!data.choices, choicesLength: data.choices?.length });
-    
+
     // Log token usage and cost analysis
     if (data.usage) {
       console.log('📊 TOKEN USAGE:', {
@@ -717,12 +734,12 @@ async function translateWithEnhancedAI(
         outputTokens: data.usage.completion_tokens,
         totalTokens: data.usage.total_tokens
       });
-      
+
       // GPT-4o-mini pricing: $0.15/1M input tokens, $0.60/1M output tokens
       const inputCost = (data.usage.prompt_tokens / 1000000) * 0.15;
       const outputCost = (data.usage.completion_tokens / 1000000) * 0.60;
       const totalCost = inputCost + outputCost;
-      
+
       console.log('💰 COST ANALYSIS:', {
         inputCost: `$${inputCost.toFixed(4)}`,
         outputCost: `$${outputCost.toFixed(4)}`,
@@ -732,22 +749,22 @@ async function translateWithEnhancedAI(
         costPerCharacter: `$${(totalCost / (data.choices[0].message.content?.length || 1)).toFixed(6)}`
       });
     }
-    
+
     if (!data.choices || !data.choices[0]) {
       console.error('❌ Invalid OpenAI response structure:', data);
       throw new Error('Invalid OpenAI API response - no choices returned');
     }
-    
+
     const rawResponse = data.choices[0].message.content;
     console.log('📋 Raw OpenAI response preview:', rawResponse?.substring(0, 500) + '...');
-    
+
     // Clean the response to fix common JSON issues
     let cleanedResponse = rawResponse;
-    
+
     try {
       // Remove any markdown code blocks
       cleanedResponse = cleanedResponse.replace(/```json\s*/g, '').replace(/```\s*$/g, '');
-      
+
       // Fix common JSON escaping issues
       cleanedResponse = cleanedResponse
         .replace(/\\n/g, '\\\\n') // Properly escape newlines
@@ -756,22 +773,22 @@ async function translateWithEnhancedAI(
         .replace(/\r/g, '') // Remove carriage returns
         .replace(/\t/g, '\\t') // Escape tabs
         .trim();
-      
+
       // Find the JSON object boundaries
       const firstBrace = cleanedResponse.indexOf('{');
       const lastBrace = cleanedResponse.lastIndexOf('}');
-      
+
       if (firstBrace !== -1 && lastBrace !== -1 && lastBrace > firstBrace) {
         cleanedResponse = cleanedResponse.substring(firstBrace, lastBrace + 1);
       }
-      
+
       console.log('🧹 Cleaned OpenAI response preview:', cleanedResponse.substring(0, 500) + '...');
-      
+
     } catch (cleanError) {
       console.warn('⚠️ Error cleaning response, using original:', cleanError);
       cleanedResponse = rawResponse;
     }
-    
+
     try {
       console.log('🔄 Parsing OpenAI response as JSON...');
       const parsedContent = JSON.parse(cleanedResponse);
@@ -785,17 +802,17 @@ async function translateWithEnhancedAI(
     } catch (parseError) {
       console.error('❌ Failed to parse OpenAI response:', parseError);
       console.error('🔍 Cleaned response that failed:', cleanedResponse.substring(0, 1000));
-      
+
       // Try field extraction as fallback for Finnish and other problematic languages
       try {
         console.log('🔧 Attempting field extraction fallback for OpenAI...');
-        
+
         const titleMatch = cleanedResponse.match(/"title"\s*:\s*"([^"]+)"/);
         const excerptMatch = cleanedResponse.match(/"excerpt"\s*:\s*"([^"]+)"/);
         const metaTitleMatch = cleanedResponse.match(/"meta_title"\s*:\s*"([^"]+)"/);
         const metaDescMatch = cleanedResponse.match(/"meta_description"\s*:\s*"([^"]+)"/);
         const metaKeywordsMatch = cleanedResponse.match(/"meta_keywords"\s*:\s*"([^"]+)"/);
-        
+
         // For content, extract everything between "content": " and the next field
         let contentValue = '';
         const contentStartMatch = cleanedResponse.match(/"content"\s*:\s*"/);
@@ -806,7 +823,7 @@ async function translateWithEnhancedAI(
             contentValue = cleanedResponse.substring(startIndex, nextFieldIndex);
           }
         }
-        
+
         if (titleMatch && contentValue && excerptMatch) {
           console.log('✅ Field extraction successful for OpenAI response');
           const reconstructedObject = {
@@ -818,13 +835,13 @@ async function translateWithEnhancedAI(
             meta_keywords: metaKeywordsMatch?.[1] || '',
             cultural_adaptations: `Extracted from problematic JSON response for ${targetLanguage}`
           };
-          
+
           return enhanceTranslationOutput(reconstructedObject, langDetails, content);
         }
       } catch (extractError) {
         console.error('❌ Field extraction also failed:', extractError);
       }
-      
+
       throw new Error(`Failed to parse OpenAI translation response as JSON for ${targetLanguage}`);
     }
   }
@@ -832,103 +849,103 @@ async function translateWithEnhancedAI(
 
 function getLanguageDetails(langCode: string) {
   const details = {
-    'da': { 
-      name: 'Danish', 
-      country: 'Denmark', 
-      regulator: 'Finanstilsynet', 
-      banks: 'Danske Bank, Nykredit, Jyske Bank', 
+    'da': {
+      name: 'Danish',
+      country: 'Denmark',
+      regulator: 'Finanstilsynet',
+      banks: 'Danske Bank, Nykredit, Jyske Bank',
       currency: 'DKK',
       businessCulture: 'direct, egalitarian, consensus-oriented',
       formalityLevel: 'moderate'
     },
-    'sv': { 
-      name: 'Swedish', 
-      country: 'Sweden', 
-      regulator: 'Finansinspektionen (FI)', 
-      banks: 'SEB, Handelsbanken, Swedbank', 
+    'sv': {
+      name: 'Swedish',
+      country: 'Sweden',
+      regulator: 'Finansinspektionen (FI)',
+      banks: 'SEB, Handelsbanken, Swedbank',
       currency: 'SEK',
       businessCulture: 'efficient, democratic, innovation-focused',
       formalityLevel: 'low-moderate'
     },
-    'no': { 
-      name: 'Norwegian', 
-      country: 'Norway', 
-      regulator: 'Finanstilsynet Norge', 
-      banks: 'DNB, Nordea Norge, SpareBank 1', 
+    'no': {
+      name: 'Norwegian',
+      country: 'Norway',
+      regulator: 'Finanstilsynet Norge',
+      banks: 'DNB, Nordea Norge, SpareBank 1',
       currency: 'NOK',
       businessCulture: 'straightforward, egalitarian, environmentally conscious',
       formalityLevel: 'moderate'
     },
-    'fi': { 
-      name: 'Finnish', 
-      country: 'Finland', 
-      regulator: 'FIN-FSA (Finanssivalvonta)', 
-      banks: 'Nordea Finland, OP Group, Danske Bank Finland', 
+    'fi': {
+      name: 'Finnish',
+      country: 'Finland',
+      regulator: 'FIN-FSA (Finanssivalvonta)',
+      banks: 'Nordea Finland, OP Group, Danske Bank Finland',
       currency: 'EUR',
       businessCulture: 'methodical, tech-savvy, reserved but warm',
       formalityLevel: 'moderate-high'
     },
-    'de': { 
-      name: 'German', 
-      country: 'Germany', 
-      regulator: 'BaFin (Bundesanstalt für Finanzdienstleistungsaufsicht)', 
-      banks: 'Deutsche Bank, Commerzbank, DZ Bank', 
+    'de': {
+      name: 'German',
+      country: 'Germany',
+      regulator: 'BaFin (Bundesanstalt für Finanzdienstleistungsaufsicht)',
+      banks: 'Deutsche Bank, Commerzbank, DZ Bank',
       currency: 'EUR',
       businessCulture: 'precise, thorough, hierarchical, quality-focused',
       formalityLevel: 'high'
     },
-    'fr': { 
-      name: 'French', 
-      country: 'France', 
-      regulator: 'ACPR (Autorité de Contrôle Prudentiel et de Résolution)', 
-      banks: 'BNP Paribas, Crédit Agricole, Société Générale', 
+    'fr': {
+      name: 'French',
+      country: 'France',
+      regulator: 'ACPR (Autorité de Contrôle Prudentiel et de Résolution)',
+      banks: 'BNP Paribas, Crédit Agricole, Société Générale',
       currency: 'EUR',
       businessCulture: 'sophisticated, relationship-oriented, intellectual',
       formalityLevel: 'high'
     },
-    'es': { 
-      name: 'Spanish', 
-      country: 'Spain', 
-      regulator: 'Banco de España', 
-      banks: 'Banco Santander, BBVA, CaixaBank', 
+    'es': {
+      name: 'Spanish',
+      country: 'Spain',
+      regulator: 'Banco de España',
+      banks: 'Banco Santander, BBVA, CaixaBank',
       currency: 'EUR',
       businessCulture: 'warm, relationship-focused, family-oriented',
       formalityLevel: 'moderate-high'
     },
-    'it': { 
-      name: 'Italian', 
-      country: 'Italy', 
-      regulator: 'Banca d\'Italia', 
-      banks: 'UniCredit, Intesa Sanpaolo, Banco BPM', 
+    'it': {
+      name: 'Italian',
+      country: 'Italy',
+      regulator: 'Banca d\'Italia',
+      banks: 'UniCredit, Intesa Sanpaolo, Banco BPM',
       currency: 'EUR',
       businessCulture: 'style-conscious, relationship-based, traditional',
       formalityLevel: 'high'
     },
-    'pt': { 
-      name: 'Portuguese', 
-      country: 'Portugal', 
-      regulator: 'Banco de Portugal', 
-      banks: 'Millennium bcp, Caixa Geral de Depósitos, Novo Banco', 
+    'pt': {
+      name: 'Portuguese',
+      country: 'Portugal',
+      regulator: 'Banco de Portugal',
+      banks: 'Millennium bcp, Caixa Geral de Depósitos, Novo Banco',
       currency: 'EUR',
       businessCulture: 'respectful, traditional, community-oriented',
       formalityLevel: 'moderate-high'
     },
-    'nl': { 
-      name: 'Dutch', 
-      country: 'Netherlands', 
-      regulator: 'DNB (De Nederlandsche Bank)', 
-      banks: 'ING Group, ABN AMRO, Rabobank', 
+    'nl': {
+      name: 'Dutch',
+      country: 'Netherlands',
+      regulator: 'DNB (De Nederlandsche Bank)',
+      banks: 'ING Group, ABN AMRO, Rabobank',
       currency: 'EUR',
       businessCulture: 'direct, pragmatic, internationally-minded',
       formalityLevel: 'low-moderate'
     }
   };
-  
-  return details[langCode as keyof typeof details] || { 
-    name: langCode, 
-    country: '', 
-    regulator: '', 
-    banks: '', 
+
+  return details[langCode as keyof typeof details] || {
+    name: langCode,
+    country: '',
+    regulator: '',
+    banks: '',
     currency: 'EUR',
     businessCulture: 'professional',
     formalityLevel: 'moderate'
@@ -1008,7 +1025,7 @@ function getCulturalGuidelines(langCode: string) {
       tonality: 'Straightforward, practical, internationally-minded language'
     }
   };
-  
+
   return guidelines[langCode as keyof typeof guidelines] || {
     communicationStyle: 'Professional and clear',
     preferredExamples: 'Local market leaders',
@@ -1023,18 +1040,18 @@ function analyzeContentType(content: string): 'technical' | 'marketing' | 'educa
   const marketingIndicators = ['benefits', 'solution', 'choose', 'advantage', 'transform'];
   const educationalIndicators = ['guide', 'how to', 'steps', 'tutorial', 'learn', 'understand'];
   const newsIndicators = ['announced', 'update', 'new', 'recently', 'latest'];
-  
+
   const contentLower = content.toLowerCase();
-  
-  const technicalScore = technicalIndicators.reduce((score, indicator) => 
+
+  const technicalScore = technicalIndicators.reduce((score, indicator) =>
     score + (contentLower.includes(indicator) ? 1 : 0), 0);
-  const marketingScore = marketingIndicators.reduce((score, indicator) => 
+  const marketingScore = marketingIndicators.reduce((score, indicator) =>
     score + (contentLower.includes(indicator) ? 1 : 0), 0);
-  const educationalScore = educationalIndicators.reduce((score, indicator) => 
+  const educationalScore = educationalIndicators.reduce((score, indicator) =>
     score + (contentLower.includes(indicator) ? 1 : 0), 0);
-  const newsScore = newsIndicators.reduce((score, indicator) => 
+  const newsScore = newsIndicators.reduce((score, indicator) =>
     score + (contentLower.includes(indicator) ? 1 : 0), 0);
-  
+
   if (technicalScore > marketingScore && technicalScore > educationalScore) return 'technical';
   if (educationalScore > marketingScore && educationalScore > newsScore) return 'educational';
   if (newsScore > marketingScore) return 'news';
@@ -1048,9 +1065,9 @@ function buildEnhancedPrompt(
   contentType: string,
   localizationNotes?: string
 ) {
-  const specificInstructions = localizationNotes ? 
+  const specificInstructions = localizationNotes ?
     `\nNOTES: ${localizationNotes}\n` : '';
-  
+
   // Clean the content to avoid JSON parsing issues
   const cleanContent = content.content
     .replace(/class="[^"]*"/g, '') // Remove class attributes
@@ -1061,12 +1078,29 @@ function buildEnhancedPrompt(
     .replace(/mso-[^;]*;?/g, '') // Remove Microsoft Office formatting
     .replace(/\s+/g, ' ') // Normalize whitespace
     .trim();
-  
-  return `Translate this EU compliance blog post to native ${langDetails.name} for ${langDetails.country}. Use ${culturalGuidelines.communicationStyle} style. Include ${langDetails.regulator} and ${langDetails.banks} as examples. ${specificInstructions}
 
-CRITICAL: Return ONLY valid JSON with properly escaped strings. No markdown, no code blocks, no extra text.
+  return `You are an expert translator for a CMS specializing in EU compliance content.
+Translate the following blog post to native ${langDetails.name} for ${langDetails.country}.
+Use ${culturalGuidelines.communicationStyle} style.
+Include ${langDetails.regulator} and ${langDetails.banks} as examples.
+${specificInstructions}
+
+<source_text>
+Title: ${content.title}
+Excerpt: ${content.excerpt}
+Content: ${cleanContent}
+</source_text>
+
+Use <thinking> tags to plan your translation strategy and cultural adaptations.
+
+CRITICAL: After your thinking process, return the translation as a valid JSON object wrapped in a markdown code block.
 Use simple HTML tags only (h1, h2, h3, p, ul, ol, li, strong, em). Avoid complex formatting.
 
+Example output:
+<thinking>
+...
+</thinking>
+\`\`\`json
 {
   "title": "${langDetails.name} title",
   "content": "Clean ${langDetails.name} HTML content with simple tags only", 
@@ -1076,11 +1110,7 @@ Use simple HTML tags only (h1, h2, h3, p, ul, ol, li, strong, em). Avoid complex
   "meta_keywords": "${langDetails.country} keywords",
   "cultural_adaptations": "Changes made"
 }
-
-CONTENT:
-Title: ${content.title}
-Content: ${cleanContent}
-Excerpt: ${content.excerpt}`;
+\`\`\``;
 }
 
 function getContentTypeInstructions(contentType: string): string {
@@ -1090,7 +1120,7 @@ function getContentTypeInstructions(contentType: string): string {
     'educational': 'Maintain instructional clarity with local learning preferences',
     'news': 'Adapt news style to local media conventions and reader expectations'
   };
-  
+
   return instructions[contentType as keyof typeof instructions] || 'Maintain professional tone and clarity';
 }
 
@@ -1105,17 +1135,17 @@ function enhanceTranslationOutput(parsedContent: any, langDetails: any, original
 function validateTranslationQuality(translation: any, languageCode: string) {
   let score = 100;
   const warnings = [];
-  
+
   if (!translation.title || translation.title.length < 10) {
     warnings.push('Title is too short or empty');
     score -= 25;
   }
-  
+
   if (!translation.content || translation.content.length < 100) {
     warnings.push('Content is too short or empty');
     score -= 30;
   }
-  
+
   return {
     passed: score >= 70,
     score: Math.max(0, score),
