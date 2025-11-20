@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAllPosts } from '../../hooks/useBlogPosts';
 import { supabase } from '../../lib/supabase';
 import TranslationEditor from './TranslationEditor';
 import ManualTranslationCreator from '../blog/ManualTranslationCreator';
 import {
   Globe, CheckCircle, Clock, AlertCircle, FileText, Eye, Edit,
-  Trash2, Zap, RefreshCw, X, PenLine
+  Trash2, Zap, X, PenLine, Settings, AlertTriangle
 } from 'lucide-react';
-
-const LANGUAGES = [
-  { code: 'da', name: 'Danish', flag: '🇩🇰' },
-  { code: 'sv', name: 'Swedish', flag: '🇸🇪' },
-  { code: 'no', name: 'Norwegian', flag: '🇳🇴' },
-  { code: 'fi', name: 'Finnish', flag: '🇫🇮' },
-  { code: 'de', name: 'German', flag: '🇩🇪' },
-  { code: 'fr', name: 'French', flag: '🇫🇷' },
-  { code: 'es', name: 'Spanish', flag: '🇪🇸' },
-  { code: 'it', name: 'Italian', flag: '🇮🇹' },
-  { code: 'pt', name: 'Portuguese', flag: '🇵🇹' },
-  { code: 'nl', name: 'Dutch', flag: '🇳🇱' }
-];
+import { useTranslationManager, LANGUAGES, CLAUDE_MODELS, estimateTokenCount } from '../../hooks/useTranslationManager';
 
 interface TranslationsViewProps {
   quickAction?: string | null;
@@ -27,266 +15,122 @@ interface TranslationsViewProps {
 
 const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
   const { posts, loading: postsLoading } = useAllPosts();
-  const [translations, setTranslations] = useState<any[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [translating, setTranslating] = useState<Set<string>>(new Set());
-  const [updating, setUpdating] = useState<Set<string>>(new Set());
-  const [failedTranslations, setFailedTranslations] = useState<Set<string>>(new Set());
+  const {
+    translations,
+    loading: translationsLoading,
+    translating,
+    updating,
+    failedTranslations,
+    retrying,
+    selectedModel,
+    setSelectedModel,
+    triggerTranslation,
+    toggleTranslationStatus,
+    deleteTranslation,
+    retryTranslation,
+    cancelPendingTranslation,
+    forceStopAllTranslations,
+    fetchTranslations
+  } = useTranslationManager(posts);
+
   const [editingTranslation, setEditingTranslation] = useState<any | null>(null);
   const [showEditor, setShowEditor] = useState(false);
-  const [retrying, setRetrying] = useState<Set<string>>(new Set());
   const [creatingManualTranslation, setCreatingManualTranslation] = useState<{ post: any; language: any } | null>(null);
   const [showManualCreator, setShowManualCreator] = useState(false);
 
   useEffect(() => {
-    fetchTranslations();
-  }, []);
-
-  useEffect(() => {
     if (quickAction === 'manage-translations') {
-      const notification = document.createElement('div');
-      notification.className = 'fixed top-6 right-6 bg-accent-600 text-white p-4 rounded-xl shadow-lg z-50 flex items-center gap-3 max-w-sm';
-      notification.innerHTML = `
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-        </svg>
-        <div>
-          <div className="font-semibold">🌍 Translation Management</div>
-          <div className="text-sm text-accent-100">Manage multilingual content versions</div>
-        </div>
-      `;
-      document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        if (notification.parentNode) {
-          notification.parentNode.removeChild(notification);
-        }
-      }, 5000);
+      showNotification('🌍 Translation Management', 'Manage multilingual content versions', 'accent');
     }
   }, [quickAction]);
 
-  const fetchTranslations = async () => {
-    try {
-      setLoading(true);
-      console.log('🔄 Fetching translations from database...');
-      const { data, error } = await supabase
-        .from('post_translations')
-        .select('*')
-        .order('updated_at', { ascending: false });
+  const showNotification = (title: string, message: string, type: 'success' | 'error' | 'warning' | 'accent' = 'success') => {
+    const notification = document.createElement('div');
+    const colors = {
+      success: 'bg-success-600',
+      error: 'bg-error-600',
+      warning: 'bg-warning-600',
+      accent: 'bg-accent-600'
+    };
 
-      if (error) throw error;
-      console.log('📊 Translations fetched:', data?.length || 0, 'records');
-      setTranslations(data || []);
-    } catch (err) {
-      console.error('❌ Error fetching translations:', err);
-    } finally {
-      setLoading(false);
-    }
+    notification.className = `fixed bottom-6 right-6 ${colors[type]} text-white p-4 rounded-xl shadow-lg z-50 flex items-center gap-3 max-w-md`;
+
+    // Icon based on type
+    let icon = '';
+    if (type === 'success') icon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />';
+    else if (type === 'error') icon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />';
+    else if (type === 'warning') icon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />';
+    else icon = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />';
+
+    notification.innerHTML = `
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        ${icon}
+      </svg>
+      <div>
+        <div class="font-semibold">${title}</div>
+        ${message ? `<div class="text-sm opacity-90">${message}</div>` : ''}
+      </div>
+    `;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+      if (notification.parentNode) {
+        notification.parentNode.removeChild(notification);
+      }
+    }, 5000);
   };
 
-  const triggerTranslation = async (postId: string, languages: string[]) => {
-    console.log('🚀 triggerTranslation called:', { postId, languages });
-    
-    // Create unique keys for each individual language translation
-    const translationKeys = languages.map(lang => `${postId}-${lang}`);
-    console.log('🔑 Translation keys:', translationKeys);
-    
-    // Add all keys to the translating set
-    setTranslating(prev => new Set([...prev, ...translationKeys]));
-    console.log('⏳ Added to translating state, total translating:', translationKeys.length);
-    
+  const handleTriggerTranslation = async (postId: string, languages: string[]) => {
     try {
-      // Get the post data for translation
-      const post = posts.find(p => p.id === postId);
-      if (!post) {
-        console.error('❌ Post not found in local state:', postId);
-        throw new Error('Post not found');
-      }
-      
-      console.log('📄 Post found for translation:', post.title);
-      
-      for (const languageCode of languages) {
-        const currentKey = `${postId}-${languageCode}`;
-        console.log(`\n🌍 Processing translation for ${languageCode}...`);
-        
-        // Check if translation already exists
-        const existingTranslation = translations.find(t => 
-          t.post_id === postId && t.language_code === languageCode
-        );
+      await triggerTranslation(postId, languages);
 
-        if (existingTranslation) {
-          console.log(`⏭️ Translation for ${languageCode} already exists, skipping`);
-          console.log(`Translation for ${languageCode} already exists, skipping`);
-          // Remove from translating set since we're skipping
-          setTranslating(prev => {
-            const newSet = new Set(prev);
-            newSet.delete(currentKey);
-            return newSet;
-          });
-          continue;
-        }
-
-        // Call the translate-post Edge Function
-        console.log('📡 Calling translate-post Edge Function...');
-        const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/translate-post`;
-        console.log('🔗 API URL:', apiUrl);
-        
-        const requestPayload = {
-          postId: postId,
-          targetLanguages: [languageCode],
-          translationProvider: 'openai'
-        };
-        console.log('📦 Request payload:', requestPayload);
-        
-        try {
-          const translationResponse = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/translate-post`, {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(requestPayload)
-          });
-          
-          console.log('📡 Edge Function response status:', translationResponse.status);
-
-          const translationResult = await translationResponse.json();
-          console.log('📋 Edge Function response:', translationResult);
-
-          if (!translationResult.success) {
-            console.error('❌ Translation function returned error:', translationResult.error);
-            throw new Error(translationResult.error || 'Translation failed');
-          }
-
-          console.log('🎉 AI Translation completed successfully:', translationResult);
-          
-          // Remove from translating set and add to failed set if there were errors
-          const langResult = translationResult.results?.find((r: any) => r.languageCode === languageCode);
-          console.log('🔍 Language-specific result:', langResult);
-          
-          if (langResult?.status === 'error') {
-            console.log(`❌ Translation failed for ${languageCode}:`, langResult.error);
-            setFailedTranslations(prev => new Set([...prev, currentKey]));
-          }
-          
-          setTranslating(prev => {
-            const newSet = new Set(prev);
-            newSet.delete(currentKey);
-            return newSet;
-          });
-          
-          console.log('✅ State updated for', languageCode);
-        } catch (aiError) {
-          console.error('❌ AI Translation network/API error:', aiError);
-          
-          // Mark as failed (no database entry)
-          setFailedTranslations(prev => new Set([...prev, currentKey]));
-          
-          setTranslating(prev => {
-            const newSet = new Set(prev);
-            newSet.delete(currentKey);
-            return newSet;
-          });
-        }
-      }
-
-      // Refresh translations
-      console.log('🔄 Refreshing translations from database...');
-      await fetchTranslations();
-      
       const languageNames = languages.map(code => {
         const lang = LANGUAGES.find(l => l.code === code);
         return lang ? lang.name : code;
       }).join(', ');
-      
-      const notification = document.createElement('div');
-      notification.className = 'fixed bottom-6 right-6 bg-success-600 text-white p-4 rounded-xl shadow-lg z-50 flex items-center gap-3';
-      notification.innerHTML = `
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <span className="font-semibold">🤖 Translation completed for: ${languageNames}</span>
-      `;
-      document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        if (notification.parentNode) {
-          notification.parentNode.removeChild(notification);
-        }
-      }, 3000);
-      
+
+      showNotification('Translation Completed', `Successfully translated for: ${languageNames}`, 'success');
     } catch (error) {
-      console.error('Translation error:', error);
-      
-      // Clear all translation keys on error
-      setTranslating(prev => {
-        const newSet = new Set(prev);
-        translationKeys.forEach(key => newSet.delete(key));
-        return newSet;
-      });
-      
-      // Show error notification instead of alert
-      const notification = document.createElement('div');
-      notification.className = 'fixed bottom-6 right-6 bg-error-600 text-white p-4 rounded-xl shadow-lg z-50 flex items-center gap-3 max-w-md';
-      notification.innerHTML = `
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-        </svg>
-        <div>
-          <span className="font-semibold block">❌ Translation Failed</span>
-          <span className="text-sm text-error-100">${error instanceof Error ? error.message : 'Unknown error'}</span>
-        </div>
-      `;
-      document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        if (notification.parentNode) {
-          notification.parentNode.removeChild(notification);
-        }
-      }, 5000);
+      showNotification('Translation Failed', error instanceof Error ? error.message : 'Unknown error', 'error');
     }
   };
 
-  const toggleTranslationStatus = async (translationId: string, currentStatus: boolean) => {
-    const updateKey = `toggle-${translationId}`;
-    setUpdating(prev => new Set([...prev, updateKey]));
-    
+  const handleRetryTranslation = async (postId: string, languageCode: string) => {
     try {
-      const { error } = await supabase
-        .from('post_translations')
-        .update({ published: !currentStatus })
-        .eq('id', translationId);
-
-      if (error) throw error;
-
-      // Refresh translations
-      await fetchTranslations();
-      
-      const notification = document.createElement('div');
-      notification.className = 'fixed bottom-6 right-6 bg-success-600 text-white p-4 rounded-xl shadow-lg z-50 flex items-center gap-3';
-      notification.innerHTML = `
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <span className="font-semibold">🌍 Translation ${!currentStatus ? 'published' : 'unpublished'} successfully!</span>
-      `;
-      document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        if (notification.parentNode) {
-          notification.parentNode.removeChild(notification);
-        }
-      }, 3000);
-      
+      await retryTranslation(postId, languageCode);
+      // Success notification will be handled by the triggerTranslation call inside retryTranslation if we awaited it, 
+      // but retryTranslation in hook calls triggerTranslation which throws on error.
+      // However, triggerTranslation in hook doesn't return the result in a way that we can distinguish partial success easily without checking state.
+      // But since we await it, if it doesn't throw, it's mostly success.
     } catch (error) {
-      console.error('Error updating translation status:', error);
-      alert(`Failed to update translation status: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    } finally {
-      setUpdating(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(updateKey);
-        return newSet;
-      });
+      showNotification('Retry Failed', error instanceof Error ? error.message : 'Unknown error', 'error');
+    }
+  };
+
+  const handleToggleStatus = async (id: string, currentStatus: boolean) => {
+    try {
+      await toggleTranslationStatus(id, currentStatus);
+      showNotification('Status Updated', `Translation ${!currentStatus ? 'published' : 'unpublished'} successfully!`, 'success');
+    } catch (error) {
+      showNotification('Update Failed', error instanceof Error ? error.message : 'Unknown error', 'error');
+    }
+  };
+
+  const handleDelete = async (id: string, languageName: string) => {
+    if (confirm(`Are you sure you want to delete the ${languageName} translation? This action cannot be undone.`)) {
+      try {
+        await deleteTranslation(id);
+        showNotification('Deleted', `${languageName} translation deleted`, 'error'); // Red color for delete
+      } catch (error) {
+        showNotification('Delete Failed', error instanceof Error ? error.message : 'Unknown error', 'error');
+      }
+    }
+  };
+
+  const handleCancel = (postId: string, languageCode: string, languageName: string) => {
+    if (confirm(`Cancel the pending ${languageName} translation?`)) {
+      cancelPendingTranslation(postId, languageCode);
+      showNotification('Canceled', `${languageName} translation canceled`, 'warning');
     }
   };
 
@@ -327,22 +171,7 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
       await fetchTranslations();
       setShowManualCreator(false);
       setCreatingManualTranslation(null);
-
-      const notification = document.createElement('div');
-      notification.className = 'fixed bottom-6 right-6 bg-success-600 text-white p-4 rounded-xl shadow-lg z-50 flex items-center gap-3';
-      notification.innerHTML = `
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <span class="font-semibold">Manual translation created successfully!</span>
-      `;
-      document.body.appendChild(notification);
-
-      setTimeout(() => {
-        if (notification.parentNode) {
-          notification.parentNode.removeChild(notification);
-        }
-      }, 3000);
+      showNotification('Success', 'Manual translation created successfully!', 'success');
     } catch (error) {
       console.error('Error saving manual translation:', error);
       alert(`Error creating translation: ${error instanceof Error ? error.message : 'Unknown error'}`);
@@ -366,169 +195,27 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
 
       if (error) throw error;
 
-      // Refresh translations
       await fetchTranslations();
       setShowEditor(false);
       setEditingTranslation(null);
-
-      // Show success notification
-      const notification = document.createElement('div');
-      notification.className = 'fixed bottom-6 right-6 bg-success-600 text-white p-4 rounded-xl shadow-lg z-50 flex items-center gap-3';
-      notification.innerHTML = `
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <span class="font-semibold">🌍 Translation updated successfully!</span>
-      `;
-      document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        if (notification.parentNode) {
-          notification.parentNode.removeChild(notification);
-        }
-      }, 3000);
+      showNotification('Updated', 'Translation updated successfully!', 'success');
     } catch (error) {
       alert(`Error updating translation: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   };
 
-  const deleteTranslation = async (translationId: string, languageName: string) => {
-    if (confirm(`Are you sure you want to delete the ${languageName} translation? This action cannot be undone.`)) {
-      try {
-        const { error } = await supabase
-          .from('post_translations')
-          .delete()
-          .eq('id', translationId);
-
-        if (error) throw error;
-
-        // Refresh translations
-        await fetchTranslations();
-
-        // Show success notification
-        const notification = document.createElement('div');
-        notification.className = 'fixed bottom-6 right-6 bg-error-600 text-white p-4 rounded-xl shadow-lg z-50 flex items-center gap-3';
-        notification.innerHTML = `
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-          </svg>
-          <span className="font-semibold">🗑️ ${languageName} translation deleted</span>
-        `;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-          if (notification.parentNode) {
-            notification.parentNode.removeChild(notification);
-          }
-        }, 3000);
-      } catch (error) {
-        alert(`Error deleting translation: ${error instanceof Error ? error.message : 'Unknown error'}`);
-      }
-    }
-  };
-
-  const retryTranslation = async (postId: string, languageCode: string) => {
-    const retryKey = `retry-${postId}-${languageCode}`;
-    setRetrying(prev => new Set([...prev, retryKey]));
-    
-    try {
-      // Remove from failed set (this allows retry)
-      setFailedTranslations(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(`${postId}-${languageCode}`);
-        return newSet;
-      });
-
-      // Now trigger a new translation
-      await triggerTranslation(postId, [languageCode]);
-
-    } catch (error) {
-      console.error('Error retrying translation:', error);
-      alert(`Failed to retry translation: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    } finally {
-      setRetrying(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(retryKey);
-        return newSet;
-      });
-    }
-  };
-
-  const cancelPendingTranslation = (postId: string, languageCode: string, languageName: string) => {
-    if (confirm(`Cancel the pending ${languageName} translation?`)) {
-      // Simply remove from translating state and mark as failed locally
-      const currentKey = `${postId}-${languageCode}`;
-      
-      setTranslating(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(currentKey);
-        return newSet;
-      });
-      
-      setFailedTranslations(prev => new Set([...prev, currentKey]));
-      
-      // Show notification
-      const notification = document.createElement('div');
-      notification.className = 'fixed bottom-6 right-6 bg-warning-600 text-white p-4 rounded-xl shadow-lg z-50 flex items-center gap-3';
-      notification.innerHTML = `
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-        </svg>
-        <span className="font-semibold">⚠️ ${languageName} translation canceled</span>
-      `;
-      document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        if (notification.parentNode) {
-          notification.parentNode.removeChild(notification);
-        }
-      }, 3000);
-    }
-  };
-
-  const forceStopAllTranslations = () => {
-    console.log('🛑 FORCE STOPPING ALL TRANSLATIONS');
-    
-    // Move all currently translating items to failed state
-    const currentlyTranslating = Array.from(translating);
-    
-    setTranslating(new Set());
-    setUpdating(new Set());
-    
-    // Mark all currently translating items as failed
-    setFailedTranslations(prev => new Set([...prev, ...currentlyTranslating]));
-    
-    // Show immediate feedback
-    const notification = document.createElement('div');
-    notification.className = 'fixed top-6 right-6 bg-error-600 text-white p-4 rounded-xl shadow-lg z-50 flex items-center gap-3';
-    notification.innerHTML = `
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-      </svg>
-      <span className="font-semibold">🛑 ALL TRANSLATIONS FORCE STOPPED</span>
-    `;
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-      if (notification.parentNode) {
-        notification.parentNode.removeChild(notification);
-      }
-    }, 4000);
-    
-  };
   const getTranslationStatus = (postId: string, languageCode: string) => {
     const dbTranslation = translations.find(t => t.post_id === postId && t.language_code === languageCode);
     if (dbTranslation) return dbTranslation;
-    
-    // Check for failed translations in local state
+
     if (failedTranslations.has(`${postId}-${languageCode}`)) {
-      return { 
-        post_id: postId, 
-        language_code: languageCode, 
-        translation_status: 'failed' 
+      return {
+        post_id: postId,
+        language_code: languageCode,
+        translation_status: 'failed'
       };
     }
-    
+
     return null;
   };
 
@@ -536,14 +223,13 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
     const existingLanguages = translations
       .filter(t => t.post_id === postId)
       .map(t => t.language_code);
-    
-    // Also exclude languages that failed (in local state)
+
     const failedLanguages = Array.from(failedTranslations)
       .filter(key => key.startsWith(`${postId}-`))
       .map(key => key.split('-')[1]);
-    
+
     const allExistingLanguages = [...existingLanguages, ...failedLanguages];
-    
+
     return LANGUAGES
       .filter(lang => !allExistingLanguages.includes(lang.code))
       .map(lang => lang.code);
@@ -583,7 +269,7 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
     );
   }
 
-  if (postsLoading || loading) {
+  if (postsLoading || translationsLoading) {
     return (
       <div className="p-6 lg:p-8">
         <div className="animate-pulse space-y-6">
@@ -600,29 +286,76 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
 
   return (
     <div className="p-6 lg:p-8 bg-gradient-to-br from-white via-neutral-50/30 to-white min-h-screen">
-      <div className="flex items-center gap-3 mb-12">
+      <div className="flex items-center gap-3 mb-8">
         <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-2xl flex items-center justify-center shadow-lg">
           <Globe className="w-6 h-6 text-white" />
         </div>
         <div>
           <h1 className="text-3xl font-bold bg-gradient-to-r from-neutral-900 via-primary-700 to-neutral-900 bg-clip-text text-transparent">Multi-language Management</h1>
-          <p className="text-neutral-600">Manage AI-powered translations for your blog content across 11 languages</p>
+          <p className="text-neutral-600">Manage AI-powered translations for your blog content across {LANGUAGES.length} languages</p>
         </div>
-        
-        {/* Emergency Stop Button - Always visible when there are any running/pending translations */}
+
+        {/* Emergency Stop Button */}
         {(translating.size > 0 || translations.some(t => t.translation_status === 'pending')) && (
           <div className="ml-auto">
             <button
-              onClick={forceStopAllTranslations}
+              onClick={() => {
+                forceStopAllTranslations();
+                showNotification('Stopped', 'ALL TRANSLATIONS FORCE STOPPED', 'error');
+              }}
               className="flex items-center gap-2 px-4 py-2 bg-error-600 text-white rounded-xl hover:bg-error-700 shadow-lg hover:scale-105 transition-all duration-300 animate-pulse border border-error-400"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
-              </svg>
-              🛑 FORCE STOP ALL
+              <AlertCircle className="w-4 h-4" />
+              STOP ALL
             </button>
           </div>
         )}
+      </div>
+
+      {/* Model Selection & Settings */}
+      <div className="mb-10 bg-white p-6 rounded-2xl border border-neutral-200/60 shadow-sm">
+        <div className="flex items-center gap-2 mb-4 text-neutral-800 font-semibold">
+          <Settings className="w-5 h-5 text-primary-600" />
+          <h2>Translation Settings</h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-neutral-700 mb-2">AI Model</label>
+            <div className="relative">
+              <select
+                value={selectedModel}
+                onChange={(e) => setSelectedModel(e.target.value)}
+                className="w-full p-3 pl-4 pr-10 bg-neutral-50 border border-neutral-200 rounded-xl appearance-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
+              >
+                {CLAUDE_MODELS.map(model => (
+                  <option key={model.id} value={model.id}>
+                    {model.name} ({model.description})
+                  </option>
+                ))}
+              </select>
+              <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-neutral-500">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
+            </div>
+            <div className="mt-2 flex items-center gap-4 text-xs text-neutral-500">
+              {CLAUDE_MODELS.find(m => m.id === selectedModel) && (
+                <>
+                  <span className="flex items-center gap-1">
+                    <Zap className="w-3 h-3" />
+                    Max Output: {CLAUDE_MODELS.find(m => m.id === selectedModel)?.maxOutput} tokens
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <span className="font-bold">$</span>
+                    Cost: {CLAUDE_MODELS.find(m => m.id === selectedModel)?.cost}
+                  </span>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Overview Stats */}
@@ -662,13 +395,17 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
         {posts.filter(p => p.status === 'published').map((post) => {
           const postTranslations = translations.filter((t: any) => t.post_id === post.id);
           const completedTranslations = postTranslations.filter((t: any) => t.translation_status === 'completed');
-          
-          // Count pending and failed from local state
+
           const pendingCount = Array.from(translating).filter(key => key.startsWith(`${post.id}-`)).length;
           const failedCount = Array.from(failedTranslations).filter(key => key.startsWith(`${post.id}-`)).length;
-          
+
           const missingLanguages = getAllMissingLanguages(post.id);
-          
+
+          // Token Check
+          const estimatedTokens = estimateTokenCount(post.content || '');
+          const currentModel = CLAUDE_MODELS.find(m => m.id === selectedModel);
+          const isTokenWarning = currentModel && estimatedTokens > currentModel.maxOutput;
+
           return (
             <div key={post.id} className="bg-white p-8 rounded-3xl shadow-sm border border-neutral-200/50 hover:shadow-lg transition-all duration-500">
               <div className="flex items-start justify-between mb-8">
@@ -702,6 +439,20 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
                       </>
                     )}
                   </div>
+
+                  {/* Token Warning Banner */}
+                  {isTokenWarning && (
+                    <div className="mt-4 p-3 bg-warning-50 border border-warning-200 rounded-lg flex items-start gap-3 text-sm text-warning-800 max-w-2xl">
+                      <AlertTriangle className="w-5 h-5 text-warning-600 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <div className="font-semibold">Potential Token Limit Exceeded</div>
+                        <p>
+                          This post has approximately {estimatedTokens} tokens, which exceeds the {currentModel?.name} max output limit ({currentModel?.maxOutput}).
+                          Translation may be truncated. Consider using a model with a larger output window or splitting the post.
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="flex gap-3">
                   <button
@@ -713,9 +464,13 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
                   </button>
                   {missingLanguages.length > 0 && (
                     <button
-                      onClick={() => triggerTranslation(post.id, missingLanguages)}
-                      disabled={translating.has(`${post.id}-${missingLanguages.join(',')}`)}
-                      className="px-4 py-2 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 hover:shadow-lg hover:scale-105 transition-all duration-300 text-sm flex items-center gap-2 font-semibold shadow-md disabled:opacity-70"
+                      onClick={() => handleTriggerTranslation(post.id, missingLanguages)}
+                      disabled={translating.has(`${post.id}-${missingLanguages.join(',')}`) || !!isTokenWarning}
+                      className={`px-4 py-2 rounded-xl transition-all duration-300 text-sm flex items-center gap-2 font-semibold shadow-md ${isTokenWarning
+                          ? 'bg-neutral-200 text-neutral-500 cursor-not-allowed'
+                          : 'bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800 hover:shadow-lg hover:scale-105'
+                        }`}
+                      title={isTokenWarning ? 'Token limit exceeded' : 'Create all missing translations'}
                     >
                       <Zap className="w-4 h-4" />
                       {translating.has(`${post.id}-${missingLanguages.join(',')}`) ? 'Creating...' : 'Create All Missing'}
@@ -723,7 +478,7 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
                   )}
                 </div>
               </div>
-              
+
               <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-4">
                 {/* Original English Post */}
                 <div className="flex items-center justify-between p-4 bg-gradient-to-r from-success-50 to-success-100 border border-success-200/60 rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
@@ -742,52 +497,49 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
                     <Eye className="w-4 h-4" />
                   </button>
                 </div>
-                
+
                 {/* All supported languages */}
                 {LANGUAGES.map((lang) => {
                   const translation = getTranslationStatus(post.id, lang.code);
                   const isTranslating = translating.has(`${post.id}-${lang.code}`);
                   const isRetrying = retrying.has(`retry-${post.id}-${lang.code}`);
                   const isUpdating = translation?.id && updating.has(`toggle-${translation.id}`);
-                  
+
                   return (
                     <div
                       key={lang.code}
-                      className={`relative flex items-center justify-between p-4 rounded-xl border transition-all duration-300 hover:scale-[1.02] ${
-                        translation?.translation_status === 'completed' && translation?.published === true
+                      className={`relative flex items-center justify-between p-4 rounded-xl border transition-all duration-300 hover:scale-[1.02] ${translation?.translation_status === 'completed' && translation?.published === true
                           ? 'bg-gradient-to-r from-success-50 to-success-100 border-success-200/60 hover:shadow-md'
-                        : translation?.translation_status === 'completed' && translation?.published !== true
-                          ? 'bg-gradient-to-r from-neutral-100 to-neutral-200 border-neutral-300/60 hover:shadow-md'
-                          : isTranslating || isRetrying
-                          ? 'bg-gradient-to-r from-warning-50 to-warning-100 border-warning-200/60 hover:shadow-md'
-                          : translation?.translation_status === 'failed'
-                          ? 'bg-gradient-to-r from-error-50 to-error-100 border-error-200/60 hover:shadow-md'
-                          : 'bg-gradient-to-r from-neutral-50 to-white border-neutral-200/60 hover:bg-gradient-to-r hover:from-primary-50 hover:to-primary-100 hover:border-primary-200 hover:shadow-md'
-                      }`}
+                          : translation?.translation_status === 'completed' && translation?.published !== true
+                            ? 'bg-gradient-to-r from-neutral-100 to-neutral-200 border-neutral-300/60 hover:shadow-md'
+                            : isTranslating || isRetrying
+                              ? 'bg-gradient-to-r from-warning-50 to-warning-100 border-warning-200/60 hover:shadow-md'
+                              : translation?.translation_status === 'failed'
+                                ? 'bg-gradient-to-r from-error-50 to-error-100 border-error-200/60 hover:shadow-md'
+                                : 'bg-gradient-to-r from-neutral-50 to-white border-neutral-200/60 hover:bg-gradient-to-r hover:from-primary-50 hover:to-primary-100 hover:border-primary-200 hover:shadow-md'
+                        }`}
                     >
                       <div className="flex items-center gap-3 flex-1 min-w-0">
                         <span className="text-xl flex-shrink-0">{lang.flag}</span>
                         <div className="min-w-0 flex-1">
-                          <div className={`text-sm font-semibold truncate ${
-                            translation?.translation_status === 'completed' ? 'text-success-700' :
-                            translation?.translation_status === 'pending' || isTranslating ? 'text-warning-700' :
-                            translation?.translation_status === 'failed' ? 'text-error-700' :
-                            'text-neutral-600'
-                          }`}>
+                          <div className={`text-sm font-semibold truncate ${translation?.translation_status === 'completed' ? 'text-success-700' :
+                              translation?.translation_status === 'pending' || isTranslating ? 'text-warning-700' :
+                                translation?.translation_status === 'failed' ? 'text-error-700' :
+                                  'text-neutral-600'
+                            }`}>
                             {lang.name}
                           </div>
-                          <div className={`text-xs flex items-center gap-1 ${
-                            translation?.translation_status === 'completed' ? 'text-success-600' :
-                            isTranslating || isRetrying ? 'text-warning-600' :
-                            translation?.translation_status === 'failed' ? 'text-error-600' :
-                            'text-neutral-500'
-                          }`}>
+                          <div className={`text-xs flex items-center gap-1 ${translation?.translation_status === 'completed' ? 'text-success-600' :
+                              isTranslating || isRetrying ? 'text-warning-600' :
+                                translation?.translation_status === 'failed' ? 'text-error-600' :
+                                  'text-neutral-500'
+                            }`}>
                             <span>
                               {translation?.translation_status === 'completed' ? '✓ Available' :
-                               isTranslating ? '⏳ Creating...' :
-                               isRetrying ? '🔄 Retrying...' :
-                               translation?.translation_status === 'failed' ? '❌ Failed' :
-                               '○ Not translated'
+                                isTranslating ? '⏳ Creating...' :
+                                  isRetrying ? '🔄 Retrying...' :
+                                    translation?.translation_status === 'failed' ? '❌ Failed' :
+                                      '○ Not translated'
                               }
                               {translation?.translation_status === 'completed' && translation?.published === false && ' (Unpublished)'}
                             </span>
@@ -799,7 +551,7 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
                           </div>
                         </div>
                       </div>
-                      
+
                       <div className="flex items-center gap-1 flex-shrink-0 ml-2">
                         {translation?.translation_status === 'completed' ? (
                           <>
@@ -820,13 +572,12 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
                               </button>
                             )}
                             <button
-                              onClick={() => toggleTranslationStatus(translation.id, translation.published === true)}
+                              onClick={() => handleToggleStatus(translation.id, translation.published === true)}
                               disabled={isUpdating}
-                              className={`p-2 transition-all duration-200 rounded-lg hover:scale-110 flex-shrink-0 ${
-                                translation.published === true
+                              className={`p-2 transition-all duration-200 rounded-lg hover:scale-110 flex-shrink-0 ${translation.published === true
                                   ? 'text-warning-600 hover:text-warning-700 hover:bg-warning-200/50'
                                   : 'text-success-600 hover:text-success-700 hover:bg-success-200/50'
-                              }`}
+                                }`}
                               title={translation.published === true ? `Unpublish ${lang.name} version` : `Publish ${lang.name} version`}
                             >
                               {isUpdating ? (
@@ -836,7 +587,7 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
                               )}
                             </button>
                             <button
-                              onClick={() => deleteTranslation(translation.id, lang.name)}
+                              onClick={() => handleDelete(translation.id, lang.name)}
                               className="p-2 text-error-600 hover:text-error-700 transition-all duration-200 rounded-lg hover:bg-error-200/50 hover:scale-110 flex-shrink-0"
                               title={`Delete ${lang.name} translation`}
                             >
@@ -851,7 +602,7 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
                               <div className="w-4 h-4 border-2 border-warning-600 border-t-transparent rounded-full animate-spin flex-shrink-0"></div>
                             )}
                             <button
-                              onClick={() => cancelPendingTranslation(post.id, lang.code, lang.name)}
+                              onClick={() => handleCancel(post.id, lang.code, lang.name)}
                               className="p-1 text-warning-600 hover:text-warning-700 transition-all duration-200 rounded hover:bg-warning-200/50 flex-shrink-0"
                               title={`Cancel ${lang.name} translation`}
                             >
@@ -860,10 +611,10 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
                           </div>
                         ) : translation?.translation_status === 'failed' ? (
                           <button
-                            onClick={() => retryTranslation(post.id, lang.code)}
-                            disabled={isRetrying || isTranslating}
-                            className="p-2 text-warning-600 hover:text-warning-700 transition-all duration-200 rounded-lg hover:bg-warning-200/50 hover:scale-110 flex-shrink-0"
-                            title={`Retry ${lang.name} translation`}
+                            onClick={() => handleRetryTranslation(post.id, lang.code)}
+                            disabled={isRetrying || isTranslating || !!isTokenWarning}
+                            className={`p-2 text-warning-600 hover:text-warning-700 transition-all duration-200 rounded-lg hover:bg-warning-200/50 hover:scale-110 flex-shrink-0 ${isTokenWarning ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            title={isTokenWarning ? 'Token limit exceeded' : `Retry ${lang.name} translation`}
                           >
                             {isRetrying ? (
                               <div className="w-4 h-4 border-2 border-warning-600 border-t-transparent rounded-full animate-spin"></div>
@@ -876,10 +627,10 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
                         ) : (
                           <div className="flex items-center gap-1 flex-shrink-0">
                             <button
-                              onClick={() => triggerTranslation(post.id, [lang.code])}
-                              disabled={isTranslating}
-                              className="p-2 text-primary-600 hover:text-primary-700 transition-all duration-200 rounded-lg hover:bg-primary-100 hover:scale-110 flex-shrink-0"
-                              title={`AI Translate to ${lang.name}`}
+                              onClick={() => handleTriggerTranslation(post.id, [lang.code])}
+                              disabled={isTranslating || !!isTokenWarning}
+                              className={`p-2 text-primary-600 hover:text-primary-700 transition-all duration-200 rounded-lg hover:bg-primary-100 hover:scale-110 flex-shrink-0 ${isTokenWarning ? 'opacity-50 cursor-not-allowed' : ''}`}
+                              title={isTokenWarning ? 'Token limit exceeded' : `AI Translate to ${lang.name}`}
                             >
                               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -910,48 +661,55 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
                         <p className="text-sm text-neutral-600">Create translations for all missing languages at once</p>
                       </div>
                       <button
-                        onClick={() => triggerTranslation(post.id, missingLanguages)}
-                        disabled={translating.has(`${post.id}-${missingLanguages.join(',')}`)}
-                        className="px-6 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white rounded-xl hover:from-primary-700 hover:to-primary-800 hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2 font-semibold shadow-md disabled:opacity-70"
+                        onClick={() => handleTriggerTranslation(post.id, missingLanguages)}
+                        disabled={translating.has(`${post.id}-${missingLanguages.join(',')}`) || !!isTokenWarning}
+                        className={`px-6 py-3 rounded-xl transition-all duration-300 flex items-center gap-2 font-semibold shadow-md ${isTokenWarning
+                            ? 'bg-neutral-200 text-neutral-500 cursor-not-allowed'
+                            : 'bg-gradient-to-r from-primary-600 to-primary-700 text-white hover:from-primary-700 hover:to-primary-800 hover:shadow-lg hover:scale-105'
+                          }`}
                       >
                         <Zap className="w-4 h-4" />
                         {translating.has(`${post.id}-${missingLanguages.join(',')}`) ? 'Creating...' : 'Create All Missing'}
                       </button>
                     </div>
                   )}
-                  
+
                   {failedCount > 0 && (
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-bold text-error-700">Failed translations detected</h4>
-                      <p className="text-sm text-error-600">Retry {failedCount} failed translations at once</p>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h4 className="font-bold text-error-700">Failed translations detected</h4>
+                        <p className="text-sm text-error-600">Retry {failedCount} failed translations at once</p>
+                      </div>
+                      <button
+                        onClick={() => {
+                          const postFailedLanguages = Array.from(failedTranslations)
+                            .filter(key => key.startsWith(`${post.id}-`))
+                            .map(key => key.split('-')[1]);
+
+                          // Retry each failed translation individually
+                          postFailedLanguages.forEach((languageCode) => {
+                            handleRetryTranslation(post.id, languageCode);
+                          });
+                        }}
+                        disabled={!!isTokenWarning}
+                        className={`px-6 py-3 rounded-xl transition-all duration-300 flex items-center gap-2 font-semibold shadow-md ${isTokenWarning
+                            ? 'bg-neutral-200 text-neutral-500 cursor-not-allowed'
+                            : 'bg-gradient-to-r from-error-600 to-error-700 text-white hover:from-error-700 hover:to-error-800 hover:shadow-lg hover:scale-105'
+                          }`}
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                        </svg>
+                        Retry All Failed
+                      </button>
                     </div>
-                    <button
-                      onClick={() => {
-                        const postFailedLanguages = Array.from(failedTranslations)
-                          .filter(key => key.startsWith(`${post.id}-`))
-                          .map(key => key.split('-')[1]);
-                        
-                        // Retry each failed translation individually
-                        postFailedLanguages.forEach((languageCode) => {
-                          retryTranslation(post.id, languageCode);
-                        });
-                      }}
-                      className="px-6 py-3 bg-gradient-to-r from-error-600 to-error-700 text-white rounded-xl hover:from-error-700 hover:to-error-800 hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2 font-semibold shadow-md"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                      </svg>
-                      Retry All Failed
-                    </button>
-                  </div>
                   )}
                 </div>
               )}
             </div>
           );
         })}
-        
+
         {posts.filter(p => p.status === 'published').length === 0 && (
           <div className="text-center py-16">
             <div className="w-20 h-20 bg-gradient-to-br from-neutral-100 to-neutral-200 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-sm">
@@ -959,7 +717,7 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
             </div>
             <h3 className="text-xl font-semibold text-neutral-900 mb-3">No Published Posts</h3>
             <p className="text-neutral-600 mb-8 max-w-md mx-auto">
-              Publish some blog posts first to see translation options here. 
+              Publish some blog posts first to see translation options here.
               Translations are automatically available for all published content.
             </p>
             <button
