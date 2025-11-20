@@ -207,7 +207,8 @@ function calculateReadingTime(content) {
   return Math.max(1, Math.ceil(words / 200));
 }
 
-function getPostDescription(post, maxLength = 160) {
+// Get meta description for SEO and blog cards
+function getMetaDescription(post, maxLength = 160) {
   if (!post) return '';
 
   // Only use meta_description field
@@ -221,6 +222,24 @@ function getPostDescription(post, maxLength = 160) {
   }
 
   // Return empty string if no meta_description is available
+  return '';
+}
+
+// Get summary for article page excerpts
+function getSummary(post) {
+  if (!post) return '';
+
+  // Only use summary field
+  const summary = [
+    post.summary,
+    post.posts?.summary
+  ].find(value => typeof value === 'string' && value.trim().length > 0);
+
+  if (summary) {
+    return summary.trim();
+  }
+
+  // Return empty string if no summary is available
   return '';
 }
 
@@ -808,8 +827,8 @@ function createBlogListingHTML(posts, language, translations, headerTranslations
         "headline": post.title,
         "url": `https://veridaq.com${langPrefix}/blog/${post.slug}`,
         ...(post.featured_image_url && { "image": post.featured_image_url }),
-        ...(getPostDescription(post)
-          ? { "description": getPostDescription(post) }
+        ...(getMetaDescription(post)
+          ? { "description": getMetaDescription(post) }
           : {}),
         "datePublished": getPublishedDate(post, language),
         "author": {
@@ -840,7 +859,7 @@ function createBlogListingHTML(posts, language, translations, headerTranslations
     const categoryLabel = translations.categoryLabel || 'EU Compliance';
     const readMoreLabel = translations.readMore || 'Read more';
     const minReadLabel = translations.minRead || 'min read';
-    const description = getPostDescription(post);
+    const description = getMetaDescription(post);
     const excerpt = description ? escapeHtml(description) : '';
 
     return `
@@ -1000,7 +1019,7 @@ function createBlogPostHTML(post, language, allPosts = [], availableTranslations
     "@type": "Article",
     "headline": post.title,
     "alternativeHeadline": post.meta_title || post.title,
-    "description": getPostDescription(post),
+    "description": getMetaDescription(post),
     ...(post.featured_image_url && {
       "image": {
         "@type": "ImageObject",
@@ -1083,8 +1102,8 @@ function createBlogPostHTML(post, language, allPosts = [], availableTranslations
 
   const relatedHTML = relatedPosts.map(relatedPost => {
     const relatedHref = `${langPrefix}/blog/${relatedPost.slug}/`;
-    const relatedExcerpt = getPostDescription(relatedPost)
-      ? escapeHtml(getPostDescription(relatedPost))
+    const relatedExcerpt = getMetaDescription(relatedPost)
+      ? escapeHtml(getMetaDescription(relatedPost))
       : '';
 
     return `
@@ -1101,7 +1120,7 @@ function createBlogPostHTML(post, language, allPosts = [], availableTranslations
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${escapeHtml(post.meta_title || post.title)} | Veridaq</title>
-  <meta name="description" content="${escapeHtml(getPostDescription(post))}">
+  <meta name="description" content="${escapeHtml(getMetaDescription(post))}">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://veridaq.com${langPrefix}/blog/${post.slug}">
@@ -1137,7 +1156,7 @@ function createBlogPostHTML(post, language, allPosts = [], availableTranslations
   <!-- Open Graph / Social Media Tags -->
   ${post.featured_image_url ? `<meta property="og:image" content="${post.featured_image_url}">` : ''}
   <meta property="og:title" content="${escapeHtml(post.title)}">
-  <meta property="og:description" content="${escapeHtml(getPostDescription(post))}">
+  <meta property="og:description" content="${escapeHtml(getMetaDescription(post))}">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://veridaq.com${langPrefix}/blog/${post.slug}">
   <meta property="article:published_time" content="${publishedDate}">
@@ -1146,7 +1165,7 @@ function createBlogPostHTML(post, language, allPosts = [], availableTranslations
   <!-- Twitter Card Tags -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeHtml(post.title)}">
-  <meta name="twitter:description" content="${escapeHtml(getPostDescription(post))}">
+  <meta name="twitter:description" content="${escapeHtml(getMetaDescription(post))}">
   ${post.featured_image_url ? `<meta name="twitter:image" content="${post.featured_image_url}">` : ''}
 
   <!-- JSON-LD Structured Data -->
@@ -1200,7 +1219,7 @@ ${JSON.stringify(organizationSchema, null, 2)}
         <span class="meta-chip"><span class="meta-icon" aria-hidden="true">📅</span><time datetime="${publishedDate || ''}">${formattedPublishedDate}</time></span>
         <span class="meta-chip"><span class="meta-icon" aria-hidden="true">⏱</span>${readingTime} ${escapeHtml(minReadLabel)}</span>
       </div>
-      ${getPostDescription(post) ? `<div class="post-excerpt">${escapeHtml(getPostDescription(post))}</div>` : ''}
+      ${getSummary(post) ? `<div class="post-excerpt">${escapeHtml(getSummary(post))}</div>` : ''}
     </div>
   </header>
 

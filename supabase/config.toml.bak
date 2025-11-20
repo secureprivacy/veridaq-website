@@ -1,0 +1,24 @@
+# Email template customization
+[auth.email.template.magic_link]
+subject = "Secure CMS Access - Veridaq"
+content_path = "./supabase/templates/magic_link.html"
+
+[auth.email.template.email]
+subject = "Your CMS Access Code - Veridaq"
+content_path = "./supabase/templates/otp_code.html"
+
+[auth.email.template.recovery]
+subject = "CMS Account Recovery - Veridaq"
+content_path = "./supabase/templates/recovery.html"
+
+# Security settings
+[auth.security]
+captcha_enabled = false  # Can be enabled for additional security
+password_min_length = 8
+# refresh_token_reuse_interval = 10
+
+# Database settings
+[db]
+pool_size = 15
+max_client_conn = 100
+default_pool_size = 15
