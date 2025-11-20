@@ -1,7 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from './ui/Link';
-import Logo from './Logo';
 import { Mail, Phone, MapPin, Shield, Users, Building2 } from 'lucide-react';
 import { SUPPORTED_LANGUAGES } from '../utils/languageUtils';
 
@@ -27,10 +26,6 @@ const Footer: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           <div>
-            <div className="mb-6">
-              <Logo />
-            </div>
-            
             <p className="text-neutral-300 mb-6 max-w-xs leading-relaxed">
               {t('description')}
             </p>
