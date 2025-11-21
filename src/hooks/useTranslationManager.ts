@@ -41,7 +41,7 @@ export const CLAUDE_MODELS = [
         description: 'Next Gen Intelligence',
         cost: 'High',
         contextWindow: 200000,
-        maxOutput: 8192,
+        maxOutput: 64000,
         inputPrice: 2.00, // Per 1M tokens
         outputPrice: 10.00 // Per 1M tokens
     }
