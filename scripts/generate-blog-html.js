@@ -859,7 +859,7 @@ function createBlogListingHTML(posts, language, translations, headerTranslations
     const categoryLabel = translations.categoryLabel || 'EU Compliance';
     const readMoreLabel = translations.readMore || 'Read more';
     const minReadLabel = translations.minRead || 'min read';
-    const description = getSummary(post);
+    const description = getMetaDescription(post);
     const excerpt = description ? escapeHtml(description) : '';
 
     return `
