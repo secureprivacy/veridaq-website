@@ -15,9 +15,36 @@ export const LANGUAGES = [
 ];
 
 export const CLAUDE_MODELS = [
-    { id: 'claude-3-haiku-20240307', name: 'Claude 3 Haiku', description: 'Fast & Efficient', cost: 'Low', contextWindow: 200000, maxOutput: 4096 },
-    { id: 'claude-3-5-haiku-20241022', name: 'Claude 3.5 Haiku', description: 'Balanced Intelligence', cost: 'Medium', contextWindow: 200000, maxOutput: 8192 },
-    { id: 'claude-haiku-4-5-20251001', name: 'Claude Haiku 4.5', description: 'Next Gen Intelligence', cost: 'High', contextWindow: 200000, maxOutput: 8192 }
+    {
+        id: 'claude-3-haiku-20240307',
+        name: 'Claude 3 Haiku',
+        description: 'Fast & Efficient',
+        cost: 'Low',
+        contextWindow: 200000,
+        maxOutput: 4096,
+        inputPrice: 0.25, // Per 1M tokens
+        outputPrice: 1.25 // Per 1M tokens
+    },
+    {
+        id: 'claude-3-5-haiku-20241022',
+        name: 'Claude 3.5 Haiku',
+        description: 'Balanced Intelligence',
+        cost: 'Medium',
+        contextWindow: 200000,
+        maxOutput: 8192,
+        inputPrice: 1.00, // Per 1M tokens
+        outputPrice: 5.00 // Per 1M tokens
+    },
+    {
+        id: 'claude-haiku-4-5-20251001',
+        name: 'Claude Haiku 4.5',
+        description: 'Next Gen Intelligence',
+        cost: 'High',
+        contextWindow: 200000,
+        maxOutput: 8192,
+        inputPrice: 2.00, // Per 1M tokens
+        outputPrice: 10.00 // Per 1M tokens
+    }
 ];
 
 export const estimateTokenCount = (text: string): number => {
@@ -32,7 +59,51 @@ export const useTranslationManager = (posts: any[]) => {
     const [updating, setUpdating] = useState<Set<string>>(new Set());
     const [failedTranslations, setFailedTranslations] = useState<Set<string>>(new Set());
     const [retrying, setRetrying] = useState<Set<string>>(new Set());
+    // Global default model
     const [selectedModel, setSelectedModel] = useState<string>(CLAUDE_MODELS[0].id);
+    // Per-post model selection
+    const [postModels, setPostModels] = useState<Record<string, string>>({});
+
+    const setPostModel = (postId: string, modelId: string) => {
+        setPostModels(prev => ({
+            ...prev,
+            [postId]: modelId
+        }));
+    };
+
+    const getPostModel = (postId: string) => {
+        return postModels[postId] || selectedModel;
+    };
+
+    const fetchStandardModel = useCallback(async () => {
+        try {
+            const { data, error } = await supabase
+                .from('api_settings')
+                .select('setting_value')
+                .eq('setting_name', 'standard_translation_model')
+                .single();
+
+            if (error) {
+                // It's okay if this fails (e.g. setting doesn't exist yet), just use default
+                return;
+            }
+
+            if (data && data.setting_value) {
+                // Verify the model exists in our allowed list
+                const modelExists = CLAUDE_MODELS.some(m => m.id === data.setting_value);
+                if (modelExists) {
+                    console.log('🤖 Setting standard model to:', data.setting_value);
+                    setSelectedModel(data.setting_value);
+                }
+            }
+        } catch (err) {
+            console.warn('Error fetching standard model:', err);
+        }
+    }, []);
+
+    useEffect(() => {
+        fetchStandardModel();
+    }, [fetchStandardModel]);
 
     const fetchTranslations = useCallback(async () => {
         try {
@@ -58,7 +129,8 @@ export const useTranslationManager = (posts: any[]) => {
     }, [fetchTranslations]);
 
     const triggerTranslation = async (postId: string, languages: string[]) => {
-        console.log('🚀 triggerTranslation called:', { postId, languages, selectedModel });
+        const modelToUse = getPostModel(postId);
+        console.log('🚀 triggerTranslation called:', { postId, languages, model: modelToUse });
 
         // Create unique keys for each individual language translation
         const translationKeys = languages.map(lang => `${postId}-${lang}`);
@@ -96,7 +168,7 @@ export const useTranslationManager = (posts: any[]) => {
                     postId: postId,
                     targetLanguages: [languageCode],
                     translationProvider: 'claude', // Changed from 'openai' to 'claude' as per plan
-                    model: selectedModel // Pass the selected model
+                    model: modelToUse // Pass the selected model
                 };
 
                 try {
@@ -248,6 +320,9 @@ export const useTranslationManager = (posts: any[]) => {
         retrying,
         selectedModel,
         setSelectedModel,
+        postModels,
+        setPostModel,
+        getPostModel,
         fetchTranslations,
         triggerTranslation,
         toggleTranslationStatus,

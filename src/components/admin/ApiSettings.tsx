@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase';
-import { 
-  Settings, 
-  Eye, 
-  EyeOff,
-  AlertCircle,
-  CheckCircle,
-  Info,
-  RefreshCw,
-  Save
-} from 'lucide-react';
+import { Settings, Save, Eye, EyeOff, AlertCircle, CheckCircle } from 'lucide-react';
+import { CLAUDE_MODELS } from '../../hooks/useTranslationManager';
 
 interface ApiSettingsProps {
   quickAction?: string | null;
@@ -45,7 +37,7 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
         </div>
       `;
       document.body.appendChild(notification);
-      
+
       setTimeout(() => {
         if (notification.parentNode) {
           notification.parentNode.removeChild(notification);
@@ -58,7 +50,7 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
     try {
       setLoading(true);
       setMessage(null); // Clear any previous error messages
-      
+
       // Try to fetch settings, but handle RLS errors gracefully
       try {
         const { data, error } = await supabase
@@ -132,7 +124,7 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
       },
       {
         id: 'demo-4',
-        setting_name: 'bing_webmaster_api_key', 
+        setting_name: 'bing_webmaster_api_key',
         setting_value: '',
         description: 'Bing Webmaster Tools API key for search engine notifications.',
         is_active: false,
@@ -143,16 +135,16 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
         id: 'demo-5',
         setting_name: 'auto_translate_on_publish',
         setting_value: 'true',
-        description: 'Automatically translate posts to all supported languages when published.',
+        description: 'Automatically translate blog posts to all supported languages when published.',
         is_active: true,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
       },
       {
         id: 'demo-6',
-        setting_name: 'auto_ping_search_engines',
-        setting_value: 'true', 
-        description: 'Automatically notify Google and Bing when new content is published.',
+        setting_name: 'standard_translation_model',
+        setting_value: 'claude-3-haiku-20240307',
+        description: 'Default AI model used for translations when not specified per-post.',
         is_active: true,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()
@@ -161,46 +153,9 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
   };
 
   const createDefaultSettings = async () => {
-    const defaultSettings = [
-      {
-        setting_name: 'claude_api_key',
-        setting_value: '',
-        description: 'Claude API key for AI-powered blog post translations. Used by the translate-post Edge Function.',
-        is_active: false
-      },
-      {
-        setting_name: 'openai_api_key',
-        setting_value: '',
-        description: 'OpenAI API key for ChatGPT translations and content analysis.',
-        is_active: false
-      },
-      {
-        setting_name: 'google_search_console_credentials',
-        setting_value: '',
-        description: 'Google Search Console API credentials for automatic content indexing.',
-        is_active: false
-      },
-      {
-        setting_name: 'bing_webmaster_api_key', 
-        setting_value: '',
-        description: 'Bing Webmaster Tools API key for search engine notifications.',
-        is_active: false
-      },
-      {
-        setting_name: 'auto_translate_on_publish',
-        setting_value: 'true',
-        description: 'Automatically translate posts to all supported languages when published.',
-        is_active: true
-      },
-      {
-        setting_name: 'auto_ping_search_engines',
-        setting_value: 'true', 
-        description: 'Automatically notify Google and Bing when new content is published.',
-        is_active: true
-      }
-    ];
-
     try {
+      const defaultSettings = getDefaultSettingsArray().map(({ id, ...rest }) => rest);
+
       const { data, error } = await supabase
         .from('api_settings')
         .insert(defaultSettings)
@@ -217,14 +172,14 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
   const updateSetting = async (settingName: string, newValue: string, isActive: boolean) => {
     const savingKey = settingName;
     setSaving(prev => new Set([...prev, savingKey]));
-    
+
     try {
       // Try to update in database, but handle gracefully if it fails
       try {
         const { data, error } = await supabase
           .from('api_settings')
-          .update({ 
-            setting_value: newValue, 
+          .update({
+            setting_value: newValue,
             is_active: isActive,
             updated_at: new Date().toISOString()
           })
@@ -235,15 +190,15 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
         if (error) {
           console.warn('Database update failed, updating locally:', error);
           // Update local state only
-          setSettings(prev => prev.map(setting => 
-            setting.setting_name === settingName 
+          setSettings(prev => prev.map(setting =>
+            setting.setting_name === settingName
               ? { ...setting, setting_value: newValue, is_active: isActive, updated_at: new Date().toISOString() }
               : setting
           ));
         } else {
           // Update local state with database response
-          setSettings(prev => prev.map(setting => 
-            setting.setting_name === settingName 
+          setSettings(prev => prev.map(setting =>
+            setting.setting_name === settingName
               ? { ...setting, setting_value: newValue, is_active: isActive, updated_at: data.updated_at }
               : setting
           ));
@@ -251,8 +206,8 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
       } catch (dbError) {
         console.warn('Database unavailable, updating locally:', dbError);
         // Update local state only
-        setSettings(prev => prev.map(setting => 
-          setting.setting_name === settingName 
+        setSettings(prev => prev.map(setting =>
+          setting.setting_name === settingName
             ? { ...setting, setting_value: newValue, is_active: isActive, updated_at: new Date().toISOString() }
             : setting
         ));
@@ -269,22 +224,22 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
       const notification = document.createElement('div');
       notification.className = 'fixed bottom-6 right-6 bg-success-600 text-white p-4 rounded-xl shadow-lg z-50 flex items-center gap-3';
       notification.innerHTML = `
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <span className="font-semibold">⚙️ ${settingName.replace(/_/g, ' ')} updated successfully</span>
-      `;
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <span className="font-semibold">⚙️ ${settingName.replace(/_/g, ' ')} updated successfully</span>
+          `;
       document.body.appendChild(notification);
-      
+
       setTimeout(() => {
         if (notification.parentNode) {
           notification.parentNode.removeChild(notification);
         }
       }, 3000);
-      
+
       setMessage({ type: 'success', text: 'Setting saved to database successfully' });
       setTimeout(() => setMessage(null), 3000);
-      
+
     } catch (err) {
       console.error('Error updating setting:', err);
       setMessage({ type: 'success', text: 'Setting saved locally (demo mode)' });
@@ -301,10 +256,10 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
   const handleInputChange = (settingName: string, value: string) => {
     // Track pending changes
     setPendingChanges(prev => ({ ...prev, [settingName]: value }));
-    
+
     // Update local display immediately
-    setSettings(prev => prev.map(setting => 
-      setting.setting_name === settingName 
+    setSettings(prev => prev.map(setting =>
+      setting.setting_name === settingName
         ? { ...setting, setting_value: value }
         : setting
     ));
@@ -363,14 +318,12 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
       </div>
 
       {message && (
-        <div className={`mb-8 p-5 rounded-2xl flex items-start gap-4 shadow-sm border ${
-          message.type === 'success' 
-            ? 'bg-gradient-to-r from-success-50 to-success-100 text-success-800 border-success-200/60' 
-            : 'bg-gradient-to-r from-error-50 to-error-100 text-error-800 border-error-200/60'
-        }`}>
-          <div className={`w-6 h-6 rounded-lg flex items-center justify-center shadow-sm ${
-            message.type === 'success' ? 'bg-success-600' : 'bg-error-600'
+        <div className={`mb-8 p-5 rounded-2xl flex items-start gap-4 shadow-sm border ${message.type === 'success'
+          ? 'bg-gradient-to-r from-success-50 to-success-100 text-success-800 border-success-200/60'
+          : 'bg-gradient-to-r from-error-50 to-error-100 text-error-800 border-error-200/60'
           }`}>
+          <div className={`w-6 h-6 rounded-lg flex items-center justify-center shadow-sm ${message.type === 'success' ? 'bg-success-600' : 'bg-error-600'
+            }`}>
             {message.type === 'success' ? (
               <CheckCircle className="w-4 h-4 text-white" />
             ) : (
@@ -388,7 +341,7 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
         {settings.map((setting) => {
           const hasPendingChanges = pendingChanges[setting.setting_name] !== undefined;
           const isSaving = saving.has(setting.setting_name);
-          
+
           return (
             <div key={setting.id} className="bg-white p-8 rounded-3xl shadow-sm border border-neutral-200/50 hover:shadow-lg transition-all duration-500">
               <div className="flex items-start justify-between gap-6">
@@ -407,7 +360,7 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
                       />
                       <div className="relative w-12 h-6 bg-neutral-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-gradient-to-r peer-checked:from-primary-500 peer-checked:to-primary-600 shadow-sm group-hover:scale-105 transition-transform disabled:opacity-50"></div>
                     </label>
-                    
+
                     {hasPendingChanges && (
                       <button
                         onClick={() => saveChanges(setting.setting_name)}
@@ -418,7 +371,7 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
                         Save Changes
                       </button>
                     )}
-                    
+
                     {isSaving && (
                       <div className="flex items-center gap-2 text-primary-600 text-xs">
                         <div className="w-4 h-4 border-2 border-primary-600 border-t-transparent rounded-full animate-spin"></div>
@@ -426,9 +379,9 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
                       </div>
                     )}
                   </div>
-                  
-                  <p className="text-neutral-600 mb-6 leading-relaxed">{setting.description}</p>
-                  
+
+                  <p className="text-neutral-500 mb-4 text-sm leading-relaxed">{setting.description}</p>
+
                   <div className="relative">
                     {isBooleanField(setting.setting_name) ? (
                       <select
@@ -440,6 +393,19 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
                         <option value="true">✅ Enabled</option>
                         <option value="false">❌ Disabled</option>
                       </select>
+                    ) : setting.setting_name === 'standard_translation_model' ? (
+                      <select
+                        value={setting.setting_value}
+                        onChange={(e) => updateSetting(setting.setting_name, e.target.value, setting.is_active)}
+                        className="modern-input focus:ring-2 focus:ring-primary-500/30 focus:border-primary-300 hover:border-neutral-300 transition-all shadow-sm"
+                        disabled={isSaving}
+                      >
+                        {CLAUDE_MODELS.map(model => (
+                          <option key={model.id} value={model.id}>
+                            {model.name} ({model.cost} Cost)
+                          </option>
+                        ))}
+                      </select>
                     ) : (
                       <>
                         <input
@@ -449,12 +415,11 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
                           onBlur={() => saveChanges(setting.setting_name)}
                           onKeyPress={(e) => e.key === 'Enter' && saveChanges(setting.setting_name)}
                           placeholder={`Enter ${setting.setting_name.replace(/_/g, ' ')}`}
-                          className={`modern-input pr-12 focus:ring-2 focus:ring-primary-500/30 focus:border-primary-300 hover:border-neutral-300 transition-all shadow-sm ${
-                            hasPendingChanges ? 'border-warning-300 bg-warning-50' : ''
-                          }`}
+                          className={`modern-input pr-12 focus:ring-2 focus:ring-primary-500/30 focus:border-primary-300 hover:border-neutral-300 transition-all shadow-sm ${hasPendingChanges ? 'border-warning-300 bg-warning-50' : ''
+                            }`}
                           disabled={isSaving}
                         />
-                        
+
                         {isSecretField(setting.setting_name) && (
                           <button
                             type="button"
@@ -472,7 +437,7 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
                       </>
                     )}
                   </div>
-                  
+
                   {isSecretField(setting.setting_name) && (
                     <p className="text-xs text-primary-600 mt-3 font-medium">
                       {setting.setting_name.includes('claude') && '🔗 Get your API key from: https://console.anthropic.com/settings/keys'}
@@ -488,7 +453,6 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
         })}
       </div>
 
-
       {Object.keys(pendingChanges).length > 0 && (
         <div className="fixed bottom-6 left-6 bg-warning-100 border border-warning-300 text-warning-800 p-4 rounded-xl shadow-lg z-50">
           <div className="flex items-center gap-2">
@@ -502,7 +466,6 @@ const ApiSettings: React.FC<ApiSettingsProps> = ({ quickAction }) => {
       )}
     </div>
   );
-
 };
 
 export default ApiSettings;
