@@ -76,6 +76,10 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
     }
   };
 
+  const createManualTranslation = (post: any, langCode: string) => {
+    setManualCreation({ post, langCode });
+  };
+
   if (postsLoading) {
     return (
       <div className="p-6 lg:p-8">
@@ -102,12 +106,19 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
   }
 
   if (manualCreation) {
+    const language = LANGUAGES.find(l => l.code === manualCreation.langCode);
     return (
       <ManualTranslationCreator
         post={manualCreation.post}
         languageCode={manualCreation.langCode}
-        onClose={() => setManualCreation(null)}
-        onSuccess={() => setManualCreation(null)}
+        languageName={language?.name || ''}
+        languageFlag={language?.flag || ''}
+        onCancel={() => setManualCreation(null)}
+        onSave={async (translationData: any) => {
+          // The onSave handler will be implemented by useTranslationManager
+          // For now, just close the manual creation view
+          setManualCreation(null);
+        }}
       />
     );
   }
