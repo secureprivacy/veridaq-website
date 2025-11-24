@@ -206,49 +206,19 @@ function calculateReadingTime(content) {
   const words = getWordCount(content);
   return Math.max(1, Math.ceil(words / 200));
 }
-
-// Get meta description for SEO and blog cards
-function getMetaDescription(post, maxLength = 160) {
-  if (!post) return '';
-
-  // Only use meta_description field
-  const description = [
-    post.meta_description,
-    post.posts?.meta_description
-  ].find(value => typeof value === 'string' && value.trim().length > 0);
-
-  if (description) {
-    return description.trim();
-  }
-
-  // Return empty string if no meta_description is available
-  return '';
-}
-
-// Get summary for article page excerpts
-function getSummary(post) {
-  if (!post) return '';
-
-  // Only use summary field
-  const summary = [
-    post.summary,
-    post.posts?.summary
-  ].find(value => typeof value === 'string' && value.trim().length > 0);
-
-  if (summary) {
-    return summary.trim();
-  }
-
-  // Return empty string if no summary is available
-  return '';
-}
-
 function getPublishedDate(post, language) {
-  if (!post) return null;
   if (language === 'en') {
     return post.published_at || post.posts?.published_at || post.created_at;
   }
   return post.posts?.published_at || post.published_at || post.created_at;
+}
+
+function getMetaDescription(post) {
+  return post.meta_description || post.excerpt || post.summary || '';
+}
+
+function getSummary(post) {
+  return post.summary || post.excerpt || post.meta_description || '';
 }
 
 // Get related posts based on shared keywords
