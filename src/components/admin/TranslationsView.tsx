@@ -99,7 +99,7 @@ const TranslationsView: React.FC<TranslationsViewProps> = ({ quickAction }) => {
     return (
       <TranslationEditor
         translation={editingTranslation}
-        onClose={() => setEditingTranslation(null)}
+        onCancel={() => setEditingTranslation(null)}
         onSave={() => setEditingTranslation(null)}
       />
     );
