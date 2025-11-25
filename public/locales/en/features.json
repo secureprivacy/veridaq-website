@@ -1,0 +1,61 @@
+{
+  "badge": "Complete KYC/AML Platform",
+  "title": "The Complete Compliance Arsenal",
+  "subtitle": "Everything from instant customer verification to AI-powered transaction monitoring to one-click regulatory reporting. The only platform that covers every EU AMLR requirement without compromise.",
+  "platformFeatures": {
+    "kycVerification": {
+      "title": "Instant Customer Verification",
+      "description": "Verify any customer in under 60 seconds with intelligent eID routing across MitID, BankID, and Freja. Automated risk scoring happens in real-time, so you know exactly who you're dealing with before approval.",
+      "features": [
+        "Smart eID orchestration across all EU identity systems",
+        "AI-powered document authenticity verification",
+        "Live register lookups with 15+ EU business authorities",
+        "Instant beneficial ownership mapping",
+        "Complete onboarding in 60 seconds or less"
+      ]
+    },
+    "transactionMonitoring": {
+      "title": "24/7 Transaction Intelligence",
+      "description": "AI that never sleeps, monitoring every transaction for suspicious patterns, structuring attempts, and velocity anomalies. Catch threats before they become compliance nightmares.",
+      "features": [
+        "Real-time monitoring of 100% of transactions",
+        "Behavioral analysis detecting pattern deviations",
+        "Machine learning trained on 10M+ EU transactions",
+        "Dynamic risk scoring that adapts to customer behavior",
+        "Instant alerts to your team when thresholds breach"
+      ]
+    },
+    "complianceReporting": {
+      "title": "Zero-Touch Reporting",
+      "description": "Generate audit-ready regulatory reports for any EU jurisdiction with one click. Complete audit trails maintained automatically, investigators love our documentation.",
+      "features": [
+        "Automated SAR/STR generation with jurisdiction templates",
+        "One-click reporting to all EU financial authorities",
+        "Complete audit trails stored for 5+ years",
+        "Case management with investigation workflows",
+        "Real-time regulatory intelligence and rule updates"
+      ]
+    },
+    "riskIntelligence": {
+      "title": "AI That Actually Learns",
+      "description": "Stop drowning in false positives. Our AI has analyzed millions of EU transactions and knows what real risk looks like. 92% reduction in false alerts means your team focuses on genuine threats.",
+      "features": [
+        "ML models trained on 10M+ verified EU transactions",
+        "Region-specific risk patterns for all EU markets",
+        "92% reduction in false positive alerts",
+        "Continuous learning from your approval decisions",
+        "Predictive risk scoring before transactions complete"
+      ]
+    }
+  },
+  "coreCapabilities": {
+    "euEidIntegration": {
+      "title": "EU eID Native Integration",
+      "description": "Seamless integration with MitID, BankID, Freja, Finnish Trust Network and all major EU eID systems. Automatic routing based on customer location and availability."
+    },
+    "sanctionsScreening": {
+      "title": "Global Sanctions & PEP Screening",
+      "description": "Real-time screening against 200+ global sanctions lists, PEP databases, and adverse media sources. Intelligent fuzzy matching reduces false positives by 85%."
+    }
+  }
+}

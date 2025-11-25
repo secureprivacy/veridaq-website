@@ -1,0 +1,51 @@
+{
+  "badge": "A Vantagem Veridaq",
+  "title": "Por Que Os Líderes Escolhem a Veridaq",
+  "subtitle": "Pare de fazer malabarismos com cinco fornecedores diferentes. Pare de se afogar em falsos positivos. Pare de explicar falhas de conformidade aos reguladores. Uma plataforma que realmente funciona.",
+  "benefits": {
+    "onePlatform": {
+      "title": "Uma Plataforma, Zero Lacunas",
+      "description": "Pare de unir cinco fornecedores diferentes com fita adesiva. Verificação de clientes, monitoramento de transações, triagem de sanções, rastreamento de beneficiários efetivos e relatórios regulatórios—tudo em um sistema perfeito."
+    },
+    "fewerFalsePositives": {
+      "title": "92% Menos Falsos Positivos",
+      "description": "Sua equipe de conformidade investiga ameaças reais, não riscos fantasma. Nossa IA analisou milhões de transações da UE e sabe como é o risco real. Sem mais fadiga de alerta."
+    },
+    "fasterOnboarding": {
+      "title": "Integração de Clientes 10x Mais Rápida",
+      "description": "Verifique clientes em 60 segundos em vez de 3 dias. Integração eID inteligente, pontuação de risco instantânea, consultas de registro em tempo real. Velocidade aprovada pelos reguladores."
+    },
+    "futureProof": {
+      "title": "Conformidade à Prova de Futuro",
+      "description": "Conforme com EU AMLR 2027 hoje. Pronto para MiCA. Preparado para TFR. Quando os regulamentos mudam, você permanece em conformidade automaticamente. Sem atualizações de emergência, sem migrações caras."
+    }
+  },
+  "platformAdvantages": {
+    "title": "Vantagens da Plataforma",
+    "deploy": {
+      "number": "01",
+      "title": "Implantação em Dias, Não Trimestres",
+      "description": "APIs REST modernas, webhooks para eventos em tempo real, SDKs em todos os principais idiomas. Documentação abrangente que os desenvolvedores realmente gostam de ler. Entre em produção este mês."
+    },
+    "builtYourWay": {
+      "number": "02",
+      "title": "Construído do Seu Jeito",
+      "description": "Configure regras de risco, fluxos de aprovação, caminhos de escalada que correspondem a como seu negócio realmente opera. Sem processos rígidos impostos por consultores."
+    },
+    "coverage": {
+      "number": "03",
+      "title": "Cobertura de Conformidade 360°",
+      "description": "Verificação KYC, CDD contínua, rastreamento de beneficiários efetivos, monitoramento de transações, triagem de sanções, verificações PEP, relatórios regulatórios. Nada cai pelas rachaduras."
+    },
+    "euNative": {
+      "number": "04",
+      "title": "EU-Native, GDPR-First",
+      "description": "Seus dados nunca saem da UE. Hospedado em data centers tier-3+ com SLA de disponibilidade de 99,9%. A conformidade total com GDPR não é um recurso—é nossa fundação."
+    }
+  },
+  "cta": {
+    "title": "Pare de Lutar Contra a Conformidade. Comece a Liderar Seu Mercado.",
+    "subtitle": "Junte-se a 500+ instituições financeiras europeias que transformaram a conformidade de um centro de custos em uma vantagem competitiva.",
+    "button": "Entre em Contato com Nossos Especialistas"
+  }
+}

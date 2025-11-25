@@ -1,0 +1,60 @@
+{
+  "badge": "Fremtidsklar",
+  "title": "Forbered dig på <1>EU AMLR 2027</1> i dag",
+  "subtitle": "Den kommende EU Anti-Hvidvaskning Forordning vil medføre betydelige ændringer i compliance-kravene. Vores løsning er designet med disse fremtidige reguleringer i tankerne.",
+  "timeline": {
+    "title": "EU AMLR 2027 Compliance-tidslinje",
+    "items": {
+      "2023": {
+        "title": "Forordningsforslag",
+        "description": "Introduktion af omfattende EU Anti-Hvidvaskning Forordningsforslag."
+      },
+      "2024": {
+        "title": "Overgangsperiode begynder",
+        "description": "Virksomheder bør begynde at forberede systemer og processer til compliance."
+      },
+      "2025": {
+        "title": "Implementeringsramme",
+        "description": "Tekniske standarder og implementeringsvejledninger offentliggøres."
+      },
+      "2026": {
+        "title": "Testfase",
+        "description": "Endelige forberedelser og systemtest før fuld håndhævelse."
+      },
+      "2027": {
+        "title": "Fuld håndhævelse",
+        "description": "Fuldstændig compliance kræves for alle gældende virksomheder."
+      }
+    }
+  },
+  "features": {
+    "enhancedDueDiligence": {
+      "title": "Forbedret due diligence:",
+      "description": "Vores platform inkorporerer allerede de strengere verifikationsstandarder, der forventes i AMLR 2027."
+    },
+    "beneficialOwnershipTracking": {
+      "title": "Sporing af reelt ejerskab:",
+      "description": "Omfattende værktøjer til sporing og verifikation af ultimative reelle ejere."
+    },
+    "advancedRiskAssessment": {
+      "title": "Avanceret risikovurdering:",
+      "description": "Sofistikerede algoritmer, der tilpasser sig udviklende regulatoriske risikoparametre."
+    },
+    "seamlessRegulatoryReporting": {
+      "title": "Sømløs regulatorisk rapportering:",
+      "description": "Automatiserede rapporteringsværktøjer, der vil tilpasse sig nye krav."
+    }
+  },
+  "didYouKnow": {
+    "title": "Vidste du det?",
+    "description": "Virksomheder, der begynder at implementere forbedrede AML-systemer nu, sparer i gennemsnit 40% på compliance-omkostninger sammenlignet med dem, der venter, indtil reguleringer håndhæves."
+  },
+  "cta": {
+    "primary": "Kontakt vores eksperter",
+    "secondary": "Kontakt salg"
+  },
+  "ctaSection": {
+    "title": "Forbered din virksomhed på EU AMLR 2027",
+    "subtitle": "Hold dig foran regulatoriske ændringer med vores fremtidssikre KYC og AML løsning. Kontakt vores eksperter for at se, hvordan vi kan hjælpe din virksomhed."
+  }
+}

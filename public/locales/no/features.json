@@ -1,0 +1,61 @@
+{
+  "badge": "Komplett KYC/AML-plattform",
+  "title": "Det Komplette Compliance-Arsenalet",
+  "subtitle": "Alt fra umiddelbar kundeverifisering til AI-drevet transaksjonsovervåking til regulatorisk rapportering med ett klikk. Den eneste plattformen som dekker alle EU AMLR-krav uten kompromisser.",
+  "platformFeatures": {
+    "kycVerification": {
+      "title": "Umiddelbar Kundeverifisering",
+      "description": "Verifiser enhver kunde på under 60 sekunder med intelligent eID-ruting på tvers av MitID, BankID og Freja. Automatisert risikovurdering skjer i sanntid, så du vet nøyaktig hvem du har med å gjøre før godkjenning.",
+      "features": [
+        "Smart eID-orkestrering på tvers av alle EU-identitetssystemer",
+        "AI-drevet dokumentautentisitetsverifisering",
+        "Live-registeroppslag med 15+ EU-forretningsmyndigheter",
+        "Umiddelbar kartlegging av reelle eiere",
+        "Komplett onboarding på 60 sekunder eller mindre"
+      ]
+    },
+    "transactionMonitoring": {
+      "title": "24/7 Transaksjonsintelligens",
+      "description": "AI som aldri sover, overvåker hver transaksjon for mistenkelige mønstre, struktureringsforsøk og hastighetsavvik. Fang trusler før de blir compliance-mareritt.",
+      "features": [
+        "Sanntidsovervåking av 100% av transaksjoner",
+        "Atferdsanalyse som oppdager mønsteravvik",
+        "Maskinlæring trent på 10M+ EU-transaksjoner",
+        "Dynamisk risikovurdering som tilpasser seg kundeatferd",
+        "Umiddelbare varsler til teamet ditt når terskler brytes"
+      ]
+    },
+    "complianceReporting": {
+      "title": "Null-Touch-rapportering",
+      "description": "Generer revisjonsklar regulatorisk rapporter for enhver EU-jurisdiksjon med ett klikk. Komplette revisjonsspor vedlikeholdes automatisk, etterforskere elsker dokumentasjonen vår.",
+      "features": [
+        "Automatisert SAR/STR-generering med jurisdiksjonsmal",
+        "Ett-klikks-rapportering til alle EU-finansmyndigheter",
+        "Komplette revisjonsspor lagret i 5+ år",
+        "Saksbehandling med etterforskningsarbeidsflyt",
+        "Sanntidsregulatorisk intelligens og regeloppdateringer"
+      ]
+    },
+    "riskIntelligence": {
+      "title": "AI Som Faktisk Lærer",
+      "description": "Slutt å drukne i falske positiver. Vår AI har analysert millioner av EU-transaksjoner og vet hvordan ekte risiko ser ut. 92% reduksjon i falske varsler betyr at teamet ditt fokuserer på genuine trusler.",
+      "features": [
+        "ML-modeller trent på 10M+ verifiserte EU-transaksjoner",
+        "Regionsspesifikke risikomønstre for alle EU-markeder",
+        "92% reduksjon i falske positive varsler",
+        "Kontinuerlig læring fra godkjenningsbeslutningene dine",
+        "Prediktiv risikovurdering før transaksjoner fullføres"
+      ]
+    }
+  },
+  "coreCapabilities": {
+    "euEidIntegration": {
+      "title": "EU eID Native Integration",
+      "description": "Sømløs integrasjon med MitID, BankID, Freja, Finnish Trust Network og alle større EU eID-systemer. Automatisk ruting basert på kundeplassering og tilgjengelighet."
+    },
+    "sanctionsScreening": {
+      "title": "Global Sanksjons- & PEP-screening",
+      "description": "Sanntidsscreening mot 200+ globale sanksjonslister, PEP-databaser og negative mediekilder. Intelligent fuzzy matching reduserer falske positiver med 85%."
+    }
+  }
+}

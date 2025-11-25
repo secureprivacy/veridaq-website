@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mejores Prácticas SAR Bancos UE: Guía 6AMLD y AMLA | Veridaq</title>
+  <meta name="description" content="Guía completa de presentación SAR/STR para bancos de la UE cubriendo requisitos 6AMLD, plazos AMLA, flujos de investigación y errores comunes a evitar.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://veridaq.com/es/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-spanish">
+  <link rel="stylesheet" href="/blog-static.css">
+
+  <!-- Sitemap discovery for crawlers -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://veridaq.com/sitemap.xml">
+
+  <!-- hreflang tags for multi-language SEO (only for available translations) -->
+  <link rel="alternate" hreflang="en" href="https://veridaq.com/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide" />
+  <link rel="alternate" hreflang="da" href="https://veridaq.com/da/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-danish" />
+  <link rel="alternate" hreflang="sv" href="https://veridaq.com/sv/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-swedish" />
+  <link rel="alternate" hreflang="no" href="https://veridaq.com/no/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-norwegian" />
+  <link rel="alternate" hreflang="fi" href="https://veridaq.com/fi/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-finnish" />
+  <link rel="alternate" hreflang="de" href="https://veridaq.com/de/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-german" />
+  <link rel="alternate" hreflang="fr" href="https://veridaq.com/fr/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-french" />
+  <link rel="alternate" hreflang="es" href="https://veridaq.com/es/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-spanish" />
+  <link rel="alternate" hreflang="it" href="https://veridaq.com/it/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-italian" />
+  <link rel="alternate" hreflang="pt" href="https://veridaq.com/pt/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-portuguese" />
+  <link rel="alternate" hreflang="nl" href="https://veridaq.com/nl/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-dutch" />
+  <link rel="alternate" hreflang="x-default" href="https://veridaq.com/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide" />
+
+  <!-- Open Graph / Social Media Tags -->
+  
+  <meta property="og:title" content="Mejores Prácticas SAR Bancos UE: Guía 6AMLD y AMLA">
+  <meta property="og:description" content="Guía completa de presentación SAR/STR para bancos de la UE cubriendo requisitos 6AMLD, plazos AMLA, flujos de investigación y errores comunes a evitar.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://veridaq.com/es/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-spanish">
+  <meta property="article:published_time" content="2025-11-17T12:01:21.171+00:00">
+  <meta property="article:modified_time" content="2025-11-17T14:24:34.926124+00:00">
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mejores Prácticas SAR Bancos UE: Guía 6AMLD y AMLA">
+  <meta name="twitter:description" content="Guía completa de presentación SAR/STR para bancos de la UE cubriendo requisitos 6AMLD, plazos AMLA, flujos de investigación y errores comunes a evitar.">
+  
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://veridaq.com/es/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://veridaq.com/es/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Mejores Prácticas SAR Bancos UE: Guía 6AMLD y AMLA"
+    }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Mejores Prácticas SAR Bancos UE: Guía 6AMLD y AMLA",
+  "alternativeHeadline": "Mejores Prácticas SAR Bancos UE: Guía 6AMLD y AMLA",
+  "description": "Guía completa de presentación SAR/STR para bancos de la UE cubriendo requisitos 6AMLD, plazos AMLA, flujos de investigación y errores comunes a evitar.",
+  "datePublished": "2025-11-17T12:01:21.171+00:00",
+  "dateModified": "2025-11-17T14:24:34.926124+00:00",
+  "author": {
+    "@type": "Organization",
+    "name": "Veridaq",
+    "url": "https://veridaq.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://veridaq.com/images/veridaq-logo-transparent.png"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/veridaq"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Veridaq",
+    "url": "https://veridaq.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://veridaq.com/images/veridaq-logo-transparent.png",
+      "width": 200,
+      "height": 60
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://veridaq.com/es/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-spanish"
+  },
+  "articleSection": "EU Compliance",
+  "articleBody": "\n\nMejores Prácticas para la Presentación de SAR/STR en Bancos de la UE bajo 6AMLD y AMLASeamos honestos: los Informes de Actividades Sospechosas (SAR/STR: informes breves a las autoridades sobre posible blanqueo de capitales o financiación del terrorismo) son el pilar fundamental de los esfuerzos antiblanqueo en la UE, pero también representan un desafío considerable. Está alineando su entidad con el Paquete AML mientras se prepara para la supervisión de AMLA y trata de mantener la calidad a medida que crecen las alertas. La verdadera fricción proviene de errores prevenibles y narrativas superficiales que las UIF (Unidades de Inteligencia Financiera: autoridades nacionales que reciben y analizan los SAR/STR) señalan como poco útiles. Una plataforma moderna de KYC y AML soluciona esto con procesos coherentes, casos ricos en datos y alineación regulatoria integrada. Piense en plantillas, temporizadores de SLA, trazabilidad de datos y almacenamiento en la UE que hacen que las presentaciones sean defendibles y rápidas.&nbsp;Manual Supervisor del BCEComprendiendo los Requisitos de Presentación en la UE: Plazos de 6AMLD y AMLAEl panorama de plazos está cambiando. Las normas nacionales aún rigen la cadencia de presentación, a menudo requiriendo la presentación sin demora, mientras que el nuevo Reglamento AML introduce obligaciones armonizadas sobre cómo las UIF pueden solicitar información y cómo se formatean los informes. Su plataforma debe codificar estas normas en SLAs configurables, plantillas y controles de acceso para que la política se convierta en flujo de trabajo, no en conocimiento tribal.&nbsp;Comunicado de prensa del Consejo de la UE sobre adopción y plazosRealidad del marco actual:&nbsp;Muchos bancos operan con SLAs internos de 30 días para casos estándar para asegurar una escalada oportuna, pero las obligaciones legales en varias jurisdicciones siguen siendo \"sin demora\", especialmente para la financiación del terrorismo. Su plataforma debe reflejar paquetes jurisdiccionales que activen SLAs y controles de divulgación en consecuencia, con registros de auditoría inmutables y acceso basado en roles.&nbsp;Ejemplo nacional de presentación \"sin demora\" a la UIFMejoras de AMLR y AMLA:&nbsp;Bajo AMLR, las entidades obligadas deben responder a las solicitudes de información de las UIF en cinco días hábiles, y en casos urgentes las UIF pueden reducir esto a menos de 24 horas. AMLA impulsará formatos e indicadores comunes de STR para 2026–2027 e inicia operaciones completas y selección de supervisión directa para 2027. Las plataformas deben soportar un carril urgente con temporizadores preestablecidos de 24 horas, auto-escalada al MLRO y presentaciones basadas en API donde estén disponibles.&nbsp;Hoja informativa de AMLR sobre plazos de respuesta de UIF y plantillas;&nbsp;Cronograma de AMLA para operaciones y supervisión directaLa misión de AMLA es armonizar la supervisión y mejorar la cooperación entre UIF, lo que significa expectativas más consistentes sobre exhaustividad, puntualidad y utilidad. Construya paneles de control que rastreen el tiempo de ciclo, la integridad de los campos y el recuento de adjuntos para que los equipos puedan autocorregirse antes de que los supervisores pregunten.&nbsp;Misión y rol de coordinación de AMLAPaso 1: Estandarizar la Investigación y Clasificación de AlertasLos bancos con tasas de aceptación del 95%+ confían en estructuras de casos predecibles. El trabajo de transformación digital del GAFI muestra que los enfoques sistemáticos y habilitados por tecnología mejoran la detección de riesgos y la eficiencia del flujo de trabajo. Haga que la plataforma haga el trabajo pesado para que los analistas se concentren en el juicio, no en la manipulación de datos.&nbsp;Guía de transformación digital del GAFIRequisitos de Implementación de ClasificaciónNiveles de riesgo en plataforma:&nbsp;Clasifique las alertas en Urgente, Alto, Medio, Bajo utilizando puntuaciones de modelo, riesgo KYC e indicadores de tipología. Aplique límites de tiempo a través de políticas de SLA: por ejemplo, Urgente enrutado para primer contacto en 4 horas, Alto en 24 horas, Medio en 5 días, Bajo en 10 días. Versione estas reglas y expóngalas en auditoría para evidenciar la efectividad del control.&nbsp;Énfasis del Manual Supervisor del BCE en procesosPlantillas de decisión:&nbsp;Proporcione árboles de decisión mapeados a tipologías comunes como estructuración, fraude comercial y mezcla de cripto. Almacénelos como paquetes de políticas firmadas y vincúlelos a razones de cierre de caso para ciclos de retroalimentación del modelo. El registro del caso debe retener la trazabilidad de datos hasta la fuente de cada dato.&nbsp;Guía de transformación digital del GAFIRecopilación automatizada de evidencia:&nbsp;Auto-extraiga más de 90 campos por alerta de archivos KYC, contrapartes, cambios de UBO y titularidad, screening de sanciones y PEP, medios adversos y análisis de blockchain. Centralice en una bóveda de document",
+  "wordCount": 1907,
+  "keywords": "Banco Santander, BBVA, CaixaBank, Banco de España, cumplimiento normativo",
+  "inLanguage": "es",
+  "url": "https://veridaq.com/es/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-spanish"
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Veridaq",
+  "url": "https://veridaq.com",
+  "logo": "https://veridaq.com/images/veridaq-logo-transparent.png",
+  "description": "EU's leading KYC & AML compliance platform"
+}
+  </script>
+
+  <!-- DataFeed schema for AI crawler discovery -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DataFeed",
+  "dataFeedElement": {
+    "@type": "DataFeedItem",
+    "item": {
+      "@type": "WebSite",
+      "url": "https://veridaq.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://veridaq.com/sitemap.xml"
+      }
+    }
+  },
+  "includedDataCatalog": "https://veridaq.com/sitemap.xml"
+}
+  </script>
+</head>
+<body class="blog-page">
+  <header class="blog-hero">
+    <div class="blog-container post-hero-content">
+      <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+        <a href="/es/">Inicio</a>
+        <a href="/es/blog/">Blog</a>
+        <span class="current">Mejores Prácticas SAR Bancos UE: Guía 6AMLD y AMLA</span>
+      </nav>
+      <a class="back-pill" href="/es/blog/">← Volver a todos los artículos</a>
+      <div class="category-badge">Cumplimiento de la UE</div>
+      <h1 class="post-title">Mejores Prácticas SAR Bancos UE: Guía 6AMLD y AMLA</h1>
+      <div class="metadata-chips">
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">👤</span>Equipo de Veridaq</span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">📅</span><time datetime="2025-11-17T12:01:21.171+00:00">17 de noviembre de 2025</time></span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">⏱</span>11 min de lectura</span>
+      </div>
+      <div class="post-excerpt"> La presentación efectiva de SAR/STR bajo el Paquete AML de la UE requiere investigación estandarizada, narrativas de calidad y flujos de trabajo automatizados. Los bancos deben cumplir con deberes nacionales &quot;sin demora&quot; y prepararse para las ventanas de respuesta de información de UIF de cinco días y sub-24 horas de AMLR y los formatos armonizados de AMLA. Los factores clave de éxito incluyen clasificación basada en riesgo, narrativas basadas en evidencia y rastros de auditoría completos. Las plataformas alineadas con GAFI que automatizan la recopilación de datos, construcción de narrativas y gestión de plazos son esenciales para cumplir expectativas supervisorias. Las capacidades integradas de flujo de trabajo SAR de Veridaq ayudan a los bancos a lograr la puntualidad, integridad y utilidad que los supervisores de la era AMLA priorizarán.</div>
+    </div>
+  </header>
+
+  
+
+  <main class="blog-article">
+    <div class="blog-container">
+      <article class="blog-prose">
+
+
+<h1>Mejores Prácticas para la Presentación de SAR/STR en Bancos de la UE bajo 6AMLD y AMLA</h1><p>Seamos honestos: los Informes de Actividades Sospechosas (SAR/STR: informes breves a las autoridades sobre posible blanqueo de capitales o financiación del terrorismo) son el pilar fundamental de los esfuerzos antiblanqueo en la UE, pero también representan un desafío considerable. Está alineando su entidad con el Paquete AML mientras se prepara para la supervisión de AMLA y trata de mantener la calidad a medida que crecen las alertas. La verdadera fricción proviene de errores prevenibles y narrativas superficiales que las UIF (Unidades de Inteligencia Financiera: autoridades nacionales que reciben y analizan los SAR/STR) señalan como poco útiles. Una plataforma moderna de KYC y AML soluciona esto con procesos coherentes, casos ricos en datos y alineación regulatoria integrada. Piense en plantillas, temporizadores de SLA, trazabilidad de datos y almacenamiento en la UE que hacen que las presentaciones sean defendibles y rápidas.&nbsp;<a href="https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.supervisory_guides202401_manual.en.pdf">Manual Supervisor del BCE</a></p><h2>Comprendiendo los Requisitos de Presentación en la UE: Plazos de 6AMLD y AMLA</h2><p>El panorama de plazos está cambiando. Las normas nacionales aún rigen la cadencia de presentación, a menudo requiriendo la presentación sin demora, mientras que el nuevo Reglamento AML introduce obligaciones armonizadas sobre cómo las UIF pueden solicitar información y cómo se formatean los informes. Su plataforma debe codificar estas normas en SLAs configurables, plantillas y controles de acceso para que la política se convierta en flujo de trabajo, no en conocimiento tribal.&nbsp;<a href="https://www.consilium.europa.eu/en/press/press-releases/2024/05/30/anti-money-laundering-council-adopts-package-of-rules/">Comunicado de prensa del Consejo de la UE sobre adopción y plazos</a></p><p><strong>Realidad del marco actual:</strong>&nbsp;Muchos bancos operan con SLAs internos de 30 días para casos estándar para asegurar una escalada oportuna, pero las obligaciones legales en varias jurisdicciones siguen siendo "sin demora", especialmente para la financiación del terrorismo. Su plataforma debe reflejar paquetes jurisdiccionales que activen SLAs y controles de divulgación en consecuencia, con registros de auditoría inmutables y acceso basado en roles.&nbsp;<a href="https://www.fi.se/en/bank/money-laundering/process--work-method/reporting-to-the-financial-intelligence-unit/">Ejemplo nacional de presentación "sin demora" a la UIF</a></p><p><strong>Mejoras de AMLR y AMLA:</strong>&nbsp;Bajo AMLR, las entidades obligadas deben responder a las solicitudes de información de las UIF en cinco días hábiles, y en casos urgentes las UIF pueden reducir esto a menos de 24 horas. AMLA impulsará formatos e indicadores comunes de STR para 2026–2027 e inicia operaciones completas y selección de supervisión directa para 2027. Las plataformas deben soportar un carril urgente con temporizadores preestablecidos de 24 horas, auto-escalada al MLRO y presentaciones basadas en API donde estén disponibles.&nbsp;<a href="https://accountancyeurope.eu/wp-content/uploads/2024/12/241218_AML_Regulation_Factsheet_AccountancyEurope.pdf">Hoja informativa de AMLR sobre plazos de respuesta de UIF y plantillas</a>;&nbsp;<a href="https://www.amla.europa.eu/about-amla_en">Cronograma de AMLA para operaciones y supervisión directa</a></p><p>La misión de AMLA es armonizar la supervisión y mejorar la cooperación entre UIF, lo que significa expectativas más consistentes sobre exhaustividad, puntualidad y utilidad. Construya paneles de control que rastreen el tiempo de ciclo, la integridad de los campos y el recuento de adjuntos para que los equipos puedan autocorregirse antes de que los supervisores pregunten.&nbsp;<a href="https://www.amla.europa.eu/about-amla_en">Misión y rol de coordinación de AMLA</a></p><h2>Paso 1: Estandarizar la Investigación y Clasificación de Alertas</h2><p>Los bancos con tasas de aceptación del 95%+ confían en estructuras de casos predecibles. El trabajo de transformación digital del GAFI muestra que los enfoques sistemáticos y habilitados por tecnología mejoran la detección de riesgos y la eficiencia del flujo de trabajo. Haga que la plataforma haga el trabajo pesado para que los analistas se concentren en el juicio, no en la manipulación de datos.&nbsp;<a href="https://www.fatf-gafi.org/en/publications/Digitaltransformation/Digital-transformation-aml-cft.html">Guía de transformación digital del GAFI</a></p><h3>Requisitos de Implementación de Clasificación</h3><p><strong>Niveles de riesgo en plataforma:</strong>&nbsp;Clasifique las alertas en Urgente, Alto, Medio, Bajo utilizando puntuaciones de modelo, riesgo KYC e indicadores de tipología. Aplique límites de tiempo a través de políticas de SLA: por ejemplo, Urgente enrutado para primer contacto en 4 horas, Alto en 24 horas, Medio en 5 días, Bajo en 10 días. Versione estas reglas y expóngalas en auditoría para evidenciar la efectividad del control.&nbsp;<a href="https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.supervisory_guides202401_manual.en.pdf">Énfasis del Manual Supervisor del BCE en procesos</a></p><p><strong>Plantillas de decisión:</strong>&nbsp;Proporcione árboles de decisión mapeados a tipologías comunes como estructuración, fraude comercial y mezcla de cripto. Almacénelos como paquetes de políticas firmadas y vincúlelos a razones de cierre de caso para ciclos de retroalimentación del modelo. El registro del caso debe retener la trazabilidad de datos hasta la fuente de cada dato.&nbsp;<a href="https://www.fatf-gafi.org/en/publications/Digitaltransformation/Digital-transformation-aml-cft.html">Guía de transformación digital del GAFI</a></p><p><strong>Recopilación automatizada de evidencia:</strong>&nbsp;Auto-extraiga más de 90 campos por alerta de archivos KYC, contrapartes, cambios de UBO y titularidad, screening de sanciones y PEP, medios adversos y análisis de blockchain. Centralice en una bóveda de documentos con controles GDPR e ISO 27001 y registros completos de cadena de custodia.&nbsp;<a href="https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.supervisory_guides202401_manual.en.pdf">Manual Supervisor del BCE</a></p><h3>Optimización del Enrutamiento</h3><p>Use asignación basada en habilidades para cripto y finanzas comerciales, equilibrio de carga de trabajo por complejidad, emparejamiento de idiomas para documentos extranjeros y enrutamiento de continuidad para que las alertas de seguimiento permanezcan con el investigador anterior. Estas mecánicas de cola aumentan el rendimiento sin sacrificar la calidad y coinciden con las expectativas del BCE de resultados supervisorios eficientes.&nbsp;<a href="https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.supervisory_guides202401_manual.en.pdf">Énfasis del Manual Supervisor del BCE en procesos</a></p><h3>Objetivos de Rendimiento</h3><ul><li>Objetivo: 70%+ de clientes SAR provenientes de niveles de riesgo Alto o Crítico</li><li>Objetivo: menos del 10% de anulaciones manuales de puntuaciones de modelo</li><li>Objetivo: 99.5% de cumplimiento de presentación puntual</li></ul><p>Respalde estos con paneles en vivo, alertas de incumplimiento y registro de incidentes alineado con EuReCA para que los supervisores vean un sistema controlado, no heroísmos.&nbsp;<a href="https://www.eba.europa.eu/publications-and-media/press-releases/careless-use-innovative-compliance-products-can-lead-money-laundering-and-terrorism-financing-risks">Contexto de riesgo ML/TF 2025 de la EBA y necesidades de coherencia</a></p><h2>Paso 2: Elaborar Narrativas de Sospecha de Alta Calidad</h2><p>Las fuerzas del orden quieren inteligencia procesable, no descripción de procesos. El primer párrafo debe responder a las cinco preguntas básicas. Luego cuantifique la varianza del comportamiento de referencia y mapee el patrón sospechoso a una categoría de delito subyacente. Su plataforma debe guiar esto con macros, calculadoras y etiquetado de delitos a referencias 6AMLD.&nbsp;<a href="https://www.consilium.europa.eu/en/press/press-releases/2024/05/30/anti-money-laundering-council-adopts-package-of-rules/">Comunicado de prensa del Consejo de la UE sobre adopción y plazos</a></p><p><strong>Asistencia de plataforma:</strong>&nbsp;Use un constructor de narrativas que auto-extraiga contexto KYC, puntuaciones de riesgo, coincidencias de sanciones y PEP, transacciones recientes y comparativas de pares como percentil por segmento y jurisdicción. Adjunte documentos fuente de una bóveda controlada y genere diagramas de flujo simples para patrones complejos. La revisión lingüística en lenguaje simple ayuda a eliminar la jerga interna antes de la presentación.&nbsp;<a href="https://www.fatf-gafi.org/en/publications/Digitaltransformation/Digital-transformation-aml-cft.html">Guía de transformación digital del GAFI</a></p><p><strong>Evite fallos comunes:</strong>&nbsp;Reemplace redacción vaga con deltas contra ingresos declarados, patrones históricos o comportamiento de pares. Vincule siempre con el archivo KYC y el perfil de actividad esperado. Los reguladores y las UIF han criticado presentaciones "no sustanciadas"; las narrativas estructuradas con evidencia reducen el rechazo y el retrabajo.&nbsp;<a href="https://www.fatf-gafi.org/en/publications/Digitaltransformation/Digital-transformation-aml-cft.html">Guía de transformación digital del GAFI</a></p><p><strong>Mejora continua:</strong>&nbsp;A medida que AMLA y las UIF armonicen indicadores y ciclos de retroalimentación, ingiera datos de resultados para reentrenar modelos y actualizar plantillas. Espere señales más claras sobre qué hace útil una presentación, así que mantenga un campo de retroalimentación en cada SAR para cerrar el ciclo.&nbsp;<a href="https://www.amla.europa.eu/about-amla_en">Misión y rol de coordinación de AMLA</a></p><h2>Paso 3: Gestionar Plazos de Presentación y Automatización del Flujo de Trabajo</h2><p>Cumplir con expectativas aceleradas requiere eliminar cuellos de botella manuales mientras se demuestra control. Paralelice la investigación, revisión legal y documentación. Automatice escaladas y aprobaciones con rastros de auditoría inmutables. Estas mecánicas apoyan evaluaciones supervisorias que enfatizan la eficiencia de procesos y el diseño de controles.&nbsp;<a href="https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.supervisory_guides202401_manual.en.pdf">Énfasis del Manual Supervisor del BCE en procesos</a></p><p><strong>Diseño de flujo de trabajo escalable:</strong>&nbsp;Ejecute tareas paralelas con aprobaciones controladas. Si un caso estándar supera los 20 días, auto-escale al MLRO. Si un caso urgente supera las 48 horas, active un estado rojo, notifique al equipo de guardia y ejecute una lista de verificación de finalización. Genere paquetes listos para el regulador en formatos legibles por humanos y máquinas.&nbsp;<a href="https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.supervisory_guides202401_manual.en.pdf">Manual Supervisor del BCE</a></p><p><strong>Automatización útil:</strong>&nbsp;Pre-rellene formularios STR/SAR con datos de casos, gestione temporizadores al 50%, 75% y 90% del SLA, y soporte presentación electrónica con un clic donde existan pasarelas nacionales. Rastree acuses de recibo de UIF y re-consultas, luego genere tareas para solicitudes de información sub-24 horas como lo permite AMLR.&nbsp;<a href="https://accountancyeurope.eu/wp-content/uploads/2024/12/241218_AML_Regulation_Factsheet_AccountancyEurope.pdf">Hoja informativa de AMLR sobre plazos de respuesta de UIF y plantillas</a>;&nbsp;<a href="https://fiaumalta.org/app/uploads/2025/02/The-AMLCFT-Regulation-AMLR.pdf">Considerando de AMLR sobre solicitudes urgentes de UIF &lt;24h</a></p><p><strong>Gestión posterior a la presentación:</strong>&nbsp;Estandarice razones de cierre y mantenga rastros de auditoría durante 5+ años con residencia de datos en la UE. Almacene toda la evidencia, diagramas y cálculos bajo control de versiones para que pueda responder preguntas supervisorias sin retrabajo.&nbsp;<a href="https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.supervisory_guides202401_manual.en.pdf">Manual Supervisor del BCE</a></p><h2>Tabla: Plazos de Presentación de SAR bajo Regímenes Actuales vs AMLA</h2><table><thead><tr><th>Escenario</th><th>Actual (Nacional)</th><th>Contexto AMLA/AMLR 2027</th><th>Impacto en Calidad</th></tr></thead><tbody><tr><td>Sospecha estándar</td><td>Típicamente "sin demora," especificaciones varían por UIF</td><td>Formato STR común e indicadores para 2026–27</td><td>Métrica de puntualidad: rastrear tiempo mediano de ciclo</td></tr><tr><td>Casos urgentes</td><td>Inmediato en la práctica, especialmente para FT</td><td>Solicitudes de info de UIF pueden requerir respuesta &lt;24h</td><td>Requiere personal de guardia y enrutamiento de carril urgente</td></tr><tr><td>Control de divulgación</td><td>Prohibido bajo ley UE y normas nacionales</td><td>Supervisión armonizada y cooperación UIF</td><td>Capacitación del personal y control de acceso son críticos</td></tr><tr><td>Seguimientos de UIF</td><td>Plazos ad hoc</td><td>5 días hábiles por defecto, urgente &lt;24h</td><td>Automatizar tareas de respuesta y alertas SLA</td></tr><tr><td>Expectativas narrativas</td><td>Sin estándar UE de recuento de palabras</td><td>Enfoque en usabilidad vía indicadores armonizados</td><td>Verificaciones de integridad y mínimos de adjuntos</td></tr></tbody></table><p>Fuentes para expectativas de timing y armonización.&nbsp;<a href="https://www.consilium.europa.eu/en/press/press-releases/2024/05/30/anti-money-laundering-council-adopts-package-of-rules/">Comunicado de prensa del Consejo de la UE sobre adopción y plazos</a>;&nbsp;<a href="https://accountancyeurope.eu/wp-content/uploads/2024/12/241218_AML_Regulation_Factsheet_AccountancyEurope.pdf">Hoja informativa de AMLR sobre plazos de respuesta de UIF y plantillas</a></p><h2>Métricas de Calidad de SAR: Lo que AMLA Enfatizará</h2><p><strong>Integridad:</strong>&nbsp;Apunte al 100% de población de campos obligatorios como identificador de cliente, fecha de sospecha, detalles de transacción y mapeo de delitos. Los SAR de alta calidad comúnmente incluyen 12–15 documentos de soporte y proveniencia clara. Use puertas de campos requeridos, orientación de recuento de palabras y mínimos de adjuntos en la plataforma.&nbsp;<a href="https://www.fatf-gafi.org/en/publications/Digitaltransformation/Digital-transformation-aml-cft.html">Guía de transformación digital del GAFI</a></p><p><strong>Puntualidad:</strong>&nbsp;La mejor práctica es ejecutar un tiempo de ciclo mediano muy por debajo de los SLAs internos. Calibre la urgencia para que el 3–5% de las alertas se marquen como urgentes, no 10%+. Use alertas de incumplimiento de SLA, análisis de colas y modelos de capacidad de investigador para mantener los horarios realistas.&nbsp;<a href="https://www.bankingsupervision.europa.eu/ecb/pub/pdf/ssm.supervisory_guides202401_manual.en.pdf">Énfasis del Manual Supervisor del BCE en procesos</a></p><p><strong>Utilidad:</strong>&nbsp;El GAFI y los supervisores de la UE enfatizan el valor de inteligencia sobre el volumen. Los indicadores armonizados y la coordinación de AMLA fortalecerán el ciclo de retroalimentación, así que ingiera resultados de UIF para priorizar patrones que conduzcan a investigaciones. Trate la utilidad como una métrica de producto, mostrada en el panel de control de casos.&nbsp;<a href="https://www.fatf-gafi.org/en/publications/Digitaltransformation/Digital-transformation-aml-cft.html">Guía de transformación digital del GAFI</a>;&nbsp;<a href="https://www.amla.europa.eu/about-amla_en">Misión y rol de coordinación de AMLA</a></p><h2>Resumen: Construyendo una Operación de Presentación de SAR de Alto Rendimiento</h2><p>La presentación de SAR de calidad bajo el Paquete AML requiere tres pilares: procesos de investigación estandarizados, narrativas ricas en evidencia y automatización inteligente del flujo de trabajo. Cumpla con los deberes nacionales "sin demora" mientras se prepara para las ventanas de respuesta de información de UIF de cinco días y sub-24 horas de AMLR y los formatos armonizados de AMLA. Trate las presentaciones como una capacidad de plataforma con trazabilidad de datos, residencia de datos en la UE y SLAs medibles. Los equipos que inviertan ahora en plantillas, automatización e ingesta de retroalimentación reducirán las tasas de rechazo, disminuirán el retrabajo y estarán listos para inspección cuando el régimen de AMLA entre completamente en vigor en 2027.&nbsp;<a href="https://www.consilium.europa.eu/en/press/press-releases/2024/05/30/anti-money-laundering-council-adopts-package-of-rules/">Comunicado de prensa del Consejo de la UE sobre adopción y plazos</a>;&nbsp;<a href="https://accountancyeurope.eu/wp-content/uploads/2024/12/241218_AML_Regulation_Factsheet_AccountancyEurope.pdf">Hoja informativa de AMLR sobre plazos de respuesta de UIF y plantillas</a>;&nbsp;<a href="https://www.amla.europa.eu/about-amla_en">Misión y rol de coordinación de AMLA</a></p><p><strong>Lista de verificación de idoneidad de plataforma:</strong>&nbsp;Onboarding KYC con verificación de documentos AI en múltiples jurisdicciones, scoring de riesgo, monitoreo de transacciones en tiempo real, screening de sanciones y PEP de la UE, mapeo de titularidad beneficiaria, flujos de trabajo SAR guiados, plantillas listas para reguladores, residencia segura de datos en la UE, controles GDPR e ISO 27001, y automatización configurable.</p>
+      </article>
+
+      <section class="share-strip" aria-label="Compartir este artículo">
+        <div>
+          <h3>Compartir este artículo</h3>
+          <p>Ayuda a otros a cumplir con las regulaciones de la UE</p>
+        </div>
+        <div class="share-links">
+          <a class="share-pill" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fveridaq.com%2Fes%2Fblog%2Fsar-filing-best-practices-for-eu-banks-6amld-amla-guide-spanish" target="_blank" rel="noopener" aria-label="Compartir en LinkedIn">in</a>
+          <a class="share-pill" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fveridaq.com%2Fes%2Fblog%2Fsar-filing-best-practices-for-eu-banks-6amld-amla-guide-spanish&text=Mejores%20Pr%C3%A1cticas%20SAR%20Bancos%20UE%3A%20Gu%C3%ADa%206AMLD%20y%20AMLA" target="_blank" rel="noopener" aria-label="Compartir en Twitter">X</a>
+          <a class="share-pill" href="mailto:?subject=Mejores%20Pr%C3%A1cticas%20SAR%20Bancos%20UE%3A%20Gu%C3%ADa%206AMLD%20y%20AMLA&body=I%20thought%20you%20might%20find%20this%20EU%20compliance%20article%20interesting%3A%20https%3A%2F%2Fveridaq.com%2Fes%2Fblog%2Fsar-filing-best-practices-for-eu-banks-6amld-amla-guide-spanish"  aria-label="Compartir en Email">@</a>
+        </div>
+      </section>
+
+      <section class="related-section">
+        <h3>Artículos relacionados</h3>
+        <div class="related-grid">
+      <a class="related-card" href="/es/blog/amla-readiness-guide-for-eu-banks-2025-2027-spanish/">
+        <span>Guía de Preparación para AMLA para Bancos de la UE 2025-2027</span>
+        <p>Prepárate para AMLA con nuestra guía práctica para bancos españoles.</p>
+      </a>
+    
+
+      <a class="related-card" href="/es/blog/kycaml-from-cost-to-productivity-multiplier-spanish/">
+        <span>KYC/AML: De Costo a Multiplicador de Productividad</span>
+        <p>Descubre cómo KYC/AML puede ser una ventaja competitiva para tu banco.</p>
+      </a>
+    
+
+      <a class="related-card" href="/es/blog/the-eu-aml-package-2027-navigating-europes-new-compliance-la-spanish/">
+        <span>El Paquete de AML de la UE 2027: Navegando por el Nuevo Panorama de Cumplimiento en Europa</span>
+        <p>Descubre cómo el Paquete AML UE 2027 transformará tu enfoque hacia el cumplimiento financiero.</p>
+      </a>
+    </div>
+      </section>
+
+      <section class="cta-block">
+        <div class="cta-icon" aria-hidden="true">⚡</div>
+        <h3>¿Listo para implementar estas estrategias de cumplimiento?</h3>
+        <p>Nuestros expertos en cumplimiento pueden ayudarte a implementar las estrategias discutidas en este artículo. Reserva una consulta para obtener orientación personalizada.</p>
+        <a class="cta-button" href="#contact">Obtener Consulta de Experto →</a>
+      </section>
+    </div>
+  </main>
+
+  
+    <footer class="site-footer">
+      <div class="blog-container">
+        <div class="site-footer__grid">
+          <div class="site-footer__brand">
+            <a class="site-logo" href="/es/" aria-label="Empresa">
+              <img src="/images/veridaq-logo-transparent.png" alt="Empresa" width="128" height="32">
+            </a>
+            <p class="site-footer__description">Veridaq ofrece soluciones de cumplimiento impulsadas por IA que son 10x más rápidas con 90% menos falsos positivos. Suite AML completa para empresas, KYC Lite para empresas en crecimiento.</p>
+            <div class="site-footer__contact">
+              <div class="site-footer__contact-item">sales@veridaq.com</div>
+              <div class="site-footer__contact-item">+45 31272726</div>
+              <div class="site-footer__contact-item">Fruebjergvej 3\n2100 Copenhague\nDinamarca</div>
+            </div>
+          </div>
+          <div>
+            <h3 class="site-footer__heading">Soluciones Impulsadas por IA</h3>
+            <ul class="site-footer__list">
+              <li><a href="/es/#features">KYC Lite</a></li>
+              <li><a href="/es/#features">Suite AML Completa</a></li>
+              <li><a href="/es/#eu-compliance">EU AMLR 2027 Nativo</a></li>
+              <li><a href="/es/#features">Verificación de Documentos Instantánea</a></li>
+              <li><a href="/es/#features">Monitoreo IA de Comportamiento</a></li>
+              <li><a href="/es/#features">Motor de Riesgo Predictivo</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="site-footer__heading">Industrias</h3>
+            <ul class="site-footer__list">
+              <li><a href="/es/#industries">Banca Tradicional</a></li>
+              <li><a href="/es/#industries">FinTech &amp; Neobancos</a></li>
+              <li><a href="/es/#industries">Cripto &amp; Activos Digitales</a></li>
+              <li><a href="/es/#industries">Inmobiliaria de Alto Valor</a></li>
+              <li><a href="/es/#industries">Gaming &amp; iGaming</a></li>
+              <li><a href="/es/#industries">Marketplaces &amp; E-commerce</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="site-footer__heading">Empresa</h3>
+            <ul class="site-footer__list">
+              <li><a href="/es/blog/">Perspectivas de Cumplimiento</a></li>
+              <li><a href="/es/#benefits">Por Qué Veridaq</a></li>
+              <li><a href="/es/#contact">Reservar Demo</a></li>
+              <li><a href="/privacy-policy">Política de Privacidad</a></li>
+              <li><a href="/terms-of-service">Términos de Servicio</a></li>
+              <li><a href="/privacy-by-design">Privacy by Design</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="site-footer__bottom">
+          <div class="site-footer__copyright">© 2025 Veridaq. Todos los derechos reservados. | Plataforma de Cumplimiento Impulsada por IA</div>
+          <div class="site-footer__bottom-links">
+            <a href="#">Seguridad de Nivel Bancario</a>
+            <a href="#">AMLR 2027 Listo</a>
+            <a href="#">Estado</a>
+            <a class="emphasis" href="/es/#contact">Reserve Su Demo</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  
+  
+    <script type="module">
+      import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+      const SUPABASE_URL = "https://rjncawbywidrtwcprfgw.supabase.co";
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqbmNhd2J5d2lkcnR3Y3ByZmd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4OTcyMzgsImV4cCI6MjA3MjQ3MzIzOH0.vp8ZGIhRDvJrun3YoTJLJJH8P5Dx2SheEltVBXhujjc";
+      const LANGUAGE_OPTIONS = [{"code":"en","name":"inglés","flag":"🇬🇧"},{"code":"da","name":"danés","flag":"🇩🇰"},{"code":"sv","name":"sueco","flag":"🇸🇪"},{"code":"no","name":"noruego","flag":"🇳🇴"},{"code":"fi","name":"finlandés","flag":"🇫🇮"},{"code":"de","name":"alemán","flag":"🇩🇪"},{"code":"fr","name":"francés","flag":"🇫🇷"},{"code":"es","name":"español","flag":"🇪🇸"},{"code":"it","name":"italiano","flag":"🇮🇹"},{"code":"pt","name":"portugués","flag":"🇵🇹"},{"code":"nl","name":"holandés","flag":"🇳🇱"}];
+      const SUPPORTED_LANGUAGES = ["en","da","sv","no","fi","de","fr","es","it","pt","nl"];
+      const PAGE_CONTEXT = {"currentLanguage":"es","pageType":"post","currentSlug":"sar-filing-best-practices-for-eu-banks-6amld-amla-guide-spanish","availableTranslations":{"no":"sar-filing-best-practices-for-eu-banks-6amld-amla-guide-norwegian","nl":"sar-filing-best-practices-for-eu-banks-6amld-amla-guide-dutch","sv":"sar-filing-best-practices-for-eu-banks-6amld-amla-guide-swedish","es":"sar-filing-best-practices-for-eu-banks-6amld-amla-guide-spanish","fi":"sar-filing-best-practices-for-eu-banks-6amld-amla-guide-finnish","it":"sar-filing-best-practices-for-eu-banks-6amld-amla-guide-italian","de":"sar-filing-best-practices-for-eu-banks-6amld-amla-guide-german","pt":"sar-filing-best-practices-for-eu-banks-6amld-amla-guide-portuguese","da":"sar-filing-best-practices-for-eu-banks-6amld-amla-guide-danish","fr":"sar-filing-best-practices-for-eu-banks-6amld-amla-guide-french","en":"sar-filing-best-practices-for-eu-banks-6amld-amla-guide"}};
+      const LANGUAGE_FLAGS = {"en":"🇬🇧","da":"🇩🇰","sv":"🇸🇪","no":"🇳🇴","fi":"🇫🇮","de":"🇩🇪","fr":"🇫🇷","es":"🇪🇸","it":"🇮🇹","pt":"🇵🇹","nl":"🇳🇱"};
+      const PREFERENCE_KEY = 'preferredLanguage';
+
+      const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      const normalizeLanguage = (code) => {
+        if (!code) return 'en';
+        const base = code.toLowerCase().split('-')[0];
+        return SUPPORTED_LANGUAGES.includes(base) ? base : 'en';
+      };
+
+      const getLanguageFromPath = () => {
+        const segments = window.location.pathname.split('/').filter(Boolean);
+        if (segments.length > 0 && SUPPORTED_LANGUAGES.includes(segments[0])) {
+          return segments[0];
+        }
+        return 'en';
+      };
+
+      const findTranslatedPostSlug = async (currentSlug, currentLang, targetLang) => {
+        try {
+          if (currentLang === targetLang) return currentSlug;
+
+          if (currentLang === 'en') {
+            const { data: postData } = await supabase
+              .from('posts')
+              .select('id')
+              .eq('slug', currentSlug)
+              .eq('status', 'published')
+              .maybeSingle();
+
+            if (!postData?.id) return null;
+
+            const { data } = await supabase
+              .from('post_translations')
+              .select('slug')
+              .eq('language_code', targetLang)
+              .eq('published', true)
+              .eq('translation_status', 'completed')
+              .eq('post_id', postData.id)
+              .maybeSingle();
+
+            return data?.slug || null;
+          }
+
+          if (targetLang === 'en') {
+            const { data, error } = await supabase
+              .from('post_translations')
+              .select('post_id')
+              .eq('slug', currentSlug)
+              .eq('language_code', currentLang)
+              .eq('published', true)
+              .maybeSingle();
+
+            if (error || !data?.post_id) return null;
+
+            const { data: postData } = await supabase
+              .from('posts')
+              .select('slug')
+              .eq('id', data.post_id)
+              .eq('status', 'published')
+              .maybeSingle();
+
+            return postData?.slug || null;
+          }
+
+          const { data: translationData, error: translationError } = await supabase
+            .from('post_translations')
+            .select('post_id')
+            .eq('slug', currentSlug)
+            .eq('language_code', currentLang)
+            .eq('published', true)
+            .maybeSingle();
+
+          if (translationError || !translationData?.post_id) return null;
+
+          const { data: targetData } = await supabase
+            .from('post_translations')
+            .select('slug')
+            .eq('post_id', translationData.post_id)
+            .eq('language_code', targetLang)
+            .eq('published', true)
+            .eq('translation_status', 'completed')
+            .maybeSingle();
+
+          return targetData?.slug || null;
+        } catch (error) {
+          console.error('Error finding translated post:', error);
+          return null;
+        }
+      };
+
+      const fetchAvailableTranslations = async (currentSlug, currentLang) => {
+        try {
+          const normalizedCurrent = normalizeLanguage(currentLang);
+          let postId = null;
+
+          if (normalizedCurrent === 'en') {
+            const { data } = await supabase
+              .from('posts')
+              .select('id')
+              .eq('slug', currentSlug)
+              .eq('status', 'published')
+              .maybeSingle();
+
+            postId = data?.id || null;
+          } else {
+            const { data } = await supabase
+              .from('post_translations')
+              .select('post_id')
+              .eq('slug', currentSlug)
+              .eq('language_code', normalizedCurrent)
+              .eq('published', true)
+              .maybeSingle();
+
+            postId = data?.post_id || null;
+          }
+
+          if (!postId) return {};
+
+          const translationMap = {};
+
+          const { data: translations } = await supabase
+            .from('post_translations')
+            .select('language_code, slug')
+            .eq('post_id', postId)
+            .eq('published', true)
+            .eq('translation_status', 'completed');
+
+          translations?.forEach(entry => {
+            const baseLang = normalizeLanguage(entry.language_code);
+            translationMap[baseLang] = entry.slug;
+          });
+
+          const { data: englishPost } = await supabase
+            .from('posts')
+            .select('slug')
+            .eq('id', postId)
+            .eq('status', 'published')
+            .maybeSingle();
+
+          if (englishPost?.slug) {
+            translationMap.en = englishPost.slug;
+          }
+
+          return translationMap;
+        } catch (error) {
+          console.error('Error loading available translations:', error);
+          return {};
+        }
+      };
+
+      const closeMenus = () => {
+        document.querySelectorAll('.language-switcher__menu').forEach(menu => {
+          menu.setAttribute('hidden', '');
+        });
+        document.querySelectorAll('.language-switcher__toggle').forEach(toggle => {
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      };
+
+      const updateActiveLanguage = (language) => {
+        const normalized = normalizeLanguage(language);
+        document.querySelectorAll('.language-switcher').forEach((switcher) => {
+          switcher.setAttribute('data-current-language', normalized);
+          const toggleText = switcher.querySelector('.language-switcher__text');
+          const toggleFlag = switcher.querySelector('.language-switcher__flag');
+          const activeOption = LANGUAGE_OPTIONS.find(opt => opt.code === normalized) || LANGUAGE_OPTIONS[0];
+
+          if (toggleText) toggleText.textContent = activeOption?.name || 'English';
+          if (toggleFlag) toggleFlag.textContent = activeOption?.flag || LANGUAGE_FLAGS[normalized] || '🌐';
+
+          switcher.querySelectorAll('.language-switcher__option').forEach(option => {
+            const optionLang = option.getAttribute('data-language');
+            if (optionLang === normalized) {
+              option.classList.add('is-active');
+              option.setAttribute('aria-selected', 'true');
+            } else {
+              option.classList.remove('is-active');
+              option.removeAttribute('aria-selected');
+            }
+          });
+        });
+      };
+
+      const filterAvailableLanguages = (availableMap = {}) => {
+        const availableLanguages = Object.keys(availableMap);
+        const restrictOptions = PAGE_CONTEXT.pageType === 'post' && availableLanguages.length > 0;
+
+        document.querySelectorAll('.language-switcher__option').forEach(option => {
+          const optionLang = option.getAttribute('data-language');
+          if (restrictOptions && !availableLanguages.includes(optionLang)) {
+            option.setAttribute('hidden', '');
+          } else {
+            option.removeAttribute('hidden');
+          }
+        });
+      };
+
+        const handleNavigation = async (targetLanguage) => {
+          const baseLanguage = normalizeLanguage(targetLanguage);
+          const pathSegments = window.location.pathname.split('/').filter(Boolean);
+          const supportedLanguageCodes = SUPPORTED_LANGUAGES.filter(lang => lang !== 'en');
+
+          let currentLang = 'en';
+          let pathAfterLang = [...pathSegments];
+
+          if (pathSegments.length > 0 && supportedLanguageCodes.includes(pathSegments[0])) {
+            currentLang = pathSegments[0];
+            pathAfterLang = pathSegments.slice(1);
+          }
+
+          const isBlogPost = pathAfterLang.length >= 2 && pathAfterLang[0] === 'blog' && pathAfterLang[1];
+          const isBlogListing = pathAfterLang.length === 1 && pathAfterLang[0] === 'blog';
+
+          if (isBlogPost) {
+            const currentSlug = pathAfterLang[1];
+            const translatedSlug = await findTranslatedPostSlug(currentSlug, currentLang, baseLanguage);
+
+            if (translatedSlug) {
+              const newPath = baseLanguage === 'en'
+                ? '/blog/' + translatedSlug + '/'
+                : '/' + baseLanguage + '/blog/' + translatedSlug + '/';
+              window.location.assign(newPath);
+              return;
+            }
+
+            const fallbackPath = baseLanguage === 'en'
+              ? '/blog/'
+              : '/' + baseLanguage + '/blog/';
+            window.location.assign(fallbackPath);
+            return;
+          }
+
+          if (isBlogListing) {
+            const listingPath = baseLanguage === 'en'
+              ? '/blog/'
+              : '/' + baseLanguage + '/blog/';
+            window.location.assign(listingPath);
+            return;
+          }
+
+          const defaultPath = baseLanguage === 'en' ? '/' : '/' + baseLanguage + '/';
+          window.location.assign(defaultPath);
+        };
+
+      const buildMenus = (availableTranslations = {}) => {
+        document.querySelectorAll('.language-switcher').forEach((switcher) => {
+          const toggle = switcher.querySelector('.language-switcher__toggle');
+          const menu = switcher.querySelector('.language-switcher__menu');
+
+          if (!toggle || !menu) return;
+
+          const savedPreference = normalizeLanguage(localStorage.getItem(PREFERENCE_KEY) || PAGE_CONTEXT.currentLanguage);
+          switcher.setAttribute('data-current-language', savedPreference);
+          updateActiveLanguage(savedPreference);
+
+          toggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+            closeMenus();
+            if (!isExpanded) {
+              menu.removeAttribute('hidden');
+              toggle.setAttribute('aria-expanded', 'true');
+            }
+          });
+
+          switcher.querySelectorAll('.language-switcher__option').forEach(option => {
+            option.addEventListener('click', async () => {
+              const language = option.getAttribute('data-language');
+              localStorage.setItem(PREFERENCE_KEY, language);
+              updateActiveLanguage(language);
+              closeMenus();
+              await handleNavigation(language);
+            });
+          });
+        });
+
+        filterAvailableLanguages(availableTranslations);
+      };
+
+      document.addEventListener('click', (event) => {
+        const isMenuClick = event.target.closest('.language-switcher');
+        if (!isMenuClick) {
+          closeMenus();
+        }
+      });
+
+      document.addEventListener('keyup', (event) => {
+        if (event.key === 'Escape') closeMenus();
+      });
+
+      const setupHeaderToggle = () => {
+        const toggle = document.querySelector('.site-header__menu-toggle');
+        const mobileMenu = document.querySelector('[data-mobile-menu]');
+
+        if (!toggle || !mobileMenu) return;
+
+        toggle.addEventListener('click', () => {
+          const isOpen = mobileMenu.classList.toggle('is-open');
+          toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          if (isOpen) {
+            document.body.classList.add('menu-open');
+          } else {
+            document.body.classList.remove('menu-open');
+          }
+        });
+      };
+
+      const initialize = async () => {
+        const detectedLanguage = normalizeLanguage(getLanguageFromPath());
+        PAGE_CONTEXT.currentLanguage = detectedLanguage;
+
+        let availableTranslations = PAGE_CONTEXT.availableTranslations || {};
+
+        if (PAGE_CONTEXT.pageType === 'post' && PAGE_CONTEXT.currentSlug) {
+          const latestTranslations = await fetchAvailableTranslations(PAGE_CONTEXT.currentSlug, detectedLanguage);
+          availableTranslations = Object.keys(latestTranslations).length > 0 ? latestTranslations : availableTranslations;
+        }
+
+        buildMenus(availableTranslations);
+        setupHeaderToggle();
+      };
+
+      initialize();
+    </script>
+  
+</body>
+</html>

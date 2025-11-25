@@ -1,0 +1,71 @@
+{
+  "badge": "Ready to Get Started?",
+  "title": "Experience <1>Next-Generation Compliance</1>",
+  "subtitle": "See why leading companies choose Veridaq for both KYC verification and AML monitoring. Book a personalized demo and discover the perfect solution for your business.",
+  "whyChoose": "Why Choose Veridaq?",
+  "features": {
+    "dualSolution": {
+      "title": "Perfect Solution for Any Stage",
+      "description": "KYC Lite for fast-growing companies, AML Suite for complex enterprises. Start where you are, scale when you're ready."
+    },
+    "expertSupport": {
+      "title": "Implementation That Works",
+      "description": "Compliance experts and technical specialists ensure your platform goes live smoothly and delivers results immediately."
+    },
+    "fastResults": {
+      "title": "See Results in Days",
+      "description": "Most customers see immediate improvements in processing speed and accuracy within the first week of implementation."
+    }
+  },
+  "contactInfo": {
+    "phone": "Phone",
+    "email": "Email", 
+    "location": "Location",
+    "address": "Fruebjergvej 3\n2100 Copenhagen\nDenmark"
+  },
+  "form": {
+    "title": "Get Your Personalized Demo",
+    "step1": {
+      "title": "Tell Us About Your Business",
+      "subtitle": "Help us customize the perfect demo for your needs",
+      "continue": "Show Me What's Possible"
+    },
+    "step2": {
+      "title": "Customize Your Experience",
+      "subtitle": "What compliance challenges are you facing?",
+      "back": "Back",
+      "submit": "Book My Demo"
+    },
+    "firstName": "First Name",
+    "lastName": "Last Name", 
+    "email": "Business Email",
+    "company": "Company",
+    "phone": "Phone Number",
+    "companySize": "Company Size",
+    "companySizeOptions": {
+      "placeholder": "Select company size",
+      "1-10": "1-10 employees (KYC Lite recommended)",
+      "11-50": "11-50 employees (KYC Lite or AML Suite)",
+      "51-200": "51-200 employees (AML Suite recommended)",
+      "201-1000": "201-1000 employees (AML Suite)",
+      "1000+": "1000+ employees (Enterprise AML Suite)"
+    },
+    "interests": {
+      "title": "What would you like to see in your demo?",
+      "kycDemo": "KYC Lite: Fast customer verification",
+      "amlDemo": "AML Suite: Advanced transaction monitoring", 
+      "bothDemo": "Both platforms: Complete solution overview",
+      "integrationDemo": "Technical integration walkthrough"
+    },
+    "message": "What's your biggest KYC or AML challenge?",
+    "messagePlaceholder": "Slow customer onboarding? Too many false positives? Manual AML processes? Complex regulatory requirements? Tell us what's slowing you down...",
+    "subscribe": "Send me compliance insights and product updates (unsubscribe anytime).",
+    "submit": "Book My Demo",
+    "submitting": "Booking Your Demo...",
+    "privacyNotice": "By submitting this form, you agree to our privacy policy and terms of service."
+  },
+  "success": {
+    "title": "Demo Booked Successfully!",
+    "message": "A representative will contact you shortly to schedule your personalized demo and show you exactly how Veridaq solves your KYC and AML challenges."
+  }
+}

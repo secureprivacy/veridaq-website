@@ -1,0 +1,48 @@
+{
+  "description": "Veridaq toimittaa AI-ohjattuja vaatimustenmukaisuusratkaisuja jotka ovat 10x nopeampia 90% vähemmällä vääriä positiivisia. Täydellinen AML Suite yrityksille, KYC Lite kasvuyrityksille.",
+  "contactInfo": {
+    "email": "sales@veridaq.com",
+    "phone": "+45 31272726",
+    "address": "Fruebjergvej 3\\n2100 Kööpenhamina\\nTanska"
+  },
+  "sections": {
+    "solutions": {
+      "title": "AI-ohjatut Ratkaisut",
+      "kycVerification": "KYC Lite",
+      "amlScreening": "Täydellinen AML Suite",
+      "euAmlr2027": "EU AMLR 2027 Native",
+      "documentVerification": "Välitön Dokumenttivahvistus",
+      "transactionMonitoring": "Käyttäytymis-AI Valvonta",
+      "riskAssessment": "Ennakoiva Riskimoottori"
+    },
+    "industries": {
+      "title": "Toimialat",
+      "financialServices": "Perinteinen Pankkitoiminta",
+      "fintech": "FinTech & Neopankit",
+      "cryptocurrency": "Krypto & Digitaaliset Varat",
+      "realEstate": "Korkea-arvoinen Kiinteistö",
+      "gaming": "Pelaaminen & iGaming",
+      "ecommerce": "Kauppapaikat & Verkkokauppa",
+      "legalServices": "Oikeudelliset & Lakitoimistot",
+      "accounting": "Kirjanpito & Verotusneuvonta",
+      "investmentAdvisors": "Sijoitusneuvojat"
+    },
+    "company": {
+      "title": "Yritys",
+      "blog": "Vaatimustenmukaisuusoivallukset",
+      "whyChooseUs": "Miksi Veridaq",
+      "contactSales": "Varaa Demo",
+      "supportCenter": "Ohjekeskus",
+      "privacyPolicy": "Tietosuojakäytäntö",
+      "termsOfService": "Käyttöehdot",
+      "gdprCompliance": "Privacy by Design"
+    }
+  },
+  "bottomLinks": {
+    "security": "Pankkitason Turvallisuus",
+    "compliance": "AMLR 2027 Valmis",
+    "status": "Tila",
+    "contactExperts": "Varaa Demosi"
+  },
+  "copyright": "© {{year}} Veridaq. Kaikki oikeudet pidätetään. | AI-ohjattu Vaatimustenmukaisuusalusta"
+}

@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guida Verifica UBO Banche UE: Conformità 6AMLD e AMLA | Veridaq</title>
+  <meta name="description" content="Guida completa alla verifica UBO per banche UE secondo 6AMLD e AMLA. Copre soglia 25%, test di controllo, fonti di verifica e monitoraggio.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://veridaq.com/it/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-italian">
+  <link rel="stylesheet" href="/blog-static.css">
+
+  <!-- Sitemap discovery for crawlers -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://veridaq.com/sitemap.xml">
+
+  <!-- hreflang tags for multi-language SEO (only for available translations) -->
+  <link rel="alternate" hreflang="en" href="https://veridaq.com/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance" />
+  <link rel="alternate" hreflang="da" href="https://veridaq.com/da/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-danish" />
+  <link rel="alternate" hreflang="sv" href="https://veridaq.com/sv/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-swedish" />
+  <link rel="alternate" hreflang="no" href="https://veridaq.com/no/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-norwegian" />
+  <link rel="alternate" hreflang="fi" href="https://veridaq.com/fi/blog/ubo-todentamisopas-eu-pankeille-6amld-amla" />
+  <link rel="alternate" hreflang="de" href="https://veridaq.com/de/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-german" />
+  <link rel="alternate" hreflang="fr" href="https://veridaq.com/fr/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-french" />
+  <link rel="alternate" hreflang="es" href="https://veridaq.com/es/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-spanish" />
+  <link rel="alternate" hreflang="it" href="https://veridaq.com/it/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-italian" />
+  <link rel="alternate" hreflang="pt" href="https://veridaq.com/pt/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-portuguese" />
+  <link rel="alternate" hreflang="nl" href="https://veridaq.com/nl/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-dutch" />
+  <link rel="alternate" hreflang="x-default" href="https://veridaq.com/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance" />
+
+  <!-- Open Graph / Social Media Tags -->
+  
+  <meta property="og:title" content="Guida Verifica UBO Banche UE: Conformità 6AMLD e AMLA">
+  <meta property="og:description" content="Guida completa alla verifica UBO per banche UE secondo 6AMLD e AMLA. Copre soglia 25%, test di controllo, fonti di verifica e monitoraggio.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://veridaq.com/it/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-italian">
+  <meta property="article:published_time" content="2025-11-18T09:39:06.614+00:00">
+  <meta property="article:modified_time" content="2025-11-18T10:54:53.05019+00:00">
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Guida Verifica UBO Banche UE: Conformità 6AMLD e AMLA">
+  <meta name="twitter:description" content="Guida completa alla verifica UBO per banche UE secondo 6AMLD e AMLA. Copre soglia 25%, test di controllo, fonti di verifica e monitoraggio.">
+  
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://veridaq.com/it/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://veridaq.com/it/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Guida Verifica UBO Banche UE: Conformità 6AMLD e AMLA"
+    }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Guida Verifica UBO Banche UE: Conformità 6AMLD e AMLA",
+  "alternativeHeadline": "Guida Verifica UBO Banche UE: Conformità 6AMLD e AMLA",
+  "description": "Guida completa alla verifica UBO per banche UE secondo 6AMLD e AMLA. Copre soglia 25%, test di controllo, fonti di verifica e monitoraggio.",
+  "datePublished": "2025-11-18T09:39:06.614+00:00",
+  "dateModified": "2025-11-18T10:54:53.05019+00:00",
+  "author": {
+    "@type": "Organization",
+    "name": "Veridaq",
+    "url": "https://veridaq.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://veridaq.com/images/veridaq-logo-transparent.png"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/veridaq"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Veridaq",
+    "url": "https://veridaq.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://veridaq.com/images/veridaq-logo-transparent.png",
+      "width": 200,
+      "height": 60
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://veridaq.com/it/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-italian"
+  },
+  "articleSection": "EU Compliance",
+  "articleBody": "Verifica della Proprietà Beneficiaria Ultima: Guida alla Conformità per le Banche UELa verifica dell'UBO è diventata silenziosamente il tallone d'Achille della conformità bancaria nell'UE. Nonostante la soglia di proprietà armonizzata del 25% prevista dalla 6AMLD, le banche continuano a lottare con l'accuratezza della verifica, la tempestività dei dati e il monitoraggio continuo. Le conseguenze stanno diventando sempre più gravi: BaFin ha multato N26 per 9,2 milioni di euro nel 2024 per ritardi nella presentazione di SAR e carenze nell'UBO, e l'AMLA ha identificato la trasparenza della proprietà come una priorità di supervisione fondamentale per il 2027. Il Centro Comune di Ricerca della Commissione Europea ha pubblicato ricerche approfondite sulla complessità della proprietà, mentre il Gruppo di Azione Finanziaria continua a sottolineare la verifica dell'UBO come un pilastro fondamentale dell'AML.Non si tratta solo di evitare multe. Una corretta verifica dell'UBO è fondamentale per comprendere chi sono realmente i vostri clienti e se rappresentano un rischio di riciclaggio di denaro. Questa guida fornisce un quadro pratico per costruire processi robusti di UBO che soddisfino le esigenze della 6AMLD oggi e i requisiti migliorati dell'AMLA domani.Passo 1: Stabilire Procedure di Identificazione dell'UBO Basate sul RischioIl primo passo è creare processi coerenti per identificare gli UBO in tutti i tipi di clienti. L'AMLA si aspetta che le banche dimostrino approcci basati sul rischio che vadano oltre il semplice controllo meccanico delle soglie. L'identificazione richiede di mappare tutte le entità legali a persone fisiche, poiché il cliente aziendale medio ha 4,2 livelli di proprietà secondo la ricerca della Banca Mondiale. Quando la proprietà scende sotto il 25%, è necessario applicare test di controllo che valutino fattori come l'autorità di nomina del consiglio e l'influenza dominante nel voto. Ai sensi dell'Articolo 13(1)(a) della 6AMLD, è necessario identificare un dirigente senior come UBO quando nessuna persona fisica soddisfa i requisiti di proprietà.I requisiti chiave per l'identificazione includono:Tracciamento della Catena di Proprietà: Mappare tutte le entità legali a persone fisicheApplicazione del Test di Controllo: Valutare l'autorità di nomina del consiglio e l'influenza nel voto quando la proprietà è &lt;25%Fallback del Dirigente Senior: Identificare un dirigente senior come UBO secondo la 6AMLD quando nessuna persona fisica soddisfa i requisitiInclusione dei Diritti Contingenti: Contare opzioni, strumenti convertibili e accordi nominativi verso la soglia se esercitabili entro 60 giorniLa profondità della verifica basata sul rischio varia notevolmente in base al livello di rischio del cliente. I clienti al dettaglio a basso rischio richiedono estratti del registro commerciale e dichiarazioni statutarie aggiornate ogni 36 mesi. Le PMI a rischio medio necessitano di documenti di proprietà notarizzati e verifica da fonti indipendenti ogni 24 mesi. Le entità aziendali ad alto rischio richiedono verifiche potenziate, inclusa la documentazione sulla provenienza della ricchezza con cicli di aggiornamento annuali. I rapporti a rischio critico richiedono verifiche in loco presso la residenza o il principale luogo di affari dell'UBO ogni sei mesi.Gli standard documentali devono includere:Un database UBO unificato che colleghi tutte le entità con una visione a 360 gradi delle relazioniMappatura visiva della proprietà che mostri percentuali e relazioni di controllo (essenziale per le ispezioni AMLA)Un vault delle prove che memorizzi tutti i documenti di verifica con una conservazione di cinque anni secondo le eccezioni dell'Articolo 17 del GDPRAvvisi automatizzati di rilevamento delle modifiche che si attivano ogni volta che cambiano le informazioni sull'UBOPasso 2: Verificare le Informazioni sull'UBO Tramite Fonti AffidabiliLa auto-dichiarazione non è più sufficiente per i rapporti ad alto rischio. È necessario fonti indipendenti e affidabili che l'AMLA considera autorevoli. La gerarchia delle fonti primarie inizia con accesso API ai registri europei della proprietà beneficiaria in tutti i 26 Stati membri. Gli estratti del registro commerciale devono essere datati entro 30 giorni per i nuovi clienti e 90 giorni per i rinnovi. Per le società quotate in borsa, i documenti della borsa che mostrano azionisti con oltre il 5% di proprietà fungono da prova primaria. Quando l'UBO è un istituto finanziario regolamentato nell'EEA, la loro documentazione KYC può servire come prova secondaria.Le fonti secondarie di supporto includono:Statuti: Documentare i meccanismi di controllo come diritti di voto e autorità di nomina del consiglioAtti fiduciari: Verificare i fondatori, i protettori e i beneficiari—l'identificazione del fiduciario da sola non è sufficiente secondo le linee guida FATFContratti di Partnership: Richiedere la verifica dei soci generali che hanno il controllo de facto indipendentemente dalla percent",
+  "wordCount": 1554,
+  "keywords": "UBO, conformità bancaria, Banca d'Italia, UniCredit, Intesa Sanpaolo, Banco BPM",
+  "inLanguage": "it",
+  "url": "https://veridaq.com/it/blog/ubo-verification-guide-for-eu-banks-6amld-amla-compliance-italian"
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Veridaq",
+  "url": "https://veridaq.com",
+  "logo": "https://veridaq.com/images/veridaq-logo-transparent.png",
+  "description": "EU's leading KYC & AML compliance platform"
+}
+  </script>
+
+  <!-- DataFeed schema for AI crawler discovery -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DataFeed",
+  "dataFeedElement": {
+    "@type": "DataFeedItem",
+    "item": {
+      "@type": "WebSite",
+      "url": "https://veridaq.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://veridaq.com/sitemap.xml"
+      }
+    }
+  },
+  "includedDataCatalog": "https://veridaq.com/sitemap.xml"
+}
+  </script>
+</head>
+<body class="blog-page">
+  <header class="blog-hero">
+    <div class="blog-container post-hero-content">
+      <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+        <a href="/it/">Home</a>
+        <a href="/it/blog/">Blog</a>
+        <span class="current">Guida Verifica UBO Banche UE: Conformità 6AMLD e AMLA</span>
+      </nav>
+      <a class="back-pill" href="/it/blog/">← Torna a tutti gli articoli</a>
+      <div class="category-badge">Conformità UE</div>
+      <h1 class="post-title">Guida Verifica UBO Banche UE: Conformità 6AMLD e AMLA</h1>
+      <div class="metadata-chips">
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">👤</span>Team Veridaq</span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">📅</span><time datetime="2025-11-18T09:39:06.614+00:00">18 novembre 2025</time></span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">⏱</span>9 min di lettura</span>
+      </div>
+      <div class="post-excerpt">Una verifica UBO efficace richiede identificazione basata sul rischio, verifica multi-fonte e monitoraggio continuo delle modifiche. Le banche dell&#039;UE devono mappare le catene di proprietà alle persone fisiche, verificare attraverso registri UE autorevoli e rilevare modifiche sostanziali entro 5 giorni lavorativi. Con l&#039;AMLA che prioritizza la trasparenza della proprietà e BaFin che impone sanzioni significative per i fallimenti, processi robusti sono essenziali. Le migliori pratiche includono database UBO centralizzati, monitoraggio automatizzato dei registri e mappatura visiva della proprietà. Il modulo di tracciamento UBO di Veridaq fornisce integrazione dei registri in tempo reale, rilevamento automatico delle modifiche e documentazione pronta per l&#039;audit cruciale per la vigilanza rafforzata dell&#039;AMLA a partire dal 2027.</div>
+    </div>
+  </header>
+
+  
+
+  <main class="blog-article">
+    <div class="blog-container">
+      <article class="blog-prose">
+<h1>Verifica della Proprietà Beneficiaria Ultima: Guida alla Conformità per le Banche UE</h1><p>La verifica dell'UBO è diventata silenziosamente il tallone d'Achille della conformità bancaria nell'UE. Nonostante la soglia di proprietà armonizzata del 25% prevista dalla 6AMLD, le banche continuano a lottare con l'accuratezza della verifica, la tempestività dei dati e il monitoraggio continuo. Le conseguenze stanno diventando sempre più gravi: <strong>BaFin ha multato N26 per 9,2 milioni di euro</strong> nel 2024 per ritardi nella presentazione di SAR e carenze nell'UBO, e <strong>l'AMLA ha identificato la trasparenza della proprietà come una priorità di supervisione fondamentale</strong> per il 2027. Il <a href="\&quot;https://joint-research-centre.ec.europa.eu/jrc-activities-fight-against-financial-crime_en\&quot;">Centro Comune di Ricerca della Commissione Europea</a> ha pubblicato ricerche approfondite sulla complessità della proprietà, mentre il <a href="\&quot;https://www.fatf-gafi.org/publications/fatfrecommendations/documents/beneficial-ownership.html\&quot;">Gruppo di Azione Finanziaria</a> continua a sottolineare la verifica dell'UBO come un pilastro fondamentale dell'AML.</p><p>Non si tratta solo di evitare multe. <strong>Una corretta verifica dell'UBO è fondamentale per comprendere chi sono realmente i vostri clienti</strong> e se rappresentano un rischio di riciclaggio di denaro. Questa guida fornisce un quadro pratico per costruire processi robusti di UBO che soddisfino le esigenze della 6AMLD oggi e i requisiti migliorati dell'AMLA domani.</p><h2>Passo 1: Stabilire Procedure di Identificazione dell'UBO Basate sul Rischio</h2><p>Il primo passo è creare processi coerenti per identificare gli UBO in tutti i tipi di clienti. L'AMLA si aspetta che le banche dimostrino <strong>approcci basati sul rischio che vadano oltre il semplice controllo meccanico delle soglie</strong>. L'identificazione richiede di mappare tutte le entità legali a persone fisiche, poiché il cliente aziendale medio ha <strong>4,2 livelli di proprietà</strong> secondo la <a href="\&quot;https://www.worldbank.org/en/publication/global-benchmark-database\&quot;">ricerca della Banca Mondiale</a>. Quando la proprietà scende sotto il 25%, è necessario applicare test di controllo che valutino fattori come l'autorità di nomina del consiglio e l'influenza dominante nel voto. Ai sensi dell'<strong>Articolo 13(1)(a) della <a href="\&quot;https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32018L1673\&quot;">6AMLD</a></strong>, è necessario identificare un dirigente senior come UBO quando nessuna persona fisica soddisfa i requisiti di proprietà.</p><p><strong>I requisiti chiave per l'identificazione includono:</strong></p><ul><li><strong>Tracciamento della Catena di Proprietà</strong>: Mappare tutte le entità legali a persone fisiche</li><li><strong>Applicazione del Test di Controllo</strong>: Valutare l'autorità di nomina del consiglio e l'influenza nel voto quando la proprietà è &lt;25%</li><li><strong>Fallback del Dirigente Senior</strong>: Identificare un dirigente senior come UBO secondo la 6AMLD quando nessuna persona fisica soddisfa i requisiti</li><li><strong>Inclusione dei Diritti Contingenti</strong>: Contare opzioni, strumenti convertibili e accordi nominativi verso la soglia se esercitabili entro 60 giorni</li></ul><p>La profondità della verifica basata sul rischio varia notevolmente in base al livello di rischio del cliente. <strong>I clienti al dettaglio a basso rischio</strong> richiedono estratti del registro commerciale e dichiarazioni statutarie aggiornate ogni 36 mesi. <strong>Le PMI a rischio medio</strong> necessitano di documenti di proprietà notarizzati e verifica da fonti indipendenti ogni 24 mesi. <strong>Le entità aziendali ad alto rischio</strong> richiedono verifiche potenziate, inclusa la documentazione sulla provenienza della ricchezza con cicli di aggiornamento annuali. <strong>I rapporti a rischio critico</strong> richiedono verifiche in loco presso la residenza o il principale luogo di affari dell'UBO ogni sei mesi.</p><p><strong>Gli standard documentali devono includere:</strong></p><ul><li>Un database UBO unificato che colleghi tutte le entità con una visione a 360 gradi delle relazioni</li><li>Mappatura visiva della proprietà che mostri percentuali e relazioni di controllo (essenziale per le ispezioni AMLA)</li><li>Un vault delle prove che memorizzi tutti i documenti di verifica con una conservazione di cinque anni secondo le eccezioni dell'Articolo 17 del GDPR</li><li>Avvisi automatizzati di rilevamento delle modifiche che si attivano ogni volta che cambiano le informazioni sull'UBO</li></ul><h2>Passo 2: Verificare le Informazioni sull'UBO Tramite Fonti Affidabili</h2><p>La auto-dichiarazione non è più sufficiente per i rapporti ad alto rischio. È necessario <strong>fonti indipendenti e affidabili che l'AMLA considera autorevoli</strong>. La gerarchia delle fonti primarie inizia con <strong>accesso API ai registri europei della proprietà beneficiaria</strong> in tutti i 26 Stati membri. Gli estratti del registro commerciale devono essere datati entro 30 giorni per i nuovi clienti e 90 giorni per i rinnovi. Per le società quotate in borsa, i documenti della borsa che mostrano azionisti con oltre il 5% di proprietà fungono da prova primaria. Quando l'UBO è un istituto finanziario regolamentato nell'EEA, la loro documentazione KYC può servire come prova secondaria.</p><p><strong>Le fonti secondarie di supporto includono:</strong></p><ul><li><strong>Statuti</strong>: Documentare i meccanismi di controllo come diritti di voto e autorità di nomina del consiglio</li><li><strong>Atti fiduciari</strong>: Verificare i fondatori, i protettori e i beneficiari—l'identificazione del fiduciario da sola non è sufficiente secondo le linee guida FATF</li><li><strong>Contratti di Partnership</strong>: Richiedere la verifica dei soci generali che hanno il controllo de facto indipendentemente dalla percentuale di proprietà</li><li><strong>Documenti Giudiziari</strong>: Fornire cambiamenti nella proprietà basati su fallimenti, divorzi o contenziosi</li></ul><p><strong>I segnali d'allerta nella verifica richiedono attenzione immediata:</strong></p><ul><li><strong>Divergenze nelle Fonti</strong>: Percentuali di proprietà che variano più del 5% tra il registro e la dichiarazione del cliente</li><li><strong>Cambiamenti Aziendali Recenti</strong>: Entità con meno di sei mesi attivano requisiti di verifica della provenienza dei fondi</li><li><strong>Accordi su Azioni al Portatore</strong>: Ricevono una classificazione automatica ad alto rischio richiedendo custodia fisica</li><li><strong>Divergenze Giurisdizionali</strong>: UBO residente in una giurisdizione diversa da quella della registrazione dell'entità richiede un'indagine più approfondita</li></ul><p>L'implementazione tecnica richiede <strong>integrazione API con oltre 20 registri UBO UE</strong> con recupero automatico dei dati e monitoraggio delle modifiche. L'OCR dei documenti dovrebbe estrarre informazioni sulla proprietà dagli statuti con obiettivi di precisione del 95%. Per gli UBO legati alle criptovalute, l'analisi blockchain verifica la proprietà on-chain rispetto alle informazioni dichiarate entro 24 ore.</p><h2>Passo 3: Implementare Monitoraggio Continuo e Gestione delle Modifiche</h2><p>La verifica dell'UBO non è un esercizio da effettuare una sola volta durante l'onboarding. <strong>L'AMLA richiede monitoraggio continuo</strong> con procedure documentate per la gestione delle modifiche. I meccanismi di rilevamento delle modifiche includono scansioni giornaliere automatizzate dei registri europei della proprietà beneficiaria, analisi dei modelli transazionali che segnalano attività incoerenti con i profili UBO noti, e monitoraggio dei media in tempo reale per decessi, fallimenti, accuse penali o elenchi di sanzioni degli UBO.</p><p><strong>I flussi di lavoro per la gestione delle modifiche devono gestire:</strong></p><ul><li><strong>Identificazione delle Modifiche Materiali</strong>: Spostamenti nella proprietà superiori al 5% o nuovi UBO attivano una Due Diligence Potenziata entro cinque giorni lavorativi</li><li><strong>Aggiornamenti Documentali</strong>: I registri interni degli UBO vengono aggiornati entro due giorni lavorativi dal completamento della verifica</li><li><strong>Rivalutazione del Rischio</strong>: Ricalcolo automatico dei punteggi di rischio del cliente basato sui nuovi profili di rischio UBO</li><li><strong>Re-Verifica Periodica</strong>: Clienti al dettaglio a basso rischio ogni 36 mesi, PMI a rischio medio ogni 24 mesi, entità aziendali ad alto rischio ogni 12 mesi, rapporti a rischio critico ogni sei mesi</li></ul><p><strong>Considerazioni Specifiche per l'AMLA:</strong>&nbsp;La segnalazione quasi in tempo reale delle modifiche materiali all'UBO sarà probabilmente richiesta quando la regolamentazione sarà finalizzata nel secondo trimestre del 2026. Le attestazioni annuali da parte degli Ufficiali Antiriciclaggio che confermano la completezza dei dati UBO diventeranno obbligatorie. La dipendenza da terzi richiede documentazione che dimostri che le procedure di verifica di altri FIU o contabili soddisfano gli standard AMLA. Per i CASP, l'integrazione blockchain deve verificare le modifiche alla proprietà on-chain entro 24 ore.</p><h3>Tavola: Fonti per la Verifica dell'UBO per Livello di Rischio</h3><table><thead><tr><th>Livello di Rischio</th><th>Sorgenti Primarie</th><th>Frequenza di Verifica</th><th>Visita in Loco Richiesta</th><th>Standard Documentale AMLA</th></tr></thead><tbody><tr><td>Basso (Retail)</td><td>Registro commerciale, Dichiarazione statutaria</td><td>36 mesi</td><td>No</td><td>Archivio digitale</td></tr><tr><td>Medio (PMI)</td><td>Documenti notarizzati, Fonti indipendenti</td><td>24 mesi</td><td>No</td><td>Vault delle prove con conservazione di 5 anni</td></tr><tr><td>Alto (Corporate)</td><td>Verifica multi-sorgente, Provenienza della ricchezza</td><td>12 mesi</td><td>Sì (per i beneficiari)</td><td>Registro controllato da versioni</td></tr><tr><td>Critico (PEP/Complesso)</td><td>Tutti quelli sopra + Verifica in loco</td><td>6 mesi</td><td>Sì (UBO + alta dirigenza)</td><td>Pista di audit verificata tramite blockchain</td></tr></tbody></table><h2>Vantaggi Strategici Oltre la Conformità all'UBO</h2><p>Ecco cosa non vi diranno i fornitori di conformità: <strong>una robusta verifica dell'UBO offre reali vantaggi commerciali</strong>&nbsp;oltre ad evitare multe. Le banche che hanno implementato programmi completi per l'UBO riportano significativi miglioramenti operativi.</p><p><strong>Riduzione del Rischio:</strong>&nbsp;Una verifica efficace dell'UBO riduce i falsi positivi del 40% perché comprendete veramente i vostri clienti. Il <a href="\&quot;https://www.eba.europa.eu/document-library-publications/anti-money-laundering-and-countering-financing-of-terrorism-risk-based-supervision\&quot;">rapporto del 2023 dell'Autorità Bancaria Europea</a>&nbsp;conferma che le banche con processi UBO solidi affrontano meno sfide normative. Quando sapete esattamente chi possiede cosa, il monitoraggio delle transazioni diventa molto più accurato.</p><p><strong>Efficienza Operativa:</strong>&nbsp;Il monitoraggio automatizzato dell'UBO riduce le revisioni manuali del 60%. Secondo il <a href="\&quot;https://www2.deloitte.com/uk/en/pages/financial-services/articles/aml-survey.html\&quot;">Rapporto sulla Conformità AML Europea 2024 di Deloitte</a>, le banche con integrazione in tempo reale dei registri onboardano clienti aziendali tre volte più velocemente. Il carico operativo dei cicli periodici di aggiornamento diminuisce drasticamente quando il rilevamento delle modifiche è automatizzato.</p><p><strong>Puntamento Competitivo:</strong>&nbsp;In un'era di trasparenza, <strong>I clienti apprezzano le banche che dimostrano controlli robusti sull'UBO.</strong>&nbsp;I clienti istituzionali, in particolare quelli con strutture proprietarie complesse, cercano attivamente partner che non creino colli di bottiglia nell'onboarding. La vostra capacità di verificare e monitorare efficacemente gli UBO diventa un differenziatore commerciale nei processi RFP.</p><p><strong>Impatto Finanziario:</strong>&nbsp;Il <a href="\&quot;https://commission.europa.eu/funding-tenders/find-funding/funding-management-mode/anti-money-laundering-counter-terrorist-financing-aml-cft_en\&quot;">database delle sanzioni della Commissione Europea</a>&nbsp;mostra che le multe relative all'UBO hanno avuto una media di 50 milioni di euro nel 2024. Una verifica completa dell'UBO elimina essenzialmente questa categoria di rischio consentendo al contempo un'espansione commerciale più rapida e sicura in nuove giurisdizioni.</p><h2>Sintesi: Il Percorso verso la Trasparenza dell'UBO</h2><p>Padroneggiare la verifica dell'UBO non è un esercizio di conformità—è una <strong>trasformazione strategica</strong>&nbsp;che posiziona la vostra banca per il successo sotto il nuovo regime di supervisione europeo. Il passaggio dalla verifica a casella alla gestione dinamica e basata sul rischio dell'UBO rappresenta un'evoluzione fondamentale nel modo in cui le banche comprendono i loro clienti. Le istituzioni che investono ora nell'integrazione automatizzata dei registri, nel monitoraggio continuo e nella gestione robusta delle modifiche vedranno benefici immediati: il 60% in meno di revisioni manuali, una riduzione del 40% nei falsi positivi e un onboarding clienti più veloce. Con la scadenza del 2027 dell'AMLA che si avvicina, il tempo per l'implementazione si sta restringendo. Le banche che vedono la verifica dell'UBO come un'opportunità piuttosto che un onere emergeranno più forti, più efficienti e meglio posizionate nell'ecosistema finanziario trasparente che l'Europa sta costruendo.</p>
+      </article>
+
+      <section class="share-strip" aria-label="Condividi questo articolo">
+        <div>
+          <h3>Condividi questo articolo</h3>
+          <p>Aiuta altri a rimanere conformi ai regolamenti UE</p>
+        </div>
+        <div class="share-links">
+          <a class="share-pill" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fveridaq.com%2Fit%2Fblog%2Fubo-verification-guide-for-eu-banks-6amld-amla-compliance-italian" target="_blank" rel="noopener" aria-label="Condividi su LinkedIn">in</a>
+          <a class="share-pill" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fveridaq.com%2Fit%2Fblog%2Fubo-verification-guide-for-eu-banks-6amld-amla-compliance-italian&text=Guida%20Verifica%20UBO%20Banche%20UE%3A%20Conformit%C3%A0%206AMLD%20e%20AMLA" target="_blank" rel="noopener" aria-label="Condividi su Twitter">X</a>
+          <a class="share-pill" href="mailto:?subject=Guida%20Verifica%20UBO%20Banche%20UE%3A%20Conformit%C3%A0%206AMLD%20e%20AMLA&body=I%20thought%20you%20might%20find%20this%20EU%20compliance%20article%20interesting%3A%20https%3A%2F%2Fveridaq.com%2Fit%2Fblog%2Fubo-verification-guide-for-eu-banks-6amld-amla-compliance-italian"  aria-label="Condividi su Email">@</a>
+        </div>
+      </section>
+
+      <section class="related-section">
+        <h3>Articoli correlati</h3>
+        <div class="related-grid">
+      <a class="related-card" href="/it/blog/sar-filing-best-practices-for-eu-banks-6amld-amla-guide-italian/">
+        <span>Migliori Pratiche SAR per Banche UE: Guida 6AMLD &amp; AMLA</span>
+        <p>Guida completa alla segnalazione SAR/STR per banche UE: requisiti 6AMLD, timeline AMLA, workflow di indagine ed errori comuni da evitare.</p>
+      </a>
+    
+
+      <a class="related-card" href="/it/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-italian/">
+        <span>Guida Modello Scoring Rischio Cliente Banche UE 2025</span>
+        <p>Crea modelli efficaci di scoring del rischio AML per banche UE. Copre tempistiche pacchetto AML, fattori di rischio, validazione e trasparenza piattaforma.</p>
+      </a>
+    
+
+      <a class="related-card" href="/it/blog/amla-readiness-guide-for-eu-banks-2025-2027-italian/">
+        <span>Guida alla Preparazione per l&#039;AMLA per le Banche UE 2025-2027</span>
+        <p>Preparati all&#039;AMLA con una roadmap dettagliata per il periodo 2025-2027.</p>
+      </a>
+    </div>
+      </section>
+
+      <section class="cta-block">
+        <div class="cta-icon" aria-hidden="true">⚡</div>
+        <h3>Pronti a implementare queste strategie di conformità?</h3>
+        <p>I nostri esperti di conformità possono aiutarvi a implementare le strategie discusse in questo articolo. Prenotate una consulenza per ottenere una guida personalizzata.</p>
+        <a class="cta-button" href="#contact">Ottenere Consulenza Esperto →</a>
+      </section>
+    </div>
+  </main>
+
+  
+    <footer class="site-footer">
+      <div class="blog-container">
+        <div class="site-footer__grid">
+          <div class="site-footer__brand">
+            <a class="site-logo" href="/it/" aria-label="Azienda">
+              <img src="/images/veridaq-logo-transparent.png" alt="Azienda" width="128" height="32">
+            </a>
+            <p class="site-footer__description">Veridaq offre soluzioni di conformità alimentate da IA che sono 10x più veloci con il 90% in meno di falsi positivi. Suite AML completa per le aziende, KYC Lite per le aziende in crescita.</p>
+            <div class="site-footer__contact">
+              <div class="site-footer__contact-item">sales@veridaq.com</div>
+              <div class="site-footer__contact-item">+45 31272726</div>
+              <div class="site-footer__contact-item">Fruebjergvej 3\n2100 Copenaghen\nDanimarca</div>
+            </div>
+          </div>
+          <div>
+            <h3 class="site-footer__heading">Soluzioni Alimentate da IA</h3>
+            <ul class="site-footer__list">
+              <li><a href="/it/#features">KYC Lite</a></li>
+              <li><a href="/it/#features">Suite AML Completa</a></li>
+              <li><a href="/it/#eu-compliance">EU AMLR 2027 Nativo</a></li>
+              <li><a href="/it/#features">Verifica Documenti Istantanea</a></li>
+              <li><a href="/it/#features">Monitoraggio IA Comportamentale</a></li>
+              <li><a href="/it/#features">Motore di Rischio Predittivo</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="site-footer__heading">Industrie</h3>
+            <ul class="site-footer__list">
+              <li><a href="/it/#industries">Banca Tradizionale</a></li>
+              <li><a href="/it/#industries">FinTech &amp; Neobanche</a></li>
+              <li><a href="/it/#industries">Cripto &amp; Asset Digitali</a></li>
+              <li><a href="/it/#industries">Immobiliare di Alto Valore</a></li>
+              <li><a href="/it/#industries">Gaming &amp; iGaming</a></li>
+              <li><a href="/it/#industries">Marketplace &amp; E-commerce</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="site-footer__heading">Azienda</h3>
+            <ul class="site-footer__list">
+              <li><a href="/it/blog/">Approfondimenti sulla Conformità</a></li>
+              <li><a href="/it/#benefits">Perché Veridaq</a></li>
+              <li><a href="/it/#contact">Prenota Demo</a></li>
+              <li><a href="/privacy-policy">Informativa sulla Privacy</a></li>
+              <li><a href="/terms-of-service">Termini di Servizio</a></li>
+              <li><a href="/privacy-by-design">Privacy by Design</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="site-footer__bottom">
+          <div class="site-footer__copyright">© 2025 Veridaq. Tutti i diritti riservati. | Piattaforma di Conformità Alimentata da IA</div>
+          <div class="site-footer__bottom-links">
+            <a href="#">Sicurezza Bancaria</a>
+            <a href="#">AMLR 2027 Pronto</a>
+            <a href="#">Stato</a>
+            <a class="emphasis" href="/it/#contact">Prenota la Tua Demo</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  
+  
+    <script type="module">
+      import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+      const SUPABASE_URL = "https://rjncawbywidrtwcprfgw.supabase.co";
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqbmNhd2J5d2lkcnR3Y3ByZmd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4OTcyMzgsImV4cCI6MjA3MjQ3MzIzOH0.vp8ZGIhRDvJrun3YoTJLJJH8P5Dx2SheEltVBXhujjc";
+      const LANGUAGE_OPTIONS = [{"code":"en","name":"inglese","flag":"🇬🇧"},{"code":"da","name":"danese","flag":"🇩🇰"},{"code":"sv","name":"svedese","flag":"🇸🇪"},{"code":"no","name":"norvegese","flag":"🇳🇴"},{"code":"fi","name":"finlandese","flag":"🇫🇮"},{"code":"de","name":"tedesco","flag":"🇩🇪"},{"code":"fr","name":"francese","flag":"🇫🇷"},{"code":"es","name":"spagnolo","flag":"🇪🇸"},{"code":"it","name":"italiano","flag":"🇮🇹"},{"code":"pt","name":"portoghese","flag":"🇵🇹"},{"code":"nl","name":"olandese","flag":"🇳🇱"}];
+      const SUPPORTED_LANGUAGES = ["en","da","sv","no","fi","de","fr","es","it","pt","nl"];
+      const PAGE_CONTEXT = {"currentLanguage":"it","pageType":"post","currentSlug":"ubo-verification-guide-for-eu-banks-6amld-amla-compliance-italian","availableTranslations":{"es":"ubo-verification-guide-for-eu-banks-6amld-amla-compliance-spanish","sv":"ubo-verification-guide-for-eu-banks-6amld-amla-compliance-swedish","no":"ubo-verification-guide-for-eu-banks-6amld-amla-compliance-norwegian","fi":"ubo-todentamisopas-eu-pankeille-6amld-amla","da":"ubo-verification-guide-for-eu-banks-6amld-amla-compliance-danish","de":"ubo-verification-guide-for-eu-banks-6amld-amla-compliance-german","fr":"ubo-verification-guide-for-eu-banks-6amld-amla-compliance-french","it":"ubo-verification-guide-for-eu-banks-6amld-amla-compliance-italian","pt":"ubo-verification-guide-for-eu-banks-6amld-amla-compliance-portuguese","nl":"ubo-verification-guide-for-eu-banks-6amld-amla-compliance-dutch","en":"ubo-verification-guide-for-eu-banks-6amld-amla-compliance"}};
+      const LANGUAGE_FLAGS = {"en":"🇬🇧","da":"🇩🇰","sv":"🇸🇪","no":"🇳🇴","fi":"🇫🇮","de":"🇩🇪","fr":"🇫🇷","es":"🇪🇸","it":"🇮🇹","pt":"🇵🇹","nl":"🇳🇱"};
+      const PREFERENCE_KEY = 'preferredLanguage';
+
+      const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      const normalizeLanguage = (code) => {
+        if (!code) return 'en';
+        const base = code.toLowerCase().split('-')[0];
+        return SUPPORTED_LANGUAGES.includes(base) ? base : 'en';
+      };
+
+      const getLanguageFromPath = () => {
+        const segments = window.location.pathname.split('/').filter(Boolean);
+        if (segments.length > 0 && SUPPORTED_LANGUAGES.includes(segments[0])) {
+          return segments[0];
+        }
+        return 'en';
+      };
+
+      const findTranslatedPostSlug = async (currentSlug, currentLang, targetLang) => {
+        try {
+          if (currentLang === targetLang) return currentSlug;
+
+          if (currentLang === 'en') {
+            const { data: postData } = await supabase
+              .from('posts')
+              .select('id')
+              .eq('slug', currentSlug)
+              .eq('status', 'published')
+              .maybeSingle();
+
+            if (!postData?.id) return null;
+
+            const { data } = await supabase
+              .from('post_translations')
+              .select('slug')
+              .eq('language_code', targetLang)
+              .eq('published', true)
+              .eq('translation_status', 'completed')
+              .eq('post_id', postData.id)
+              .maybeSingle();
+
+            return data?.slug || null;
+          }
+
+          if (targetLang === 'en') {
+            const { data, error } = await supabase
+              .from('post_translations')
+              .select('post_id')
+              .eq('slug', currentSlug)
+              .eq('language_code', currentLang)
+              .eq('published', true)
+              .maybeSingle();
+
+            if (error || !data?.post_id) return null;
+
+            const { data: postData } = await supabase
+              .from('posts')
+              .select('slug')
+              .eq('id', data.post_id)
+              .eq('status', 'published')
+              .maybeSingle();
+
+            return postData?.slug || null;
+          }
+
+          const { data: translationData, error: translationError } = await supabase
+            .from('post_translations')
+            .select('post_id')
+            .eq('slug', currentSlug)
+            .eq('language_code', currentLang)
+            .eq('published', true)
+            .maybeSingle();
+
+          if (translationError || !translationData?.post_id) return null;
+
+          const { data: targetData } = await supabase
+            .from('post_translations')
+            .select('slug')
+            .eq('post_id', translationData.post_id)
+            .eq('language_code', targetLang)
+            .eq('published', true)
+            .eq('translation_status', 'completed')
+            .maybeSingle();
+
+          return targetData?.slug || null;
+        } catch (error) {
+          console.error('Error finding translated post:', error);
+          return null;
+        }
+      };
+
+      const fetchAvailableTranslations = async (currentSlug, currentLang) => {
+        try {
+          const normalizedCurrent = normalizeLanguage(currentLang);
+          let postId = null;
+
+          if (normalizedCurrent === 'en') {
+            const { data } = await supabase
+              .from('posts')
+              .select('id')
+              .eq('slug', currentSlug)
+              .eq('status', 'published')
+              .maybeSingle();
+
+            postId = data?.id || null;
+          } else {
+            const { data } = await supabase
+              .from('post_translations')
+              .select('post_id')
+              .eq('slug', currentSlug)
+              .eq('language_code', normalizedCurrent)
+              .eq('published', true)
+              .maybeSingle();
+
+            postId = data?.post_id || null;
+          }
+
+          if (!postId) return {};
+
+          const translationMap = {};
+
+          const { data: translations } = await supabase
+            .from('post_translations')
+            .select('language_code, slug')
+            .eq('post_id', postId)
+            .eq('published', true)
+            .eq('translation_status', 'completed');
+
+          translations?.forEach(entry => {
+            const baseLang = normalizeLanguage(entry.language_code);
+            translationMap[baseLang] = entry.slug;
+          });
+
+          const { data: englishPost } = await supabase
+            .from('posts')
+            .select('slug')
+            .eq('id', postId)
+            .eq('status', 'published')
+            .maybeSingle();
+
+          if (englishPost?.slug) {
+            translationMap.en = englishPost.slug;
+          }
+
+          return translationMap;
+        } catch (error) {
+          console.error('Error loading available translations:', error);
+          return {};
+        }
+      };
+
+      const closeMenus = () => {
+        document.querySelectorAll('.language-switcher__menu').forEach(menu => {
+          menu.setAttribute('hidden', '');
+        });
+        document.querySelectorAll('.language-switcher__toggle').forEach(toggle => {
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      };
+
+      const updateActiveLanguage = (language) => {
+        const normalized = normalizeLanguage(language);
+        document.querySelectorAll('.language-switcher').forEach((switcher) => {
+          switcher.setAttribute('data-current-language', normalized);
+          const toggleText = switcher.querySelector('.language-switcher__text');
+          const toggleFlag = switcher.querySelector('.language-switcher__flag');
+          const activeOption = LANGUAGE_OPTIONS.find(opt => opt.code === normalized) || LANGUAGE_OPTIONS[0];
+
+          if (toggleText) toggleText.textContent = activeOption?.name || 'English';
+          if (toggleFlag) toggleFlag.textContent = activeOption?.flag || LANGUAGE_FLAGS[normalized] || '🌐';
+
+          switcher.querySelectorAll('.language-switcher__option').forEach(option => {
+            const optionLang = option.getAttribute('data-language');
+            if (optionLang === normalized) {
+              option.classList.add('is-active');
+              option.setAttribute('aria-selected', 'true');
+            } else {
+              option.classList.remove('is-active');
+              option.removeAttribute('aria-selected');
+            }
+          });
+        });
+      };
+
+      const filterAvailableLanguages = (availableMap = {}) => {
+        const availableLanguages = Object.keys(availableMap);
+        const restrictOptions = PAGE_CONTEXT.pageType === 'post' && availableLanguages.length > 0;
+
+        document.querySelectorAll('.language-switcher__option').forEach(option => {
+          const optionLang = option.getAttribute('data-language');
+          if (restrictOptions && !availableLanguages.includes(optionLang)) {
+            option.setAttribute('hidden', '');
+          } else {
+            option.removeAttribute('hidden');
+          }
+        });
+      };
+
+        const handleNavigation = async (targetLanguage) => {
+          const baseLanguage = normalizeLanguage(targetLanguage);
+          const pathSegments = window.location.pathname.split('/').filter(Boolean);
+          const supportedLanguageCodes = SUPPORTED_LANGUAGES.filter(lang => lang !== 'en');
+
+          let currentLang = 'en';
+          let pathAfterLang = [...pathSegments];
+
+          if (pathSegments.length > 0 && supportedLanguageCodes.includes(pathSegments[0])) {
+            currentLang = pathSegments[0];
+            pathAfterLang = pathSegments.slice(1);
+          }
+
+          const isBlogPost = pathAfterLang.length >= 2 && pathAfterLang[0] === 'blog' && pathAfterLang[1];
+          const isBlogListing = pathAfterLang.length === 1 && pathAfterLang[0] === 'blog';
+
+          if (isBlogPost) {
+            const currentSlug = pathAfterLang[1];
+            const translatedSlug = await findTranslatedPostSlug(currentSlug, currentLang, baseLanguage);
+
+            if (translatedSlug) {
+              const newPath = baseLanguage === 'en'
+                ? '/blog/' + translatedSlug + '/'
+                : '/' + baseLanguage + '/blog/' + translatedSlug + '/';
+              window.location.assign(newPath);
+              return;
+            }
+
+            const fallbackPath = baseLanguage === 'en'
+              ? '/blog/'
+              : '/' + baseLanguage + '/blog/';
+            window.location.assign(fallbackPath);
+            return;
+          }
+
+          if (isBlogListing) {
+            const listingPath = baseLanguage === 'en'
+              ? '/blog/'
+              : '/' + baseLanguage + '/blog/';
+            window.location.assign(listingPath);
+            return;
+          }
+
+          const defaultPath = baseLanguage === 'en' ? '/' : '/' + baseLanguage + '/';
+          window.location.assign(defaultPath);
+        };
+
+      const buildMenus = (availableTranslations = {}) => {
+        document.querySelectorAll('.language-switcher').forEach((switcher) => {
+          const toggle = switcher.querySelector('.language-switcher__toggle');
+          const menu = switcher.querySelector('.language-switcher__menu');
+
+          if (!toggle || !menu) return;
+
+          const savedPreference = normalizeLanguage(localStorage.getItem(PREFERENCE_KEY) || PAGE_CONTEXT.currentLanguage);
+          switcher.setAttribute('data-current-language', savedPreference);
+          updateActiveLanguage(savedPreference);
+
+          toggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+            closeMenus();
+            if (!isExpanded) {
+              menu.removeAttribute('hidden');
+              toggle.setAttribute('aria-expanded', 'true');
+            }
+          });
+
+          switcher.querySelectorAll('.language-switcher__option').forEach(option => {
+            option.addEventListener('click', async () => {
+              const language = option.getAttribute('data-language');
+              localStorage.setItem(PREFERENCE_KEY, language);
+              updateActiveLanguage(language);
+              closeMenus();
+              await handleNavigation(language);
+            });
+          });
+        });
+
+        filterAvailableLanguages(availableTranslations);
+      };
+
+      document.addEventListener('click', (event) => {
+        const isMenuClick = event.target.closest('.language-switcher');
+        if (!isMenuClick) {
+          closeMenus();
+        }
+      });
+
+      document.addEventListener('keyup', (event) => {
+        if (event.key === 'Escape') closeMenus();
+      });
+
+      const setupHeaderToggle = () => {
+        const toggle = document.querySelector('.site-header__menu-toggle');
+        const mobileMenu = document.querySelector('[data-mobile-menu]');
+
+        if (!toggle || !mobileMenu) return;
+
+        toggle.addEventListener('click', () => {
+          const isOpen = mobileMenu.classList.toggle('is-open');
+          toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          if (isOpen) {
+            document.body.classList.add('menu-open');
+          } else {
+            document.body.classList.remove('menu-open');
+          }
+        });
+      };
+
+      const initialize = async () => {
+        const detectedLanguage = normalizeLanguage(getLanguageFromPath());
+        PAGE_CONTEXT.currentLanguage = detectedLanguage;
+
+        let availableTranslations = PAGE_CONTEXT.availableTranslations || {};
+
+        if (PAGE_CONTEXT.pageType === 'post' && PAGE_CONTEXT.currentSlug) {
+          const latestTranslations = await fetchAvailableTranslations(PAGE_CONTEXT.currentSlug, detectedLanguage);
+          availableTranslations = Object.keys(latestTranslations).length > 0 ? latestTranslations : availableTranslations;
+        }
+
+        buildMenus(availableTranslations);
+        setupHeaderToggle();
+      };
+
+      initialize();
+    </script>
+  
+</body>
+</html>

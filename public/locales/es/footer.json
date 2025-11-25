@@ -1,0 +1,48 @@
+{
+  "description": "Veridaq ofrece soluciones de cumplimiento impulsadas por IA que son 10x más rápidas con 90% menos falsos positivos. Suite AML completa para empresas, KYC Lite para empresas en crecimiento.",
+  "contactInfo": {
+    "email": "sales@veridaq.com",
+    "phone": "+45 31272726",
+    "address": "Fruebjergvej 3\\n2100 Copenhague\\nDinamarca"
+  },
+  "sections": {
+    "solutions": {
+      "title": "Soluciones Impulsadas por IA",
+      "kycVerification": "KYC Lite",
+      "amlScreening": "Suite AML Completa",
+      "euAmlr2027": "EU AMLR 2027 Nativo",
+      "documentVerification": "Verificación de Documentos Instantánea",
+      "transactionMonitoring": "Monitoreo IA de Comportamiento",
+      "riskAssessment": "Motor de Riesgo Predictivo"
+    },
+    "industries": {
+      "title": "Industrias",
+      "financialServices": "Banca Tradicional",
+      "fintech": "FinTech & Neobancos",
+      "cryptocurrency": "Cripto & Activos Digitales",
+      "realEstate": "Inmobiliaria de Alto Valor",
+      "gaming": "Gaming & iGaming",
+      "ecommerce": "Marketplaces & E-commerce",
+      "legalServices": "Legal & Bufetes de Abogados",
+      "accounting": "Contabilidad & Asesoría Fiscal",
+      "investmentAdvisors": "Asesores de Inversión"
+    },
+    "company": {
+      "title": "Empresa",
+      "blog": "Perspectivas de Cumplimiento",
+      "whyChooseUs": "Por Qué Veridaq",
+      "contactSales": "Reservar Demo",
+      "supportCenter": "Centro de Ayuda",
+      "privacyPolicy": "Política de Privacidad",
+      "termsOfService": "Términos de Servicio",
+      "gdprCompliance": "Privacy by Design"
+    }
+  },
+  "bottomLinks": {
+    "security": "Seguridad de Nivel Bancario",
+    "compliance": "AMLR 2027 Listo",
+    "status": "Estado",
+    "contactExperts": "Reserve Su Demo"
+  },
+  "copyright": "© {{year}} Veridaq. Todos los derechos reservados. | Plataforma de Cumplimiento Impulsada por IA"
+}

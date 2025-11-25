@@ -1,0 +1,48 @@
+{
+  "description": "Veridaq levert AI-aangedreven nalevingsoplossingen die 10x sneller zijn met 90% minder valse positieven. Complete AML Suite voor ondernemingen, KYC Lite voor groeibedrijven.",
+  "contactInfo": {
+    "email": "sales@veridaq.com",
+    "phone": "+45 31272726",
+    "address": "Fruebjergvej 3\\n2100 Kopenhagen\\nDenemarken"
+  },
+  "sections": {
+    "solutions": {
+      "title": "AI-aangedreven Oplossingen",
+      "kycVerification": "KYC Lite",
+      "amlScreening": "Complete AML Suite",
+      "euAmlr2027": "EU AMLR 2027 Native",
+      "documentVerification": "Directe Documentverificatie",
+      "transactionMonitoring": "Gedragsgerichte AI-monitoring",
+      "riskAssessment": "Voorspellende Risicoengine"
+    },
+    "industries": {
+      "title": "Industrieën",
+      "financialServices": "Traditioneel Bankwezen",
+      "fintech": "FinTech & Neobanken",
+      "cryptocurrency": "Crypto & Digitale Activa",
+      "realEstate": "Hoogwaardige Vastgoed",
+      "gaming": "Gaming & iGaming",
+      "ecommerce": "Marktplaatsen & E-commerce",
+      "legalServices": "Juridisch & Advocatenkantoren",
+      "accounting": "Boekhouding & Belastingadvies",
+      "investmentAdvisors": "Beleggingsadviseurs"
+    },
+    "company": {
+      "title": "Bedrijf",
+      "blog": "Nalevingsinzichten",
+      "whyChooseUs": "Waarom Veridaq",
+      "contactSales": "Boek Demo",
+      "supportCenter": "Helpcentrum",
+      "privacyPolicy": "Privacybeleid",
+      "termsOfService": "Servicevoorwaarden",
+      "gdprCompliance": "Privacy by Design"
+    }
+  },
+  "bottomLinks": {
+    "security": "Bankbeveiliging",
+    "compliance": "AMLR 2027 Klaar",
+    "status": "Status",
+    "contactExperts": "Boek Uw Demo"
+  },
+  "copyright": "© {{year}} Veridaq. Alle rechten voorbehouden. | AI-aangedreven Nalevingsplatform"
+}

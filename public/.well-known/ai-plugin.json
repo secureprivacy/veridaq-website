@@ -1,0 +1,18 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Veridaq Compliance Blog",
+  "name_for_model": "veridaq_blog",
+  "description_for_human": "Expert insights on EU compliance, KYC verification, AML screening, and GDPR requirements.",
+  "description_for_model": "Access comprehensive articles about EU compliance regulations, KYC/AML best practices, GDPR requirements, and financial compliance updates. The blog covers topics like AMLR 2027, customer due diligence, transaction monitoring, and regulatory technology.",
+  "api": {
+    "type": "openapi",
+    "url": "https://veridaq.com/sitemap.xml",
+    "is_user_authenticated": false
+  },
+  "auth": {
+    "type": "none"
+  },
+  "logo_url": "https://veridaq.com/images/veridaq-logo-transparent.png",
+  "contact_email": "info@veridaq.com",
+  "legal_info_url": "https://veridaq.com/legal/terms"
+}

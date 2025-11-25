@@ -1,0 +1,15 @@
+{
+  "prompt": "👋 Tarvitsetko apua EU AML-compliance-asioissa? Asiantuntijamme ovat nyt verkossa!",
+  "startChat": "Aloita keskustelu",
+  "title": "Compliance-asiantuntija",
+  "subtitle": "Verkossa nyt • Vastaa ~2 minuutissa",
+  "initialMessage": "Hei! Olen täällä auttamassa AML/KYC compliance-kysymyksissäsi. Mitä haluaisit tietää EU AMLR 2027:stä tai alustastamme?",
+  "autoResponse": "Kiitos viestistäsi! Compliance-asiantuntija vastaa pian. Sillä välin voit varata demon tai ladata compliance-tarkistuslistamme.",
+  "inputPlaceholder": "Kysy EU AML-compliance-asioista...",
+  "quickActionsTitle": "Pikatoiminnot:",
+  "quickActions": {
+    "demo": "📅 Varaa demo",
+    "pricing": "💰 Hanki hinnoittelu",
+    "compliance": "📋 EU AMLR 2027 -opas"
+  }
+}

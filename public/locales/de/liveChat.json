@@ -1,0 +1,15 @@
+{
+  "prompt": "👋 Brauchen Sie Hilfe bei EU AML Compliance? Unsere Experten sind jetzt online!",
+  "startChat": "Chat starten",
+  "title": "Compliance-Experte",
+  "subtitle": "Jetzt online • Antwortet in ~2 Minuten",
+  "initialMessage": "Hallo! Ich bin hier, um bei Ihren AML/KYC Compliance-Fragen zu helfen. Was möchten Sie über EU AMLR 2027 oder unsere Plattform wissen?",
+  "autoResponse": "Danke für Ihre Nachricht! Ein Compliance-Experte wird in Kürze antworten. In der Zwischenzeit können Sie eine Demo buchen oder unsere Compliance-Checkliste herunterladen.",
+  "inputPlaceholder": "Fragen zu EU AML Compliance...",
+  "quickActionsTitle": "Schnelle Aktionen:",
+  "quickActions": {
+    "demo": "📅 Demo buchen",
+    "pricing": "💰 Preise erhalten",
+    "compliance": "📋 EU AMLR 2027 Leitfaden"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "badge": "ROI-calculator",
+  "title": "Bereken Uw KYC & AML-besparingen",
+  "subtitle": "Zie precies hoeveel Veridaqs KYC Lite en AML Suite uw bedrijf kunnen besparen. De meeste bedrijven verminderen nalevingskosten met 60% of meer.",
+  "form": {
+    "title": "Uw Huidige KYC & AML-kosten",
+    "monthlyTransactions": "Maandelijkse transacties die KYC/AML-controle vereisen",
+    "manualHours": "Uren besteed aan handmatige KYC-verificatie en AML-monitoring",
+    "hourlyRate": "Gemiddelde uurtarief voor nalevingspersoneel",
+    "complianceIncidents": "KYC-afwijzingen en AML valse positieven per maand",
+    "averageFine": "Gemiddelde kosten per nalevingsincident of onderzoek",
+    "calculate": "Bereken Mijn Besparingen"
+  },
+  "results": {
+    "title": "Uw Potentiële Besparingen met Veridaq",
+    "roi": "Jaarlijks ROI",
+    "payback": "Terugverdientijd",
+    "months": "maanden",
+    "annualSavings": "Totale Jaarlijkse Besparingen",
+    "automationSavings": "Van KYC & AML-automatisering",
+    "disclaimer": "Conservatieve schattingen op basis van echte klantgegevens. De meeste bedrijven behalen nog grotere besparingen.",
+    "getPersonalized": "Ontvang Gedetailleerde ROI-analyse"
+  },
+  "placeholder": {
+    "title": "Klaar om Uw Besparingen te Zien?",
+    "description": "Voer uw huidige KYC- en AML-kosten in om te ontdekken waarom bedrijven Veridaq kiezen voor massale nalevingsbesparingen."
+  }
+}

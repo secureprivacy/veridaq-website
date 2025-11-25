@@ -1,0 +1,28 @@
+{
+  "logo": "Veridaq",
+  "navigation": {
+    "solutions": "Soluzioni",
+    "industries": "Settori",
+    "blog": "Blog",
+    "whyUs": "Perché noi",
+    "contact": "Contatto"
+  },
+  "solutions": {
+    "title": "Piattaforma principale",
+    "kycVerification": "Verifica KYC",
+    "amlScreening": "Screening AML",
+    "transactionMonitoring": "Monitoraggio transazioni",
+    "riskAssessment": "Valutazione del rischio",
+    "sanctionsScreening": "Screening sanzioni",
+    "regulatoryReporting": "Reporting normativo",
+    "documentVerification": "Verifica documenti",
+    "compliance": {
+      "title": "Conformità",
+      "euAmlr2027": "EU AMLR 2027 pronto"
+    }
+  },
+  "cta": {
+    "contact": "Contatto",
+    "demo": "Contatta i nostri esperti"
+  }
+}

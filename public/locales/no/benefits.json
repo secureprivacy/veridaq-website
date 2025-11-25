@@ -1,0 +1,51 @@
+{
+  "badge": "Veridaq-fordelen",
+  "title": "Hvorfor Ledere Velger Veridaq",
+  "subtitle": "Slutt å jonglere fem forskjellige leverandører. Slutt å drukne i falske positiver. Slutt å forklare compliance-feil til tilsynsmyndigheter. Én plattform som faktisk virker.",
+  "benefits": {
+    "onePlatform": {
+      "title": "Én Plattform, Null Hull",
+      "description": "Slutt å teipe sammen fem forskjellige leverandører. Kundeverifisering, transaksjonsovervåking, sanksjonsscreening, sporing av reelle eiere og regulatorisk rapportering—alt i ett sømløst system."
+    },
+    "fewerFalsePositives": {
+      "title": "92% Færre Falske Positiver",
+      "description": "Compliance-teamet ditt etterforsker ekte trusler, ikke fantomrisiko. Vår AI har analysert millioner av EU-transaksjoner og vet hvordan ekte risiko ser ut. Ikke mer varselutmattelse."
+    },
+    "fasterOnboarding": {
+      "title": "10x Raskere Kundeonboarding",
+      "description": "Verifiser kunder på 60 sekunder i stedet for 3 dager. Smart eID-integrasjon, umiddelbar risikovurdering, sanntidsregisteroppslag. Hastighet som tilsynsmyndigheter godkjenner."
+    },
+    "futureProof": {
+      "title": "Fremtidssikker Compliance",
+      "description": "EU AMLR 2027-kompatibel i dag. MiCA-klar. TFR-forberedt. Når reguleringer endres, forblir du compliant automatisk. Ingen nødoppdateringer, ingen dyre migreringer."
+    }
+  },
+  "platformAdvantages": {
+    "title": "Plattformfordeler",
+    "deploy": {
+      "number": "01",
+      "title": "Deploy på Dager, Ikke Kvartaler",
+      "description": "Moderne REST API-er, webhooks for sanntidshendelser, SDK-er på alle større språk. Omfattende dokumentasjon som utviklere faktisk liker å lese. Gå live denne måneden."
+    },
+    "builtYourWay": {
+      "number": "02",
+      "title": "Bygget Din Vei",
+      "description": "Konfigurer risikoregler, godkjenningsarbeidsflyter, eskaleringsstier som matcher hvordan virksomheten din faktisk opererer. Ingen rigide prosesser påtvunget av konsulenter."
+    },
+    "coverage": {
+      "number": "03",
+      "title": "360° Compliance-dekning",
+      "description": "KYC-verifisering, løpende CDD, sporing av reelle eiere, transaksjonsovervåking, sanksjonsscreening, PEP-sjekker, regulatorisk rapportering. Ingenting faller mellom stolene."
+    },
+    "euNative": {
+      "number": "04",
+      "title": "EU-Native, GDPR-First",
+      "description": "Dataene dine forlater aldri EU. Hostet i tier-3+ datasentre med 99,9% oppetids-SLA. Full GDPR-overholdelse er ikke en funksjon—det er vårt fundament."
+    }
+  },
+  "cta": {
+    "title": "Slutt å Kjempe Mot Compliance. Start å Lede Markedet Ditt.",
+    "subtitle": "Bli med 500+ europeiske finansinstitusjoner som har forvandlet compliance fra et kostnadssenter til en konkurransefordel.",
+    "button": "Kontakt Våre Eksperter"
+  }
+}

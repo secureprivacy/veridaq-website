@@ -1,0 +1,71 @@
+{
+  "badge": "Iniziare",
+  "title": "Iniziate con <1>Veridaq</1>",
+  "subtitle": "Pronti a trasformare il vostro programma di conformità? Contattate i nostri esperti per una consulenza personalizzata o prenotate una demo per vedere la nostra piattaforma in azione.",
+  "whyChoose": "Perché scegliere Veridaq?",
+  "features": {
+    "euAmlr2027Ready": {
+      "title": "EU AMLR 2027 pronto",
+      "description": "Assicurate la vostra conformità futura con la nostra piattaforma pronta per la normativa"
+    },
+    "expertSupport": {
+      "title": "Supporto esperto",
+      "description": "Esperti di conformità dedicati per guidare la vostra implementazione"
+    },
+    "fastImplementation": {
+      "title": "Implementazione veloce",
+      "description": "Iniziate in giorni, non mesi"
+    }
+  },
+  "contactInfo": {
+    "phone": "Telefono",
+    "email": "Email",
+    "location": "Posizione",
+    "address": "Fruebjergvej 3\n2100 Copenaghen\nDanimarca"
+  },
+  "form": {
+    "title": "Contatta i nostri esperti",
+    "step1": {
+      "title": "Iniziamo",
+      "subtitle": "Parlaci di te e della tua azienda",
+      "continue": "Continua ai dettagli"
+    },
+    "step2": {
+      "title": "Aiutaci ad aiutarti",
+      "subtitle": "Condividi le tue esigenze specifiche e interessi",
+      "back": "Indietro",
+      "submit": "Invia messaggio"
+    },
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "email": "Email aziendale",
+    "company": "Azienda",
+    "phone": "Numero di telefono",
+    "companySize": "Dimensione azienda",
+    "companySizeOptions": {
+      "placeholder": "Seleziona dimensione azienda",
+      "1-10": "1-10 dipendenti",
+      "11-50": "11-50 dipendenti",
+      "51-200": "51-200 dipendenti",
+      "201-1000": "201-1000 dipendenti",
+      "1000+": "1000+ dipendenti"
+    },
+    "interests": {
+      "title": "A cosa siete interessati? (Selezionate tutto ciò che si applica)",
+      "scheduleDemo": "Prenota una demo",
+      "complianceConsultation": "Consulenza conformità",
+      "pricingInformation": "Informazioni prezzi",
+      "integrationSupport": "Supporto integrazione"
+    },
+    "message": "Parlateci delle vostre esigenze di conformità",
+    "messagePlaceholder": "Quali sfide specifiche di conformità state affrontando? Quali soluzioni state cercando?",
+    "subscribe": "Vorrei ricevere aggiornamenti sui prodotti, servizi e insights di conformità di Veridaq.",
+    "submit": "Invia messaggio",
+    "submitting": "Invio messaggio...",
+    "privacyNotice": "Inviando questo modulo, accettate la nostra privacy policy e i termini di servizio."
+  },
+  "success": {
+    "title": "Grazie!",
+    "message": "Il vostro messaggio è stato ricevuto. I nostri esperti di conformità vi contatteranno entro 24 ore."
+  }
+}

@@ -1,0 +1,168 @@
+# Netlify redirects for pure static blog architecture
+#
+# BLOG ROUTING ARCHITECTURE (Pure Static HTML):
+# ================================================================================
+# This architecture serves ONLY pre-rendered static HTML for all blog requests.
+# The React SPA never loads for blog routes - visitors get pure HTML/CSS.
+#
+# ARCHITECTURE PRINCIPLES:
+# 1. Blog routes serve static HTML files directly with 200 status
+# 2. No React SPA loading occurs for blog paths
+# 3. Browsers and crawlers receive identical static HTML
+# 4. Blog navigation uses standard <a> tags between static pages
+# 5. The SPA only loads for non-blog application routes
+#
+# RESULTING FLOW:
+# - Request to /blog or /<lang>/blog → static HTML listing page
+# - Request to /blog/:slug or /<lang>/blog/:slug → static HTML article
+# - Request to any other path → React SPA loads via catch-all
+#
+# TESTING:
+# Test blog access: curl https://veridaq.com/blog/
+# Test article access: curl https://veridaq.com/blog/post-slug/
+# Test SPA access: curl https://veridaq.com/
+#
+# ================================================================================
+
+# ================================================================================
+# BLOG ROUTES - Pure Static HTML (No SPA)
+# ================================================================================
+# These rules serve static HTML directly. The 200! status prevents further
+# processing and ensures the SPA catch-all never triggers for blog routes.
+# Note: Netlify processes rules in order, so these MUST come before the catch-all.
+
+# English blog routes - serve static HTML, stop processing
+/blog                           /blog/index.html                200!
+/blog/                          /blog/index.html                200!
+/blog/*                         /blog/:splat/index.html         200!
+/blog/*/                        /blog/:splat/index.html         200!
+
+# Danish blog routes
+/da/blog                        /da/blog/index.html             200!
+/da/blog/                       /da/blog/index.html             200!
+/da/blog/*                      /da/blog/:splat/index.html      200!
+/da/blog/*/                     /da/blog/:splat/index.html      200!
+
+# Swedish blog routes
+/sv/blog                        /sv/blog/index.html             200!
+/sv/blog/                       /sv/blog/index.html             200!
+/sv/blog/*                      /sv/blog/:splat/index.html      200!
+/sv/blog/*/                     /sv/blog/:splat/index.html      200!
+
+# Norwegian blog routes
+/no/blog                        /no/blog/index.html             200!
+/no/blog/                       /no/blog/index.html             200!
+/no/blog/*                      /no/blog/:splat/index.html      200!
+/no/blog/*/                     /no/blog/:splat/index.html      200!
+
+# Finnish blog routes
+/fi/blog                        /fi/blog/index.html             200!
+/fi/blog/                       /fi/blog/index.html             200!
+/fi/blog/*                      /fi/blog/:splat/index.html      200!
+/fi/blog/*/                     /fi/blog/:splat/index.html      200!
+
+# German blog routes
+/de/blog                        /de/blog/index.html             200!
+/de/blog/                       /de/blog/index.html             200!
+/de/blog/*                      /de/blog/:splat/index.html      200!
+/de/blog/*/                     /de/blog/:splat/index.html      200!
+
+# French blog routes
+/fr/blog                        /fr/blog/index.html             200!
+/fr/blog/                       /fr/blog/index.html             200!
+/fr/blog/*                      /fr/blog/:splat/index.html      200!
+/fr/blog/*/                     /fr/blog/:splat/index.html      200!
+
+# Spanish blog routes
+/es/blog                        /es/blog/index.html             200!
+/es/blog/                       /es/blog/index.html             200!
+/es/blog/*                      /es/blog/:splat/index.html      200!
+/es/blog/*/                     /es/blog/:splat/index.html      200!
+
+# Italian blog routes
+/it/blog                        /it/blog/index.html             200!
+/it/blog/                       /it/blog/index.html             200!
+/it/blog/*                      /it/blog/:splat/index.html      200!
+/it/blog/*/                     /it/blog/:splat/index.html      200!
+
+# Portuguese blog routes
+/pt/blog                        /pt/blog/index.html             200!
+/pt/blog/                       /pt/blog/index.html             200!
+/pt/blog/*                      /pt/blog/:splat/index.html      200!
+/pt/blog/*/                     /pt/blog/:splat/index.html      200!
+
+# Dutch blog routes
+/nl/blog                        /nl/blog/index.html             200!
+/nl/blog/                       /nl/blog/index.html             200!
+/nl/blog/*                      /nl/blog/:splat/index.html      200!
+/nl/blog/*/                     /nl/blog/:splat/index.html      200!
+
+# ================================================================================
+# NOTE: The 200! status forces Netlify to stop processing rules. Blog routes
+# will NEVER fall through to the SPA catch-all below. Blog is 100% static HTML.
+# ===============================================================================
+
+# ================================================================================
+# SITEMAP & CRAWLER FILES (Multi-method discovery)
+# ================================================================================
+# Primary sitemap endpoints - serve actual XML files
+/robots.txt                     /robots.txt                     200
+/sitemap.xml                    /sitemap.xml                    200
+/sitemap-*.xml                  /sitemap-:splat.xml             200
+
+# AI plugin discovery (OpenAI, Perplexity, etc.)
+/.well-known/ai-plugin.json     /.well-known/ai-plugin.json     200
+/ai-plugin.json                 /.well-known/ai-plugin.json     200
+
+# Sitemap aliases - normalize common alternative URLs to main sitemap
+# These handle crawlers that probe standard sitemap locations
+/sitemap_index.xml              /sitemap.xml                    301
+/sitemap.xml.gz                 /sitemap.xml                    200
+/sitemapindex.xml               /sitemap.xml                    301
+/blog/sitemap.xml               /sitemap.xml                    301
+/blog/sitemap-*.xml             /sitemap-:splat.xml             301
+/blog/sitemap_index.xml         /sitemap.xml                    301
+
+# Return 404 for nonsense sitemap paths instead of SPA fallback
+/_sitemap/*                     /404.html                       404
+/wp-sitemap.xml                 /404.html                       404
+/sitemap-misc.xml               /404.html                       404
+
+# CMS routes (always handled by React)
+/cms/*                          /index.html                     200
+
+# Legacy URL redirects for old translation URL patterns
+# Redirect old suffixed URLs to language-specific paths
+/blog/*-danish                  /da/blog/:splat                 301
+/blog/*-norwegian               /no/blog/:splat                 301
+/blog/*-swedish                 /sv/blog/:splat                 301
+/blog/*-german                  /de/blog/:splat                 301
+/blog/*-french                  /fr/blog/:splat                 301
+/blog/*-finnish                 /fi/blog/:splat                 301
+/blog/*-italian                 /it/blog/:splat                 301
+/blog/*-spanish                 /es/blog/:splat                 301
+/blog/*-portuguese              /pt/blog/:splat                 301
+/blog/*-dutch                   /nl/blog/:splat                 301
+
+# ================================================================================
+# LANGUAGE-SPECIFIC ROUTES (Non-blog pages)
+# ================================================================================
+# Homepage and other pages in different languages
+
+/da/*                           /index.html                     200
+/sv/*                           /index.html                     200
+/no/*                           /index.html                     200
+/fi/*                           /index.html                     200
+/de/*                           /index.html                     200
+/fr/*                           /index.html                     200
+/es/*                           /index.html                     200
+/it/*                           /index.html                     200
+/pt/*                           /index.html                     200
+/nl/*                           /index.html                     200
+
+# ================================================================================
+# FALLBACK - Main site catch-all
+# ================================================================================
+# Catch any unmatched routes and serve React SPA
+
+/*                              /index.html                     200

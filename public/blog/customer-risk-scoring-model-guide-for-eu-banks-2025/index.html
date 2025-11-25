@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Customer Risk Scoring Model Guide for EU Banks 2025 | Veridaq</title>
+  <meta name="description" content=" Build effective AML risk scoring models for EU banks. Covers AML package timelines, risk factors, validation, and platform explainability.">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://veridaq.com/blog/customer-risk-scoring-model-guide-for-eu-banks-2025">
+  <link rel="stylesheet" href="/blog-static.css">
+
+  <!-- Sitemap discovery for crawlers -->
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="https://veridaq.com/sitemap.xml">
+
+  <!-- hreflang tags for multi-language SEO (only for available translations) -->
+  <link rel="alternate" hreflang="en" href="https://veridaq.com/blog/customer-risk-scoring-model-guide-for-eu-banks-2025" />
+  <link rel="alternate" hreflang="da" href="https://veridaq.com/da/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-danish" />
+  <link rel="alternate" hreflang="sv" href="https://veridaq.com/sv/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-swedish" />
+  <link rel="alternate" hreflang="no" href="https://veridaq.com/no/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-norwegian" />
+  <link rel="alternate" hreflang="fi" href="https://veridaq.com/fi/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-finnish" />
+  <link rel="alternate" hreflang="de" href="https://veridaq.com/de/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-german" />
+  <link rel="alternate" hreflang="fr" href="https://veridaq.com/fr/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-french" />
+  <link rel="alternate" hreflang="es" href="https://veridaq.com/es/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-spanish" />
+  <link rel="alternate" hreflang="it" href="https://veridaq.com/it/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-italian" />
+  <link rel="alternate" hreflang="pt" href="https://veridaq.com/pt/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-portuguese" />
+  <link rel="alternate" hreflang="nl" href="https://veridaq.com/nl/blog/customer-risk-scoring-model-guide-for-eu-banks-2025-dutch" />
+  <link rel="alternate" hreflang="x-default" href="https://veridaq.com/blog/customer-risk-scoring-model-guide-for-eu-banks-2025" />
+
+  <!-- Open Graph / Social Media Tags -->
+  
+  <meta property="og:title" content="Customer Risk Scoring Model Guide for EU Banks 2025">
+  <meta property="og:description" content=" Build effective AML risk scoring models for EU banks. Covers AML package timelines, risk factors, validation, and platform explainability.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://veridaq.com/blog/customer-risk-scoring-model-guide-for-eu-banks-2025">
+  <meta property="article:published_time" content="2025-11-14T08:30:52.102+00:00">
+  <meta property="article:modified_time" content="2025-11-14T08:30:52.157443+00:00">
+
+  <!-- Twitter Card Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Customer Risk Scoring Model Guide for EU Banks 2025">
+  <meta name="twitter:description" content=" Build effective AML risk scoring models for EU banks. Covers AML package timelines, risk factors, validation, and platform explainability.">
+  
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://veridaq.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://veridaq.com/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Customer Risk Scoring Model Guide for EU Banks 2025"
+    }
+  ]
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Customer Risk Scoring Model Guide for EU Banks 2025",
+  "alternativeHeadline": " Customer Risk Scoring Model Guide for EU Banks 2025",
+  "description": " Build effective AML risk scoring models for EU banks. Covers AML package timelines, risk factors, validation, and platform explainability.",
+  "datePublished": "2025-11-14T08:30:52.102+00:00",
+  "dateModified": "2025-11-14T08:30:52.157443+00:00",
+  "author": {
+    "@type": "Organization",
+    "name": "Veridaq",
+    "url": "https://veridaq.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://veridaq.com/images/veridaq-logo-transparent.png"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/veridaq"
+    ]
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Veridaq",
+    "url": "https://veridaq.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://veridaq.com/images/veridaq-logo-transparent.png",
+      "width": 200,
+      "height": 60
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://veridaq.com/blog/customer-risk-scoring-model-guide-for-eu-banks-2025"
+  },
+  "articleSection": "EU Compliance",
+  "articleBody": "\n\nBuilding an Effective Customer Risk Scoring Model: A Guide for European BanksIf your bank is still using a basic three-tier risk model (Low, Medium, High), you're already behind. Customer risk scoring has moved from a compliance checkbox to a platform capability that unifies KYC, sanctions screening, transaction monitoring, case management, and SAR reporting into one explainable engine. With the EU AML package adopted and key application dates starting in 2027, EU banks face a choice: operationalize risk scoring on a modern KYC and AML platform now or scramble later.The good news? Building a robust risk scoring model is not about complex mathematics. It is about selecting the right factors, weighting them intelligently, and maintaining them continuously within your platform. Banks that have made this transition target a portfolio where most SAR subjects land in High or Critical tiers while keeping false positives manageable.Step 1: Design Your Risk Factor FrameworkAn effective model starts with choosing risk factors that reflect your bank’s business model and specific threats. Supervisors will expect documented rationale for every factor and weight, plus a clear link to controls and workflows in your KYC and AML platform.Risk Factor Categories &amp; Weightings:Geographic risk weighting:&nbsp;Geographic risk should carry 15–30% weight, with high-risk third countries and active sanctions programs receiving maximum weight and EEA countries serving as baseline. Platform list management should drive these controls from authoritative sources.Customer and ownership risk factors:&nbsp;Customer and ownership risk should reflect PEP exposure, complex UBO structures, and non-resident status. Configure policy packs for enhanced due diligence and screening cadence that automatically elevate material risks.Business activity risk allocation:&nbsp;Business activity risk comprises 20–35% of the model. Post-MiCA crypto-asset services should use a higher baseline and align with travel-rule checks for crypto transfers. Cash-intensive businesses and opaque professional intermediaries merit higher multipliers based on typology evidence.Product and channel risk weighting:&nbsp;Product and channel risk should account for 10–25% of the score. Weight higher for non-face-to-face onboarding and for high-velocity payment products. Configure velocity alerts in the platform, for example flagging &gt;50 transactions per day across many counterparties.Behavioral deviation risk:&nbsp;Behavioral deviation represents 20–40% of the model. Compare observed flows to the KYC-stated purpose and expected ranges. Flag structuring patterns such as repeated round-number deposits just below reporting thresholds.Documentation Requirements:Written rationale linking each factor to risk appetite and platform controlsStatistical correlation or lift analysis showing predictive power and stabilityQuarterly review by an independent forum with drift analysisVersion control for factor definitions, weights, rules, and data sourcesThreshold Settings:Low Risk: Score 0–30 (60–70% of portfolio)Medium Risk: Score 31–60 (20–25% of portfolio)High Risk: Score 61–85 (8–12% of portfolio)Critical Risk: Score 86–100 (2–5% of portfolio)Step 2: Build and Calibrate the Scoring EngineDefine a model that is accurate and explainable, then implement it so it powers onboarding decisions, periodic reviews, monitoring, investigations, and SAR flows inside the same platform.Model Architecture That Works:&nbsp;The weighted-sum approach is simple and defensible. Score each factor 1–100, multiply by weight, and sum for a total score. Add rule-based overrides for non-negotiable risks. PEP status should automatically enforce at least High risk regardless of the total. Expose a factor breakdown in the UI so investigators can export “Score 78: Geographic 25 + Product 18 + Behavioral 35.” Use dynamic thresholds so tier boundaries adjust quarterly as the portfolio shifts. Apply score decay so behavioral contributions halve after 90 days without new signals.Calibration Methodology:&nbsp;Back-test against 12 months of known SAR cases. As an operational KPI, target ≥80–85% of SAR subjects in High or Critical. Monitor discrimination with Gini or AUC and trigger recalibration if performance falls below internal floors, for example Gini &lt;0.60. Benchmark your risk distribution and alert-to-SAR conversion against peer data and supervisory feedback. In the platform, wire these metrics to dashboards and evidence packs.Explainability and Overrides:&nbsp;Every score must be decomposable, retrievable, and auditable. Keep manual overrides rare and policy-based, with a defined portfolio cap such as 10%. Require business justification, approvals, and reviewer sign-off in case management. Store all rule versions, model parameters, and training data lineage in the audit layer.Step 3: Implement Ongoing Model ValidationA risk model is not “set and forget.” It degrades without continuous monitoring. Treat vali",
+  "wordCount": 946,
+  "keywords": "EU compliance, KYC verification, AML screening, GDPR compliance, financial regulations",
+  "inLanguage": "en",
+  "url": "https://veridaq.com/blog/customer-risk-scoring-model-guide-for-eu-banks-2025"
+}
+  </script>
+
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Veridaq",
+  "url": "https://veridaq.com",
+  "logo": "https://veridaq.com/images/veridaq-logo-transparent.png",
+  "description": "EU's leading KYC & AML compliance platform"
+}
+  </script>
+
+  <!-- DataFeed schema for AI crawler discovery -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "DataFeed",
+  "dataFeedElement": {
+    "@type": "DataFeedItem",
+    "item": {
+      "@type": "WebSite",
+      "url": "https://veridaq.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://veridaq.com/sitemap.xml"
+      }
+    }
+  },
+  "includedDataCatalog": "https://veridaq.com/sitemap.xml"
+}
+  </script>
+</head>
+<body class="blog-page">
+  <header class="blog-hero">
+    <div class="blog-container post-hero-content">
+      <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <a href="/blog/">Blog</a>
+        <span class="current">Customer Risk Scoring Model Guide for EU Banks 2025</span>
+      </nav>
+      <a class="back-pill" href="/blog/">← Back to all articles</a>
+      <div class="category-badge">EU Compliance</div>
+      <h1 class="post-title">Customer Risk Scoring Model Guide for EU Banks 2025</h1>
+      <div class="metadata-chips">
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">👤</span>Veridaq Team</span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">📅</span><time datetime="2025-11-14T08:30:52.102+00:00">November 14, 2025</time></span>
+        <span class="meta-chip"><span class="meta-icon" aria-hidden="true">⏱</span>6 min read</span>
+      </div>
+      <div class="post-excerpt">Effective customer risk scoring balances inherent customer, product, and behavioral risks with transparent weightings and platform explainability. EU banks must move beyond simple three-tier systems to models that satisfy the AML package timelines starting in 2027. Key success factors include documented factor rationale, statistical validation with Gini &gt;0.65, and continuous monitoring wired into case management. Target ≥80–85% of SAR subjects in High or Critical while limiting overrides with justification. A modern platform like Veridaq provides explainable scoring views, sanctions and crypto travel-rule checks, automated validation, and end-to-end audit trails to support AMLA-ready model governance.</div>
+    </div>
+  </header>
+
+  
+
+  <main class="blog-article">
+    <div class="blog-container">
+      <article class="blog-prose">
+
+
+<h1>Building an Effective Customer Risk Scoring Model: A Guide for European Banks</h1><p>If your bank is still using a basic three-tier risk model (Low, Medium, High), you're already behind. Customer risk scoring has moved from a compliance checkbox to a platform capability that unifies KYC, sanctions screening, transaction monitoring, case management, and SAR reporting into one explainable engine. With the EU AML package adopted and key application dates starting in 2027, EU banks face a choice: operationalize risk scoring on a modern KYC and AML platform now or scramble later.</p><p>The good news? Building a robust risk scoring model is not about complex mathematics. It is about selecting the right factors, weighting them intelligently, and maintaining them continuously within your platform. Banks that have made this transition target a portfolio where most SAR subjects land in High or Critical tiers while keeping false positives manageable.</p><h2>Step 1: Design Your Risk Factor Framework</h2><p>An effective model starts with choosing risk factors that reflect your bank’s business model and specific threats. Supervisors will expect documented rationale for every factor and weight, plus a clear link to controls and workflows in your KYC and AML platform.</p><h3>Risk Factor Categories &amp; Weightings:</h3><p><strong>Geographic risk weighting:</strong>&nbsp;Geographic risk should carry 15–30% weight, with high-risk third countries and active sanctions programs receiving maximum weight and EEA countries serving as baseline. Platform list management should drive these controls from authoritative sources.</p><p><strong>Customer and ownership risk factors:</strong>&nbsp;Customer and ownership risk should reflect PEP exposure, complex UBO structures, and non-resident status. Configure policy packs for enhanced due diligence and screening cadence that automatically elevate material risks.</p><p><strong>Business activity risk allocation:</strong>&nbsp;Business activity risk comprises 20–35% of the model. Post-MiCA crypto-asset services should use a higher baseline and align with travel-rule checks for crypto transfers. Cash-intensive businesses and opaque professional intermediaries merit higher multipliers based on typology evidence.</p><p><strong>Product and channel risk weighting:</strong>&nbsp;Product and channel risk should account for 10–25% of the score. Weight higher for non-face-to-face onboarding and for high-velocity payment products. Configure velocity alerts in the platform, for example flagging &gt;50 transactions per day across many counterparties.</p><p><strong>Behavioral deviation risk:</strong>&nbsp;Behavioral deviation represents 20–40% of the model. Compare observed flows to the KYC-stated purpose and expected ranges. Flag structuring patterns such as repeated round-number deposits just below reporting thresholds.</p><h3>Documentation Requirements:</h3><ul><li>Written rationale linking each factor to risk appetite and platform controls</li><li>Statistical correlation or lift analysis showing predictive power and stability</li><li>Quarterly review by an independent forum with drift analysis</li><li>Version control for factor definitions, weights, rules, and data sources</li></ul><h3>Threshold Settings:</h3><ul><li>Low Risk: Score 0–30 (60–70% of portfolio)</li><li>Medium Risk: Score 31–60 (20–25% of portfolio)</li><li>High Risk: Score 61–85 (8–12% of portfolio)</li><li>Critical Risk: Score 86–100 (2–5% of portfolio)</li></ul><h2>Step 2: Build and Calibrate the Scoring Engine</h2><p>Define a model that is accurate and explainable, then implement it so it powers onboarding decisions, periodic reviews, monitoring, investigations, and SAR flows inside the same platform.</p><p><strong>Model Architecture That Works:</strong>&nbsp;The weighted-sum approach is simple and defensible. Score each factor 1–100, multiply by weight, and sum for a total score. Add rule-based overrides for non-negotiable risks. PEP status should automatically enforce at least High risk regardless of the total. Expose a factor breakdown in the UI so investigators can export “Score 78: Geographic 25 + Product 18 + Behavioral 35.” Use dynamic thresholds so tier boundaries adjust quarterly as the portfolio shifts. Apply score decay so behavioral contributions halve after 90 days without new signals.</p><p><strong>Calibration Methodology:</strong>&nbsp;Back-test against 12 months of known SAR cases. As an operational KPI, target ≥80–85% of SAR subjects in High or Critical. Monitor discrimination with Gini or AUC and trigger recalibration if performance falls below internal floors, for example Gini &lt;0.60. Benchmark your risk distribution and alert-to-SAR conversion against peer data and supervisory feedback. In the platform, wire these metrics to dashboards and evidence packs.</p><p><strong>Explainability and Overrides:</strong>&nbsp;Every score must be decomposable, retrievable, and auditable. Keep manual overrides rare and policy-based, with a defined portfolio cap such as 10%. Require business justification, approvals, and reviewer sign-off in case management. Store all rule versions, model parameters, and training data lineage in the audit layer.</p><h2>Step 3: Implement Ongoing Model Validation</h2><p>A risk model is not “set and forget.” It degrades without continuous monitoring. Treat validation as a platform workflow rather than a static annual review.</p><p><strong>Performance Monitoring Metrics:</strong>&nbsp;Track alert-to-SAR conversion by tier. High and Critical should generate the majority of SARs. Monitor false positive rate, investigation cycle time, analyst rework, and override volume. If Low risk accounts for more than a modest share of alerts, reassess thresholds and factors. Use analytics to spot sudden shifts in portfolio risk that indicate business changes or model drift.</p><p><strong>Revalidation Triggers:</strong>&nbsp;Revalidate on any material change: new products or channels, entry into high-risk jurisdictions, onboarding control changes, or regulatory feedback. For crypto flows, verify travel-rule and sanctions checks after each rule update. If more than 20% of later-reported SAR subjects sat in Low or Medium at the time of activity, initiate a recalibration workflow and document remediation end-to-end in the platform.</p><h3>Table: Risk Factor Weightings by Customer Type</h3><table><thead><tr><th>Risk Category</th><th>Retail Customer</th><th>SME Business</th><th>Large Corporate</th><th>PEP/High-Risk</th></tr></thead><tbody><tr><td>Geographic Risk</td><td>15% weight</td><td>20% weight</td><td>25% weight</td><td>30% weight</td></tr><tr><td>Customer Type</td><td>10% weight</td><td>15% weight</td><td>20% weight</td><td>35% weight</td></tr><tr><td>Product Complexity</td><td>10% weight</td><td>20% weight</td><td>25% weight</td><td>15% weight</td></tr><tr><td>Behavioral Deviation</td><td>25% weight</td><td>25% weight</td><td>20% weight</td><td>15% weight</td></tr><tr><td>Transaction Velocity</td><td>40% weight</td><td>20% weight</td><td>10% weight</td><td>5% weight</td></tr></tbody></table><h2>Summary: The Future of Risk-Based Compliance</h2><p>An effective customer risk scoring model is now the platform backbone of AML compliance under the EU’s new AML framework and 6AMLD. The shift from static three-tier models to dynamic, multi-factor scoring changes how banks detect and manage financial crime risk. Success requires disciplined governance and a platform that delivers explainable scoring, sanctions and PEP coverage, travel-rule checks for funds and crypto, UBO transparency, continuous validation, and an immutable audit trail. With application dates approaching from 2027, institutions that invest now in robust, explainable risk scoring will reduce false positives, improve SAR efficacy, and face less supervisory friction.</p>
+      </article>
+
+      <section class="share-strip" aria-label="Share this article">
+        <div>
+          <h3>Share this article</h3>
+          <p>Help others stay compliant with EU regulations</p>
+        </div>
+        <div class="share-links">
+          <a class="share-pill" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fveridaq.com%2Fblog%2Fcustomer-risk-scoring-model-guide-for-eu-banks-2025" target="_blank" rel="noopener" aria-label="Share on LinkedIn">in</a>
+          <a class="share-pill" href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fveridaq.com%2Fblog%2Fcustomer-risk-scoring-model-guide-for-eu-banks-2025&text=Customer%20Risk%20Scoring%20Model%20Guide%20for%20EU%20Banks%202025" target="_blank" rel="noopener" aria-label="Share on Twitter">X</a>
+          <a class="share-pill" href="mailto:?subject=Customer%20Risk%20Scoring%20Model%20Guide%20for%20EU%20Banks%202025&body=I%20thought%20you%20might%20find%20this%20EU%20compliance%20article%20interesting%3A%20https%3A%2F%2Fveridaq.com%2Fblog%2Fcustomer-risk-scoring-model-guide-for-eu-banks-2025"  aria-label="Share on Email">@</a>
+        </div>
+      </section>
+
+      <section class="related-section">
+        <h3>Related Articles</h3>
+        <div class="related-grid">
+      <a class="related-card" href="/blog/eu-aml-regulation-vs-directive-key-differences/">
+        <span>EU AML Regulation vs Directive: Key Differences</span>
+        <p>Understand the crucial difference between EU AML Regulations and Directives. Learn how AMLR and AMLD6 affect your compliance implementation before July 2027.</p>
+      </a>
+    
+
+      <a class="related-card" href="/blog/how-eu-banks-can-avoid-45m-in-aml-fines/">
+        <span>How EU Banks Can Avoid €45M+ in AML Fines</span>
+        <p>By replacing manual KYC with automated pKYC platforms like Veridaq, EU banks can meet Article 26 deadlines, cut costs and satisfy AMLA scrutiny.</p>
+      </a>
+    
+
+      <a class="related-card" href="/blog/what-casps-need-to-know-about-crypto-compliance/">
+        <span>What CASPs Need to Know About Crypto Compliance?</span>
+        <p>Complete crypto compliance guide for CASPs. Navigate MiCA, FATF Travel Rule, and EU AML requirements for crypto asset service providers.</p>
+      </a>
+    </div>
+      </section>
+
+      <section class="cta-block">
+        <div class="cta-icon" aria-hidden="true">⚡</div>
+        <h3>Ready to implement these compliance strategies?</h3>
+        <p>Our compliance experts can help you implement the strategies discussed in this article. Book a consultation to get personalized guidance.</p>
+        <a class="cta-button" href="#contact">Get Expert Consultation →</a>
+      </section>
+    </div>
+  </main>
+
+  
+    <footer class="site-footer">
+      <div class="blog-container">
+        <div class="site-footer__grid">
+          <div class="site-footer__brand">
+            <a class="site-logo" href="/" aria-label="Company">
+              <img src="/images/veridaq-logo-transparent.png" alt="Company" width="128" height="32">
+            </a>
+            <p class="site-footer__description">Veridaq delivers AI-powered compliance solutions that are 10x faster with 90% fewer false positives. Complete AML Suite for enterprises, KYC Lite for growth companies.</p>
+            <div class="site-footer__contact">
+              <div class="site-footer__contact-item">sales@veridaq.com</div>
+              <div class="site-footer__contact-item">+45 31272726</div>
+              <div class="site-footer__contact-item">Fruebjergvej 3<br>2100 Copenhagen<br>Denmark</div>
+            </div>
+          </div>
+          <div>
+            <h3 class="site-footer__heading">AI-Powered Solutions</h3>
+            <ul class="site-footer__list">
+              <li><a href="/#features">KYC Lite</a></li>
+              <li><a href="/#features">Complete AML Suite</a></li>
+              <li><a href="/#eu-compliance">EU AMLR 2027 Native</a></li>
+              <li><a href="/#features">Instant Document Verification</a></li>
+              <li><a href="/#features">Behavioral AI Monitoring</a></li>
+              <li><a href="/#features">Predictive Risk Engine</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="site-footer__heading">Industries</h3>
+            <ul class="site-footer__list">
+              <li><a href="/#industries">Traditional Banking</a></li>
+              <li><a href="/#industries">FinTech &amp; Neobanks</a></li>
+              <li><a href="/#industries">Crypto &amp; Digital Assets</a></li>
+              <li><a href="/#industries">High-Value Real Estate</a></li>
+              <li><a href="/#industries">Gaming &amp; iGaming</a></li>
+              <li><a href="/#industries">Marketplaces &amp; E-commerce</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="site-footer__heading">Company</h3>
+            <ul class="site-footer__list">
+              <li><a href="/blog/">Compliance Insights</a></li>
+              <li><a href="/#benefits">Why Veridaq</a></li>
+              <li><a href="/#contact">Book Demo</a></li>
+              <li><a href="/privacy-policy">Privacy Policy</a></li>
+              <li><a href="/terms-of-service">Terms of Service</a></li>
+              <li><a href="/privacy-by-design">Privacy by Design</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="site-footer__bottom">
+          <div class="site-footer__copyright">© 2025 Veridaq. All rights reserved. | AI-Powered Compliance Platform</div>
+          <div class="site-footer__bottom-links">
+            <a href="#">Bank-Grade Security</a>
+            <a href="#">AMLR 2027 Ready</a>
+            <a href="#">Status</a>
+            <a class="emphasis" href="/#contact">Book Your Demo</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  
+  
+    <script type="module">
+      import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+      const SUPABASE_URL = "https://rjncawbywidrtwcprfgw.supabase.co";
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJqbmNhd2J5d2lkcnR3Y3ByZmd3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY4OTcyMzgsImV4cCI6MjA3MjQ3MzIzOH0.vp8ZGIhRDvJrun3YoTJLJJH8P5Dx2SheEltVBXhujjc";
+      const LANGUAGE_OPTIONS = [{"code":"en","name":"English","flag":"🇬🇧"},{"code":"da","name":"Danish","flag":"🇩🇰"},{"code":"sv","name":"Swedish","flag":"🇸🇪"},{"code":"no","name":"Norwegian","flag":"🇳🇴"},{"code":"fi","name":"Finnish","flag":"🇫🇮"},{"code":"de","name":"German","flag":"🇩🇪"},{"code":"fr","name":"French","flag":"🇫🇷"},{"code":"es","name":"Spanish","flag":"🇪🇸"},{"code":"it","name":"Italian","flag":"🇮🇹"},{"code":"pt","name":"Portuguese","flag":"🇵🇹"},{"code":"nl","name":"Dutch","flag":"🇳🇱"}];
+      const SUPPORTED_LANGUAGES = ["en","da","sv","no","fi","de","fr","es","it","pt","nl"];
+      const PAGE_CONTEXT = {"currentLanguage":"en","pageType":"post","currentSlug":"customer-risk-scoring-model-guide-for-eu-banks-2025","availableTranslations":{"nl":"customer-risk-scoring-model-guide-for-eu-banks-2025-dutch","sv":"customer-risk-scoring-model-guide-for-eu-banks-2025-swedish","no":"customer-risk-scoring-model-guide-for-eu-banks-2025-norwegian","da":"customer-risk-scoring-model-guide-for-eu-banks-2025-danish","fi":"customer-risk-scoring-model-guide-for-eu-banks-2025-finnish","de":"customer-risk-scoring-model-guide-for-eu-banks-2025-german","fr":"customer-risk-scoring-model-guide-for-eu-banks-2025-french","es":"customer-risk-scoring-model-guide-for-eu-banks-2025-spanish","it":"customer-risk-scoring-model-guide-for-eu-banks-2025-italian","pt":"customer-risk-scoring-model-guide-for-eu-banks-2025-portuguese","en":"customer-risk-scoring-model-guide-for-eu-banks-2025"}};
+      const LANGUAGE_FLAGS = {"en":"🇬🇧","da":"🇩🇰","sv":"🇸🇪","no":"🇳🇴","fi":"🇫🇮","de":"🇩🇪","fr":"🇫🇷","es":"🇪🇸","it":"🇮🇹","pt":"🇵🇹","nl":"🇳🇱"};
+      const PREFERENCE_KEY = 'preferredLanguage';
+
+      const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      const normalizeLanguage = (code) => {
+        if (!code) return 'en';
+        const base = code.toLowerCase().split('-')[0];
+        return SUPPORTED_LANGUAGES.includes(base) ? base : 'en';
+      };
+
+      const getLanguageFromPath = () => {
+        const segments = window.location.pathname.split('/').filter(Boolean);
+        if (segments.length > 0 && SUPPORTED_LANGUAGES.includes(segments[0])) {
+          return segments[0];
+        }
+        return 'en';
+      };
+
+      const findTranslatedPostSlug = async (currentSlug, currentLang, targetLang) => {
+        try {
+          if (currentLang === targetLang) return currentSlug;
+
+          if (currentLang === 'en') {
+            const { data: postData } = await supabase
+              .from('posts')
+              .select('id')
+              .eq('slug', currentSlug)
+              .eq('status', 'published')
+              .maybeSingle();
+
+            if (!postData?.id) return null;
+
+            const { data } = await supabase
+              .from('post_translations')
+              .select('slug')
+              .eq('language_code', targetLang)
+              .eq('published', true)
+              .eq('translation_status', 'completed')
+              .eq('post_id', postData.id)
+              .maybeSingle();
+
+            return data?.slug || null;
+          }
+
+          if (targetLang === 'en') {
+            const { data, error } = await supabase
+              .from('post_translations')
+              .select('post_id')
+              .eq('slug', currentSlug)
+              .eq('language_code', currentLang)
+              .eq('published', true)
+              .maybeSingle();
+
+            if (error || !data?.post_id) return null;
+
+            const { data: postData } = await supabase
+              .from('posts')
+              .select('slug')
+              .eq('id', data.post_id)
+              .eq('status', 'published')
+              .maybeSingle();
+
+            return postData?.slug || null;
+          }
+
+          const { data: translationData, error: translationError } = await supabase
+            .from('post_translations')
+            .select('post_id')
+            .eq('slug', currentSlug)
+            .eq('language_code', currentLang)
+            .eq('published', true)
+            .maybeSingle();
+
+          if (translationError || !translationData?.post_id) return null;
+
+          const { data: targetData } = await supabase
+            .from('post_translations')
+            .select('slug')
+            .eq('post_id', translationData.post_id)
+            .eq('language_code', targetLang)
+            .eq('published', true)
+            .eq('translation_status', 'completed')
+            .maybeSingle();
+
+          return targetData?.slug || null;
+        } catch (error) {
+          console.error('Error finding translated post:', error);
+          return null;
+        }
+      };
+
+      const fetchAvailableTranslations = async (currentSlug, currentLang) => {
+        try {
+          const normalizedCurrent = normalizeLanguage(currentLang);
+          let postId = null;
+
+          if (normalizedCurrent === 'en') {
+            const { data } = await supabase
+              .from('posts')
+              .select('id')
+              .eq('slug', currentSlug)
+              .eq('status', 'published')
+              .maybeSingle();
+
+            postId = data?.id || null;
+          } else {
+            const { data } = await supabase
+              .from('post_translations')
+              .select('post_id')
+              .eq('slug', currentSlug)
+              .eq('language_code', normalizedCurrent)
+              .eq('published', true)
+              .maybeSingle();
+
+            postId = data?.post_id || null;
+          }
+
+          if (!postId) return {};
+
+          const translationMap = {};
+
+          const { data: translations } = await supabase
+            .from('post_translations')
+            .select('language_code, slug')
+            .eq('post_id', postId)
+            .eq('published', true)
+            .eq('translation_status', 'completed');
+
+          translations?.forEach(entry => {
+            const baseLang = normalizeLanguage(entry.language_code);
+            translationMap[baseLang] = entry.slug;
+          });
+
+          const { data: englishPost } = await supabase
+            .from('posts')
+            .select('slug')
+            .eq('id', postId)
+            .eq('status', 'published')
+            .maybeSingle();
+
+          if (englishPost?.slug) {
+            translationMap.en = englishPost.slug;
+          }
+
+          return translationMap;
+        } catch (error) {
+          console.error('Error loading available translations:', error);
+          return {};
+        }
+      };
+
+      const closeMenus = () => {
+        document.querySelectorAll('.language-switcher__menu').forEach(menu => {
+          menu.setAttribute('hidden', '');
+        });
+        document.querySelectorAll('.language-switcher__toggle').forEach(toggle => {
+          toggle.setAttribute('aria-expanded', 'false');
+        });
+      };
+
+      const updateActiveLanguage = (language) => {
+        const normalized = normalizeLanguage(language);
+        document.querySelectorAll('.language-switcher').forEach((switcher) => {
+          switcher.setAttribute('data-current-language', normalized);
+          const toggleText = switcher.querySelector('.language-switcher__text');
+          const toggleFlag = switcher.querySelector('.language-switcher__flag');
+          const activeOption = LANGUAGE_OPTIONS.find(opt => opt.code === normalized) || LANGUAGE_OPTIONS[0];
+
+          if (toggleText) toggleText.textContent = activeOption?.name || 'English';
+          if (toggleFlag) toggleFlag.textContent = activeOption?.flag || LANGUAGE_FLAGS[normalized] || '🌐';
+
+          switcher.querySelectorAll('.language-switcher__option').forEach(option => {
+            const optionLang = option.getAttribute('data-language');
+            if (optionLang === normalized) {
+              option.classList.add('is-active');
+              option.setAttribute('aria-selected', 'true');
+            } else {
+              option.classList.remove('is-active');
+              option.removeAttribute('aria-selected');
+            }
+          });
+        });
+      };
+
+      const filterAvailableLanguages = (availableMap = {}) => {
+        const availableLanguages = Object.keys(availableMap);
+        const restrictOptions = PAGE_CONTEXT.pageType === 'post' && availableLanguages.length > 0;
+
+        document.querySelectorAll('.language-switcher__option').forEach(option => {
+          const optionLang = option.getAttribute('data-language');
+          if (restrictOptions && !availableLanguages.includes(optionLang)) {
+            option.setAttribute('hidden', '');
+          } else {
+            option.removeAttribute('hidden');
+          }
+        });
+      };
+
+        const handleNavigation = async (targetLanguage) => {
+          const baseLanguage = normalizeLanguage(targetLanguage);
+          const pathSegments = window.location.pathname.split('/').filter(Boolean);
+          const supportedLanguageCodes = SUPPORTED_LANGUAGES.filter(lang => lang !== 'en');
+
+          let currentLang = 'en';
+          let pathAfterLang = [...pathSegments];
+
+          if (pathSegments.length > 0 && supportedLanguageCodes.includes(pathSegments[0])) {
+            currentLang = pathSegments[0];
+            pathAfterLang = pathSegments.slice(1);
+          }
+
+          const isBlogPost = pathAfterLang.length >= 2 && pathAfterLang[0] === 'blog' && pathAfterLang[1];
+          const isBlogListing = pathAfterLang.length === 1 && pathAfterLang[0] === 'blog';
+
+          if (isBlogPost) {
+            const currentSlug = pathAfterLang[1];
+            const translatedSlug = await findTranslatedPostSlug(currentSlug, currentLang, baseLanguage);
+
+            if (translatedSlug) {
+              const newPath = baseLanguage === 'en'
+                ? '/blog/' + translatedSlug + '/'
+                : '/' + baseLanguage + '/blog/' + translatedSlug + '/';
+              window.location.assign(newPath);
+              return;
+            }
+
+            const fallbackPath = baseLanguage === 'en'
+              ? '/blog/'
+              : '/' + baseLanguage + '/blog/';
+            window.location.assign(fallbackPath);
+            return;
+          }
+
+          if (isBlogListing) {
+            const listingPath = baseLanguage === 'en'
+              ? '/blog/'
+              : '/' + baseLanguage + '/blog/';
+            window.location.assign(listingPath);
+            return;
+          }
+
+          const defaultPath = baseLanguage === 'en' ? '/' : '/' + baseLanguage + '/';
+          window.location.assign(defaultPath);
+        };
+
+      const buildMenus = (availableTranslations = {}) => {
+        document.querySelectorAll('.language-switcher').forEach((switcher) => {
+          const toggle = switcher.querySelector('.language-switcher__toggle');
+          const menu = switcher.querySelector('.language-switcher__menu');
+
+          if (!toggle || !menu) return;
+
+          const savedPreference = normalizeLanguage(localStorage.getItem(PREFERENCE_KEY) || PAGE_CONTEXT.currentLanguage);
+          switcher.setAttribute('data-current-language', savedPreference);
+          updateActiveLanguage(savedPreference);
+
+          toggle.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+            closeMenus();
+            if (!isExpanded) {
+              menu.removeAttribute('hidden');
+              toggle.setAttribute('aria-expanded', 'true');
+            }
+          });
+
+          switcher.querySelectorAll('.language-switcher__option').forEach(option => {
+            option.addEventListener('click', async () => {
+              const language = option.getAttribute('data-language');
+              localStorage.setItem(PREFERENCE_KEY, language);
+              updateActiveLanguage(language);
+              closeMenus();
+              await handleNavigation(language);
+            });
+          });
+        });
+
+        filterAvailableLanguages(availableTranslations);
+      };
+
+      document.addEventListener('click', (event) => {
+        const isMenuClick = event.target.closest('.language-switcher');
+        if (!isMenuClick) {
+          closeMenus();
+        }
+      });
+
+      document.addEventListener('keyup', (event) => {
+        if (event.key === 'Escape') closeMenus();
+      });
+
+      const setupHeaderToggle = () => {
+        const toggle = document.querySelector('.site-header__menu-toggle');
+        const mobileMenu = document.querySelector('[data-mobile-menu]');
+
+        if (!toggle || !mobileMenu) return;
+
+        toggle.addEventListener('click', () => {
+          const isOpen = mobileMenu.classList.toggle('is-open');
+          toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          if (isOpen) {
+            document.body.classList.add('menu-open');
+          } else {
+            document.body.classList.remove('menu-open');
+          }
+        });
+      };
+
+      const initialize = async () => {
+        const detectedLanguage = normalizeLanguage(getLanguageFromPath());
+        PAGE_CONTEXT.currentLanguage = detectedLanguage;
+
+        let availableTranslations = PAGE_CONTEXT.availableTranslations || {};
+
+        if (PAGE_CONTEXT.pageType === 'post' && PAGE_CONTEXT.currentSlug) {
+          const latestTranslations = await fetchAvailableTranslations(PAGE_CONTEXT.currentSlug, detectedLanguage);
+          availableTranslations = Object.keys(latestTranslations).length > 0 ? latestTranslations : availableTranslations;
+        }
+
+        buildMenus(availableTranslations);
+        setupHeaderToggle();
+      };
+
+      initialize();
+    </script>
+  
+</body>
+</html>
