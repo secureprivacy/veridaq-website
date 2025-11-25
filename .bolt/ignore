@@ -1,0 +1,39 @@
+# Bolt.new ignore file - Files excluded from context window to reduce project size
+
+# Dependencies and build artifacts
+node_modules/
+dist/
+dist-ssr/
+
+# Public assets (large files)
+public/
+
+# Documentation and planning files
+BLOG_TRANSLATION_FIX_PLAN.md
+UNIFIED_EDITOR_IMPLEMENTATION_PLAN.md
+BOLT_AND_AI_ARCHITECTURE.md
+
+# Scripts
+scripts/
+
+# Package lock file (large)
+package-lock.json
+
+# Testing and coverage
+coverage/
+.nyc_output/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+.env
+
+# Temporary files
+*.log
+*.tmp
+.cache/
