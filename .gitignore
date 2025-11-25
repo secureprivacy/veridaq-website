@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ssr
+public
 *.local
 
 # Editor directories and files
@@ -31,13 +32,3 @@ scripts/dev-utils/
 # Temporary analysis files
 missing-meta-descriptions.json
 translations-missing-meta.json
-
-# Large image files (temporarily ignored for lightweight bolt.new download)
-public/images/veridaq-logo.svg
-public/images/veridaq-master-1024.png
-public/images/CustomerDueDiligence.png
-public/images/SanctionsScreening.png
-public/images/RiskAssessment.png
-public/images/TransactionMonitoring.png
-public/images/BeneficialOwnership.png
-public/images/RecordKeeping.png
