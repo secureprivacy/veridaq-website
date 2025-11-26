@@ -220,13 +220,16 @@ documentation:
 
 language_variants:
   - https://veridaq.com/ (English)
-  - https://veridaq.com/no/ (Norwegian)
   - https://veridaq.com/da/ (Danish)
   - https://veridaq.com/sv/ (Swedish)
-  - https://veridaq.com/nl/ (Dutch)
-  - https://veridaq.com/it/ (Italian)
+  - https://veridaq.com/no/ (Norwegian)
+  - https://veridaq.com/fi/ (Finnish)
+  - https://veridaq.com/de/ (German)
+  - https://veridaq.com/fr/ (French)
   - https://veridaq.com/es/ (Spanish)
+  - https://veridaq.com/it/ (Italian)
   - https://veridaq.com/pt/ (Portuguese)
+  - https://veridaq.com/nl/ (Dutch)
 
 crawler_notes:
   - Treat all language variants as regionalised versions of the same core product.
