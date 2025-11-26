@@ -38,7 +38,7 @@
       "purpose": "maskable"
     },
     {
-      "src": "/images/veridaq-logo.svg",
+      "src": "/images/veridaq-logo-transparent.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any"

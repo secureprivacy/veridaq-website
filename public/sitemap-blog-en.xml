@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://veridaq.com/blog</loc>
-    <lastmod>2025-11-24</lastmod>
+    <lastmod>2025-11-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://veridaq.com/blog" />
@@ -17,6 +17,42 @@
     <xhtml:link rel="alternate" hreflang="pt" href="https://veridaq.com/pt/blog" />
     <xhtml:link rel="alternate" hreflang="nl" href="https://veridaq.com/nl/blog" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://veridaq.com/blog" />
+  </url>
+  <url>
+    <loc>https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps</loc>
+    <lastmod>2025-11-26</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veridaq.com/blog/eu-travel-rule-2025-tfr-compliance-guide-for-banks-casps" />
+  </url>
+  <url>
+    <loc>https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025</loc>
+    <lastmod>2025-11-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://veridaq.com/blog/the-true-cost-of-aml-noncompliance-for-eu-banks-2025" />
   </url>
   <url>
     <loc>https://veridaq.com/blog/eu-aml-regulation-vs-directive-key-differences</loc>
@@ -330,16 +366,16 @@
     <changefreq>daily</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://veridaq.com/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6" />
-    <xhtml:link rel="alternate" hreflang="da" href="https://veridaq.com/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6" />
-    <xhtml:link rel="alternate" hreflang="sv" href="https://veridaq.com/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6" />
-    <xhtml:link rel="alternate" hreflang="no" href="https://veridaq.com/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6" />
-    <xhtml:link rel="alternate" hreflang="fi" href="https://veridaq.com/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6" />
-    <xhtml:link rel="alternate" hreflang="de" href="https://veridaq.com/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://veridaq.com/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://veridaq.com/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://veridaq.com/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6" />
-    <xhtml:link rel="alternate" hreflang="pt" href="https://veridaq.com/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6" />
-    <xhtml:link rel="alternate" hreflang="nl" href="https://veridaq.com/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://veridaq.com/da/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6-danish" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://veridaq.com/sv/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6-swedish" />
+    <xhtml:link rel="alternate" hreflang="no" href="https://veridaq.com/no/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6-norwegian" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://veridaq.com/fi/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6-finnish" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://veridaq.com/de/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6-german" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://veridaq.com/fr/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6-french" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://veridaq.com/es/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6-spanish" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://veridaq.com/it/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6-italian" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://veridaq.com/pt/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6-portuguese" />
+    <xhtml:link rel="alternate" hreflang="nl" href="https://veridaq.com/nl/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6-dutch" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://veridaq.com/blog/what-counts-as-an-ultimate-beneficial-owner-under-amld-6" />
   </url>
   <url>
