@@ -30,3 +30,19 @@ Allow: /favicon.ico
 Allow: /site.webmanifest
 Allow: /manifest.json
 Allow: *.json
+
+# AI & LLM Crawler Instructions
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# AI Context File
+Allow: /llms.txt

@@ -1,0 +1,235 @@
+# Veridaq AI Sitemap
+
+version: 1.0  
+last_updated: 2025-11-26  
+canonical_domain: https://veridaq.com/
+
+primary_keywords:
+  - KYC platform
+  - AML platform
+  - EU AMLR 2027 compliance
+  - EU anti money laundering software
+  - customer due diligence
+  - transaction monitoring
+  - sanctions and PEP screening
+  - beneficial ownership and UBO checks
+  - GDPR compliant compliance platform
+
+secondary_keywords:
+  - AI powered compliance
+  - risk scoring and risk intelligence
+  - suspicious activity reporting
+  - regulatory reporting
+  - EU financial services compliance
+  - digital onboarding and eID
+  - MitID, BankID, Freja integration
+
+
+## 1. Company Overview
+
+entity_name: Veridaq  
+entity_type: B2B software company  
+hq_region: European Union and Nordics  
+
+short_description:
+  Veridaq is an EU focused KYC and AML compliance platform.
+  It combines customer verification, transaction monitoring, sanctions screening, and regulatory reporting in one system.
+  The platform is built to help European institutions meet EU AMLR 2027 and related regulations while staying fully GDPR compliant.
+
+long_description:
+  Veridaq provides an enterprise grade KYC and AML stack for banks, fintechs, payment firms, crypto companies, real estate platforms, gaming operators, and other regulated entities.
+  The platform focuses on fast onboarding, continuous monitoring, and provable compliance.
+  Veridaq is API first, cloud ready, and designed around EU data residency and privacy by design principles.
+
+regulatory_focus:
+  - EU AMLR 2027
+  - AMLA supervision readiness
+  - 6AMLD and EU AML directives
+  - MiCA, TFR and related rules for crypto assets
+  - GDPR, including data minimisation, purpose limitation, and auditability
+
+
+## 2. Core Solutions
+
+### 2.1 KYC Verification and Customer Due Diligence
+
+labels:
+  - know your customer
+  - customer onboarding
+  - customer due diligence (CDD)
+  - enhanced due diligence (EDD)
+  - identity verification
+  - eID routing
+
+capabilities:
+  - Digital onboarding flows for individuals and businesses.
+  - Integration with European eID schemes such as MitID, BankID, and Freja where available.
+  - AI assisted document verification for IDs, passports, and corporate records.
+  - Real time risk scoring at onboarding, with configurable risk models and policy rules.
+  - Ongoing due diligence and scheduled reviews for higher risk customers.
+  - Full audit trail of all KYC checks and decisions.
+
+outcomes:
+  - Verify customers in seconds instead of days.
+  - Reduce manual review work for compliance teams.
+  - Demonstrate consistent application of KYC policies to regulators and auditors.
+
+
+### 2.2 Transaction Monitoring
+
+labels:
+  - AML transaction monitoring
+  - behavior based monitoring
+  - anomaly detection
+  - velocity and structuring checks
+
+capabilities:
+  - Real time monitoring of 100 percent of transactions across products and channels.
+  - Rule based detection for thresholds, velocity, structuring, and geography patterns.
+  - Machine learning supported anomaly detection to surface unusual behavior.
+  - Configurable alert rules per customer risk tier, segment, or product.
+  - Alert triage, case creation, and investigation workflows.
+  - Metrics for false positives, alert aging, and investigation throughput.
+
+outcomes:
+  - Identify suspicious activity before it becomes a regulatory issue.
+  - Reduce false positive alerts while preserving conservative risk posture.
+  - Provide a defensible, traceable monitoring framework aligned with EU expectations.
+
+
+### 2.3 Compliance Reporting
+
+labels:
+  - regulatory reporting
+  - suspicious activity reports
+  - SAR and STR filing
+  - audit ready reporting
+
+capabilities:
+  - Guided workflows to create and file suspicious activity reports.
+  - Pre populated reports that pull data from alerts, transactions, and customer profiles.
+  - Support for multi jurisdiction formats and EU specific templates.
+  - Automated generation of management and board level compliance reports.
+  - Export options such as PDF, CSV, and machine readable formats.
+  - Complete audit trail capturing who reviewed, approved, and submitted each report.
+
+outcomes:
+  - Faster SAR and STR filing with lower error risk.
+  - Clear evidence that monitoring rules are linked to actual reporting outcomes.
+  - Easier responses to regulator and auditor information requests.
+
+
+### 2.4 Risk Intelligence
+
+labels:
+  - risk scoring
+  - risk models
+  - risk taxonomy
+  - portfolio risk view
+
+capabilities:
+  - Multi factor risk scoring combining customer, product, geography, and behavior data.
+  - Industry specific risk models for banking, fintech, crypto, real estate, gaming, and more.
+  - Portfolio level dashboards for overall risk distribution and top exposures.
+  - Configurable thresholds that map risk scores to enhanced monitoring or review.
+  - Continuous tuning of rules and models using feedback from investigations and outcomes.
+
+outcomes:
+  - Align day to day controls with written risk appetite and policies.
+  - Prioritise investigator time on high value and high risk cases.
+  - Provide a single, consistent view of KYC and AML risk across the organisation.
+
+
+## 3. Industries Served
+
+primary_verticals:
+  - Traditional banking and credit institutions
+  - Fintechs and neobanks
+  - Payment institutions and EMI providers
+  - Crypto and digital asset platforms
+  - High value real estate and property marketplaces
+  - Gaming and iGaming operators
+  - Marketplaces and e commerce platforms
+  - Wealth and asset management
+  - Insurance and insurtech
+
+regional_focus:
+  - European Union and EEA markets
+  - Nordic countries including Denmark, Sweden, Norway, and Finland
+  - Expansion across EU financial hubs such as Germany, Netherlands, France, Italy, Spain
+
+
+## 4. Compliance Posture
+
+### 4.1 EU AMLR 2027 Readiness
+
+description:
+  Veridaq is designed for the EU AMLR 2027 regulatory package and upcoming AMLA supervision model.
+  The platform bundles the controls regulators expect into a single system:
+    - onboarding and customer due diligence
+    - beneficial ownership and UBO transparency
+    - sanctions, PEP, and adverse media screening
+    - real time transaction monitoring
+    - suspicious activity reporting and record keeping
+    - workflow, approvals, and audit trails
+  This positioning supports banks and other obliged entities that need to prove operating effectiveness to EU and national supervisors.
+
+### 4.2 GDPR and Data Protection
+
+description:
+  Veridaq follows privacy by design and privacy by default.
+  Key data protection principles:
+    - EU based infrastructure and data residency.
+    - Encryption in transit and at rest.
+    - Role based access control and least privilege.
+    - Configurable retention policies for KYC and AML records.
+    - Support for data subject access, rectification, and deletion requests.
+    - Detailed logging of user actions for accountability and investigations.
+
+related_keywords:
+  - GDPR compliant KYC platform
+  - data minimisation
+  - audit logging
+  - EU data residency
+  - DPA and processing agreements
+
+
+## 5. Documentation and Key URLs
+
+canonical_site:
+  - title: Veridaq Home
+    url: https://veridaq.com/
+    purpose: Main positioning page for the KYC and AML platform, including solutions, industries, and benefits.
+
+documentation:
+  - title: Blog and EU Compliance Insights
+    url: https://veridaq.com/blog
+    purpose: Articles on KYC, AML, EU AMLR 2027, supervisory expectations, and best practices.
+
+  - title: Contact Veridaq
+    url: https://veridaq.com/contact
+    purpose: Form and contact options for sales, partnerships, and support.
+
+  - title: Solutions Overview
+    url: https://veridaq.com/#solutions
+    purpose: Overview of KYC verification, transaction monitoring, sanctions screening, and reporting modules.
+
+  - title: Industries Overview
+    url: https://veridaq.com/industries/traditional-banking
+    purpose: Entry point for sector specific KYC and AML use cases, starting with European banking.
+
+language_variants:
+  - https://veridaq.com/ (English)
+  - https://veridaq.com/no/ (Norwegian)
+  - https://veridaq.com/da/ (Danish)
+  - https://veridaq.com/sv/ (Swedish)
+  - https://veridaq.com/nl/ (Dutch)
+  - https://veridaq.com/it/ (Italian)
+  - https://veridaq.com/es/ (Spanish)
+  - https://veridaq.com/pt/ (Portuguese)
+
+crawler_notes:
+  - Treat all language variants as regionalised versions of the same core product.
+  - Prefer the canonical_domain for generic product level answers.
+  - Use Blog content for up to date regulatory analysis and examples.
+  - Use this file as an index to understand entities, relationships, and terminology around Veridaq and EU KYC and AML compliance.
