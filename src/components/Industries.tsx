@@ -143,11 +143,12 @@ const Industries: React.FC<IndustriesProps> = ({ industrySlug }) => {
     return slugs[id] || '';
   };
 
-  // Handle initial industrySlug prop
+  // Handle industrySlug prop changes
   useEffect(() => {
-    if (industrySlug && !selectedIndustry) {
+    if (industrySlug) {
+      // Set industry from slug
       const industryId = getIndustryIdFromSlug(industrySlug);
-      if (industryId) {
+      if (industryId && industryId !== selectedIndustry) {
         setSelectedIndustry(industryId);
         // Scroll to industries section
         setTimeout(() => {
@@ -160,8 +161,11 @@ const Industries: React.FC<IndustriesProps> = ({ industrySlug }) => {
           }
         }, 100);
       }
+    } else if (selectedIndustry) {
+      // Clear selection when slug is removed
+      setSelectedIndustry(null);
     }
-  }, [industrySlug, selectedIndustry]);
+  }, [industrySlug]);
 
   // Function to handle industry selection with URL update
   const handleIndustrySelect = (industryId: string) => {
@@ -176,22 +180,11 @@ const Industries: React.FC<IndustriesProps> = ({ industrySlug }) => {
 
   // Function to handle back navigation with URL update
   const handleBack = () => {
-    setSelectedIndustry(null);
     const currentLang = i18n.language.split('-')[0];
-    const urlPath = currentLang === 'en' ? '/' : `/${currentLang}`;
-    window.history.pushState({}, '', urlPath);
-    // Trigger popstate to ensure App.tsx detects the route change
-    window.dispatchEvent(new PopStateEvent('popstate'));
-    // Scroll to industries section
-    setTimeout(() => {
-      const element = document.getElementById('industries');
-      if (element) {
-        const headerOffset = 100;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-      }
-    }, 100);
+    const urlPath = currentLang === 'en' ? '/#industries' : `/${currentLang}#industries`;
+
+    // Navigate to industries section on homepage
+    window.location.href = urlPath;
   };
 
   const selectedIndustryData = industries.find(industry => industry.id === selectedIndustry);
