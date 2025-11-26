@@ -35,3 +35,4 @@ npm run dev
 - `/src`: Source code for the React application.
 - `/supabase`: Supabase migrations and configuration.
 - `/scripts`: Utility scripts for build and maintenance.
+ 
