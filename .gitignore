@@ -31,3 +31,5 @@ scripts/dev-utils/
 # Temporary analysis files
 missing-meta-descriptions.json
 translations-missing-meta.json
+
+/public
