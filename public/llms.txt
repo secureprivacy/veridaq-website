@@ -201,22 +201,55 @@ canonical_site:
     url: https://veridaq.com/
     purpose: Main positioning page for the KYC and AML platform, including solutions, industries, and benefits.
 
-documentation:
+core_pages:
+  - title: Features and Solutions
+    url: https://veridaq.com/#features
+    purpose: Detailed breakdown of KYC verification, transaction monitoring, compliance reporting, and risk intelligence features.
+
+  - title: Contact and Demo Request
+    url: https://veridaq.com/contact
+    purpose: Form and contact options for sales, partnerships, and support. Request personalized product demos.
+
   - title: Blog and EU Compliance Insights
     url: https://veridaq.com/blog
     purpose: Articles on KYC, AML, EU AMLR 2027, supervisory expectations, and best practices.
 
-  - title: Contact Veridaq
-    url: https://veridaq.com/contact
-    purpose: Form and contact options for sales, partnerships, and support.
-
-  - title: Solutions Overview
-    url: https://veridaq.com/#solutions
-    purpose: Overview of KYC verification, transaction monitoring, sanctions screening, and reporting modules.
-
-  - title: Industries Overview
+industry_pages:
+  - title: Traditional Banking KYC and AML
     url: https://veridaq.com/industries/traditional-banking
-    purpose: Entry point for sector specific KYC and AML use cases, starting with European banking.
+    purpose: Nordic banks leveraging advanced digital infrastructure and eID systems (MitID, BankID, Freja).
+
+  - title: FinTech and Digital Banking Compliance
+    url: https://veridaq.com/industries/fintech-digital-banking
+    purpose: Nordic digital banks and neobanks leveraging advanced eID infrastructure for fast onboarding.
+
+  - title: Cryptocurrency and Digital Assets AML
+    url: https://veridaq.com/industries/cryptocurrency-digital-assets
+    purpose: Crypto exchanges, wallet providers, and DeFi platforms with blockchain analysis and travel rule compliance.
+
+  - title: Real Estate and Property KYC
+    url: https://veridaq.com/industries/real-estate-property
+    purpose: High value property transactions with enhanced due diligence and beneficial ownership mapping.
+
+  - title: Gaming and iGaming Compliance
+    url: https://veridaq.com/industries/gaming-igaming
+    purpose: Online gaming platforms with age verification, payment source verification, and responsible gaming monitoring.
+
+  - title: E-commerce and Marketplaces Verification
+    url: https://veridaq.com/industries/ecommerce-marketplaces
+    purpose: Online retail platforms and peer to peer marketplaces with merchant KYC and fraud detection.
+
+  - title: Legal and Law Firms Compliance
+    url: https://veridaq.com/industries/legal-law-firms
+    purpose: Law firms, legal advisors, and notaries with client trust account monitoring and PEP screening.
+
+  - title: Accounting and Tax Advisory KYC
+    url: https://veridaq.com/industries/accounting-tax-advisory
+    purpose: Accounting firms and tax advisors with client verification and GDPR compliant data management.
+
+  - title: Investment Advisors and Wealth Management
+    url: https://veridaq.com/industries/investment-advisors-wealth-management
+    purpose: Independent financial advisors and wealth managers with enhanced due diligence and MiFID II compliance.
 
 language_variants:
   - https://veridaq.com/ (English)
