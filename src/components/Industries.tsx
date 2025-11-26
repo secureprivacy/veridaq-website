@@ -180,6 +180,8 @@ const Industries: React.FC<IndustriesProps> = ({ industrySlug }) => {
     const currentLang = i18n.language.split('-')[0];
     const urlPath = currentLang === 'en' ? '/' : `/${currentLang}`;
     window.history.pushState({}, '', urlPath);
+    // Trigger popstate to ensure App.tsx detects the route change
+    window.dispatchEvent(new PopStateEvent('popstate'));
     // Scroll to industries section
     setTimeout(() => {
       const element = document.getElementById('industries');
