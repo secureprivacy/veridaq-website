@@ -14,17 +14,23 @@ dist-ssr
 ### Generated Blog Content (Created at Build Time)
 ```gitignore
 public/blog/              # English blog HTML
-public/da/                # Danish blog HTML
-public/sv/                # Swedish blog HTML
-public/no/                # Norwegian blog HTML
-public/fi/                # Finnish blog HTML
-public/de/                # German blog HTML
-public/fr/                # French blog HTML
-public/es/                # Spanish blog HTML
-public/it/                # Italian blog HTML
-public/pt/                # Portuguese blog HTML
-public/nl/                # Dutch blog HTML
+public/da/blog/           # Danish blog HTML
+public/sv/blog/           # Swedish blog HTML
+public/no/blog/           # Norwegian blog HTML
+public/fi/blog/           # Finnish blog HTML
+public/de/blog/           # German blog HTML
+public/fr/blog/           # French blog HTML
+public/es/blog/           # Spanish blog HTML
+public/it/blog/           # Italian blog HTML
+public/pt/blog/           # Portuguese blog HTML
+public/nl/blog/           # Dutch blog HTML
 public/sitemap*.xml       # All generated sitemaps
+
+# IMPORTANT: These are explicitly NOT ignored
+!public/locales/          # Translation files (MUST be committed)
+!public/robots.txt        # SEO crawler instructions
+!public/.well-known/      # AI plugin discovery
+!public/images/           # Static images
 ```
 
 ### Temporary Files
@@ -69,12 +75,15 @@ desktop.ini
 
 ## What Should Be Committed
 
-### Static Assets (Keep in Repository)
+### Static Assets (MUST Be Committed)
+- `public/locales/` - **CRITICAL**: All translation files (i18n)
 - `public/robots.txt` - SEO crawler instructions
 - `public/.well-known/` - AI plugin discovery
 - `public/images/` - Static images and logos
 - `public/favicon.ico` - Site favicon
 - Any other static assets (CSS, fonts, etc.)
+
+**⚠️ WARNING**: Never ignore the entire `/public` directory! This will delete all translation files and break the application.
 
 ### Source Code
 - All `src/` files
